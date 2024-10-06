@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robson Bruno Dutra Pereira">
+
+<title>Séries Temporais e Previsão - 2&nbsp; Análise descritiva, métodos simples de previsão e diagnóstico</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ST3.html" rel="next">
+<link href="./ST1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Séries Temporais e Previsão</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decomposição de séries temporais</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#estatísiticas-descritivas" id="toc-estatísiticas-descritivas" class="nav-link active" data-scroll-target="#estatísiticas-descritivas"><span class="header-section-number">2.1</span> Estatísiticas descritivas</a>
+  <ul class="collapse">
+  <li><a href="#estatísticas-simples" id="toc-estatísticas-simples" class="nav-link" data-scroll-target="#estatísticas-simples"><span class="header-section-number">2.1.1</span> Estatísticas simples</a></li>
+  <li><a href="#autocorrelação" id="toc-autocorrelação" class="nav-link" data-scroll-target="#autocorrelação"><span class="header-section-number">2.1.2</span> Autocorrelação</a></li>
+  </ul></li>
+  <li><a href="#métodos-simples-de-previsão" id="toc-métodos-simples-de-previsão" class="nav-link" data-scroll-target="#métodos-simples-de-previsão"><span class="header-section-number">2.2</span> Métodos simples de previsão</a>
+  <ul class="collapse">
+  <li><a href="#média" id="toc-média" class="nav-link" data-scroll-target="#média"><span class="header-section-number">2.2.1</span> Média</a></li>
+  <li><a href="#método-ingênuo" id="toc-método-ingênuo" class="nav-link" data-scroll-target="#método-ingênuo"><span class="header-section-number">2.2.2</span> Método ingênuo</a></li>
+  <li><a href="#ingênuo-sazonal" id="toc-ingênuo-sazonal" class="nav-link" data-scroll-target="#ingênuo-sazonal"><span class="header-section-number">2.2.3</span> Ingênuo sazonal</a></li>
+  <li><a href="#deriva" id="toc-deriva" class="nav-link" data-scroll-target="#deriva"><span class="header-section-number">2.2.4</span> Deriva</a></li>
+  <li><a href="#resíduos-e-valores-previstos" id="toc-resíduos-e-valores-previstos" class="nav-link" data-scroll-target="#resíduos-e-valores-previstos"><span class="header-section-number">2.2.5</span> Resíduos e valores previstos</a></li>
+  <li><a href="#diagnósticos-dos-resíduos" id="toc-diagnósticos-dos-resíduos" class="nav-link" data-scroll-target="#diagnósticos-dos-resíduos"><span class="header-section-number">2.2.6</span> Diagnósticos dos resíduos</a></li>
+  <li><a href="#testes-para-diagnóstico-de-autocorrelação" id="toc-testes-para-diagnóstico-de-autocorrelação" class="nav-link" data-scroll-target="#testes-para-diagnóstico-de-autocorrelação"><span class="header-section-number">2.2.7</span> Testes para diagnóstico de autocorrelação</a></li>
+  </ul></li>
+  <li><a href="#intervalos-de-confiança-para-previsão" id="toc-intervalos-de-confiança-para-previsão" class="nav-link" data-scroll-target="#intervalos-de-confiança-para-previsão"><span class="header-section-number">2.3</span> Intervalos de confiança para previsão</a>
+  <ul class="collapse">
+  <li><a href="#transformações" id="toc-transformações" class="nav-link" data-scroll-target="#transformações"><span class="header-section-number">2.3.1</span> Transformações</a></li>
+  </ul></li>
+  <li><a href="#avaliação-de-modelos-de-séries-temporais" id="toc-avaliação-de-modelos-de-séries-temporais" class="nav-link" data-scroll-target="#avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.4</span> Avaliação de modelos de séries temporais</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robson Bruno Dutra Pereira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="estatísiticas-descritivas" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="estatísiticas-descritivas"><span class="header-section-number">2.1</span> Estatísiticas descritivas</h2>
+<section id="estatísticas-simples" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="estatísticas-simples"><span class="header-section-number">2.1.1</span> Estatísticas simples</h3>
+<p>Algumas estatítiscas descritivas podem ser úteis para uma avaliação inicial de séries temporais.</p>
+<p>A <a href="#tbl-est">Table&nbsp;<span>2.1</span></a> expõe a média e o desvio-padrão para a série multivariada de energia produzida em MWh no Brasil em 2023, segundo cada fonte. Observa-se a superioridade da série hidráulica em relação às demais, confirmando a dependência desta fonte na matriz energética brasileira.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-est" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.1: Média e desvio-padrão da série multivariada de Energia</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">solar</td>
+<td style="text-align: right;">4909.736</td>
+<td style="text-align: right;">6929.487</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">termica</td>
+<td style="text-align: right;">8250.471</td>
+<td style="text-align: right;">1886.645</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">10887.856</td>
+<td style="text-align: right;">3931.696</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hidraulica</td>
+<td style="text-align: right;">50466.854</td>
+<td style="text-align: right;">11061.858</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A <span class="citation" data-cites="bl-quatis">(<a href="references.html#ref-bl-quatis" role="doc-biblioref"><strong>bl-quatis?</strong></a>)</span> expõe os quartis da mesma série para todas as fontes consideradas. Recordando, os quartis são valores na série que dividem os dados em quatro partes iguais. O primeiro deixa 25% das observações abaixo, o segundo ou a mediana deixa 50% das observações abaixo, enquanto o terceiro e último deixa 75% dos dados abaixo. Observa-se também o mínimo (0%) e máximo (100%) de cada série.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-quatis" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">0%</th>
+<th style="text-align: right;">25%</th>
+<th style="text-align: right;">50%</th>
+<th style="text-align: right;">75%</th>
+<th style="text-align: right;">100%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">692.913</td>
+<td style="text-align: right;">7975.784</td>
+<td style="text-align: right;">11133.851</td>
+<td style="text-align: right;">13983.090</td>
+<td style="text-align: right;">20166.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hidraulica</td>
+<td style="text-align: right;">23565.749</td>
+<td style="text-align: right;">41825.293</td>
+<td style="text-align: right;">50623.416</td>
+<td style="text-align: right;">58907.708</td>
+<td style="text-align: right;">81006.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">solar</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">4.913</td>
+<td style="text-align: right;">588.847</td>
+<td style="text-align: right;">7368.716</td>
+<td style="text-align: right;">27222.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">termica</td>
+<td style="text-align: right;">4415.886</td>
+<td style="text-align: right;">6868.407</td>
+<td style="text-align: right;">8269.444</td>
+<td style="text-align: right;">9438.016</td>
+<td style="text-align: right;">19248.15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="autocorrelação" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="autocorrelação"><span class="header-section-number">2.1.2</span> Autocorrelação</h3>
+<p>A autocorrelação é uma estatística importante para avaliar séries temporais. Para avaliar a autocorrelação, deve-se defasar a série e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k= 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente.</p>
+<p><span class="math display">\[
+r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
+\]</span></p>
+<p>O correlograma consiste no gráfico que plota tais autocorrelações. A Figura <a href="#fig-corr_co2">Figure&nbsp;<span>2.1</span></a> plota o correlograma da série de níveis de CO2 a partir de 2000.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr_co2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-corr_co2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.1: Correlograma da série de níveis de CO2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Séries com tendência geralmente apresentam correlações mais altas nas defasagens menores, uma vez que os valores adjacentes na série são próximos. Séries com sazonalidade apresentam autocorrelação alta no período sazonal. Para o caso plotado, pode-se confirmar a presença de tendência e de autocorrelação anual na série.</p>
+<p>A <a href="#tbl-autocor">Table&nbsp;<span>2.3</span></a> apresenta algumas estatísticas relacionadas à autocorrelação: o primeiro coeficiente de autocorrelação, <span class="math inline">\(r_1\)</span>; a soma dos quadrados dos primeiros 10 coeficientes de autocorrelação, <span class="math inline">\(\sum_{k=1}^{10}r_i^2\)</span>; o primeiro coeficiente de correlação da série diferenciada; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada; o primeiro coeficiente de correlação da série diferenciada com defasagem de duas observações; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada de duas observações; e o coeficiente de autocorrelação do primeiro lag sazonal, caso a série tenha sazonalidade.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-autocor" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.3: Estatísticas relacionadas à autocorrelação</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">acf1</th>
+<th style="text-align: right;">acf10</th>
+<th style="text-align: right;">diff1_acf1</th>
+<th style="text-align: right;">diff1_acf10</th>
+<th style="text-align: right;">diff2_acf1</th>
+<th style="text-align: right;">diff2_acf10</th>
+<th style="text-align: right;">season_acf1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.9875842</td>
+<td style="text-align: right;">8.525252</td>
+<td style="text-align: right;">0.6864063</td>
+<td style="text-align: right;">1.768986</td>
+<td style="text-align: right;">0.2458201</td>
+<td style="text-align: right;">0.5501127</td>
+<td style="text-align: right;">0.8778667</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Na <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a> plotados algumas séries temporais e abaixo o correlograma correspondente. A série da <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(a) corresponde a um ruído branco ou uma sequência de números aleatórios seguindo a distribuição normal. Tal série não apresenta autocorrelação significativa, conforme indica o seu correlograma na <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(d). A série da <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(b) apresenta padrão cíclico com sazonalidade de 24h, conforme correlograma da <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(e). Já a série da <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(c) apresenta tendência linear positiva clara com sazonalidade anual, conforme correlograma da <a href="#fig-corr">Figure&nbsp;<span>2.2</span></a>(f).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-corr-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.2: Séries e respectivos correlogramas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="métodos-simples-de-previsão" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="métodos-simples-de-previsão"><span class="header-section-number">2.2</span> Métodos simples de previsão</h2>
+<section id="média" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="média"><span class="header-section-number">2.2.1</span> Média</h3>
+<p>Seja a série histórica <span class="math inline">\(y_1, ..., y_T\)</span>. A média pode ser aplicada para previsão de séries temporais, de forma que uma ou mais observações futuras são previstas a partir da média das <span class="math inline">\(T\)</span> observações disponíveis da série.</p>
+<p><span class="math display">\[
+\hat{y}_{T+h|T}=\frac{1}{T}\sum_{t=1}^Ty_t=\frac{y_1+y_2+...+y_T}{T}
+\]</span></p>
+<p>Na <a href="#fig-car">Figure&nbsp;<span>2.3</span></a> expõe-se a previsão com a média para três dias à frente na série temporal de produção de carros no Brasil.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-car" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-car-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.3: Previsão por média na série de produção de carros no Brasil</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="método-ingênuo" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="método-ingênuo"><span class="header-section-number">2.2.2</span> Método ingênuo</h3>
+<p>O método ingênuo propõe prever as observções futuras como a última observação.</p>
+<p><span class="math display">\[
+\hat{y}_{T+h|T}=y_T
+\]</span></p>
+<p>Na <a href="#fig-car2">Figure&nbsp;<span>2.4</span></a> expõe-se a previsão com o método ingênuo para três dias à frente na série temporal de produção de carros no Brasil.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-car2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-car2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.4: Previsão por média na série de produção de carros no Brasil</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ingênuo-sazonal" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="ingênuo-sazonal"><span class="header-section-number">2.2.3</span> Ingênuo sazonal</h3>
+<p>O método ingênuo sazonal é indicado para séries muito sazonais e propõe prever as observações futuras iguais aos períodos das estações anteriores, por exemplo mesmo valor do mês do ano anterior. Na formulação dos valores preditos a seguir, <span class="math inline">\(m\)</span> consiste no período sazonal e <span class="math inline">\(k\)</span> é a parte inteira de <span class="math inline">\((h-1)/m\)</span>, ou seja, o número completo de anos do período de previsão antes de <span class="math inline">\(T+h\)</span>.</p>
+<p><span class="math display">\[
+\hat{y}_{T+h|T}=y_{T+h-m(k+1)}
+\]</span></p>
+<p>Na <a href="#fig-car3">Figure&nbsp;<span>2.5</span></a> expõe-se a previsão com o método ingênuo sazonal para três dias à frente na série temporal de produção de carros no Brasil.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-car3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-car3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.5: Previsão por média na série de produção de carros no Brasil</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-temp">Figure&nbsp;<span>2.6</span></a> apresenta um conjunto de dados de temperatura instantânea coletada de hora em hora das duas primeiras semanas de Maio de 2024 para a cidade de São joão del-Rei. Os dados foram obtidos em https://tempo.inmet.gov.br/TabelaEstacoes/A001. Foram considerados os dados da primeira semana para treinar os modelos, sendo as previsões plotadas para a semana seguinte juntamente com os dados. Pode-se observar que as previsões obtidas com o método ingênuo sazonal apresentam bom ajuste aos dados.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-temp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-temp-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.6: Previsão da temperatura em São João del-Rei em Maio de 2024 pelos três métodos benchmarking apresentados</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="deriva" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="deriva"><span class="header-section-number">2.2.4</span> Deriva</h3>
+<p>O método da deriva é uma variação do ingênuo que permite a previsão de observações com tendência de crescimento ou decréscimo segundo a deriva observada entre a primeira e última observação.</p>
+<p><span class="math display">\[
+\hat{y}_{T+h|T} = y_T + \frac{h}{T-1}\sum_{t=2}^T(y_t-y_{t-1}) =y_T+h \bigg(\frac{y_T-y_1}{T-1}\bigg)
+\]</span></p>
+<p>Na <a href="#fig-car4">Figure&nbsp;<span>2.7</span></a> aplica-se a previsão com o método da deriva para três dias à frente na série temporal de produção de carros no Brasil.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-car4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-car4-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.7: Previsão por deriva na série de produção de carros no Brasil</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="resíduos-e-valores-previstos" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="resíduos-e-valores-previstos"><span class="header-section-number">2.2.5</span> Resíduos e valores previstos</h3>
+<p>Os valores previstos são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>, implicando que a previsão de <span class="math inline">\(\hat{y}_{t}\)</span> é baseada nas observações <span class="math inline">\(y_1, ..., y_{t-1}\)</span>.</p>
+<p>Os resíduos de uma série temporal consistem nos valores do erro, sendo calculados como a diferença entre o observado e o previsto em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
+<p>Na <a href="#tbl-fitres">Table&nbsp;<span>2.4</span></a> são observados os valores previstos (<code>.fitted</code>) e os resíduos (<code>.resid</code>) para as previsões obtidas com o método Ingênuo sazonal para o último exemplo para as últimas observações.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-fitres" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.4: Valores previstos e residuais obtidos pelo método ingênuo para a série de produção de carros</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Data</th>
+<th style="text-align: right;">Temp</th>
+<th style="text-align: right;">.fitted</th>
+<th style="text-align: right;">.resid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2024-05-07 18:00:00</td>
+<td style="text-align: right;">27.8</td>
+<td style="text-align: right;">26.4</td>
+<td style="text-align: right;">1.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-05-07 19:00:00</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">25.6</td>
+<td style="text-align: right;">2.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-05-07 20:00:00</td>
+<td style="text-align: right;">25.8</td>
+<td style="text-align: right;">24.1</td>
+<td style="text-align: right;">1.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-05-07 21:00:00</td>
+<td style="text-align: right;">23.0</td>
+<td style="text-align: right;">22.4</td>
+<td style="text-align: right;">0.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-05-07 22:00:00</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">21.8</td>
+<td style="text-align: right;">-1.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-05-07 23:00:00</td>
+<td style="text-align: right;">18.8</td>
+<td style="text-align: right;">20.7</td>
+<td style="text-align: right;">-1.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="diagnósticos-dos-resíduos" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="diagnósticos-dos-resíduos"><span class="header-section-number">2.2.6</span> Diagnósticos dos resíduos</h3>
+<p>Os resíduos de um modelo de séries temporais devem ser:</p>
+<ol type="1">
+<li><p>Não correlacionados.</p></li>
+<li><p>Com média nula.</p></li>
+</ol>
+<p>Se os resíduos forem correlacionados eles apresentaram informações que deveriam ser incorporadas ao modelo, de forma a melhorar as previsões. Se os resíduos apresentam média diferente de zero, o modelo apresenta um viés. O viés pode ser corrigido subtraindo-o das previsões. Já a autocorrelação entre os resíduos tem correção mais trabalhosa, sendo este tema tratado posteriormente.</p>
+<p>É interessante, porém não-obrigatório, que os resíduos sejam:</p>
+<ol start="3" type="1">
+<li><p>Homocedasticos.</p></li>
+<li><p>Normalmente distribuídos.</p></li>
+</ol>
+<p>A homocedasticidade consiste na igualdade de variâncias. Séries com resíduos heterocedásticos podem ser tranformadas, visando obter homocedasticidade e normalidade.</p>
+<p>Na <a href="#fig-ibov">Figure&nbsp;<span>2.8</span></a> é plotada a série histórica de 187 observações do índice Ibovespa, https://www.infomoney.com.br/cotacoes/b3/indice/ibovespa/historico/.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibov" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibov-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.8: Série do índice Ibovespa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A previsão de índices da bolsa é geralmente feita com bom resultado usando o método Ingênuo. Neste caso os resíduos serão calculados como a diferença da observação atual e anterior, <span class="math inline">\(e_t = y_t - \hat{y}_t = y_t - y_{t-1}\)</span>. Na <a href="#fig-ibovresi">Figure&nbsp;<span>2.9</span></a> são plotados os resíduos. De forma geral estão aparentam apresentar boa distribuição, sem assimetrias e tendência.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibovresi" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibovresi-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.9: Resíduos da série do índice Ibovespa para o método ingênuo</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na <a href="#fig-ibovhist">Figure&nbsp;<span>2.10</span></a> é plotado o histograma dos resíduos, o qual aparenta adequar-se bem à distribuição normal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibovhist" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibovhist-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.10: Histograma dos resíduos da série do índice Ibovespa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na <a href="#fig-ibovcorr">Figure&nbsp;<span>2.11</span></a> observa-se o correlograma da série do índice Ibovespa. Pode-se observar que a série é altamente autocorrelacionada considerando defasagem de até 22 observações.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibovcorr" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibovcorr-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.11: Correlograma da série do índice Ibovespa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Em sequência na <a href="#fig-ibovcorr2">Figure&nbsp;<span>2.12</span></a> plota-se o correlograma dos resíduos. Pode-se observar que o método Ingênuo resultou em resíduos não correlacionados, de forma que o modelo considera toda a informação disponível nos dados. Obviamente podem haver modelos melhores que também garantam a ausência de autocorrelação residual.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibovcorr2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibovcorr2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.12: Correlograma dos resíduos da série do índice Ibovespa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="testes-para-diagnóstico-de-autocorrelação" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="testes-para-diagnóstico-de-autocorrelação"><span class="header-section-number">2.2.7</span> Testes para diagnóstico de autocorrelação</h3>
+<p>Um teste <em>portmanteau</em> é um teste para averiguar se as <span class="math inline">\(l\)</span> primeiras autocorrelações são diferentes do que se esperaria para um ruído branco. Um destes testes seria o de <strong>Box-Pierce</strong>, com estatística calculada conforme segue. Sugere-se <span class="math inline">\(l=10\)</span> autocorrelações para séries não sazonais e <span class="math inline">\(l=2m\)</span> para casos sazonais, com <span class="math inline">\(m\)</span> sendo o período sazonal. Porém, o teste não é adequado para <span class="math inline">\(l\)</span> auto, sugerindo-se no máximo <span class="math inline">\(l=T/5\)</span>.</p>
+<p><span class="math display">\[
+Q = T\sum_{k=1}^l r_k^2
+\]</span></p>
+<p>Um teste mais adequado é o de <strong>Ljung-Box</strong>, com estatística calculada conforme segue.</p>
+<p><span class="math display">\[
+Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
+\]</span></p>
+<p>Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade.</p>
+<p>Na <span class="quarto-unresolved-ref">?tbl-testes</span> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo Ingênuo para os dados do índice Ibovespa. Pode-se concluir que, para ambas os testes, as autocorrelações dos resíduos não diferem das de uma série ruído branco.</p>
+<div id="tbl-testes" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Valores das estatísticas Q e Q* para os resíduos do método ingênuo para o índice Ibovespa</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">bp_stat</th>
+<th style="text-align: right;">bp_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NAIVE(FECHAMENTO)</td>
+<td style="text-align: right;">9.180843</td>
+<td style="text-align: right;">0.5150314</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">lb_stat</th>
+<th style="text-align: right;">lb_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NAIVE(FECHAMENTO)</td>
+<td style="text-align: right;">9.508178</td>
+<td style="text-align: right;">0.4846474</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>O método da deriva é um pouco mais adequado que o Ingênuo para séries de índices de bolsas de valores. Na <span class="quarto-unresolved-ref">?tbl-testes2</span> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método.</p>
+<div id="tbl-testes2" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">bp_stat</th>
+<th style="text-align: right;">bp_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">9.180843</td>
+<td style="text-align: right;">0.5150314</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">lb_stat</th>
+<th style="text-align: right;">lb_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">9.508178</td>
+<td style="text-align: right;">0.4846474</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="intervalos-de-confiança-para-previsão" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="intervalos-de-confiança-para-previsão"><span class="header-section-number">2.3</span> Intervalos de confiança para previsão</h2>
+<p>Ao se realizar previsões com séries temporais, considera-se um intervalo de confiança para a previsão com nível de probabilidade ou confiança de interesse. Para por exemplo um intervalo de previsão de 95% os valores obtidos consistem nos limites que garantem que o valor previsto está entre eles com 95% de confiança.</p>
+<p>Um intervalo de previsão para <span class="math inline">\(h\)</span> passos à frente com 95% de confianca pode ser calculado conforme segue.</p>
+<p><span class="math display">\[
+\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h,
+\]</span></p>
+<p>onde <span class="math inline">\(1,96\)</span> consiste no valor do quantil na distribuição normal-padrão <span class="math inline">\(z\)</span>, com 0,95 de probabilidade ou confiança. Obviamente, caso deseje-se um intervalo com nível de confiança diferente, deve-se selecionar o valor <span class="math inline">\(z\)</span> adequado.</p>
+<p>O desvio-padrão para previsões com <span class="math inline">\(h=1\)</span> (um passo a frente) pode ser calculado como o desvio-padrão dos resíduos, onde <span class="math inline">\(K\)</span> é o número de parâmetros do modelo e <span class="math inline">\(M\)</span> o número de valores ausentes nos resíduos (para o método ingênuo e o da deriva, por exemplo, <span class="math inline">\(M=1\)</span>, uma vez que a primeira observação não pode ser estimada).</p>
+<p><span class="math display">\[
+\hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
+\]</span></p>
+<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A @ <a href="#tbl-desvio">Table&nbsp;<span>2.5</span></a> expõe as Equações para estimar o desvio-padrão para os métodos <em>benchmarking</em> até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
+<div id="tbl-desvio" class="anchored">
+<table class="table">
+<caption>Table&nbsp;2.5: My Caption</caption>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th style="text-align: left;">desvio-padrão para <span class="math inline">\(h\)</span> previsões</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Média</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma_h = \hat\sigma\sqrt{1+1/T}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ingênuo</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma_h = \hat\sigma\sqrt{h}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ingênuo sazonal</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma_h = \hat\sigma\sqrt{k+1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Deriva</td>
+<td style="text-align: left;"><span class="math inline">\(\hat\sigma_h = \hat\sigma\sqrt{h(1+h/(T-1))}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Na <a href="#tbl-ic">Table&nbsp;<span>2.6</span></a> são apresentados os intervalos de confiança de 80 e 95% para <span class="math inline">\(h=10\)</span> períodos para o índice Ibovespa.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-ic" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.6: Intervalo de previsão para a série do índice Ibovespa</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 5%">
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">DATA</th>
+<th style="text-align: left;">FECHAMENTO</th>
+<th style="text-align: right;">.mean</th>
+<th style="text-align: left;">80%</th>
+<th style="text-align: left;">95%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">188</td>
+<td style="text-align: left;">N(133, 0.91)</td>
+<td style="text-align: right;">132.7030</td>
+<td style="text-align: left;">[131.4798, 133.9262]80</td>
+<td style="text-align: left;">[130.8322, 134.5737]95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: left;">N(133, 1.8)</td>
+<td style="text-align: right;">132.7089</td>
+<td style="text-align: left;">[130.9744, 134.4435]80</td>
+<td style="text-align: left;">[130.0562, 135.3616]95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: left;">N(133, 2.8)</td>
+<td style="text-align: right;">132.7149</td>
+<td style="text-align: left;">[130.5849, 134.8449]80</td>
+<td style="text-align: left;">[129.4574, 135.9724]95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: left;">N(133, 3.7)</td>
+<td style="text-align: right;">132.7209</td>
+<td style="text-align: left;">[130.2549, 135.1869]80</td>
+<td style="text-align: left;">[128.9495, 136.4923]95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: left;">N(133, 4.7)</td>
+<td style="text-align: right;">132.7269</td>
+<td style="text-align: left;">[129.9626, 135.4912]80</td>
+<td style="text-align: left;">[128.4992, 136.9545]95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: left;">N(133, 5.6)</td>
+<td style="text-align: right;">132.7328</td>
+<td style="text-align: left;">[129.6968, 135.7689]80</td>
+<td style="text-align: left;">[128.0896, 137.3761]95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">194</td>
+<td style="text-align: left;">N(133, 6.6)</td>
+<td style="text-align: right;">132.7388</td>
+<td style="text-align: left;">[129.4510, 136.0266]80</td>
+<td style="text-align: left;">[127.7105, 137.7671]95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: left;">N(133, 7.6)</td>
+<td style="text-align: right;">132.7448</td>
+<td style="text-align: left;">[129.2209, 136.2687]80</td>
+<td style="text-align: left;">[127.3554, 138.1342]95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: left;">N(133, 8.6)</td>
+<td style="text-align: right;">132.7508</td>
+<td style="text-align: left;">[129.0034, 136.4981]80</td>
+<td style="text-align: left;">[127.0197, 138.4818]95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RW(FECHAMENTO ~ drift())</td>
+<td style="text-align: right;">197</td>
+<td style="text-align: left;">N(133, 9.5)</td>
+<td style="text-align: right;">132.7567</td>
+<td style="text-align: left;">[128.7966, 136.7169]80</td>
+<td style="text-align: left;">[126.7002, 138.8132]95</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-ibovpred">Figure&nbsp;<span>2.13</span></a> plota tais intervalos juntamente com a série.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ibovpred" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-ibovpred-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.13: Intervalo de previsão para a série do índice Ibovespa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="transformações" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="transformações"><span class="header-section-number">2.3.1</span> Transformações</h3>
+<p>Transformações podem ser usadas nas séries temporais, de forma a garantir, por exemplo, que as pressuposições sobre os resíduos sejam cumpridas, ou que alguma variação que aumenta ou cresce com o tempo seja corrigida. A transformação logarítima é geralmente útil. Tomando a série original, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, a série transformada fica <span class="math inline">\(w_1, w_2, ..., w_T\)</span>, com <span class="math inline">\(w_t =log(y_t)\)</span>. Uma mudança na escala log com base 10 em uma unidade corresponde uma multiplicação por 10 na escala original.</p>
+<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transfoprmações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme segue.</p>
+<p><span class="math display">\[
+w_t = \Bigg\{ \begin{matrix}
+                \text{log}(y_t), \text{ }\lambda=0 \\
+                (\text{sign}(y_t)|y_t|^\lambda-1)/\lambda, \text{ }\lambda&gt;0
+             \end{matrix}
+\]</span></p>
+<p>onde <span class="math inline">\(\text{sign}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sign}(y_t) =-1\)</span>, caso contrário.</p>
+<p>Na <a href="#fig-vale">Figure&nbsp;<span>2.14</span></a> apresenta-se graficamente a série temporal das ações da vale (VALE3), https://br.investing.com/equities/vale-on-n1-historical-data. Pode-se observar que a série apresenta alta variabilidade, especialmente de 2021 a 2023.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vale" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-vale-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.14: Série temporal do valor da ação VALE3</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na <a href="#fig-valetrans">Figure&nbsp;<span>2.15</span></a> apresenta-se a mesma série após transformação de Box-Cox com <span class="math inline">\(\lambda = 1,27\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-valetrans" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-valetrans-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.15: Série temporal do valor da ação VALE3 com transformação de Box-Cox</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="avaliação-de-modelos-de-séries-temporais" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.4</span> Avaliação de modelos de séries temporais</h2>
+<p>Uma avaliação ideal de um modelo de séries temporais deve ser baseada no desempenho do modelo em novos dados e não nos valores residuais. Para tal, deve-se considerar dados separados para teste do modelo ou em dados futuros. Portanto, não se deve considerar os dados usados para estimar (treinar) o modelo para testá-lo.</p>
+<p>Conforme visto no caso para dados de temperatura instantânea para São João del-Rei, uma primeira abordagem consiste em simplesmente usar parte inicial da série para treino do modelo e as últimas observações para teste. O percentual de observações usadas para treino/teste depende do número de observações disponíveis na série.</p>
+<p>Na <a href="#fig-valid">Figure&nbsp;<span>2.16</span></a> ilustra-se arbitrariamente a separação das primeiras 75% observações em treino e os 25% restantes para teste.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-valid" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST2_files/figure-html/fig-valid-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.16: Observações de treino e teste para validar séries temporais</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O erro de previsão (não confundir com resíduo) é calculado conforme segue, com os dados de treino <span class="math inline">\(y_1,...,y_T\)</span> e de teste <span class="math inline">\(y_{T+1}, y_{T+2}, ...\)</span>.</p>
+<p><span class="math display">\[
+e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
+\]</span></p>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-erro">Table&nbsp;<span>2.8</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação do erro em séries distintas.</p>
+<div id="tbl-erro" class="anchored">
+<table class="table">
+<caption>Table&nbsp;2.7: My Caption</caption>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th style="text-align: left;">Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MAE</td>
+<td style="text-align: left;"><span class="math inline">\(\text{MAE = mean}(|e_t|)\)</span></td>
+</tr>
+<tr class="even">
+<td>RMSE</td>
+<td style="text-align: left;"><span class="math inline">\(\text{RMSE = }\sqrt{\text{mean}(e_t^2)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>MAPE</td>
+<td style="text-align: left;"><span class="math inline">\(\text{MAPE = mean}(|p_t|)\)</span>, <span class="math inline">\(p_t = 100e_t/y_t\)</span></td>
+</tr>
+<tr class="even">
+<td>MASE</td>
+<td style="text-align: left;"><span class="math inline">\(\text{MAE = mean}(|q_j|)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A fórmula a seguir é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na tabela acima considera tal padronização.</p>
+<p><span class="math display">\[
+q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
+\]</span></p>
+<p>A <a href="#tbl-erro">Table&nbsp;<span>2.8</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método Ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-erro" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2.8: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">MAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ingenuo</td>
+<td style="text-align: right;">5.923621</td>
+<td style="text-align: right;">4.980952</td>
+<td style="text-align: right;">23.721859</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ingenuo sazonal</td>
+<td style="text-align: right;">1.700928</td>
+<td style="text-align: right;">1.405357</td>
+<td style="text-align: right;">8.140928</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">media</td>
+<td style="text-align: right;">5.697090</td>
+<td style="text-align: right;">5.171627</td>
+<td style="text-align: right;">27.555762</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ST1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ST3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decomposição de séries temporais</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
