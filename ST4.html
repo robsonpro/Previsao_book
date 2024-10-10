@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.433">
@@ -50,16 +50,16 @@ ul.task-list li input[type="checkbox"] {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
@@ -74,11 +74,11 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão de séries temporais</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -145,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Índice</h2>
    
   <ul>
   <li><a href="#regressão-linear-simples" id="toc-regressão-linear-simples" class="nav-link active" data-scroll-target="#regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</a></li>
@@ -153,10 +153,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#desempenho-do-modelo-de-regressão" id="toc-desempenho-do-modelo-de-regressão" class="nav-link" data-scroll-target="#desempenho-do-modelo-de-regressão"><span class="header-section-number">4.3</span> Desempenho do modelo de regressão</a></li>
   <li><a href="#diagnóstico-dos-resíduos" id="toc-diagnóstico-dos-resíduos" class="nav-link" data-scroll-target="#diagnóstico-dos-resíduos"><span class="header-section-number">4.4</span> Diagnóstico dos resíduos</a></li>
   <li><a href="#preditores-úteis" id="toc-preditores-úteis" class="nav-link" data-scroll-target="#preditores-úteis"><span class="header-section-number">4.5</span> Preditores úteis</a></li>
-  <li><a href="#seleção-de-preditores" id="toc-seleção-de-preditores" class="nav-link" data-scroll-target="#seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</a>
-  <ul class="collapse">
-  <li><a href="#previsão" id="toc-previsão" class="nav-link" data-scroll-target="#previsão"><span class="header-section-number">4.6.1</span> Previsão</a></li>
-  </ul></li>
+  <li><a href="#seleção-de-preditores" id="toc-seleção-de-preditores" class="nav-link" data-scroll-target="#seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</a></li>
+  <li><a href="#previsão" id="toc-previsão" class="nav-link" data-scroll-target="#previsão"><span class="header-section-number">4.7</span> Previsão</a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Autor</div>
     <div class="quarto-title-meta-contents">
              <p>Robson Bruno Dutra Pereira </p>
           </div>
@@ -188,36 +186,37 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="regressão-linear-simples" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
+<p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
-<p>Na <a href="#fig-graos">Figure&nbsp;<span>4.1</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. Os dados apresentam tendência de crescimento não linear.</p>
+<p>Na <a href="#fig-graos">Figura&nbsp;<span>4.1</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. As séries apresentam tendência de crescimento não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.1: Produção de grãos no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.1: Produção de grãos no Brasil</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Ao plotar um diagrama de dispersão entre as séries, pode-se observar uma correlação linear positiva alta entre estas, conforme <a href="#fig-pairs_graos">Figure&nbsp;<span>4.2</span></a>.</p>
+<p>Ao plotar um diagrama de dispersão entre as séries, pode-se observar uma correlação linear positiva alta entre estas, conforme <a href="#fig-pairs_graos">Figura&nbsp;<span>4.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pairs_graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-pairs_graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.2: Área plantada versus Produção de grãos</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.2: Área plantada versus Produção de grãos</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Conforme observado na <a href="#fig-reg_graos">Figure&nbsp;<span>4.3</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
+<p>Conforme observado na <a href="#fig-reg_graos">Figura&nbsp;<span>4.3</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-reg_graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-reg_graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.3: Modelo de regressão linear simples para produção de grãos em função da área plantada</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.3: Modelo de regressão linear simples para produção de grãos em função da área plantada</figcaption>
 </figure>
 </div>
 </div>
@@ -226,25 +225,25 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}x_t
 \]</span></p>
-<p>As observações da série dependente ou resposta podem ser descritas conforme segue.</p>
+<p>As observações da série dependente ou resposta podem ser descritas conforme segue, como sendo o valor estimado adicionado, <span class="math inline">\(\hat y_t\)</span>, de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>.</p>
 <p><span class="math display">\[
 \begin{aligned}
 y_t = \hat{y}_t + \varepsilon_t \\
 y_t = \beta_0 + \beta_1x_t + \varepsilon_t \\
 \end{aligned}
 \]</span></p>
-<p>Considerando as <span class="math inline">\(T\)</span> observações das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, sendo os resíduos normalmente distribuídos, com média nula e variância igual a <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos">Figure&nbsp;<span>4.4</span></a> plota em linhas vermelhas verticais os erros de previsão observados. O modelo plotado minimiza a soma dos quadrados de tais erros.</p>
+<p>Considerando as <span class="math inline">\(T\)</span> observações das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, sendo os resíduos normalmente distribuídos, com média nula e variância igual a <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos">Figura&nbsp;<span>4.4</span></a> plota em linhas vermelhas verticais os resíduos. O modelo plotado minimiza a soma dos quadrados de tais erros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros_graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-erros_graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.4: Erros de previsão para o modelo de regressão linear para produção de grãos em função da área plantada</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.4: Erros de previsão para o modelo de regressão linear para produção de grãos em função da área plantada</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A análise à seguir expõe os coeficientes do modelo estimado com teste t para significância destes.</p>
+<p>A análise à seguir expõe os coeficientes do modelo estimado com teste t para significância destes. Neste curso não será dada ênfase na inferência, mas na previsão. De forma simples um valor t com alta magnitude ou um p-valor (Pr(&gt;|t|)) baixo indica risco baixo de rejeitar a hipótese nula de ausência de efeito da variável ou série independente (<span class="math inline">\(x_t\)</span>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: producao 
@@ -273,7 +272,7 @@ F-statistic: 467.2 on 1 and 45 DF, p-value: &lt; 2.22e-16</code></pre>
 </section>
 <section id="regressão-linear-múltipla" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">4.2</span> Regressão linear múltipla</h2>
-<p>No caso de onde há múltiplas séries independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span> pode-se considerar o modelo com um coeficiente linear associado a cada variável, isto é:</p>
+<p>No caso de onde há múltiplas séries independentes ou regressoras de interesse, <span class="math inline">\(x_t1, x_t2, ..., x_tk\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, isto é:</p>
 <p><span class="math display">\[
 \hat{y}_t = \beta_0 + \beta_1x_{t1} + \beta_2x_{t2} + \cdots + \beta_kx_{tk} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{tj},  
 \]</span></p>
@@ -282,7 +281,7 @@ F-statistic: 467.2 on 1 and 45 DF, p-value: &lt; 2.22e-16</code></pre>
 \begin{aligned}
 \hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
 \end{aligned},
-\]</span> com:</p>
+\]</span> com uma coluna unitária para constantem e uma coluna para cada série independente:</p>
 <p><span class="math display">\[
 \mathbf{X} =
 \begin{bmatrix}
@@ -318,29 +317,29 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \]</span></p>
-<p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem">Figure&nbsp;<span>4.5</span></a>.</p>
+<p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem">Figura&nbsp;<span>4.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bem" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.5: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.5: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Observa-se na <a href="#fig-bens_pairs">Figure&nbsp;<span>4.6</span></a> diagramas de dispersão e correlações aos pares, ficando clara a relação linear entre tais índices.</p>
+<p>Observa-se na <a href="#fig-bens_pairs">Figura&nbsp;<span>4.6</span></a> diagramas de dispersão e correlações aos pares, ficando clara a relação linear entre tais índices.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bens_pairs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-bens_pairs-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.6: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.6: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Uma vez que os bens de consumo duráveis dpendem dos bens de capital, os quais consistem nos ativos de empresas para produzir produtos ou serviços, e dos bens intermediários, supõe-se a possibilidade de obter um modelo de regressão múltipla desta série em função daquelas.</p>
+<p>Uma vez que os bens de consumo duráveis dependem dos bens de capital, os quais consistem nos ativos de empresas para produzir produtos ou serviços, e dos bens intermediários, supõe-se a possibilidade de obter um modelo de regressão múltipla desta série em função daquelas.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: consumo_duraveis 
@@ -374,24 +373,24 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros e <span class="math inline">\(SS_T\)</span> consiste na soma dos quadrados total, ou no numerador da variância da série a ser predita.</p>
-<p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da sérieprodução em função da área plantada. A <a href="#fig-graos_fit">Figure&nbsp;<span>4.7</span></a> plota a série de produão de grãos observada e a aproximada pelo modelo de regressão.</p>
+<p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da série de produção em função da área plantada. A <a href="#fig-graos_fit">Figura&nbsp;<span>4.7</span></a> plota a série de produção de grãos observada e a aproximada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos_fit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-graos_fit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.7: Produção de grãos</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.7: Produção de grãos</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prod_fit">Figure&nbsp;<span>4.8</span></a> plota a série do índice de produção de bens de consumo duráveis observada e a aproximada pelo modelo de regressão múltipla.</p>
+<p>A <a href="#fig-prod_fit">Figura&nbsp;<span>4.8</span></a> plota a série do índice de produção de bens de consumo duráveis observada e a aproximada pelo modelo de regressão múltipla.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prod_fit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-prod_fit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.8: Bens de consumo duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.8: Bens de consumo duráveis</figcaption>
 </figure>
 </div>
 </div>
@@ -399,13 +398,13 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 </section>
 <section id="diagnóstico-dos-resíduos" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="diagnóstico-dos-resíduos"><span class="header-section-number">4.4</span> Diagnóstico dos resíduos</h2>
-<p>A <a href="#fig-graos_resi">Figure&nbsp;<span>4.9</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de ordem 4. Logo, há informação importante não capturada pelo modelo de regressão.</p>
+<p>A <a href="#fig-graos_resi">Figura&nbsp;<span>4.9</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de ordem 4. Logo, há informação importante não capturada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos_resi" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-graos_resi-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área plantada</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área plantada</figcaption>
 </figure>
 </div>
 </div>
@@ -413,14 +412,14 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 </section>
 <section id="preditores-úteis" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="preditores-úteis"><span class="header-section-number">4.5</span> Preditores úteis</h2>
-<p>As séries temporais costumam apresentar tendência. Um modelo linear simples pode considerar o tempo, <span class="math inline">\(t\)</span>, como preditor, de forma a capturar a tendência.</p>
+<p>Muitas séries temporais costumam apresentar tendência. Um modelo linear simples pode considerar o tempo, <span class="math inline">\(t\)</span>, como preditor, de forma a capturar a tendência.</p>
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t
 \]</span></p>
-<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy">Table&nbsp;<span>4.1</span></a>.</p>
+<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy">Tabela&nbsp;<span>4.1</span></a>.</p>
 <div id="tbl-dummy" class="anchored">
 <table class="table">
-<caption>Table&nbsp;4.1: Criação de variáveis dummy</caption>
+<caption>Tabela&nbsp;4.1: Criação de variáveis dummy</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -467,7 +466,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 <td>0</td>
 </tr>
 <tr class="even">
-<td>Q1</td>
+<td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>
@@ -476,24 +475,24 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-temp_sjdr">Figure&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de Junho com frequência horária.</p>
+<p>A <a href="#fig-temp_sjdr">Figura&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de Junho com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_sjdr" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-temp_sjdr-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.10: Temperatura em São João del-Rei nas duas últimas semanas de junho</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.10: Temperatura em São João del-Rei nas duas últimas semanas de junho</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-season_temp">Figure&nbsp;<span>4.11</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento do dia 15 a 28 de Junho.</p>
+<p>A <a href="#fig-season_temp">Figura&nbsp;<span>4.11</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento do dia 15 a 28 de Junho.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-season_temp" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-season_temp-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.11: Gráfico sazonal da temperatura em São João del-Rei</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.11: Gráfico sazonal da temperatura em São João del-Rei</figcaption>
 </figure>
 </div>
 </div>
@@ -543,24 +542,24 @@ Multiple R-squared: 0.961,  Adjusted R-squared: 0.958
 F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
-<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação a primeira hora do dia. Por exemplo, das 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred">Figure&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
+<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred">Figura&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-temp_pred-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.12: Temperatura em São João del-Rei</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.12: Temperatura em São João del-Rei</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-temp_obs_pred">Figure&nbsp;<span>4.13</span></a> apresenta os valores previstos e observados plotados com as horas do dia separadas em cores distintas. Observa-se o excelente ajuste do modelo e a variação da temperatura segundo hora do dia.</p>
+<p>A <a href="#fig-temp_obs_pred">Figura&nbsp;<span>4.13</span></a> apresenta os valores previstos e observados plotados com as horas do dia separadas em cores distintas. Observa-se o excelente ajuste do modelo e a variação da temperatura segundo hora do dia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_obs_pred" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-temp_obs_pred-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.13: Temperatura em São João del-Rei</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.13: Temperatura em São João del-Rei</figcaption>
 </figure>
 </div>
 </div>
@@ -568,24 +567,24 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </section>
 <section id="seleção-de-preditores" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</h2>
-<p>A <a href="#fig-petro_serie">Figure&nbsp;<span>4.14</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos. O petróleo considera o volume nacional e importado.</p>
+<p>A <a href="#fig-petro_serie">Figura&nbsp;<span>4.14</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos. O petróleo considera o volume nacional e importado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-petro_serie" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-petro_serie-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.14: Petróleo refinado e produção de derivados</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.14: Petróleo refinado e produção de derivados</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-corr_petro">Figure&nbsp;<span>4.15</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, oléo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
+<p>A <a href="#fig-corr_petro">Figura&nbsp;<span>4.15</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, oléo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr_petro" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-corr_petro-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.15: Correlação entre petróleo refinado e derivados</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.15: Correlação entre petróleo refinado e derivados</figcaption>
 </figure>
 </div>
 </div>
@@ -625,16 +624,16 @@ Multiple R-squared:     1,  Adjusted R-squared:     1
 F-statistic: 1.21e+34 on 14 and 281 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
-<p>Geralmente em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
+<p>Geralmente, em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
 <p><span class="math display">\[
 AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 \]</span></p>
-<p>A <a href="#tbl-fit_petro">Table&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, coque, querosene de avião, querosene iluminante e solvente. O modelo completo apresentou melhores resultado, uma vez que minimiza AIC e AICc.</p>
+<p>A <a href="#tbl-fit_petro">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, coque, querosene de avião, querosene iluminante e solvente. O modelo completo apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-fit_petro" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrigido para os modelos</caption>
+<caption>Tabela&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrigido para os modelos</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">model</th>
@@ -667,33 +666,33 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 <li>Remova um preditor por vez. Mantenha o modelo com melhor desempenho, considerando por exemplo o AIC.</li>
 <li>Repita o procedimento até encontrar o melhor modelo.</li>
 </ol>
-<section id="previsão" class="level3" data-number="4.6.1">
-<h3 data-number="4.6.1" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.6.1</span> Previsão</h3>
-<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados. Entretanto, nos casos onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figure&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
+</section>
+<section id="previsão" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.7</span> Previsão</h2>
+<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados. Entretanto, nos casos onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-temp_pred_-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.16: Previsão da temperatura em São João del-Rei</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.16: Previsão da temperatura em São João del-Rei</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditores, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever o índice de produção de bens de consumo duráveis em função dos bens de capital e intermediários. A <a href="#fig-prev_cenar">Figure&nbsp;<span>4.17</span></a> expõe a previsão para dois cenários,um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento para viabilizá-los.</p>
+<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditores, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever o índice de produção de bens de consumo duráveis em função dos bens de capital e intermediários. A <a href="#fig-prev_cenar">Figura&nbsp;<span>4.17</span></a> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prev_cenar" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST4_files/figure-html/fig-prev_cenar-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.17: Previsão de cenários para produção de bens de capital</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;4.17: Previsão de cenários para produção de bens de capital</figcaption>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -751,12 +750,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiada");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiada");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
