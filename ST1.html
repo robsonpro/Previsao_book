@@ -627,50 +627,6 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="1.2.7" class="anchored" data-anchor-id="gráficos-de-previsão"><span class="header-section-number">1.2.7</span> Gráficos de previsão</h3>
 <p>A Figura <a href="ST4.html#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> exibe a série de temperatura instantânea na cidade de São joão del-Rei dos dias 15 a 28 de maio. Os dados foram obtidos em https://tempo.inmet.gov.br/TabelaEstacoes/A001. Observa-se que a série plotada em cor preta exibe comportamento cíclico dado a variação diária entre a temperatura mínima, que varia de 8 a 13 ºC, e a máxima diárias, que gira em torno de 25 a 28 ºC no período. Também é possível observar uma tendência de aumento na temperatura nos dias considerados. A Figura expõe a previsão para dois dias à frente em azul, com intervalos de confiança de 80 a 90%.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Series: Temp 
-Model: TSLM 
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--3.20212 -0.76300 -0.08292  0.87326  2.92845 
-
-Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   15.0055227  0.3406085  44.055  &lt; 2e-16 ***
-trend()        0.0088820  0.0006822  13.020  &lt; 2e-16 ***
-season()day2  -0.8445963  0.4572598  -1.847 0.065685 .  
-season()day3  -1.5463355  0.4572613  -3.382 0.000812 ***
-season()day4  -2.4052175  0.4572639  -5.260 2.69e-07 ***
-season()day5  -3.3355281  0.4572674  -7.294 2.51e-12 ***
-season()day6  -4.0515530  0.4572720  -8.860  &lt; 2e-16 ***
-season()day7  -4.5675778  0.4572776  -9.989  &lt; 2e-16 ***
-season()day8  -5.1978884  0.4572842 -11.367  &lt; 2e-16 ***
-season()day9  -5.6281990  0.4572918 -12.308  &lt; 2e-16 ***
-season()day10 -6.2156525  0.4573005 -13.592  &lt; 2e-16 ***
-season()day11 -6.4245345  0.4573102 -14.049  &lt; 2e-16 ***
-season()day12 -5.3119879  0.4573208 -11.615  &lt; 2e-16 ***
-season()day13 -2.1708700  0.4573326  -4.747 3.16e-06 ***
-season()day14  2.6273909  0.4573453   5.745 2.19e-08 ***
-season()day15  6.6756517  0.4573590  14.596  &lt; 2e-16 ***
-season()day16  8.3024840  0.4573738  18.153  &lt; 2e-16 ***
-season()day17  9.1650305  0.4573895  20.038  &lt; 2e-16 ***
-season()day18  9.7490056  0.4574063  21.314  &lt; 2e-16 ***
-season()day19  9.8258379  0.4574241  21.481  &lt; 2e-16 ***
-season()day20  8.9883845  0.4574429  19.649  &lt; 2e-16 ***
-season()day21  7.7795024  0.4574628  17.006  &lt; 2e-16 ***
-season()day22  4.5277633  0.4574836   9.897  &lt; 2e-16 ***
-season()day23  2.9474527  0.4575055   6.442 4.47e-10 ***
-season()day24  1.4742850  0.4575284   3.222 0.001407 ** 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.21 on 311 degrees of freedom
-Multiple R-squared: 0.961,  Adjusted R-squared: 0.958
-F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
-</div>
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
