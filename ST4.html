@@ -155,6 +155,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#preditores-úteis" id="toc-preditores-úteis" class="nav-link" data-scroll-target="#preditores-úteis"><span class="header-section-number">4.5</span> Preditores úteis</a></li>
   <li><a href="#seleção-de-preditores" id="toc-seleção-de-preditores" class="nav-link" data-scroll-target="#seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</a></li>
   <li><a href="#previsão" id="toc-previsão" class="nav-link" data-scroll-target="#previsão"><span class="header-section-number">4.7</span> Previsão</a></li>
+  <li><a href="#regressão-não-linear" id="toc-regressão-não-linear" class="nav-link" data-scroll-target="#regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</a></li>
   </ul>
 </nav>
     </div>
@@ -186,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="regressão-linear-simples" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
-<p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
+<p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto, em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
 <p>Na <a href="#fig-graos">Figura&nbsp;<span>4.1</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. As séries apresentam tendência de crescimento não linear.</p>
 <div class="cell">
@@ -267,12 +268,12 @@ F-statistic: 467.2 on 1 and 45 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 <p>O modelo para prever a produção de grãos em função da área plantada fica:</p>
 <p><span class="math display">\[
-\hat{y}_t = -1,89 \times 10^{-5} + 6,782x_t
+\hat{y}_t = -1,89 \times 10^{5} + 6,782x_t
 \]</span></p>
 </section>
 <section id="regressão-linear-múltipla" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">4.2</span> Regressão linear múltipla</h2>
-<p>No caso de onde há múltiplas séries independentes ou regressoras de interesse, <span class="math inline">\(x_t1, x_t2, ..., x_tk\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, isto é:</p>
+<p>No caso de onde há múltiplas séries independentes ou regressoras de interesse, <span class="math inline">\(x_{t1}, x_{t2}, ..., x_{tk}\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, isto é:</p>
 <p><span class="math display">\[
 \hat{y}_t = \beta_0 + \beta_1x_{t1} + \beta_2x_{t2} + \cdots + \beta_kx_{tk} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{tj},  
 \]</span></p>
@@ -281,7 +282,8 @@ F-statistic: 467.2 on 1 and 45 DF, p-value: &lt; 2.22e-16</code></pre>
 \begin{aligned}
 \hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
 \end{aligned},
-\]</span> com uma coluna unitária para constantem e uma coluna para cada série independente:</p>
+\]</span></p>
+<p>onde a matrix <span class="math inline">\(\mathbf{X}\)</span> contém uma coluna unitária para a constante e uma coluna para cada série independente:</p>
 <p><span class="math display">\[
 \mathbf{X} =
 \begin{bmatrix}
@@ -291,6 +293,7 @@ F-statistic: 467.2 on 1 and 45 DF, p-value: &lt; 2.22e-16</code></pre>
 1 &amp; x_{T1} &amp; x_{T2} &amp; \cdots &amp; x_{Tk} \\
 \end{bmatrix}, e\\
 \]</span></p>
+<p>e <span class="math inline">\(\beta\)</span> consite no vetor de coeficientes:</p>
 <p><span class="math display">\[
 \mathbf{\beta}^T =
 \begin{bmatrix}
@@ -317,6 +320,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \]</span></p>
+<p>A estimativa dos coeficientes <span class="math inline">\(\hat\beta\)</span> obtida minimiza a soma dos quadrados dos resíduos, <span class="math inline">\(\sum \varepsilon_i^2\)</span>, sendo portanto as estimativas de mínimos quadrados.</p>
 <p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem">Figura&nbsp;<span>4.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -339,7 +343,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 </div>
 </div>
 </div>
-<p>Uma vez que os bens de consumo duráveis dependem dos bens de capital, os quais consistem nos ativos de empresas para produzir produtos ou serviços, e dos bens intermediários, supõe-se a possibilidade de obter um modelo de regressão múltipla desta série em função daquelas.</p>
+<p>Uma vez que os bens de consumo duráveis dependem dos bens de capital, os quais consistem nos ativos de empresas para produzir produtos ou serviços, e dos bens intermediários, supõe-se a possibilidade de obter um modelo de regressão múltipla desta série em função daquelas. A seguir apresenta-se o modelo de regressão múltipla estimado para a prever o índice de bens de consumos duráveis <span class="math inline">\(y_t\)</span> em função dos de capital, <span class="math inline">\(x_{t1}\)</span>, e de produtos intermediários, <span class="math inline">\(x_{t2}\)</span>. Ambos apresentaram significância estatística.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: consumo_duraveis 
@@ -362,6 +366,10 @@ Multiple R-squared: 0.7734, Adjusted R-squared: 0.7717
 F-statistic: 457.4 on 2 and 268 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
+<p>O modelo obtido pode ser escrito confirme segue:</p>
+<p><span class="math display">\[
+\hat y_t = -60,12 + 0,73x_{t1} + 1,09x_{t2}
+\]</span></p>
 </section>
 <section id="desempenho-do-modelo-de-regressão" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="desempenho-do-modelo-de-regressão"><span class="header-section-number">4.3</span> Desempenho do modelo de regressão</h2>
@@ -373,6 +381,14 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros e <span class="math inline">\(SS_T\)</span> consiste na soma dos quadrados total, ou no numerador da variância da série a ser predita.</p>
+<p>O <span class="math inline">\(R^2\)</span> sempre aumenta mesmo com coeficientes não significativos, uma vez que não leva em conta os graus de liberdade no cálculo. O coeficiente de determinação múltipla ajustado, <span class="math inline">\(R^2_{aj}\)</span>, é uma métrica mais interessante, já que considera as médias dos quadrados ao invés das somas dos quadrados dos erros, conforme segue:</p>
+<p><span class="math display">\[
+\begin{align}
+R^2 = 1- MS_{E}/MS_T \\
+R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\overline{y}_i)^2/(T-1)},
+\end{align}
+\]</span></p>
+<p>onde <span class="math inline">\(K\)</span> é o número de termos no modelo, <span class="math inline">\(MS_E\)</span> consiste média dos quadrados dos erros, que consiste na estimativa de variância dos resíduos, enquanto <span class="math inline">\(MS_T\)</span> consiste na média dos quadrados total, ou na variância da série a ser predita.</p>
 <p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da série de produção em função da área plantada. A <a href="#fig-graos_fit">Figura&nbsp;<span>4.7</span></a> plota a série de produção de grãos observada e a aproximada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -422,7 +438,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 <caption>Tabela&nbsp;4.1: Criação de variáveis dummy</caption>
 <thead>
 <tr class="header">
-<th></th>
+<th>Quadrimestre</th>
 <th><span class="math inline">\(d_{1,t}\)</span></th>
 <th><span class="math inline">\(d_{2,t}\)</span></th>
 <th><span class="math inline">\(d_{3,t}\)</span></th>
@@ -475,7 +491,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-temp_sjdr">Figura&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de Junho com frequência horária.</p>
+<p>A <a href="#fig-temp_sjdr">Figura&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de junho com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_sjdr" class="quarto-figure quarto-figure-center anchored">
@@ -486,7 +502,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_
 </div>
 </div>
 </div>
-<p>A <a href="#fig-season_temp">Figura&nbsp;<span>4.11</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento do dia 15 a 28 de Junho.</p>
+<p>A <a href="#fig-season_temp">Figura&nbsp;<span>4.11</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento, especialmente da temperatura mínima, para os dias considerados.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-season_temp" class="quarto-figure quarto-figure-center anchored">
@@ -669,7 +685,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </section>
 <section id="previsão" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.7</span> Previsão</h2>
-<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados. Entretanto, nos casos onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
+<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-figure quarto-figure-center anchored">
@@ -689,6 +705,19 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 <figcaption class="figure-caption">Figura&nbsp;4.17: Previsão de cenários para produção de bens de capital</figcaption>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="regressão-não-linear" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ST4_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ST4_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
