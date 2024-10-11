@@ -710,7 +710,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </section>
 <section id="regressão-não-linear" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</h2>
-<p>Trasnformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser consideradas transformações nos preditores e/ou na resposta para obter uma melhor aproximação.</p>
+<p>Trasnformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser considerada transformação polinomial na tendência.</p>
 <p>Uma opção interessante em alguns casos é utilizar transformação logarítimica em ambas séries independentes e dependente ou em apenas uma destas. Para o caso simples, com transformação em ambas as séries, tem-se o seguinte modelo.</p>
 <p><span class="math display">\[
 \text{log} (y_t) = \beta_0+\beta_1\text{log} (x_t)
@@ -740,7 +740,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </div>
 </div>
 </div>
-<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1980 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
+<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-peito_mod" class="quarto-figure quarto-figure-center anchored">
