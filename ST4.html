@@ -710,14 +710,45 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </section>
 <section id="regressão-não-linear" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</h2>
+<p>Trasnformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser consideradas transformações nos preditores e/ou na resposta para obter uma melhor aproximação.</p>
+<p>Uma opção interessante em alguns casos é utilizar transformação logarítimica em ambas séries independentes e dependente ou em apenas uma destas. Para o caso simples, com transformação em ambas as séries, tem-se o seguinte modelo.</p>
+<p><span class="math display">\[
+\text{log} (y_t) = \beta_0+\beta_1\text{log} (x_t)
+\]</span></p>
+<p>Pode-se pensar em considerar um termo quadrático ou de ordem maior para a tendência, de forma a contemplar uma tendência não linear. Entretanto não se recomenda tal estratégia, uma vez que na maioria dos casos a previsão resultante extrapola muito a realidade.</p>
+<p><span class="math display">\[
+\hat{y}_t = \beta_0+\beta_{1}t+\beta_{2}t^2
+\]</span></p>
+<p>Uma abordagem mais interessante é pensar em modelos lineares por partes, de forma a considerar modelos lineares distintos em cada parte do horizonte temporal da série, consistindo em um modelo não linear formado por peças lineares (<em>piecewise regression</em>). Por exemplo, um modelo com uma divisão no tempo, <span class="math inline">\(\tau\)</span>, ´pode ser descrito conforme segue:</p>
+<p><span class="math display">\[
+\hat{y}_t = \beta_0+\beta_{1}t+\beta_{2}(t-\tau)_+^2,
+\]</span> onde:</p>
+<p><span class="math display">\[
+(t-\tau)_+ = \bigg\{
+\begin{align} 0 \text{, se } t&lt; \tau \\
+              t-\tau \text{, se } t\geq \tau
+\end{align}
+\]</span></p>
+<p>A <a href="#fig-peito">Figura&nbsp;<span>4.18</span></a> expõe a série temporal da evolução do recorde na prova de 100m nado peito na categoria masculina. Pode-se observar que de 1960 até 1980 o melhor tempo diminuiu com maior intensidade, passando para outro padrão de variação de 1980 a 2000 e, posteriormente, de 2000 até aqui com outra tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="ST4_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+<div id="fig-peito" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST4_files/figure-html/fig-peito-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figura&nbsp;4.18: Evolução do recorde na prova de nado peito, 100m, masculino</figcaption>
+</figure>
 </div>
 </div>
+</div>
+<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1980 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="ST4_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+<div id="fig-peito_mod" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST4_files/figure-html/fig-peito_mod-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figura&nbsp;4.19: Evolução do record na prova de nado peito, 100m, masculino com modelos não lineares</figcaption>
+</figure>
+</div>
 </div>
 </div>
 
