@@ -184,8 +184,8 @@ div.csl-indent {
   </ul></li>
   <li><a href="#modelos-de-ets-e-definição-de-espaço-de-estados" id="toc-modelos-de-ets-e-definição-de-espaço-de-estados" class="nav-link" data-scroll-target="#modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</a>
   <ul class="collapse">
-  <li><a href="#modelo-de-holt-winter-etsaaa" id="toc-modelo-de-holt-winter-etsaaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter ETS(A,A,A)</a></li>
-  <li><a href="#modelo-de-holt-winter-etsmaa" id="toc-modelo-de-holt-winter-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter ETS(M,A,A)</a></li>
+  <li><a href="#modelo-de-holt-winter-aditivo-etsaaa" id="toc-modelo-de-holt-winter-aditivo-etsaaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter aditivo, ETS(A,A,A)</a></li>
+  <li><a href="#modelo-de-holt-winter-multiplicativo-etsmaa" id="toc-modelo-de-holt-winter-multiplicativo-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter multiplicativo, ETS(M,A,A)</a></li>
   </ul></li>
   <li><a href="#previsão-e-intervalo-de-confiança-com-ets" id="toc-previsão-e-intervalo-de-confiança-com-ets" class="nav-link" data-scroll-target="#previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</a></li>
   </ul>
@@ -485,7 +485,7 @@ div.csl-indent {
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}
 \end{align}
 \]</span></p>
-<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
+<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br_fit" class="quarto-figure quarto-figure-center anchored">
@@ -590,7 +590,7 @@ div.csl-indent {
 </section>
 <section id="modelos-de-ets-e-definição-de-espaço-de-estados" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</h2>
-<p>Os modelos de suavização exponencial podem ser concebidos como modelos de espaço de estados, com uma equação de medição que descreve os dados observados e outras de estados, por exemplo as de nível tendência e sazonalidade, que descrevem como os componentes ou estados mudam no horizonte de tempo. Ademais, além do erro aditivo há a possibilidade de considerar o erro multiplicativo nos modelos de suavização exponencial.</p>
+<p>Os modelos de suavização exponencial podem ser concebidos como modelos de espaço de estados, com uma equação de medição que descreve os dados observados e outras de estados, por exemplo as de nível, tendência e sazonalidade, que descrevem como os componentes ou estados mudam no horizonte de tempo. Outro aspecto importante ainda não abordado é que além de considerar o erro aditivo há a possibilidade de considerar o erro multiplicativo nos modelos de suavização exponencial.</p>
 <p>Os modelos de suavização exponencial são geralmente denotados por ETS(.,.,.) para descrever as três componentes (erro, tendência, suavização). O erro pode ser aditivo ou multiplicativo, E={A,M}. A tendência pode ser não considerada (N), aditiva (A) ou atitiva amortecida (<em>damped</em>) (Ad), T ={N,A,Ad}. Por fim, a sazonalidade pode ser não considerada, aditiva ou multiplicativa, S={N,A,M}. Logo, há 18 modelos possíveis.</p>
 <p>Retomando a suavização exponencial simples representada em componentes:</p>
 <p><span class="math display">\[
@@ -607,11 +607,11 @@ l_t &amp;= l_{t-1} + \alpha(y_t-l_{t-1}) \\
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(e_t=y_t-l_{t-1}=y_t - \hat{y}_{t|t-1}\)</span> é o resíduo no tempo <span class="math inline">\(t\)</span>. Pode-se, portanto, considerar que a observação de treino é igual ao nível anterior mais o erro, <span class="math inline">\(y_t=l_{t-1}+e_t\)</span>. Logo, deve-se assumir os resíduos como ruído branco, <span class="math inline">\(e_t = \varepsilon_t \sim NID(0,\sigma_\varepsilon^2)\)</span> ou normalmente e identicamente distribuídos.</p>
-<p>Quando o erro é multiplicativo, tem-se <span class="math inline">\(e_t=(y_t - \hat{y}_{t|t-1})/\hat{y}_{t|t-1}\)</span>.</p>
+<p>Quando o erro é multiplicativo no caso simples tem-se <span class="math inline">\(e_t=(y_t - \hat{y}_{t|t-1})/\hat{y}_{t|t-1}\)</span>.</p>
 <p>A título de exemplo serão apresentados os modelos Holt-Winters aditivos com erro aditivo ETS(A,A,A) e multiplicativo ETS(M,A,A).</p>
-<section id="modelo-de-holt-winter-etsaaa" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winter-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter ETS(A,A,A)</h3>
-<p>Para este modelo considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo a seguir:</p>
+<section id="modelo-de-holt-winter-aditivo-etsaaa" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winter-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter aditivo, ETS(A,A,A)</h3>
+<p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo a seguir:</p>
 <p><span class="math display">\[
 \begin{align}
 y_t &amp;= l_{t-1} + b_{t-1} + s_{t-m} + \varepsilon_t\\
@@ -622,8 +622,8 @@ s_t &amp;= s_{t-m} + \gamma\varepsilon_t, \\
 \]</span></p>
 <p>onde <span class="math inline">\(\beta=\beta^*\alpha\)</span>.</p>
 </section>
-<section id="modelo-de-holt-winter-etsmaa" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winter-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter ETS(M,A,A)</h3>
+<section id="modelo-de-holt-winter-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winter-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter multiplicativo, ETS(M,A,A)</h3>
 <p>Para o caso com erro multiplicativo o erro com tendência e sazonalidade aditiva, o erro é calculado conforme segue:</p>
 <p><span class="math display">\[
 e_t=
@@ -637,15 +637,14 @@ l_t &amp;= l_{t-1}+b_{t-1}+ \alpha (l_{t-1}-b_{t-1}-s_{t-m})\varepsilon_t\\
 b_t &amp;=b_{t-1} + \beta(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t \\
 s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 \end{align}
-\]</span></p>
-<p><span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização com a notação de estado de espaços.</p>
+\]</span> Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
 </section>
 </section>
 <section id="previsão-e-intervalo-de-confiança-com-ets" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
-<p>A previsão commodelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
-<p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e são bastante complexos. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
-<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019 considerando os dois sentidos de circulação. A série está disponível em https://servicos.dnit.gov.br/dadospnct/ContagemContinua. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
+<p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
+<p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
+<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em https://servicos.dnit.gov.br/dadospnct/ContagemContinua. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579" class="quarto-figure quarto-figure-center anchored">
@@ -656,7 +655,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_passeio">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e sábados.</p>
+<p>A <a href="#fig-br040km579_passeio">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_passeio" class="quarto-figure quarto-figure-center anchored">
@@ -678,7 +677,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_day">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fuxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
+<p>A <a href="#fig-br040km579_saz_day">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_saz_day" class="quarto-figure quarto-figure-center anchored">
