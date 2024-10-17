@@ -186,7 +186,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Hyndman, RJ, and G Athanasopoulos. 2021. Forecasting: Principles and\nPractice. OTexts. OTexts.com/fpp3."
+    "text": "Gardner, Everette S., and Ed. Mckenzie. 1985. “Forecasting Trends\nin Time Series.” Management Science 31 (10): 1237–46. https://doi.org/10.1287/mnsc.31.10.1237.\n\n\nHolt, Charles C. 2004. “Forecasting Seasonals and Trends by\nExponentially Weighted Moving Averages.” International\nJournal of Forecasting 20 (1): 5–10. https://doi.org/https://doi.org/10.1016/j.ijforecast.2003.09.015.\n\n\nHyndman, RJ, and G Athanasopoulos. 2021. Forecasting: Principles and\nPractice. OTexts. OTexts.com/fpp3.\n\n\nHyndman, Rob, Anne B Koehler, J Keith Ord, and Ralph D Snyder. 2008.\nForecasting with Exponential Smoothing: The State Space\nApproach. Springer Science & Business Media.\n\n\nWinters, Peter R. 1960. “Forecasting Sales by Exponentially\nWeighted Moving Averages.” Management Science 6 (3):\n324–42. https://doi.org/10.1287/mnsc.6.3.324."
   },
   {
     "objectID": "ST4.html#regressão-não-linear",
