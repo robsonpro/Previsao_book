@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ingênuo-sazonal" id="toc-ingênuo-sazonal" class="nav-link" data-scroll-target="#ingênuo-sazonal"><span class="header-section-number">2.3.3</span> Ingênuo sazonal</a></li>
   <li><a href="#deriva" id="toc-deriva" class="nav-link" data-scroll-target="#deriva"><span class="header-section-number">2.3.4</span> Deriva</a></li>
   </ul></li>
-  <li><a href="#resíduos-e-valores-previstos" id="toc-resíduos-e-valores-previstos" class="nav-link" data-scroll-target="#resíduos-e-valores-previstos"><span class="header-section-number">2.4</span> Resíduos e valores previstos</a>
+  <li><a href="#resíduos-e-valores-ajustados" id="toc-resíduos-e-valores-ajustados" class="nav-link" data-scroll-target="#resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</a>
   <ul class="collapse">
   <li><a href="#diagnósticos-dos-resíduos" id="toc-diagnósticos-dos-resíduos" class="nav-link" data-scroll-target="#diagnósticos-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnósticos dos resíduos</a></li>
   </ul></li>
@@ -460,11 +460,11 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 </div>
 </section>
 </section>
-<section id="resíduos-e-valores-previstos" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="resíduos-e-valores-previstos"><span class="header-section-number">2.4</span> Resíduos e valores previstos</h2>
-<p>Os valores previstos são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>, implicando que a previsão de <span class="math inline">\(\hat{y}_{t}\)</span> é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>.</p>
-<p>Os resíduos de uma série temporal consistem nos valores do erro, sendo calculados como a diferença entre o observado e o previsto em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
-<p>Na <a href="#tbl-fitres">Tabela&nbsp;<span>2.4</span></a> são observados os valores previstos (<code>.fitted</code>) e os resíduos (<code>.resid</code>) para as previsões obtidas com o método ingênuo sazonal para o último exemplo para as últimas observações.</p>
+<section id="resíduos-e-valores-ajustados" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</h2>
+<p>Os valores ajustados, <span class="math inline">\(\hat y_t\)</span>, são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>, implicando que a estimativa de <span class="math inline">\(\hat{y}_{t}\)</span> é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>.</p>
+<p>Os resíduos de uma série temporal consistem nos valores do erro, sendo calculados como a diferença entre o observado e o ajustado em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
+<p>Na <a href="#tbl-fitres">Tabela&nbsp;<span>2.4</span></a> são explicitados os valores ajustados (<code>.fitted</code>) e os resíduos (<code>.resid</code>) obtidos com o método ingênuo sazonal para as últimas observações da série temporal de volume de carros produzidos no Brasil .</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-fitres" class="anchored">
@@ -861,8 +861,8 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 </section>
 <section id="transformações" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="transformações"><span class="header-section-number">2.7</span> Transformações</h2>
-<p>Transformações podem ser usadas nas séries temporais, de forma a garantir, por exemplo, que as pressuposições sobre os resíduos sejam cumpridas, ou que alguma variação que aumenta ou cresce com o tempo seja corrigida. A transformação logarítima é geralmente útil. Tomando a série original, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, a série transformada fica <span class="math inline">\(w_1, w_2, ..., w_T\)</span>, com <span class="math inline">\(w_t =log(y_t)\)</span>. Uma mudança de uma unidade na escala log de base 10 corresponde a uma multiplicação por 10 na escala original.</p>
-<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transfoprmações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme segue.</p>
+<p>Transformações podem ser usadas nas séries temporais, de forma a garantir, por exemplo, que as pressuposições sobre os resíduos sejam cumpridas, ou que alguma variação que aumenta ou cresce com o tempo seja corrigida. A transformação logarítmica é geralmente útil. Tomando a série original, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, a série transformada fica <span class="math inline">\(w_1, w_2, ..., w_T\)</span>, com <span class="math inline">\(w_t =log(y_t)\)</span>. Uma mudança de uma unidade na escala log de base 10 corresponde a uma multiplicação por 10 na escala original.</p>
+<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transformações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme segue.</p>
 <p><span class="math display">\[
 w_t = \Bigg\{ \begin{matrix}
                 \text{log}(y_t), \text{ }\lambda=0 \\
@@ -937,7 +937,7 @@ e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
 </tr>
 <tr class="even">
 <td>MASE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{MAE = mean}(|q_j|)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MASE = mean}(|q_j|)\)</span></td>
 </tr>
 </tbody>
 </table>
