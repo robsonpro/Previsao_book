@@ -382,13 +382,13 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=\frac{1}{T}\sum_{t=1}^Ty_t=\frac{y_1+y_2+...+y_T}{T}
 \]</span></p>
-<p>Na <a href="#fig-car">Figura&nbsp;<span>2.3</span></a> expõe-se a previsão com a média para três dias à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car">Figura&nbsp;<span>2.3</span></a> expõe-se a previsão com a média para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-car" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST2_files/figure-html/fig-car-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.3: Previsão por média na série de produção de carros no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;2.3: Previsão por média na série de vendas de carros no Brasil</figcaption>
 </figure>
 </div>
 </div>
@@ -400,13 +400,13 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=y_T
 \]</span></p>
-<p>Na <a href="#fig-car2">Figura&nbsp;<span>2.4</span></a> expõe-se a previsão com o método ingênuo para três dias à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car2">Figura&nbsp;<span>2.4</span></a> expõe-se a previsão com o método ingênuo para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-car2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST2_files/figure-html/fig-car2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.4: Previsão por média na série de produção de carros no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;2.4: Previsão por média na série de vendas de carros no Brasil</figcaption>
 </figure>
 </div>
 </div>
@@ -418,13 +418,13 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=y_{T+h-m(k+1)}
 \]</span></p>
-<p>Na <a href="#fig-car3">Figura&nbsp;<span>2.5</span></a> expõe-se a previsão com o método ingênuo sazonal para três dias à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car3">Figura&nbsp;<span>2.5</span></a> expõe-se a previsão com o método ingênuo sazonal para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-car3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST2_files/figure-html/fig-car3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.5: Previsão por média na série de produção de carros no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;2.5: Previsão por média na série de vendas de carros no Brasil</figcaption>
 </figure>
 </div>
 </div>
@@ -435,7 +435,7 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <div id="fig-temp" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST2_files/figure-html/fig-temp-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.6: Previsão da temperatura em São João del-Rei em Maio de 2024 pelos três métodos benchmarking apresentados</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;2.6: Previsão da temperatura em São João del-Rei em maio de 2024 pelos três métodos benchmarking apresentados</figcaption>
 </figure>
 </div>
 </div>
@@ -453,7 +453,7 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <div id="fig-car4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST2_files/figure-html/fig-car4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.7: Previsão por deriva na série de produção de carros no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;2.7: Previsão por deriva na série de vendas de carros no Brasil</figcaption>
 </figure>
 </div>
 </div>
@@ -469,7 +469,7 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <div class="cell-output-display">
 <div id="tbl-fitres" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.4: Valores previstos e residuais obtidos pelo método ingênuo para a série de produção de carros</caption>
+<caption>Tabela&nbsp;2.4: Valores ajustados e residuais obtidos pelo método ingênuo para a série de temperatura em São João del-Rei</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Data</th>
@@ -593,7 +593,7 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 </section>
 <section id="testes-para-diagnóstico-de-autocorrelação" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="testes-para-diagnóstico-de-autocorrelação"><span class="header-section-number">2.5</span> Testes para diagnóstico de autocorrelação</h2>
-<p>Um teste <em>portmanteau</em> é um teste para averiguar se as <span class="math inline">\(l\)</span> primeiras autocorrelações são diferentes do que se esperaria para um ruído branco. Um destes testes seria o de <strong>Box-Pierce</strong>, com estatística calculada conforme segue. Sugere-se <span class="math inline">\(l=10\)</span> autocorrelações para séries não sazonais e <span class="math inline">\(l=2m\)</span> para casos sazonais, com <span class="math inline">\(m\)</span> sendo o período sazonal. Porém, o teste não é adequado para <span class="math inline">\(l\)</span> alto, sugerindo-se no máximo <span class="math inline">\(l=T/5\)</span>.</p>
+<p>Um teste para diagnóstico de autocorrelação é um teste para averiguar se as <span class="math inline">\(l\)</span> primeiras autocorrelações são diferentes do que se esperaria para um ruído branco. Um destes testes seria o de <strong>Box-Pierce</strong>, com estatística calculada conforme segue. Sugere-se <span class="math inline">\(l=10\)</span> autocorrelações para séries não sazonais e <span class="math inline">\(l=2m\)</span> para casos sazonais, com <span class="math inline">\(m\)</span> sendo o período sazonal. Porém, o teste não é adequado para <span class="math inline">\(l\)</span> alto, sugerindo-se no máximo <span class="math inline">\(l=T/5\)</span>.</p>
 <p><span class="math display">\[
 Q = T\sum_{k=1}^l r_k^2
 \]</span></p>
