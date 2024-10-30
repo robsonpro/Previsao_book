@@ -230,7 +230,7 @@ div.csl-indent {
 <p><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T + \alpha(1-\alpha)y_{T-1} + \alpha(1-\alpha)^2y_{T-2}+...
 \]</span></p>
-<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para cinco últimas observações da série para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
+<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-pesos</span></a> expõe os pesos para cinco últimas observações da série para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
 <div id="tbl-pesos" class="anchored">
 <table class="table">
 <caption>Tabela&nbsp;5.1: Pesos na suavização exponencial simples</caption>
@@ -282,7 +282,7 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-pesos_expsimples">Figura&nbsp;<span>5.1</span></a> expõe os mesmos pesos plotados segundo o tempo. Observa-se que quanto maior o <span class="math inline">\(\alpha\)</span>, maior a taxa de decrescimento dos pesos da última observação em relação às anteriores.</p>
+<p>A <a href="#fig-pesos_expsimples">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pesos_expsimples</span></a> expõe os mesmos pesos plotados segundo o tempo. Observa-se que quanto maior o <span class="math inline">\(\alpha\)</span>, maior a taxa de decrescimento dos pesos da última observação em relação às anteriores.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pesos_expsimples" class="quarto-figure quarto-figure-center anchored">
@@ -334,7 +334,7 @@ div.csl-indent {
 \]</span></p>
 <p>onde <span class="math inline">\(l_t\)</span> consiste no nível no período <span class="math inline">\(t\)</span> e <span class="math inline">\(\hat y_{t+h} = l_t\)</span> a previsão no período <span class="math inline">\(t+h\)</span>.</p>
 <p>Se <span class="math inline">\(h=1\)</span>, tem-se o valor estimado, enquanto se <span class="math inline">\(t=T\)</span>, tem-se a previsão para além dos dados de treino. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e suavização, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
-<p>A <a href="#fig-ipca_expsimp">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span> expostos na <a href="#tbl-ipca_fit">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
+<p>A <a href="#fig-ipca_expsimp">Figura&nbsp;<span class="quarto-unresolved-ref">fig-ipca_expsimp</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span> expostos na <a href="#tbl-ipca_fit">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ipca_fit</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-ipca_fit" class="anchored">
@@ -370,7 +370,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ipca_for">Tabela&nbsp;<span>5.3</span></a> apresenta os valores estimados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
+<p>A <a href="#tbl-ipca_for">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ipca_for</span></a> apresenta os valores estimados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-ipca_for" class="anchored">
@@ -422,7 +422,7 @@ div.csl-indent {
 </section>
 <section id="suavização-exponencial-com-tendência" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="suavização-exponencial-com-tendência"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</h2>
-<p>Em casos com tendência pode-se considerar o método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span>, o qual considera uma equação para o nível, <span class="math inline">\(l_t\)</span>, uma para a tendência, <span class="math inline">\(b_t\)</span>, e a de previsão, <span class="math inline">\(\hat y_{t+h|t}\)</span>.</p>
+<p>Em casos com tendência pode-se considerar o método de <span class="citation" data-cites="Holt2004">Holt (<a href="#ref-Holt2004" role="doc-biblioref">2004</a>)</span>, o qual considera uma equação para o nível, <span class="math inline">\(l_t\)</span>, uma para a tendência, <span class="math inline">\(b_t\)</span>, e a de previsão, <span class="math inline">\(\hat y_{t+h|t}\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + hb_t\\
@@ -431,7 +431,7 @@ div.csl-indent {
 \end{align}
 \]</span></p>
 <p>Neste caso <span class="math inline">\(l_t\)</span> é uma média ponderada da observação <span class="math inline">\(y_t\)</span> e da previsão um passo a frente, dada por <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>. A equação de tendência mostra que <span class="math inline">\(b_t\)</span> é uma média ponderada da tendência no tempo <span class="math inline">\(t\)</span>, baseada em <span class="math inline">\(l_t-l_{t-1}\)</span>, e na estimativa anterior da tendência, <span class="math inline">\(b_{t-1}\)</span>.</p>
-<p>A <a href="#fig-pop_br">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em https://seriesestatisticas.ibge.gov.br/default.aspx. Observa-se tendência de crescimento muito próxima de linear.</p>
+<p>A <a href="#fig-pop_br">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pop_br</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em https://seriesestatisticas.ibge.gov.br/default.aspx. Observa-se tendência de crescimento muito próxima de linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br" class="quarto-figure quarto-figure-center anchored">
@@ -442,7 +442,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-pop_fit">Tabela&nbsp;<span>5.4</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da populaçao projetada do Brasil.</p>
+<p>A <a href="#tbl-pop_fit">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-pop_fit</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da populaçao projetada do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-pop_fit" class="anchored">
@@ -483,7 +483,7 @@ div.csl-indent {
 </div>
 <section id="suavização-exponencial-com-tendência-amortecida" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="suavização-exponencial-com-tendência-amortecida"><span class="header-section-number">5.2.1</span> Suavização exponencial com tendência amortecida</h3>
-<p>Um problema do método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> para suavização exponencial com tendência é que ele costuma apresentar uma estimativa linear que em longos horizontes de previsão costuma não se confirmar. Uma opção é a abordagem de <span class="citation" data-cites="gardnermckenzie1985">Gardner e Mckenzie (<a href="references.html#ref-gardnermckenzie1985" role="doc-biblioref">1985</a>)</span> que propõe amortecer as previsões. O método inclui o parâmetro de amortecimento <span class="math inline">\(0&lt;\phi&lt;1\)</span>.</p>
+<p>Um problema do método de <span class="citation" data-cites="Holt2004">Holt (<a href="#ref-Holt2004" role="doc-biblioref">2004</a>)</span> para suavização exponencial com tendência é que ele costuma apresentar uma estimativa linear que em longos horizontes de previsão costuma não se confirmar. Uma opção é a abordagem de <span class="citation" data-cites="gardnermckenzie1985">Gardner e Mckenzie (<a href="#ref-gardnermckenzie1985" role="doc-biblioref">1985</a>)</span> que propõe amortecer as previsões. O método inclui o parâmetro de amortecimento <span class="math inline">\(0&lt;\phi&lt;1\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + (\phi+\phi^2+...+\phi^h)b_t\\
@@ -491,7 +491,7 @@ div.csl-indent {
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}
 \end{align}
 \]</span></p>
-<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
+<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pop_br_fit</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br_fit" class="quarto-figure quarto-figure-center anchored">
@@ -502,7 +502,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissoes_ind">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em https://plataforma.seeg.eco.br/. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
+<p>A <a href="#fig-emissoes_ind">Figura&nbsp;<span class="quarto-unresolved-ref">fig-emissoes_ind</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em https://plataforma.seeg.eco.br/. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissoes_ind" class="quarto-figure quarto-figure-center anchored">
@@ -517,7 +517,7 @@ div.csl-indent {
 </section>
 <section id="suavização-exponencial-com-sazonalidade" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="suavização-exponencial-com-sazonalidade"><span class="header-section-number">5.3</span> Suavização exponencial com sazonalidade</h2>
-<p><span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> e <span class="citation" data-cites="Winters1960">Winters (<a href="references.html#ref-Winters1960" role="doc-biblioref">1960</a>)</span> consideraram a sazonalidade na suavização exponencial. Logo, além das equações de previsão, nível e tendência, o método inclui uma equação adicional para a sazonalidade. O método considera ambos os casos aditivo e multiplicativo.</p>
+<p><span class="citation" data-cites="Holt2004">Holt (<a href="#ref-Holt2004" role="doc-biblioref">2004</a>)</span> e <span class="citation" data-cites="Winters1960">Winters (<a href="#ref-Winters1960" role="doc-biblioref">1960</a>)</span> consideraram a sazonalidade na suavização exponencial. Logo, além das equações de previsão, nível e tendência, o método inclui uma equação adicional para a sazonalidade. O método considera ambos os casos aditivo e multiplicativo.</p>
 <p>O método Holt-Winter aditivo compreende as equações à seguir:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -537,7 +537,7 @@ div.csl-indent {
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-export">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
+<p>A <a href="#fig-export">Figura&nbsp;<span class="quarto-unresolved-ref">fig-export</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export" class="quarto-figure quarto-figure-center anchored">
@@ -548,7 +548,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_season">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas nota-se maior volume de exportações de março a agosto.</p>
+<p>A <a href="#fig-export_season">Figura&nbsp;<span class="quarto-unresolved-ref">fig-export_season</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas nota-se maior volume de exportações de março a agosto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export_season" class="quarto-figure quarto-figure-center anchored">
@@ -559,7 +559,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_fit">Figura&nbsp;<span>5.8</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões plotadas 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
+<p>A <a href="#fig-export_fit">Figura&nbsp;<span class="quarto-unresolved-ref">fig-export_fit</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões plotadas 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export_fit" class="quarto-figure quarto-figure-center anchored">
@@ -581,7 +581,7 @@ div.csl-indent {
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-\phi b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-exportfit">Figura&nbsp;<span>5.9</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
+<p>A <a href="#fig-exportfit">Figura&nbsp;<span class="quarto-unresolved-ref">fig-exportfit</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-exportfit" class="quarto-figure quarto-figure-center anchored">
@@ -643,14 +643,14 @@ l_t &amp;= l_{t-1}+b_{t-1}+ \alpha (l_{t-1}-b_{t-1}-s_{t-m})\varepsilon_t\\
 b_t &amp;=b_{t-1} + \beta(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t \\
 s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 \end{align}
-\]</span> Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
+\]</span> Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
 </section>
 </section>
 <section id="previsão-e-intervalo-de-confiança-com-ets" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
 <p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
-<p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
-<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em https://servicos.dnit.gov.br/dadospnct/ContagemContinua. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
+<p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
+<p>A <a href="#fig-br040km579">Figura&nbsp;<span class="quarto-unresolved-ref">fig-br040km579</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em https://servicos.dnit.gov.br/dadospnct/ContagemContinua. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579" class="quarto-figure quarto-figure-center anchored">
@@ -661,7 +661,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_passeio">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
+<p>A <a href="#fig-br040km579_passeio">Figura&nbsp;<span class="quarto-unresolved-ref">fig-br040km579_passeio</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_passeio" class="quarto-figure quarto-figure-center anchored">
@@ -672,7 +672,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_week">Figura&nbsp;<span>5.12</span></a> expõe o gráfico sazonal da série anterior considerando a semana como período sazonal. Enfatiza-se a regularidade entre as 4 semanas disponíveis e observa-se novamente o pico de fluxo nas sextas e domingos devido idas e retornos de fins de semana.</p>
+<p>A <a href="#fig-br040km579_saz_week">Figura&nbsp;<span class="quarto-unresolved-ref">fig-br040km579_saz_week</span></a> expõe o gráfico sazonal da série anterior considerando a semana como período sazonal. Enfatiza-se a regularidade entre as 4 semanas disponíveis e observa-se novamente o pico de fluxo nas sextas e domingos devido idas e retornos de fins de semana.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_saz_week" class="quarto-figure quarto-figure-center anchored">
@@ -683,7 +683,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_day">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
+<p>A <a href="#fig-br040km579_saz_day">Figura&nbsp;<span class="quarto-unresolved-ref">fig-br040km579_saz_day</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_saz_day" class="quarto-figure quarto-figure-center anchored">
@@ -694,7 +694,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_pred">Figura&nbsp;<span>5.14</span></a> expõe o resultado do modelo de suavização exponencial com tendência amortecida e sazonalidade. Foram considerados os dias de março para estimativa e a série completa é plotada juntamente com a previsão para a primeira semana de abril. Será importante avaliar posteriormente métodos que capturem variações sazonais distintas.</p>
+<p>A <a href="#fig-br040km579_pred">Figura&nbsp;<span class="quarto-unresolved-ref">fig-br040km579_pred</span></a> expõe o resultado do modelo de suavização exponencial com tendência amortecida e sazonalidade. Foram considerados os dias de março para estimativa e a série completa é plotada juntamente com a previsão para a primeira semana de abril. Será importante avaliar posteriormente métodos que capturem variações sazonais distintas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579_pred" class="quarto-figure quarto-figure-center anchored">
@@ -707,7 +707,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-gardnermckenzie1985" class="csl-entry" role="listitem">
 Gardner, Everette S., e Ed. Mckenzie. 1985. <span>«Forecasting Trends in Time Series»</span>. <em>Management Science</em> 31 (10): 1237–46. <a href="https://doi.org/10.1287/mnsc.31.10.1237">https://doi.org/10.1287/mnsc.31.10.1237</a>.
 </div>

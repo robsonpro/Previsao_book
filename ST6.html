@@ -21,7 +21,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -477,19 +496,24 @@ AIC=1039.35   AICc=1039.95   BIC=1044.7</code></pre>
 <p><span class="math display">\[
 y_t = 271035,56 + 0,28y_{t-1} + \varepsilon_t
 \]</span></p>
-<p>A <span class="citation" data-cites="for-fitcoque">(<a href="references.html#ref-for-fitcoque" role="doc-biblioref"><strong>for-fitcoque?</strong></a>)</span> expõe a previsão de 10 meses à frente usando tal modelo.</p>
+<p>A <a href="#fig-for_fitcoque">Figura&nbsp;<span>6.7</span></a> expõe a previsão de 10 meses à frente usando tal modelo.</p>
 <div class="cell" data-tbl-cap="Previsão para 10 meses via ARIMA para a série de volume de produção de coque no Brasil">
 <div class="cell-output-display">
-<p><img src="ST6_files/figure-html/for-fitcoque-1.png" class="img-fluid" width="672"></p>
+<div id="fig-for_fitcoque" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ST6_files/figure-html/fig-for_fitcoque-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figura&nbsp;6.7: <strong>?(caption)</strong></figcaption>
+</figure>
 </div>
 </div>
-<p>A <a href="#fig-vale20">Figura&nbsp;<span>6.7</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2020.</p>
+</div>
+<p>A <a href="#fig-vale20">Figura&nbsp;<span>6.8</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2020.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-vale20" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-vale20-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.7: Série temporal do valor da ação VALE3</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.8: Série temporal do valor da ação VALE3</figcaption>
 </figure>
 </div>
 </div>
@@ -513,24 +537,24 @@ AIC=282.53   AICc=284.74   BIC=293.37</code></pre>
 <p><span class="math display">\[
 y_t = 23,94 + 1,46y_{t-1} - 0,79y_{t-2} -0,64\varepsilon_{t-1} + 0,48\varepsilon_{t-2} + \varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-resi">Figura&nbsp;<span>6.8</span></a> expõe os gráficos dos resíduos do modelo ARIMA(2,0,2) aplicado à série do preço da ação VALE3. Observa-se um padrão de ruído branco, com ausência de autocorrelação.</p>
+<p>A <a href="#fig-resi">Figura&nbsp;<span>6.9</span></a> expõe os gráficos dos resíduos do modelo ARIMA(2,0,2) aplicado à série do preço da ação VALE3. Observa-se um padrão de ruído branco, com ausência de autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-resi-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.8: Resíduos do modelo ARIMA(2,0,2) para a série do valor da ação VALE3</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.9: Resíduos do modelo ARIMA(2,0,2) para a série do valor da ação VALE3</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Conforme <a href="#fig-for_vale10">Figura&nbsp;<span>6.9</span></a>, dada a previsão 10 meses à frente exibida, o modelo capturou bem o padrão cíclico não sazonal da série.</p>
+<p>Conforme <a href="#fig-for_vale10">Figura&nbsp;<span>6.10</span></a>, dada a previsão 10 meses à frente exibida, o modelo capturou bem o padrão cíclico não sazonal da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-for_vale10" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-for_vale10-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.9: Série temporal do valor da ação VALE3</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.10: Série temporal do valor da ação VALE3</figcaption>
 </figure>
 </div>
 </div>
@@ -548,13 +572,13 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \the
 <h2 data-number="6.5" class="anchored" data-anchor-id="autocorrelação-parcial"><span class="header-section-number">6.5</span> Autocorrelação parcial</h2>
 <p>A autocorrelação <span class="math inline">\(r_k\)</span> mede a relação linear entre a série original <span class="math inline">\(y_t\)</span> e a série defasada <span class="math inline">\(y_{t-k}\)</span>. Entretanto, se <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span> são correlacionadas, então <span class="math inline">\(y_{t-1}\)</span> e <span class="math inline">\(y_{t-2}\)</span> também o serão. Logo, haverá correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span>. Porém, não porque há uma explicação plausível para <span class="math inline">\(y_t\)</span> a partir de <span class="math inline">\(y_{t-2}\)</span>, mas simplesmente porque ambas estão relacionadas indiretamente por <span class="math inline">\(y_{t-1}\)</span>.</p>
 <p>A autocorrelação parcial visa corrigir o problema da autocorrelação, medindo mais diretamente a relação linear entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-k}\)</span> desconsiderando os efeitos das defasagens anteriores, <span class="math inline">\(1,2,\ldots, k-1\)</span>.</p>
-<p>A <a href="#fig-acfpacf">Figura&nbsp;<span>6.10</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
+<p>A <a href="#fig-acfpacf">Figura&nbsp;<span>6.11</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-acfpacf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-acfpacf-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.10: Autocorrelação e autocorrelação parcial da série VALE3</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.11: Autocorrelação e autocorrelação parcial da série VALE3</figcaption>
 </figure>
 </div>
 </div>
@@ -569,7 +593,7 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \the
 <li>A autocorrelação (ACF) decai exponencialmente ou tem padrão senoidal;</li>
 <li>Há significância na autocorrelação parcial (PACF) de lag <span class="math inline">\(p\)</span>, mas não além deste.</li>
 </ul>
-<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da Figura <a href="#fig-acfpacf">Figura&nbsp;<span>6.10</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
+<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da Figura <a href="#fig-acfpacf">Figura&nbsp;<span>6.11</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: Valor 
@@ -610,14 +634,14 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 <li>Avalie os resíduos do modelo selecionado;</li>
 <li>Realize previsões com o modelo.</li>
 </ol>
-<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série plotada na <a href="#fig-graos">Figura&nbsp;<span>6.11</span></a>, de produção de grãos no Brasil em toneladas. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
-<p>A <a href="#fig-graos-bc">Figura&nbsp;<span>6.12</span></a> apresenta a série após transformação com <span class="math inline">\(\lambda=0,6264\)</span>.</p>
+<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série plotada na <a href="#fig-graos">Figura&nbsp;<span>6.12</span></a>, de produção de grãos no Brasil em toneladas. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
+<p>A <a href="#fig-graos-bc">Figura&nbsp;<span>6.13</span></a> apresenta a série após transformação com <span class="math inline">\(\lambda=0,6264\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.11: Produção de grãos no Brasil em toneladas</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.12: Produção de grãos no Brasil em toneladas</figcaption>
 </figure>
 </div>
 </div>
@@ -627,7 +651,7 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 <div id="fig-graos-bc" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-graos-bc-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.12: Série de produção de grãos no Brasil com transformação de Box-Cox</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.13: Série de produção de grãos no Brasil com transformação de Box-Cox</figcaption>
 </figure>
 </div>
 </div>
@@ -654,24 +678,24 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 </div>
 </div>
 </div>
-<p>A <a href="#fig-graos-diff">Figura&nbsp;<span>6.13</span></a> apresenta a variação da série transformada. Confirma-se estacionariedade após diferenciação de primeira ordem. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta.</p>
+<p>A <a href="#fig-graos-diff">Figura&nbsp;<span>6.14</span></a> apresenta a variação da série transformada. Confirma-se estacionariedade após diferenciação de primeira ordem. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos-diff" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-graos-diff-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.13: Variação na produção de grãos no Brasil em toneladas</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.14: Variação na produção de grãos no Brasil em toneladas</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-graos-autocorr">Figura&nbsp;<span>6.14</span></a> expõe os correlogramas de ACF e PACF para a série diferenciada e transformada. Observa-se que o primeiro indica um modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>, enquanto segundo indica um modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>.</p>
+<p>A <a href="#fig-graos-autocorr">Figura&nbsp;<span>6.15</span></a> expõe os correlogramas de ACF e PACF para a série diferenciada e transformada. Observa-se que o primeiro indica um modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>, enquanto segundo indica um modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos-autocorr" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-graos-autocorr-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.14: Autocorrelação e autocorrelação parcial da série de produção de grãos</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.15: Autocorrelação e autocorrelação parcial da série de produção de grãos</figcaption>
 </figure>
 </div>
 </div>
@@ -708,13 +732,13 @@ sigma^2 estimated as 18159:  log likelihood=-289.89
 AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-resi-graos">Figura&nbsp;<span>6.15</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série diferenciada e transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
+<p>A <a href="#fig-resi-graos">Figura&nbsp;<span>6.16</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série diferenciada e transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi-graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-resi-graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.15: Resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.16: Resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
 </figure>
 </div>
 </div>
@@ -743,13 +767,13 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-for_graos">Figura&nbsp;<span>6.16</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2033 é de 397000 toneladas de grãos.</p>
+<p>A <a href="#fig-for_graos">Figura&nbsp;<span>6.17</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2033 é de 397000 toneladas de grãos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-for_graos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-for_graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.16: Previsão com o modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.17: Previsão com o modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
 </figure>
 </div>
 </div>
@@ -762,24 +786,24 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 <p><span class="math display">\[
 (1-\phi_1B)(1-\Phi_1B^{12})(1-B)(1-B^{12})y_t = c+( 1+\theta_1B)( 1+\Theta_1B^{12})\varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-passbr-dif12">Figura&nbsp;<span>6.17</span></a> expõe a variação sazonal da sériede log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
+<p>A <a href="#fig-passbr-dif12">Figura&nbsp;<span>6.18</span></a> expõe a variação sazonal da sériede log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-passbr-dif12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.17: Variação sazonal no log(passageiros) de vôos no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.18: Variação sazonal no log(passageiros) de vôos no Brasil</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12-1">Figura&nbsp;<span>6.18</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
+<p>A <a href="#fig-passbr-dif12-1">Figura&nbsp;<span>6.19</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-passbr-dif12-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.18: Série de passageiros de vôos no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.19: Série de passageiros de vôos no Brasil</figcaption>
 </figure>
 </div>
 </div>
@@ -876,21 +900,21 @@ sigma^2 estimated as 0.001045:  log likelihood=455.1
 AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-passbr-res">Figura&nbsp;<span>6.19</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para defasagem de 11, 13 e 22 observações.</p>
+<p>A <a href="#fig-passbr-res">Figura&nbsp;<span>6.20</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para defasagem de 11, 13 e 22 observações.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-res" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-passbr-res-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.19: Série de passageiros de vôos no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.20: Série de passageiros de vôos no Brasil</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <span class="quarto-unresolved-ref">?tbl-lb_auto</span> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
+<p>A <a href="#tbl-lb_auto">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tbl-klb_auto" class="anchored">
+<div id="tbl-lb_auto" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Tabela&nbsp;6.7: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)</caption>
 <thead>
@@ -911,35 +935,35 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-passbr-for">Figura&nbsp;<span>6.20</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem a tendência dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada em volume de passageiros em vôos do Brasil.</p>
+<p>A <a href="#fig-passbr-for">Figura&nbsp;<span>6.21</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem a tendência dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada em volume de passageiros em vôos do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-for" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-passbr-for-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.20: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.21: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prodndur">Figura&nbsp;<span>6.21</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
+<p>A <a href="#fig-prodndur">Figura&nbsp;<span>6.22</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodndur" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-prodndur-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.21: Produção mensal de bens não duráveis no Brasil</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.22: Produção mensal de bens não duráveis no Brasil</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_diff12">Figura&nbsp;<span>6.22</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
+<p>A <a href="#fig-ndur_diff12">Figura&nbsp;<span>6.23</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_diff12" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-ndur_diff12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.22: Variação sazonal na produção de bens de consumo não duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.23: Variação sazonal na produção de bens de consumo não duráveis</figcaption>
 </figure>
 </div>
 </div>
@@ -973,7 +997,7 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur_">Tabela&nbsp;<span>6.9</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">(<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref"><strong>hyndman2008automatic?</strong></a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
+<p>A <a href="#tbl-arima_ndur_">Tabela&nbsp;<span>6.9</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-arima_ndur_" class="anchored">
@@ -1011,13 +1035,13 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_res">Figura&nbsp;<span>6.23</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur">Tabela&nbsp;<span>6.10</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+<p>A <a href="#fig-ndur_res">Figura&nbsp;<span>6.24</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur">Tabela&nbsp;<span>6.10</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_res" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-ndur_res-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.23: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.24: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis</figcaption>
 </figure>
 </div>
 </div>
@@ -1047,13 +1071,13 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur-for">Figura&nbsp;<span>6.24</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
+<p>A <a href="#fig-ndur-for">Figura&nbsp;<span>6.25</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur-for" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ST6_files/figure-html/fig-ndur-for-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.24: Previsão para 3 anos à frente para a série de bens de consumo não duráveis</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;6.25: Previsão para 3 anos à frente para a série de bens de consumo não duráveis</figcaption>
 </figure>
 </div>
 </div>
@@ -1092,6 +1116,11 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-hyndman2008automatic" class="csl-entry" role="listitem">
+Hyndman, Rob J, e Yeasmin Khandakar. 2008. <span>«Automatic time series forecasting: the forecast package for R»</span>. <em>Journal of statistical software</em> 27: 1–22.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
