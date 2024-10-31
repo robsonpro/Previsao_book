@@ -211,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidades devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
 <p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas a disponibilidade de algum serviço para a população é mais fácil avaliar a disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo comparação em diferentes momentos. Para deflacionar uma série basta dividí-la pelo deflator, um índice que corrige a inflação.</p>
 <p>Transformações como a de Box-Cox ou outra mais simples também podem ser úteis para facilitar o tratamento da série. Conforme visto anteriormente, uma série que exibe uma variação sazonal não constante, ou heterocedástica, ao ser transformada pode exibir um padrão de sazonalidade de mais fácil decomposição ou tratamento.</p>
-<p>A série plotada na <a href="#fig-gnv">Figura&nbsp;<span class="quarto-unresolved-ref">fig-gnv</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos.</p>
+<p>A série plotada na <a href="#fig-gnv">Figura&nbsp;<span>3.1</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gnv" class="quarto-figure quarto-figure-center anchored">
@@ -222,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>A <a href="#fig-gnv2">Figura&nbsp;<span class="quarto-unresolved-ref">fig-gnv2</span></a> plota novamente a série considerando a normalização por número de dias no mês.</p>
+<p>A <a href="#fig-gnv2">Figura&nbsp;<span>3.2</span></a> plota novamente a série considerando a normalização por número de dias no mês.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gnv2" class="quarto-figure quarto-figure-center anchored">
@@ -233,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>A série normalizada é submetida a uma transformação de Box-Cox de forma a corrigir a heterocedasticidade, com <span class="math inline">\(\lambda=-0.06\)</span>, sendo o resultado plotado na <a href="#fig-gnv3">Figura&nbsp;<span class="quarto-unresolved-ref">fig-gnv3</span></a>.</p>
+<p>A série normalizada é submetida a uma transformação de Box-Cox de forma a corrigir a heterocedasticidade, com <span class="math inline">\(\lambda=-0.06\)</span>, sendo o resultado plotado na <a href="#fig-gnv3">Figura&nbsp;<span>3.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gnv3" class="quarto-figure quarto-figure-center anchored">
@@ -257,7 +257,7 @@ y_t = S_t+ T_t+R_t,
 y_t = S_t \times T_t \times R_t
 \]</span></p>
 <p>O caso multiplicativo é ideal quando a variação em séries sazonais muda com o tempo, seguindo padrão heterocedástico.</p>
-<p>A série plotada na <a href="#fig-prodint">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prodint</span></a> exibe o índice de produção física mensal de bens intermediários, ou seja, aqueles empregados na produção de produtos finais, tais como produtos minerais, produtos metalúrgicos, têxteis, papel e celulose, produtos químicos, borracha, plásticos, componentes elétricos e eletrônicos. A série está disponível em https://www.ibge.gov.br/estatisticas/economicas/industria.html.</p>
+<p>A série plotada na <a href="#fig-prodint">Figura&nbsp;<span>3.4</span></a> exibe o índice de produção física mensal de bens intermediários, ou seja, aqueles empregados na produção de produtos finais, tais como produtos minerais, produtos metalúrgicos, têxteis, papel e celulose, produtos químicos, borracha, plásticos, componentes elétricos e eletrônicos. A série está disponível em https://www.ibge.gov.br/estatisticas/economicas/industria.html.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodint" class="quarto-figure quarto-figure-center anchored">
@@ -268,10 +268,12 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>A sequer exibem-se as primeiras linhas das componentes da série, considerando a decomposição aditiva.</p>
+<p>A <a href="#tbl-prodintdecomp">Tabela&nbsp;<span>3.1</span></a> exibe as primeiras linhas das componentes da série, considerando a decomposição aditiva.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div id="tbl-prodintdecomp" class="anchored">
 <table class="table table-sm table-striped small">
+<caption>Tabela&nbsp;3.1: Decomposição aditiva da série do índice de produção mensal de produtos intermediários no Brasil</caption>
 <colgroup>
 <col style="width: 17%">
 <col style="width: 8%">
@@ -359,7 +361,8 @@ y_t = S_t \times T_t \times R_t
 </table>
 </div>
 </div>
-<p>A série é plotada novamente na <a href="#fig-prodint_td">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prodint_td</span></a> com a tendência em destaque. Observam-se dois períodos de queda mais acentuada relativos à crise de 2008/2009 e à pandemia de COVID-19.</p>
+</div>
+<p>A série é plotada novamente na <a href="#fig-prodint_td">Figura&nbsp;<span>3.5</span></a> com a tendência em destaque. Observam-se dois períodos de queda mais acentuada relativos à crise de 2008/2009 e à pandemia de COVID-19.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodint_td" class="quarto-figure quarto-figure-center anchored">
@@ -370,7 +373,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>As componentes são plotadas separadamente na <a href="#fig-prodint_comp">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prodint_comp</span></a>.</p>
+<p>As componentes são plotadas separadamente na <a href="#fig-prodint_comp">Figura&nbsp;<span>3.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodint_comp" class="quarto-figure quarto-figure-center anchored">
@@ -385,7 +388,7 @@ y_t = S_t \times T_t \times R_t
 <section id="dados-com-sazonalidade-ajustada" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dados-com-sazonalidade-ajustada"><span class="header-section-number">3.3</span> Dados com sazonalidade ajustada</h2>
 <p>Pode ser útil remover a sazonalidade da série, resultando em uma série com sazonalidade ajustada. Para casos aditivos a série resultante seria dada por <span class="math inline">\(y_t-S_t\)</span>, enquanto que para casos multiplicativos seria <span class="math inline">\(y_t/S_t\)</span>.</p>
-<p>Na <a href="#fig-prodint_sazaj">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prodint_sazaj</span></a> plota-se a série de produtos intermediários ajustada sazonalmente.</p>
+<p>Na <a href="#fig-prodint_sazaj">Figura&nbsp;<span>3.7</span></a> plota-se a série de produtos intermediários ajustada sazonalmente.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodint_sazaj" class="quarto-figure quarto-figure-center anchored">
@@ -410,7 +413,7 @@ y_t = S_t \times T_t \times R_t
 <p><span class="math display">\[
 \hat{T}_4=\frac{1}{2\times2+1}(10+12+20+23+27)=18,4
 \]</span></p>
-<p>Na <a href="#fig-ma">Figura&nbsp;<span class="quarto-unresolved-ref">fig-ma</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quando maior a ordem da série, mais suave o resultado.</p>
+<p>Na <a href="ST6.html#fig-ma">Figura&nbsp;<span>6.5</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quando maior a ordem da série, mais suave o resultado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ma" class="quarto-figure quarto-figure-center anchored">
@@ -422,10 +425,10 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 <p>É interessante em alguns casos realizar a média móvel de uma média móvel, com o objetivo final de centrar médias móveis pares. Uma média móvel <span class="math inline">\(2\times4\)</span>-MA consiste em uma média móvel <span class="math inline">\(4\)</span>-MA seguida de uma <span class="math inline">\(2\)</span>-MA.</p>
-<p>Por exemplo, para a série da <a href="#tbl-maexp">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-maexp</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim.</p>
+<p>Por exemplo, para a série da <a href="#tbl-maexp">Tabela&nbsp;<span>3.2</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim.</p>
 <div id="tbl-maexp" class="anchored">
 <table class="table">
-<caption>Tabela&nbsp;3.1: <span class="math inline">\(2\times4\)</span>-MA</caption>
+<caption>Tabela&nbsp;3.2: <span class="math inline">\(2\times4\)</span>-MA</caption>
 <thead>
 <tr class="header">
 <th>Série</th>
@@ -480,7 +483,7 @@ y_t = S_t \times T_t \times R_t
 \hat{T}_t=\frac{1}{8}y_{t-2}+\frac{1}{4}y_{t-1}+\frac{1}{4}y_{t}+\frac{1}{4}y_{t+1}+\frac{1}{8}y_{t+2}
 \]</span></p>
 <p>Este modelo pode ser usado para estimar tendência de séries com sazonalidade quadrimestral, por exemplo. Recomenda-se usar uma média móvel de ordem <span class="math inline">\(2\times m\)</span>-MA para estimar a tendência de uma série com sazonalidade de ordem <span class="math inline">\(m\)</span>.</p>
-<p>Na <a href="#fig-sazpi">Figura&nbsp;<span class="quarto-unresolved-ref">fig-sazpi</span></a> observa-se novamente a série de índice de produção de itens intermediários plotada sazonalmente. Como ficou clara a sazonalidade anual, pode-se pensar na suavização de ordem <span class="math inline">\(2\times 12\)</span>-MA.</p>
+<p>Na <a href="#fig-sazpi">Figura&nbsp;<span>3.9</span></a> observa-se novamente a série de índice de produção de itens intermediários plotada sazonalmente. Como ficou clara a sazonalidade anual, pode-se pensar na suavização de ordem <span class="math inline">\(2\times 12\)</span>-MA.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sazpi" class="quarto-figure quarto-figure-center anchored">
@@ -491,7 +494,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>A <a href="#fig-td_pi">Figura&nbsp;<span class="quarto-unresolved-ref">fig-td_pi</span></a> exibe a série do índice de produção de produtos intermediários com média móvel <span class="math inline">\(2\times 12\)</span>-MA. Pode-se confirmar que a sazonalidade foi eliminada. A tendência estimada é muito similar à obtida anteriormente com método mais sofisticado.</p>
+<p>A <a href="#fig-td_pi">Figura&nbsp;<span>3.10</span></a> exibe a série do índice de produção de produtos intermediários com média móvel <span class="math inline">\(2\times 12\)</span>-MA. Pode-se confirmar que a sazonalidade foi eliminada. A tendência estimada é muito similar à obtida anteriormente com método mais sofisticado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-td_pi" class="quarto-figure quarto-figure-center anchored">
@@ -512,7 +515,7 @@ y_t = S_t \times T_t \times R_t
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a diferença da série em relação à tendência a sazonalidade, <span class="math inline">\(\hat{R}_t=y_t - \hat{T}_t - \hat{S}_t\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-decomp_pi">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_pi</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que neste caso a sazonalidade é constante, diferente do resultado óbtido com método mais sofisticado.</p>
+<p>A <a href="#fig-decomp_pi">Figura&nbsp;<span>3.11</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que neste caso a sazonalidade é constante, diferente do resultado óbtido com método mais sofisticado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pi" class="quarto-figure quarto-figure-center anchored">
@@ -530,7 +533,7 @@ y_t = S_t \times T_t \times R_t
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a razão da série em relação à tendência e à sazonalidade, <span class="math inline">\(\hat{R}_t=y_t / (\hat{T}_t \times \hat{S}_t)\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-passbr">Figura&nbsp;<span class="quarto-unresolved-ref">fig-passbr</span></a> plota o número de passageiros em vôos no Brasil, disponível em https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos.</p>
+<p>A <a href="#fig-passbr">Figura&nbsp;<span>3.12</span></a> plota o número de passageiros em vôos no Brasil, disponível em https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr" class="quarto-figure quarto-figure-center anchored">
@@ -541,7 +544,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>Observa-se na <a href="#fig-passbr_saz">Figura&nbsp;<span class="quarto-unresolved-ref">fig-passbr_saz</span></a> sazonalidade anual com picos nos períodos de férias escolares, em Julho e Dezembro/Janeiro.</p>
+<p>Observa-se na <a href="#fig-passbr_saz">Figura&nbsp;<span>3.13</span></a> sazonalidade anual com picos nos períodos de férias escolares, em Julho e Dezembro/Janeiro.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr_saz" class="quarto-figure quarto-figure-center anchored">
@@ -552,7 +555,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>A <a href="#fig-decomp_pas">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_pas</span></a> expõe o resultado gráfico da decomposição clássica multiplicativa da série de passageiros em vôos no Brasil.</p>
+<p>A <a href="#fig-decomp_pas">Figura&nbsp;<span>3.14</span></a> expõe o resultado gráfico da decomposição clássica multiplicativa da série de passageiros em vôos no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pas" class="quarto-figure quarto-figure-center anchored">
@@ -567,7 +570,7 @@ y_t = S_t \times T_t \times R_t
 <section id="métodos-usados-por-agências-de-estatística" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="métodos-usados-por-agências-de-estatística"><span class="header-section-number">3.7</span> Métodos usados por agências de estatística</h2>
 <p>O método X-11 é discutido em Dagum &amp; Bianconcini (2016). Possibilita a decomposição aditiva e a multiplicativa, é robusto a altas variações e <em>outliers</em> e a estimativa de tendência é disponível em toda série. O método também captura outras formas de sazonalidade e feriados.</p>
-<p>A <a href="#fig-decomp_x11">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_x11</span></a> exibe o resultado da decomposição aditiva pelo método X-11 na série do índice de produção de produtos intermediários.</p>
+<p>A <a href="#fig-decomp_x11">Figura&nbsp;<span>3.15</span></a> exibe o resultado da decomposição aditiva pelo método X-11 na série do índice de produção de produtos intermediários.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_x11" class="quarto-figure quarto-figure-center anchored">
@@ -578,7 +581,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>O método SEATS consiste em uma decomposição sazonal de séries temporais por ARIMA (ARIMA será discutida futuramente) e foi proposto pelo Banco da Espanha. A <a href="#fig-decomp_seats">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_seats</span></a> expõe o resultado gráfico do método SEATS para decompor a série de passageiros em vôos do Brasil.</p>
+<p>O método SEATS consiste em uma decomposição sazonal de séries temporais por ARIMA (ARIMA será discutida futuramente) e foi proposto pelo Banco da Espanha. A <a href="#fig-decomp_seats">Figura&nbsp;<span>3.16</span></a> expõe o resultado gráfico do método SEATS para decompor a série de passageiros em vôos do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_seats" class="quarto-figure quarto-figure-center anchored">
@@ -600,7 +603,7 @@ y_t = S_t \times T_t \times R_t
 <li>Pode ser robusto a <em>outliers</em> (há uma opção para tal), de forma que desvios não usuáis não afetarão a tendência e ciclo, mas o resto.</li>
 </ul>
 <p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos multiplicativs, recomenda-se trasnformar a série via logaritmo e depois fazer a decomposição aditiva.</p>
-<p>A <a href="#fig-decomp_logpass">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_logpass</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil.</p>
+<p>A <a href="#fig-decomp_logpass">Figura&nbsp;<span>3.17</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_logpass" class="quarto-figure quarto-figure-center anchored">
@@ -614,7 +617,7 @@ y_t = S_t \times T_t \times R_t
 </section>
 <section id="previsão-via-decomposição" class="level3" data-number="3.7.2">
 <h3 data-number="3.7.2" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.7.2</span> Previsão via decomposição</h3>
-<p>A Figura <a href="#fig-decomp_pred">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_pred</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis.</p>
+<p>A Figura <a href="#fig-decomp_pred">Figura&nbsp;<span>3.18</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pred" class="quarto-figure quarto-figure-center anchored">
@@ -625,7 +628,7 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<p>A <a href="#fig-decomp_resi">Figura&nbsp;<span class="quarto-unresolved-ref">fig-decomp_resi</span></a> apresenta os resíduos obtidos da decomposição para o caso anterior. Observa-se que apresentam boa aderência à normal e sem presença de autocorrelação.</p>
+<p>A <a href="#fig-decomp_resi">Figura&nbsp;<span>3.19</span></a> apresenta os resíduos obtidos da decomposição para o caso anterior. Observa-se que apresentam boa aderência à normal e sem presença de autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_resi" class="quarto-figure quarto-figure-center anchored">

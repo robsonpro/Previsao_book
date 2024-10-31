@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
 <p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto, em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
-<p>Na <a href="#fig-graos">Figura&nbsp;<span class="quarto-unresolved-ref">fig-graos</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. As séries apresentam tendência de crescimento não linear.</p>
+<p>Na <a href="ST6.html#fig-graos">Figura&nbsp;<span>6.12</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. As séries apresentam tendência de crescimento não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos" class="quarto-figure quarto-figure-center anchored">
@@ -212,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Ao plotar um diagrama de dispersão entre as séries, pode-se observar uma correlação linear positiva alta entre estas, conforme <a href="#fig-pairs_graos">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pairs_graos</span></a>.</p>
+<p>Ao plotar um diagrama de dispersão entre as séries, pode-se observar uma correlação linear positiva alta entre estas, conforme <a href="#fig-pairs_graos">Figura&nbsp;<span>4.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pairs_graos" class="quarto-figure quarto-figure-center anchored">
@@ -223,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Conforme observado na <a href="#fig-reg_graos">Figura&nbsp;<span class="quarto-unresolved-ref">fig-reg_graos</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
+<p>Conforme observado na <a href="#fig-reg_graos">Figura&nbsp;<span>4.3</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-reg_graos" class="quarto-figure quarto-figure-center anchored">
@@ -245,7 +245,7 @@ y_t = \hat{y}_t + \varepsilon_t \\
 y_t = \beta_0 + \beta_1x_t + \varepsilon_t \\
 \end{aligned}
 \]</span></p>
-<p>Considerando as <span class="math inline">\(T\)</span> observações das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, sendo os resíduos normalmente distribuídos, com média nula e variância igual a <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos">Figura&nbsp;<span class="quarto-unresolved-ref">fig-erros_graos</span></a> plota em linhas vermelhas verticais os resíduos. O modelo plotado minimiza a soma dos quadrados de tais erros.</p>
+<p>Considerando as <span class="math inline">\(T\)</span> observações das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, sendo os resíduos normalmente distribuídos, com média nula e variância igual a <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos">Figura&nbsp;<span>4.4</span></a> plota em linhas vermelhas verticais os resíduos. O modelo plotado minimiza a soma dos quadrados de tais erros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros_graos" class="quarto-figure quarto-figure-center anchored">
@@ -333,7 +333,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \end{aligned}
 \]</span></p>
 <p>A estimativa dos coeficientes <span class="math inline">\(\hat\beta\)</span> obtida minimiza a soma dos quadrados dos resíduos, <span class="math inline">\(\sum \varepsilon_i^2\)</span>, sendo portanto as estimativas de mínimos quadrados.</p>
-<p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem">Figura&nbsp;<span class="quarto-unresolved-ref">fig-bem</span></a>.</p>
+<p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem">Figura&nbsp;<span>4.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bem" class="quarto-figure quarto-figure-center anchored">
@@ -344,7 +344,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 </div>
 </div>
 </div>
-<p>Observa-se na <a href="#fig-bens_pairs">Figura&nbsp;<span class="quarto-unresolved-ref">fig-bens_pairs</span></a> diagramas de dispersão e correlações aos pares, ficando clara a relação linear entre tais índices.</p>
+<p>Observa-se na <a href="#fig-bens_pairs">Figura&nbsp;<span>4.6</span></a> diagramas de dispersão e correlações aos pares, ficando clara a relação linear entre tais índices.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bens_pairs" class="quarto-figure quarto-figure-center anchored">
@@ -401,7 +401,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(K\)</span> é o número de termos no modelo, <span class="math inline">\(MS_E\)</span> consiste média dos quadrados dos erros, que consiste na estimativa de variância dos resíduos, enquanto <span class="math inline">\(MS_T\)</span> consiste na média dos quadrados total, ou na variância da série a ser predita.</p>
-<p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da série de produção em função da área plantada. A <a href="#fig-graos_fit">Figura&nbsp;<span class="quarto-unresolved-ref">fig-graos_fit</span></a> plota a série de produção de grãos observada e a aproximada pelo modelo de regressão.</p>
+<p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da série de produção em função da área plantada. A <a href="#fig-graos_fit">Figura&nbsp;<span>4.7</span></a> plota a série de produção de grãos observada e a aproximada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos_fit" class="quarto-figure quarto-figure-center anchored">
@@ -412,7 +412,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prod_fit">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prod_fit</span></a> plota a série do índice de produção de bens de consumo duráveis observada e a aproximada pelo modelo de regressão múltipla.</p>
+<p>A <a href="#fig-prod_fit">Figura&nbsp;<span>4.8</span></a> plota a série do índice de produção de bens de consumo duráveis observada e a aproximada pelo modelo de regressão múltipla.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prod_fit" class="quarto-figure quarto-figure-center anchored">
@@ -426,7 +426,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 </section>
 <section id="diagnóstico-dos-resíduos" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="diagnóstico-dos-resíduos"><span class="header-section-number">4.4</span> Diagnóstico dos resíduos</h2>
-<p>A <a href="#fig-graos_resi">Figura&nbsp;<span class="quarto-unresolved-ref">fig-graos_resi</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de ordem 4. Logo, há informação importante não capturada pelo modelo de regressão.</p>
+<p>A <a href="#fig-graos_resi">Figura&nbsp;<span>4.9</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de ordem 4. Logo, há informação importante não capturada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos_resi" class="quarto-figure quarto-figure-center anchored">
@@ -444,7 +444,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t
 \]</span></p>
-<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dummy</span></a>.</p>
+<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy">Tabela&nbsp;<span>4.1</span></a>.</p>
 <div id="tbl-dummy" class="anchored">
 <table class="table">
 <caption>Tabela&nbsp;4.1: Criação de variáveis dummy</caption>
@@ -503,7 +503,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-temp_sjdr">Figura&nbsp;<span class="quarto-unresolved-ref">fig-temp_sjdr</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de junho com frequência horária.</p>
+<p>A <a href="#fig-temp_sjdr">Figura&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de junho com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_sjdr" class="quarto-figure quarto-figure-center anchored">
@@ -514,7 +514,7 @@ R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\over
 </div>
 </div>
 </div>
-<p>A <a href="#fig-season_temp">Figura&nbsp;<span class="quarto-unresolved-ref">fig-season_temp</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento, especialmente da temperatura mínima, para os dias considerados.</p>
+<p>A <a href="#fig-season_temp">Figura&nbsp;<span>4.11</span></a> expõe o gráfico sazonal da mesma série. Observa-se sazonalidade diária e uma tendência de crescimento, especialmente da temperatura mínima, para os dias considerados.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-season_temp" class="quarto-figure quarto-figure-center anchored">
@@ -570,7 +570,7 @@ Multiple R-squared: 0.961,  Adjusted R-squared: 0.958
 F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
-<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred">Figura&nbsp;<span class="quarto-unresolved-ref">fig-temp_pred</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
+<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred">Figura&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred" class="quarto-figure quarto-figure-center anchored">
@@ -581,7 +581,7 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-temp_obs_pred">Figura&nbsp;<span class="quarto-unresolved-ref">fig-temp_obs_pred</span></a> apresenta os valores previstos e observados plotados com as horas do dia separadas em cores distintas. Observa-se o excelente ajuste do modelo e a variação da temperatura segundo hora do dia.</p>
+<p>A <a href="#fig-temp_obs_pred">Figura&nbsp;<span>4.13</span></a> apresenta os valores previstos e observados plotados com as horas do dia separadas em cores distintas. Observa-se o excelente ajuste do modelo e a variação da temperatura segundo hora do dia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_obs_pred" class="quarto-figure quarto-figure-center anchored">
@@ -595,7 +595,7 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </section>
 <section id="seleção-de-preditores" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</h2>
-<p>A <a href="#fig-petro_serie">Figura&nbsp;<span class="quarto-unresolved-ref">fig-petro_serie</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos. O petróleo considera o volume nacional e importado.</p>
+<p>A <a href="#fig-petro_serie">Figura&nbsp;<span>4.14</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos. O petróleo considera o volume nacional e importado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-petro_serie" class="quarto-figure quarto-figure-center anchored">
@@ -606,7 +606,7 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-corr_petro">Figura&nbsp;<span class="quarto-unresolved-ref">fig-corr_petro</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, oléo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
+<p>A <a href="#fig-corr_petro">Figura&nbsp;<span>4.15</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, oléo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr_petro" class="quarto-figure quarto-figure-center anchored">
@@ -656,7 +656,7 @@ F-statistic: 1.21e+34 on 14 and 281 DF, p-value: &lt; 2.22e-16</code></pre>
 <p><span class="math display">\[
 AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 \]</span></p>
-<p>A <a href="#tbl-fit_petro">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-fit_petro</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, coque, querosene de avião, querosene iluminante e solvente. O modelo completo apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
+<p>A <a href="#tbl-fit_petro">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, coque, querosene de avião, querosene iluminante e solvente. O modelo completo apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-fit_petro" class="anchored">
@@ -697,7 +697,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </section>
 <section id="previsão" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.7</span> Previsão</h2>
-<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figura&nbsp;<span class="quarto-unresolved-ref">fig-temp_pred_</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
+<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-figure quarto-figure-center anchored">
@@ -708,7 +708,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </div>
 </div>
 </div>
-<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditores, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever o índice de produção de bens de consumo duráveis em função dos bens de capital e intermediários. A <a href="#fig-prev_cenar">Figura&nbsp;<span class="quarto-unresolved-ref">fig-prev_cenar</span></a> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
+<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditores, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever o índice de produção de bens de consumo duráveis em função dos bens de capital e intermediários. A <a href="#fig-prev_cenar">Figura&nbsp;<span>4.17</span></a> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prev_cenar" class="quarto-figure quarto-figure-center anchored">
@@ -741,7 +741,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
               t-\tau \text{, se } t\geq \tau
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-peito">Figura&nbsp;<span class="quarto-unresolved-ref">fig-peito</span></a> expõe a série temporal da evolução do recorde na prova de 100m nado peito na categoria masculina. Pode-se observar que de 1960 até 1980 o melhor tempo diminuiu com maior intensidade, passando para outro padrão de variação de 1980 a 2000 e, posteriormente, de 2000 até aqui com outra tendência.</p>
+<p>A <a href="#fig-peito">Figura&nbsp;<span>4.18</span></a> expõe a série temporal da evolução do recorde na prova de 100m nado peito na categoria masculina. Pode-se observar que de 1960 até 1980 o melhor tempo diminuiu com maior intensidade, passando para outro padrão de variação de 1980 a 2000 e, posteriormente, de 2000 até aqui com outra tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-peito" class="quarto-figure quarto-figure-center anchored">
@@ -752,7 +752,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </div>
 </div>
 </div>
-<p>A <a href="#fig-peito_mod">Figura&nbsp;<span class="quarto-unresolved-ref">fig-peito_mod</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
+<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-peito_mod" class="quarto-figure quarto-figure-center anchored">
