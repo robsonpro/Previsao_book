@@ -215,6 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#transformações" id="toc-transformações" class="nav-link" data-scroll-target="#transformações"><span class="header-section-number">2.7</span> Transformações</a></li>
   <li><a href="#avaliação-de-modelos-de-séries-temporais" id="toc-avaliação-de-modelos-de-séries-temporais" class="nav-link" data-scroll-target="#avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.8</span> Avaliação de modelos de séries temporais</a></li>
   <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">2.9</span> Implementação em R</a></li>
+  <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">2.10</span> Exercícios propostos</a></li>
   </ul>
 </nav>
     </div>
@@ -1205,6 +1206,16 @@ q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(temp_fc, last_days) <span class="sc">|&gt;</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="exercícios-propostos" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">2.10</span> Exercícios propostos</h2>
+<ol type="1">
+<li><p>Obtenha e interprete as estatísticas descritivas simples para a série temporal de volume de carros produzidos no Brasil.</p></li>
+<li><p>Faça o correlograma da série temporal de temperatura com defasagem máxima de duas semanas. Interprete o padrão de autocorrelação obtido.</p></li>
+<li><p>Realize a modelagem com os métodos da média, ingênuo e da deriva para a série do índice Ibovespa, considerando apenas os primeiros 150 dias da série. Obtenha um gráfico com a série filtrada e a previsão para 37 dias à frente com tais métodos.</p></li>
+<li><p>Avalie os resíduos para os métodos considerados para a série do índice Ibovespa.</p></li>
+<li><p>Faça o teste do modelo com as 37 últimas observações, estimando as métricas de erro MAE, MASE e RMSE.</p></li>
+</ol>
 
 
 </section>
