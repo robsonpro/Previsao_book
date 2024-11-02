@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -77,8 +77,7 @@ div.csl-indent {
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Procurar"
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
@@ -99,7 +98,7 @@ div.csl-indent {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Suavização exponencial</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -431,7 +430,7 @@ div.csl-indent {
 \end{align}
 \]</span></p>
 <p>Neste caso <span class="math inline">\(l_t\)</span> é uma média ponderada da observação <span class="math inline">\(y_t\)</span> e da previsão um passo a frente, dada por <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>. A equação de tendência mostra que <span class="math inline">\(b_t\)</span> é uma média ponderada da tendência no tempo <span class="math inline">\(t\)</span>, baseada em <span class="math inline">\(l_t-l_{t-1}\)</span>, e na estimativa anterior da tendência, <span class="math inline">\(b_{t-1}\)</span>.</p>
-<p>A <a href="#fig-pop_br">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em https://seriesestatisticas.ibge.gov.br/default.aspx. Observa-se tendência de crescimento muito próxima de linear.</p>
+<p>A <a href="#fig-pop_br">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em <a href="https://seriesestatisticas.ibge.gov.br/default.aspx">IBGE</a>. Observa-se tendência de crescimento muito próxima de linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br" class="quarto-figure quarto-figure-center anchored">
@@ -502,7 +501,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissoes_ind">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em https://plataforma.seeg.eco.br/. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
+<p>A <a href="#fig-emissoes_ind">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em <a href="https://plataforma.seeg.eco.br/">Sistema de Estimativa de Emissão de Gases</a>. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissoes_ind" class="quarto-figure quarto-figure-center anchored">
@@ -537,7 +536,7 @@ div.csl-indent {
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-export">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
+<p>A <a href="#fig-export">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export" class="quarto-figure quarto-figure-center anchored">
@@ -650,7 +649,7 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 <h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
 <p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
 <p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
-<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em https://servicos.dnit.gov.br/dadospnct/ContagemContinua. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
+<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em <a href="https://servicos.dnit.gov.br/dadospnct/ContagemContinua">DNIT</a>. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-br040km579" class="quarto-figure quarto-figure-center anchored">

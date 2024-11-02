@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,8 +58,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Procurar"
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
@@ -80,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decomposição de séries temporais</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -211,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidades devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
 <p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas a disponibilidade de algum serviço para a população é mais fácil avaliar a disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo comparação em diferentes momentos. Para deflacionar uma série basta dividí-la pelo deflator, um índice que corrige a inflação.</p>
 <p>Transformações como a de Box-Cox ou outra mais simples também podem ser úteis para facilitar o tratamento da série. Conforme visto anteriormente, uma série que exibe uma variação sazonal não constante, ou heterocedástica, ao ser transformada pode exibir um padrão de sazonalidade de mais fácil decomposição ou tratamento.</p>
-<p>A série plotada na <a href="#fig-gnv">Figura&nbsp;<span>3.1</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos.</p>
+<p>A série plotada na <a href="#fig-gnv">Figura&nbsp;<span>3.1</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em <a href="https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos">Dados estatísticos - Agência nacional de petróleo</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gnv" class="quarto-figure quarto-figure-center anchored">
@@ -257,7 +256,7 @@ y_t = S_t+ T_t+R_t,
 y_t = S_t \times T_t \times R_t
 \]</span></p>
 <p>O caso multiplicativo é ideal quando a variação em séries sazonais muda com o tempo, seguindo padrão heterocedástico.</p>
-<p>A série plotada na <a href="#fig-prodint">Figura&nbsp;<span>3.4</span></a> exibe o índice de produção física mensal de bens intermediários, ou seja, aqueles empregados na produção de produtos finais, tais como produtos minerais, produtos metalúrgicos, têxteis, papel e celulose, produtos químicos, borracha, plásticos, componentes elétricos e eletrônicos. A série está disponível em https://www.ibge.gov.br/estatisticas/economicas/industria.html.</p>
+<p>A série plotada na <a href="#fig-prodint">Figura&nbsp;<span>3.4</span></a> exibe o índice de produção física mensal de bens intermediários, ou seja, aqueles empregados na produção de produtos finais, tais como produtos minerais, produtos metalúrgicos, têxteis, papel e celulose, produtos químicos, borracha, plásticos, componentes elétricos e eletrônicos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodint" class="quarto-figure quarto-figure-center anchored">
@@ -533,7 +532,7 @@ y_t = S_t \times T_t \times R_t
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a razão da série em relação à tendência e à sazonalidade, <span class="math inline">\(\hat{R}_t=y_t / (\hat{T}_t \times \hat{S}_t)\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-passbr">Figura&nbsp;<span>3.12</span></a> plota o número de passageiros em vôos no Brasil, disponível em https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos.</p>
+<p>A <a href="#fig-passbr">Figura&nbsp;<span>3.12</span></a> plota o número de passageiros em vôos no Brasil, disponível em <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos">Dados Abertos da Agência Nacional de Aviação Civil (ANAC)</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr" class="quarto-figure quarto-figure-center anchored">

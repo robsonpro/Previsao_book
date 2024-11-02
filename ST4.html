@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,8 +58,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Procurar"
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
@@ -80,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão de séries temporais</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -201,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
 <p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto, em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
-<p>Na <a href="ST6.html#fig-graos">Figura&nbsp;<span>6.12</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, http://www.ipeadata.gov.br. As séries apresentam tendência de crescimento não linear.</p>
+<p>Na <a href="ST6.html#fig-graos">Figura&nbsp;<span>6.12</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As séries apresentam tendência de crescimento não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos" class="quarto-figure quarto-figure-center anchored">
@@ -595,7 +594,7 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 </section>
 <section id="seleção-de-preditores" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="seleção-de-preditores"><span class="header-section-number">4.6</span> Seleção de preditores</h2>
-<p>A <a href="#fig-petro_serie">Figura&nbsp;<span>4.14</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos. O petróleo considera o volume nacional e importado.</p>
+<p>A <a href="#fig-petro_serie">Figura&nbsp;<span>4.14</span></a> exibe séries temporais de petróleo refinado e derivados produzidos no Brasil em <span class="math inline">\(m^3\)</span>, <a href="https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos">Dados estatísticos - Agência nacional de petróleo</a>. O petróleo considera o volume nacional e importado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-petro_serie" class="quarto-figure quarto-figure-center anchored">
