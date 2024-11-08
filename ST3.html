@@ -203,12 +203,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#média-móvel" id="toc-média-móvel" class="nav-link" data-scroll-target="#média-móvel"><span class="header-section-number">3.4</span> Média móvel</a></li>
   <li><a href="#estimando-a-tendência-com-dados-sazonais" id="toc-estimando-a-tendência-com-dados-sazonais" class="nav-link" data-scroll-target="#estimando-a-tendência-com-dados-sazonais"><span class="header-section-number">3.5</span> Estimando a tendência com dados sazonais</a></li>
   <li><a href="#decomposição-clássica" id="toc-decomposição-clássica" class="nav-link" data-scroll-target="#decomposição-clássica"><span class="header-section-number">3.6</span> Decomposição clássica</a></li>
-  <li><a href="#métodos-usados-por-agências-de-estatística" id="toc-métodos-usados-por-agências-de-estatística" class="nav-link" data-scroll-target="#métodos-usados-por-agências-de-estatística"><span class="header-section-number">3.7</span> Métodos usados por agências de estatística</a>
-  <ul class="collapse">
-  <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.7.1</span> Decomposição via STL</a></li>
-  <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.7.2</span> Previsão via decomposição</a></li>
-  </ul></li>
-  <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">3.8</span> Implementação em R</a></li>
+  <li><a href="#métodos-usados-por-agências-de-estatística" id="toc-métodos-usados-por-agências-de-estatística" class="nav-link" data-scroll-target="#métodos-usados-por-agências-de-estatística"><span class="header-section-number">3.7</span> Métodos usados por agências de estatística</a></li>
+  <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.8</span> Decomposição via STL</a></li>
+  <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.9</span> Previsão via decomposição</a></li>
+  <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">3.10</span> Implementação em R</a></li>
   </ul>
 </nav>
     </div>
@@ -627,8 +625,9 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </div>
-<section id="decomposição-via-stl" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.7.1</span> Decomposição via STL</h3>
+</section>
+<section id="decomposição-via-stl" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.8</span> Decomposição via STL</h2>
 <p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS, enquanto LOESS é um método de regressão não linear, <em>locally estimated scatterplot smoothing</em>, ou em tradução livre suavização por regressão local.</p>
 <p>O método STL apresenta diversas vantagens em relação aos anteriores:</p>
 <ul>
@@ -650,8 +649,8 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </section>
-<section id="previsão-via-decomposição" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.7.2</span> Previsão via decomposição</h3>
+<section id="previsão-via-decomposição" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.9</span> Previsão via decomposição</h2>
 <p>A Figura <a href="#fig-decomp_pred">Figura&nbsp;<span>3.18</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -675,9 +674,8 @@ y_t = S_t \times T_t \times R_t
 </div>
 </div>
 </section>
-</section>
-<section id="implementação-em-r" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">3.8</span> Implementação em R</h2>
+<section id="implementação-em-r" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">3.10</span> Implementação em R</h2>
 <p>A seguir apresenta-se parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo. Os dados utilizados estão disponíveis em <a href="https://github.com/robsonpro/Previsao">Previsão, por Robson Bruno Dutra Pereira</a>.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
