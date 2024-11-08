@@ -388,16 +388,16 @@ F-statistic: 457.4 on 2 and 268 DF, p-value: &lt; 2.22e-16</code></pre>
 <p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme segue,</p>
 <p><span class="math display">\[
 \begin{align}
-R^2 = 1- SS_{E}/SS_T \\
-R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{N}(y_i-\overline{y}_i)^2},
+R^2 &amp;= 1- SS_{E}/SS_T \\
+R^2 &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2} = 1- \frac{\sum_{t=1}^{T}\varepsilon_t^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2},
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros e <span class="math inline">\(SS_T\)</span> consiste na soma dos quadrados total, ou no numerador da variância da série a ser predita.</p>
 <p>O <span class="math inline">\(R^2\)</span> sempre aumenta ao se adicionar novos termos no modelo, mesmo se estes não são significativos, uma vez que não leva em conta os graus de liberdade no cálculo. O coeficiente de determinação múltipla ajustado, <span class="math inline">\(R^2_{aj}\)</span>, é uma métrica mais interessante, já que considera as médias dos quadrados ao invés das somas dos quadrados dos erros, conforme segue:</p>
 <p><span class="math display">\[
 \begin{align}
-R^2 = 1- MS_{E}/MS_T \\
-R^2 = 1- \frac{\sum_{i=1}^{N}(y_i-\hat{y}_i)^2/(T-K-1)}{\sum_{i=1}^{N}(y_i-\overline{y}_i)^2/(T-1)},
+R^2_{aj} &amp;= 1- MS_{E}/MS_T \\
+R^2_{aj} &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2/(T-K-1)}{\sum_{t=1}^{T}(y_t-\overline{y})^2/(T-1)},
 \end{align}
 \]</span></p>
 <p>onde <span class="math inline">\(K\)</span> é o número de termos no modelo, <span class="math inline">\(MS_E\)</span> consiste média dos quadrados dos erros, que consiste na estimativa de variância dos resíduos, enquanto <span class="math inline">\(MS_T\)</span> consiste na média dos quadrados total, ou na variância da série a ser predita.</p>
