@@ -291,7 +291,7 @@
     "href": "index.html",
     "title": "Séries Temporais e Previsão",
     "section": "",
-    "text": "Prefácio\nApostila de séries temporais.\nEsta apostila é baseada no excelente livro de Hyndman and Athanasopoulos (2021), disponível em OTexts.com/fpp3.\nEntretanto, não foram considerados os mesmos exemplos. Os dados para os exemplos e exercícios propostos foram coletados a partir principalmente de bases de dados brasileiras.\nRobson Bruno Dutra Pereira\n\n\n\n\nHyndman, RJ, and G Athanasopoulos. 2021. Forecasting: Principles and Practice. OTexts. OTexts.com/fpp3."
+    "text": "Prefácio\nApostila de séries temporais.\nEste livro é inspirado na excelente referência Hyndman and Athanasopoulos (2021), disponível em OTexts.com/fpp3.\nEntretanto, não foram considerados os mesmos exemplos. Os dados para os exemplos e exercícios propostos foram coletados principalmente a partir de bases de dados brasileiras.\nO livro visa trabalhar os principais métodos para séries temporais com abordagem prática e implementação na linguagem R, considerando todo o processo de estimativa e previsão, desde o tratamento inicial dos dados, estimativa, diagnóstico, previsão e avaliação do desempenho dos modelos.\nRobson Bruno Dutra Pereira\n\n\n\n\nHyndman, RJ, and G Athanasopoulos. 2021. Forecasting: Principles and Practice. OTexts. OTexts.com/fpp3."
   },
   {
     "objectID": "ST3.html#implementação-em-r",
