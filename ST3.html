@@ -913,7 +913,7 @@ y_t = S_t \times T_t \times R_t
 <section id="exercícios-propostos" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">3.11</span> Exercícios propostos</h2>
 <ol type="1">
-<li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique uma transformação de Box-Cox na série anbteriormente ajustada para diferenças de calendário. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
+<li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique uma transformação de Box-Cox na série anteriormente ajustada para diferenças de calendário. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
@@ -945,7 +945,7 @@ y_t = S_t \times T_t \times R_t
 <li>Estime um modelo via decomposição via STL da série de produção de asfalto. Porém, neste caso, considere a série não ajustada para diferenças de calendário e sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Faça um gráfico da série com a previsão obtida com o modelo STL para os 32 meses disponíveis a partir de 2022 <code>(h=32)</code>.</li>
 </ol>
 <ol start="8" type="1">
-<li>Calcule as métricas de desempenho para o modelo.</li>
+<li>Calcule as métricas de desempenho para o modelo avaliado nos meses separados para teste.</li>
 </ol>
 
 
