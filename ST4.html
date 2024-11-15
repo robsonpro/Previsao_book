@@ -624,39 +624,39 @@ F-statistic: 319.5 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
 Model: TSLM 
 
 Residuals:
-       Min         1Q     Median         3Q        Max 
--4.927e-11 -7.235e-12 -5.715e-13  5.091e-12  4.892e-10 
+    Min      1Q  Median      3Q     Max 
+-606505  -83530    1027   87600  505807 
 
 Coefficients:
-                         Estimate Std. Error    t value Pr(&gt;|t|)    
-(Intercept)             3.528e-11  3.190e-11  1.106e+00 0.269750    
-GLP                    -5.660e-17  4.844e-17 -1.169e+00 0.243583    
-asfalto                -3.794e-16  5.256e-17 -7.218e+00 4.93e-12 ***
-coque                  -9.954e-17  6.589e-17 -1.511e+00 0.132011    
-gasolina               -1.357e-16  1.725e-17 -7.869e+00 7.78e-14 ***
-lubrificante           -9.102e-16  1.935e-16 -4.703e+00 4.02e-06 ***
-nafta                  -3.579e-16  2.820e-17 -1.269e+01  &lt; 2e-16 ***
-oleo_combustivel       -1.703e-16  1.625e-17 -1.048e+01  &lt; 2e-16 ***
-oleo_diesel            -2.345e-16  1.589e-17 -1.475e+01  &lt; 2e-16 ***
-outros_nao_energeticos -3.699e-16  5.580e-17 -6.628e+00 1.73e-10 ***
-parafina               -2.542e-15  7.252e-16 -3.505e+00 0.000532 ***
-petroleo                1.000e+00  1.090e-17  9.176e+16  &lt; 2e-16 ***
-querosene_aviao        -2.851e-17  3.489e-17 -8.170e-01 0.414435    
-querosene_iluminante    5.304e-16  5.472e-16  9.690e-01 0.333249    
-solvente                2.219e-19  1.712e-16  1.000e-03 0.998967    
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             1.777e+06  2.207e+05   8.053 2.31e-14 ***
+GLP                     3.063e-01  2.373e-01   1.291 0.197927    
+asfalto                 1.161e+00  2.524e-01   4.600 6.39e-06 ***
+coque                   1.437e+00  3.397e-01   4.229 3.18e-05 ***
+gasolina                4.606e-01  8.168e-02   5.638 4.18e-08 ***
+lubrificante            1.479e+00  9.627e-01   1.536 0.125627    
+nafta                   7.169e-01  1.323e-01   5.419 1.29e-07 ***
+oleo_combustivel        1.118e+00  6.843e-02  16.341  &lt; 2e-16 ***
+oleo_diesel             1.110e+00  4.892e-02  22.694  &lt; 2e-16 ***
+outros_nao_energeticos  9.948e-01  2.691e-01   3.697 0.000262 ***
+parafina                8.141e-01  3.614e+00   0.225 0.821944    
+querosene_aviao         1.458e+00  1.540e-01   9.472  &lt; 2e-16 ***
+querosene_iluminante   -1.496e+00  2.927e+00  -0.511 0.609642    
+solvente                8.388e-01  8.403e-01   0.998 0.319019    
+data                   -8.128e+01  9.855e+00  -8.248 6.28e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3.227e-11 on 281 degrees of freedom
-Multiple R-squared:     1,  Adjusted R-squared:     1
-F-statistic: 1.21e+34 on 14 and 281 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual standard error: 158500 on 281 degrees of freedom
+Multiple R-squared:  0.96,  Adjusted R-squared: 0.958
+F-statistic: 481.7 on 14 and 281 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
 <p>Geralmente, em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
 <p><span class="math display">\[
 AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 \]</span></p>
-<p>A <a href="#tbl-fit_petro">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, coque, querosene de avião, querosene iluminante e solvente. O modelo completo apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
+<p>A <a href="#tbl-fit_petro">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, lubrificante, parafina, querosene iluminante e solvente. O modelo reduzido apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-fit_petro" class="anchored">
@@ -673,15 +673,15 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">completo</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">-14284.33</td>
-<td style="text-align: right;">-14282.38</td>
+<td style="text-align: right;">0.9580020</td>
+<td style="text-align: right;">7104.830</td>
+<td style="text-align: right;">7106.780</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">reduzido</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">-13198.62</td>
-<td style="text-align: right;">-13197.69</td>
+<td style="text-align: right;">0.9576833</td>
+<td style="text-align: right;">7102.288</td>
+<td style="text-align: right;">7103.218</td>
 </tr>
 </tbody>
 </table>
@@ -722,7 +722,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </section>
 <section id="regressão-não-linear" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</h2>
-<p>Trasnformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser considerada transformação polinomial na tendência.</p>
+<p>Transformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser considerada transformação polinomial na tendência.</p>
 <p>Uma opção interessante em alguns casos é utilizar transformação logarítimica em ambas séries independentes e dependente ou em apenas uma destas. Para o caso simples, com transformação em ambas as séries, tem-se o seguinte modelo.</p>
 <p><span class="math display">\[
 \text{log} (y_t) = \beta_0+\beta_1\text{log} (x_t)
@@ -752,7 +752,7 @@ AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 </div>
 </div>
 </div>
-<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
+<p>A <a href="#fig-peito_mod">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial. Também foi considerado um modelo linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-peito_mod" class="quarto-figure quarto-figure-center anchored">

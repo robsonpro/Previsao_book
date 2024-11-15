@@ -207,6 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.8</span> Decomposição via STL</a></li>
   <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.9</span> Previsão via decomposição</a></li>
   <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">3.10</span> Implementação em R</a></li>
+  <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">3.11</span> Exercícios propostos</a></li>
   </ul>
 </nav>
     </div>
@@ -908,6 +909,44 @@ y_t = S_t \times T_t \times R_t
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(voos_fc, voos_future) <span class="sc">|&gt;</span></span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="exercícios-propostos" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">3.11</span> Exercícios propostos</h2>
+<ol type="1">
+<li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique uma transformação de Box-Cox na série anbteriormente ajustada para diferenças de calendário. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente) <span class="sc">|&gt;</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> name, </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>name)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li><p>Uma vez que a série exibe um padrão de sazonalidade anual, qual a ordem de média móvel seria adequada para estimar a tendência via método clássico?</p></li>
+<li><p>Faça um gráfico da série transformada de produção de asfalto com curva da tendência usando média móvel com a ordem adequada, segundo sua resposta na questão anterior.</p></li>
+</ol>
+<ol start="5" type="1">
+<li><p>Faça a decomposição da série do índice de produção de bens de consumo duráveis usando o método clássico.</p></li>
+<li><p>Faça a decomposição clássica da série transformada de produção de asfalto usando o método clássico. Uma vez que a série foi transformada, você recomenda usar o método aditivo ou multiplicativo?</p></li>
+</ol>
+<ol start="7" type="1">
+<li>Estime um modelo via decomposição via STL da série de produção de asfalto. Porém, neste caso, considere a série não ajustada para diferenças de calendário e sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Faça um gráfico da série com a previsão obtida com o modelo STL para os 32 meses disponíveis a partir de 2022 <code>(h=32)</code>.</li>
+</ol>
+<ol start="8" type="1">
+<li>Calcule as métricas de desempenho para o modelo.</li>
+</ol>
 
 
 </section>
