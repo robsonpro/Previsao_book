@@ -743,7 +743,7 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ljungbox-graos">Tabela&nbsp;<span>6.4</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
+<p>A <a href="#tbl-ljungbox-graos">Tabela&nbsp;<span>6.4</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-ljungbox-graos" class="anchored">
@@ -760,7 +760,7 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 <tr class="odd">
 <td style="text-align: left;">ARIMA(box_cox(valor, lambda) ~ pdq(1, 1, 0))</td>
 <td style="text-align: right;">4.951101</td>
-<td style="text-align: right;">0.8944205</td>
+<td style="text-align: right;">0.8385499</td>
 </tr>
 </tbody>
 </table>
@@ -911,7 +911,7 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-lb_auto">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
+<p>A <a href="#tbl-lb_auto">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-lb_auto" class="anchored">
@@ -928,7 +928,7 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 <tr class="odd">
 <td style="text-align: left;">auto</td>
 <td style="text-align: right;">28.77407</td>
-<td style="text-align: right;">0.0923042</td>
+<td style="text-align: right;">0.1195322</td>
 </tr>
 </tbody>
 </table>
@@ -1064,7 +1064,7 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 <td style="text-align: left;">nao_duraveis</td>
 <td style="text-align: left;">auto</td>
 <td style="text-align: right;">25.45438</td>
-<td style="text-align: right;">0.184597</td>
+<td style="text-align: right;">0.1129033</td>
 </tr>
 </tbody>
 </table>
