@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>Séries Temporais e Previsão - 5&nbsp; Suavização exponencial</title>
+<title>5&nbsp; Suavização exponencial – Séries Temporais e Previsão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -67,7 +68,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -76,14 +83,42 @@ div.csl-indent {
     "search-more-match-text": "mais correspondência neste documento",
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Procurar"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -93,13 +128,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Suavização exponencial</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Suavização exponencial</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -108,7 +143,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Séries Temporais e Previsão</a> 
@@ -165,6 +200,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ST7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -172,7 +213,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -221,7 +262,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="suavização-exponencial-simples" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="suavização-exponencial-simples"><span class="header-section-number">5.1</span> Suavização exponencial simples</h2>
@@ -230,10 +273,14 @@ div.csl-indent {
 <p><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T + \alpha(1-\alpha)y_{T-1} + \alpha(1-\alpha)^2y_{T-2}+...
 \]</span></p>
-<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para cinco últimas observações da série para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
-<div id="tbl-pesos" class="anchored">
-<table class="table">
-<caption>Tabela&nbsp;5.1: Pesos na suavização exponencial simples</caption>
+<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para cinco últimas observações da série para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
+<div id="tbl-pesos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pesos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.1: Pesos na suavização exponencial simples
+</figcaption>
+<div aria-describedby="tbl-pesos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Observação</th>
@@ -282,13 +329,19 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-pesos_expsimples">Figura&nbsp;<span>5.1</span></a> expõe os mesmos pesos plotados segundo o tempo. Observa-se que quanto maior o <span class="math inline">\(\alpha\)</span>, maior a taxa de decrescimento dos pesos da última observação em relação às anteriores.</p>
+</figure>
+</div>
+<p>A <a href="#fig-pesos_expsimples" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> expõe os mesmos pesos plotados segundo o tempo. Observa-se que quanto maior o <span class="math inline">\(\alpha\)</span>, maior a taxa de decrescimento dos pesos da última observação em relação às anteriores.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pesos_expsimples" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-pesos_expsimples-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.1: Pesos na suavização exponencial simples</figcaption>
+<div id="fig-pesos_expsimples" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pesos_expsimples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-pesos_expsimples-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pesos_expsimples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.1: Pesos na suavização exponencial simples
+</figcaption>
 </figure>
 </div>
 </div>
@@ -334,12 +387,16 @@ div.csl-indent {
 \]</span></p>
 <p>onde <span class="math inline">\(l_t\)</span> consiste no nível no período <span class="math inline">\(t\)</span> e <span class="math inline">\(\hat y_{t+h} = l_t\)</span> a previsão no período <span class="math inline">\(t+h\)</span>.</p>
 <p>Se <span class="math inline">\(h=1\)</span>, tem-se o valor estimado, enquanto se <span class="math inline">\(t=T\)</span>, tem-se a previsão para além dos dados de treino. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e suavização, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
-<p>A <a href="#fig-ipca_expsimp">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span> expostos na <a href="#tbl-ipca_fit">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
+<p>A <a href="#fig-ipca_expsimp" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span> expostos na <a href="#tbl-ipca_fit" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
 <div class="cell">
+<div id="tbl-ipca_fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série do IPCA no Brasil a partir de 2019
+</figcaption>
+<div aria-describedby="tbl-ipca_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ipca_fit" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série do IPCA no Brasil a partir de 2019</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">term</th>
@@ -359,23 +416,33 @@ div.csl-indent {
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ipca_expsimp" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-ipca_expsimp-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.2: Exponencial simples para a série IPCA no Brasil a partir de 2019</figcaption>
+<div id="fig-ipca_expsimp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ipca_expsimp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-ipca_expsimp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ipca_expsimp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.2: Exponencial simples para a série IPCA no Brasil a partir de 2019
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ipca_for">Tabela&nbsp;<span>5.3</span></a> apresenta os valores estimados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
+<p>A <a href="#tbl-ipca_for" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> apresenta os valores estimados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
 <div class="cell">
+<div id="tbl-ipca_for" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca_for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.3: Pesos na suavização exponencial simples
+</figcaption>
+<div aria-describedby="tbl-ipca_for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ipca_for" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;5.3: Pesos na suavização exponencial simples</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">index</th>
@@ -418,6 +485,8 @@ div.csl-indent {
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 </section>
 <section id="suavização-exponencial-com-tendência" class="level2" data-number="5.2">
@@ -431,23 +500,31 @@ div.csl-indent {
 \end{align}
 \]</span></p>
 <p>Neste caso <span class="math inline">\(l_t\)</span> é uma média ponderada da observação <span class="math inline">\(y_t\)</span> e da previsão um passo a frente, dada por <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>. A equação de tendência mostra que <span class="math inline">\(b_t\)</span> é uma média ponderada da tendência no tempo <span class="math inline">\(t\)</span>, baseada em <span class="math inline">\(l_t-l_{t-1}\)</span>, e na estimativa anterior da tendência, <span class="math inline">\(b_{t-1}\)</span>.</p>
-<p>A <a href="#fig-pop_br">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em <a href="https://seriesestatisticas.ibge.gov.br/default.aspx">IBGE</a>. Observa-se tendência de crescimento muito próxima de linear.</p>
+<p>A <a href="#fig-pop_br" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em <a href="https://seriesestatisticas.ibge.gov.br/default.aspx">IBGE</a>. Observa-se tendência de crescimento muito próxima de linear.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pop_br" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-pop_br-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.3: População do Brasil</figcaption>
+<div id="fig-pop_br" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pop_br-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-pop_br-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pop_br-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.3: População do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-pop_fit">Tabela&nbsp;<span>5.4</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da populaçao projetada do Brasil.</p>
+<p>A <a href="#tbl-pop_fit" class="quarto-xref">Tabela&nbsp;<span>5.4</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da populaçao projetada do Brasil.</p>
 <div class="cell">
+<div id="tbl-pop_fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a série da população projetada do Brasil
+</figcaption>
+<div aria-describedby="tbl-pop_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-pop_fit" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a série da população projetada do Brasil</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -480,6 +557,8 @@ div.csl-indent {
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <section id="suavização-exponencial-com-tendência-amortecida" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="suavização-exponencial-com-tendência-amortecida"><span class="header-section-number">5.2.1</span> Suavização exponencial com tendência amortecida</h3>
@@ -491,24 +570,32 @@ div.csl-indent {
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}
 \end{align}
 \]</span></p>
-<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
+<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pop_br_fit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-pop_br_fit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.4: População do Brasil</figcaption>
+<div id="fig-pop_br_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pop_br_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-pop_br_fit-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pop_br_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.4: População do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissoes_ind">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em <a href="https://plataforma.seeg.eco.br/">Sistema de Estimativa de Emissão de Gases</a>. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
+<p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em <a href="https://plataforma.seeg.eco.br/">Sistema de Estimativa de Emissão de Gases</a>. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-emissoes_ind" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-emissoes_ind-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.5: Emissões de gases de efeito estufa pela indústria</figcaption>
+<div id="fig-emissoes_ind" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-emissoes_ind-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-emissoes_ind-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emissoes_ind-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.5: Emissões de gases de efeito estufa pela indústria
+</figcaption>
 </figure>
 </div>
 </div>
@@ -537,35 +624,47 @@ div.csl-indent {
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-export">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
+<p>A <a href="#fig-export" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-export" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-export-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.6: Exportações do Brasil</figcaption>
+<div id="fig-export" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-export-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.6: Exportações do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_season">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas nota-se maior volume de exportações de março a agosto.</p>
+<p>A <a href="#fig-export_season" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas nota-se maior volume de exportações de março a agosto.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-export_season" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-export_season-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.7: Gráfico sazonal para a série de exportações do Brasil</figcaption>
+<div id="fig-export_season" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-export_season-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-export_season-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-export_season-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.7: Gráfico sazonal para a série de exportações do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_fit">Figura&nbsp;<span>5.8</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões plotadas 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
+<p>A <a href="#fig-export_fit" class="quarto-xref">Figura&nbsp;<span>5.8</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões plotadas 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-export_fit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-export_fit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.8: Modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil</figcaption>
+<div id="fig-export_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-export_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-export_fit-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-export_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.8: Modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -581,13 +680,17 @@ div.csl-indent {
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-\phi b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-exportfit">Figura&nbsp;<span>5.9</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
+<p>A <a href="#fig-exportfit" class="quarto-xref">Figura&nbsp;<span>5.9</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-exportfit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-exportfit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.9: Modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil</figcaption>
+<div id="fig-exportfit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exportfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-exportfit-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exportfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.9: Modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -650,64 +753,84 @@ s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 <h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
 <p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
 <p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
-<p>A <a href="#fig-br040km579">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em <a href="https://servicos.dnit.gov.br/dadospnct/ContagemContinua">DNIT</a>. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
+<p>A <a href="#fig-br040km579" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em <a href="https://servicos.dnit.gov.br/dadospnct/ContagemContinua">DNIT</a>. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-br040km579-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.10: Fluxo de veículos na BR040 no kilômetro 579 de 01/03 a 07/04/2019</figcaption>
+<div id="fig-br040km579" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040km579-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-br040km579-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.10: Fluxo de veículos na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_passeio">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
+<p>A <a href="#fig-br040km579_passeio" class="quarto-xref">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_passeio" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-br040km579_passeio-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.11: Fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019</figcaption>
+<div id="fig-br040km579_passeio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040km579_passeio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-br040km579_passeio-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_passeio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.11: Fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_week">Figura&nbsp;<span>5.12</span></a> expõe o gráfico sazonal da série anterior considerando a semana como período sazonal. Enfatiza-se a regularidade entre as 4 semanas disponíveis e observa-se novamente o pico de fluxo nas sextas e domingos devido idas e retornos de fins de semana.</p>
+<p>A <a href="#fig-br040km579_saz_week" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> expõe o gráfico sazonal da série anterior considerando a semana como período sazonal. Enfatiza-se a regularidade entre as 4 semanas disponíveis e observa-se novamente o pico de fluxo nas sextas e domingos devido idas e retornos de fins de semana.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_saz_week" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-br040km579_saz_week-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.12: Gráfico sazonal semanal do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019</figcaption>
+<div id="fig-br040km579_saz_week" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040km579_saz_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-br040km579_saz_week-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_saz_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.12: Gráfico sazonal semanal do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_day">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
+<p>A <a href="#fig-br040km579_saz_day" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_saz_day" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-br040km579_saz_day-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.13: Gráfico sazonal diário do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019</figcaption>
+<div id="fig-br040km579_saz_day" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040km579_saz_day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-br040km579_saz_day-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_saz_day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.13: Gráfico sazonal diário do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_pred">Figura&nbsp;<span>5.14</span></a> expõe o resultado do modelo de suavização exponencial com tendência amortecida e sazonalidade. Foram considerados os dias de março para estimativa e a série completa é plotada juntamente com a previsão para a primeira semana de abril. Será importante avaliar posteriormente métodos que capturem variações sazonais distintas.</p>
+<p>A <a href="#fig-br040km579_pred" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> expõe o resultado do modelo de suavização exponencial com tendência amortecida e sazonalidade. Foram considerados os dias de março para estimativa e a série completa é plotada juntamente com a previsão para a primeira semana de abril. Será importante avaliar posteriormente métodos que capturem variações sazonais distintas.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_pred" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST5_files/figure-html/fig-br040km579_pred-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro 579 para a primeira semana de abril</figcaption>
+<div id="fig-br040km579_pred" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040km579_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-br040km579_pred-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro 579 para a primeira semana de abril
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-gardnermckenzie1985" class="csl-entry" role="listitem">
 Gardner, Everette S., e Ed. Mckenzie. 1985. <span>«Forecasting Trends in Time Series»</span>. <em>Management Science</em> 31 (10): 1237–46. <a href="https://doi.org/10.1287/mnsc.31.10.1237">https://doi.org/10.1287/mnsc.31.10.1237</a>.
 </div>
@@ -762,18 +885,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -805,11 +917,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -819,8 +970,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -832,7 +992,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -876,6 +1159,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -901,6 +1185,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -962,17 +1272,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ST4.html" class="pagination-link">
+      <a href="./ST4.html" class="pagination-link" aria-label="Regressão de séries temporais">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão de séries temporais</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ST6.html" class="pagination-link">
+      <a href="./ST6.html" class="pagination-link" aria-label="Modelos auto-regressivos integrados de médias móveis (ARIMA)">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robson Bruno Dutra Pereira">
+
+<title>7&nbsp; Regressão dinâmica – Séries Temporais e Previsão</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./ST6.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST7.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Séries Temporais e Previsão</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decomposição de séries temporais</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão de séries temporais</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Suavização exponencial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST7.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#regressão-dinâmica" id="toc-regressão-dinâmica" class="nav-link active" data-scroll-target="#regressão-dinâmica"><span class="header-section-number">7.1</span> Regressão dinâmica</a></li>
+  <li><a href="#regressão-dinâmica-harmônica" id="toc-regressão-dinâmica-harmônica" class="nav-link" data-scroll-target="#regressão-dinâmica-harmônica"><span class="header-section-number">7.2</span> Regressão dinâmica harmônica</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robson Bruno Dutra Pereira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="regressão-dinâmica" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="regressão-dinâmica"><span class="header-section-number">7.1</span> Regressão dinâmica</h2>
+<p>Os modelos de regressão dinâmica possibilitam a inclusão de variáveis ou séries temporais regressoras, além de considerar o próprio padrão dinâmico da série via ARIMA, unindo as capacidades dos métodos expostos nos capítulos 4 e 6. Um modelo de regressão dinâmica pode ser expresso conforme segue, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco. Ou seja, o modelo permite que os resíduos do modelo de regressão, agora denominados <span class="math inline">\(\eta_t\)</span> sejam autocorrelacionados, de forma que a autocorrelação seja tratada por um modelo ARIMA.</p>
+<p>Um modelo de regressão dinâmica pode ser representado conforme segue. Pode-se observar que o modelo de regressão contempla de uma até <span class="math inline">\(k\)</span> séries temporais regressoras, <span class="math inline">\(x_{t1}, \ldots, x_{tk}\)</span>, com erro <span class="math inline">\(\eta_t\)</span>, o qual pode ser autocorrelacionado. A informação não tratada pelo modelo de regressão, <span class="math inline">\(\eta_t\)</span>, é tratada via ARIMA.</p>
+<p><span class="math display">\[
+\begin{matrix}
+y_t = \beta_0 + \beta_1x_{t1} + \cdots + \beta_kx_{tk} + \eta_t, \\
+(1-\phi_1B- \ldots - \phi_pB^p)(1-B)^d\eta_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t
+\end{matrix}
+\]</span></p>
+<p>Os coeficientes de regressão, <span class="math inline">\(\beta_0, \ldots, \beta_k\)</span>, e do modelo ARIMA, <span class="math inline">\(\phi_1B, \ldots, \phi_p, \theta_1, \ldots, \theta_q\)</span> são estimados em conjunto minimizando <span class="math inline">\(\varepsilon_t\)</span> . A estimativa isolada dos coeficientes de regressão minimizando <span class="math inline">\(\eta_t\)</span> acarretaria diversos problemas no modelo. É importante também que a série a ser predita e as regressoras sejam estacionárias, de forma que o grau de diferenciação <span class="math inline">\(d\)</span> necessário para se obter a estacionariedade seja aplicado.</p>
+<p>A <a href="#fig-en_temp" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> plota séries temporais com frequência diária de consumo médio de eletricidade advinda de geração hidráulica no subsistema do sudeste e centro oeste do Brasil e de temperatura média diária da cidade de Uberlândia em Minas Gerais. Tal cidade foi considerada por ser uma que representa melhor a temperatura média de ambas as regiões dentre as monitoras pelo INMET. Pode-se sugerir um modelo de regressão dinâmica para o consumo diário de energia em função da temperatura média diária, descrevendo os erros com um modelo ARIMA.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-en_temp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-en_temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-en_temp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-en_temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Consumo de energia elétrica e temperatura no sudeste e centro oeste do Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A seguir expõe-se o resultado obtido.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: hidraulica 
+Model: LM w/ ARIMA(3,0,1)(1,1,1)[7] errors 
+
+Coefficients:
+         ar1      ar2     ar3      ma1     sar1     sma1  temperatura
+      1.7559  -0.9554  0.1928  -0.8358  -0.0487  -0.9290      62.7853
+s.e.  0.1008   0.1102  0.0590   0.0929   0.0704   0.0537      60.2675
+
+sigma^2 estimated as 2229014:  log likelihood=-3005.54
+AIC=6027.08   AICc=6027.51   BIC=6057.8</code></pre>
+</div>
+</div>
+<p>O modelo obtido pode ser expresso conforme segue.</p>
+<p><span class="math display">\[
+\begin{align}
+y_t &amp;= 62.7853x_t + \eta_t\\
+(1-1,76B+0.96B^2-0.19B^3)(1+0.0487B^{7})\eta_t &amp;= (1+0.8358B)( 1+0.9290B^{7})\varepsilon_t
+\end{align}
+\]</span></p>
+<p>Os resíduos do modelo ARIMA, <span class="math inline">\(\varepsilon_t\)</span> devem apresentar padrão de ruído branco. Já os de regressão, <span class="math inline">\(\eta_t\)</span>, não apresentam pressuposição. A <a href="#fig-resireg" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> apresenta os gráficos de resíduos para <span class="math inline">\(\eta_t\)</span>. Observa-se autocorrelação e padrão de sazonalidade semanal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resireg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resireg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resireg-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resireg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Gráficos de resíduos para regressão
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-resiarima" class="quarto-xref">Figura&nbsp;<span>7.3</span></a> apresenta os gráficos de resíduos para <span class="math inline">\(\varepsilon_t\)</span>. Observa-se independência no tempo e boa aproximação com a normal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resiarima" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resiarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resiarima-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resiarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.3: Gráficos de resíduos para o erro ARIMA
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-lb_hidro" class="quarto-xref">Tabela&nbsp;<span>7.1</span></a> expõe o resultado do teste de Ljung-Box. O teste deve considerar 6 graus de liberdade, uma vez que o modelo ARIMA apresenta seis coeficientes. O teste confirma ausência de autocorrelação residual.</p>
+<div class="cell">
+<div id="tbl-lb_hidro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_hidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.1: Teste Ljung-Box para o modelo de regressão dinâmica para o consumod e energia hidráulica
+</figcaption>
+<div aria-describedby="tbl-lb_hidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">lb_stat</th>
+<th style="text-align: right;">lb_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ARIMA(hidraulica ~ temperatura)</td>
+<td style="text-align: right;">9.402437</td>
+<td style="text-align: right;">0.3094918</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-fithidro" class="quarto-xref">Figura&nbsp;<span>7.4</span></a> expõe a série ajustada para o consumo de energia hidráulica. Observa-se boa aproximação com a série original.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fithidro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fithidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-fithidro-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fithidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.4: Série ajustada para o consumo de energia hidráulica
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-predhidro" class="quarto-xref">Figura&nbsp;<span>7.5</span></a> expõe a previsão para as duas últimas semanas do ano para o consumo de energia hidráulica.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-predhidro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-predhidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-predhidro-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predhidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.5: Previsão para o consumo de energia hidráulica
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Um outro exemplo adequado à regressão dinâmica seria o de previsão de produção de grãos considerando a área plantada como série regressora. Conforme, visto no capítulo 4, ao se considerar tal caso a regressão apenas não foi suficiente, uma vez que os resíduos apresentavam autocorrelação positiva e significativa até a defasagem de 4 unidades de tempo. A <a href="#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a> plota novamente as séries em questão.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-graos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-graos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.6: Produção de grãos no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A seguir expõe-se o resultado da modelagem de regressão dinâmica obtido para prever a produção de grãos.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: producao 
+Model: LM w/ ARIMA(1,1,0) errors 
+
+Coefficients:
+          ar1  area_plantada  intercept
+      -0.4952          0.651   4780.281
+s.e.   0.1320          0.729   1152.363
+
+sigma^2 estimated as 111683106:  log likelihood=-447.33
+AIC=902.67   AICc=903.75   BIC=909.62</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+y_t = 4780.28 + 0.65 x_t + \eta_t \\
+(1 + 0.4952B)(1 - B)\eta_t = \varepsilon_t
+\]</span></p>
+<p>Ou sem usar o operador de defasagem:</p>
+<p><span class="math display">\[
+\begin{align}
+y'_t &amp;= 4780.28 + 0.65 x'_t + \eta'_t \\
+\eta'_t &amp;= -0.4952 \eta'_{t-1} + \varepsilon_t\end{align}
+\]</span></p>
+<p>A <a href="#fig-resigraos" class="quarto-xref">Figura&nbsp;<span>7.7</span></a> plota os resíduos obtidos para o modelo de regressão dinâmica para produção de grãos no Brasil. Os resíduos do modelo autoregressivo devem atender às pressuposições.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resigraos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resigraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resigraos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resigraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.7: Resíduos para o modelo de regressão dinâmica para produção de grãos no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-resiinnov" class="quarto-xref">Figura&nbsp;<span>7.8</span></a> expõe os gráficos dos resíduos do modelo autoregressivo do erro do modelo de regressão para produção de de grãos em função da área plantada. Pode-se observar a ausência de autocorrelação e boa aproximação com a distribuição normal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resiinnov" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resiinnov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resiinnov-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resiinnov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.8: Resíduos do modelo autoregressivo do erro do modelo de regressão para produção de grãos em função da área plantada
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O teste de Ljung-Box, aprensentado na <a href="#tbl-lb_graos" class="quarto-xref">Tabela&nbsp;<span>7.2</span></a>, confirma a ausência de autocorrelação residual.</p>
+<div class="cell">
+<div id="tbl-lb_graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.2: Teste Ljung-Box para o modelo de regressão dinâmica para produção de grãos
+</figcaption>
+<div aria-describedby="tbl-lb_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">lb_stat</th>
+<th style="text-align: right;">lb_pvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ARIMA(producao ~ area_plantada)</td>
+<td style="text-align: right;">8.251295</td>
+<td style="text-align: right;">0.5090337</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-fitgraos" class="quarto-xref">Figura&nbsp;<span>7.9</span></a> plota os valores ajustados do modelo de regressão dinâmica para produção de grãos em função da área plantada. É interessante comparar tal modelo com o obtido no capítulo 4 onde apenas se considerava um modelo de regressão de séries temporais.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fitgraos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fitgraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-fitgraos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fitgraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.9: Valores ajustados do modelo de regressão dinâmica para produção de grãos em função da área plantada
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-fcgraos" class="quarto-xref">Figura&nbsp;<span>7.10</span></a> plota a previsão de 2020 a 2023 para o modelo de regressão dinâmica em discussão. É importante alimentar o modelo não somente com o tempo desejado à frente, mas também com dados da variável regressora. Neste caso, foram separados dados dos últimos 4 anos disponíveis para tal. Observa-se que para os dois últimos anos a quantidade produzida superou a quantidade prevista pelo modelo, mesmo com a queda em 2023.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fcgraos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fcgraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-fcgraos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fcgraos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.10: Valores ajustados do modelo de regressão dinâmica para produção de grãos em função da área plantada
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="regressão-dinâmica-harmônica" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="regressão-dinâmica-harmônica"><span class="header-section-number">7.2</span> Regressão dinâmica harmônica</h2>
+<p>Uma possibilidade para casos com frequência horária ou menor, a regressão dinâmica harmônica considera termos estimados via série de Fourier. Modelos ARIMA e ETS tradicionais foram concebidos para considerar um número limitado de estações ou períodos sazonais, por exemplo, <span class="math inline">\(m=12\)</span> para séries anuais e <span class="math inline">\(m=4\)</span> para trimestrais. A regressão dinâmica harmônica é viável para séries longas, podendo aproximar séries que incluam simultaneamente sazonalidade de frequências dinstintas.</p>
+<p>Os dados de demanda de eletricidade do sudeste e centro oeste do Brasil anteriormente considerados na regressão dinâmica em função da temperatura foram considerados em frequência diária, sendo tomada a média do consumo em função da temperatura média. É possível trabalhar a mesma série disponível em frequência horária usando regressão dinâmica com termos de Fourier.</p>
+<p>A <a href="#fig-energia_hora" class="quarto-xref">Figura&nbsp;<span>7.11</span></a> expõe a série temporal de geração de energia hidráulica para o sudeste e centro oeste do Brasil no ano de 2023 com frequência horária. Tal série apresenta 8760 observações.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-energia_hora" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energia_hora-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-energia_hora-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia_hora-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.11: Série temporal com frequência horária de geração de energia hidráulica para o sudeste e centro oeste no ano de 2023
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-din_elet_four" class="quarto-xref">Tabela&nbsp;<span>7.3</span></a> expõe os resultados de ajuste de seis modelos de regressão dinâmica harmônica para a série de demanda de eletricidade do sudeste e centro oeste do Brasil considerando de 1 a 6 termos de Fourier. Observa-se que a adição de mais termos melhora o ajuste do modelo.</p>
+<div class="cell">
+<div id="tbl-din_elet_four" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-din_elet_four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.3: Modelos de regressão dinâmica harmônica para a série de geração de eletricidade hidráulica no sudeste e centro oeste
+</figcaption>
+<div aria-describedby="tbl-din_elet_four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">sigma2</th>
+<th style="text-align: right;">log_lik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">BIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">K = 1</td>
+<td style="text-align: right;">0.0008775</td>
+<td style="text-align: right;">14470.13</td>
+<td style="text-align: right;">-28922.26</td>
+<td style="text-align: right;">-28922.24</td>
+<td style="text-align: right;">-28860.73</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 2</td>
+<td style="text-align: right;">0.0007887</td>
+<td style="text-align: right;">14836.38</td>
+<td style="text-align: right;">-29660.77</td>
+<td style="text-align: right;">-29660.76</td>
+<td style="text-align: right;">-29619.74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">K = 3</td>
+<td style="text-align: right;">0.0007882</td>
+<td style="text-align: right;">14839.71</td>
+<td style="text-align: right;">-29663.41</td>
+<td style="text-align: right;">-29663.39</td>
+<td style="text-align: right;">-29608.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 4</td>
+<td style="text-align: right;">0.0007642</td>
+<td style="text-align: right;">14949.39</td>
+<td style="text-align: right;">-29870.79</td>
+<td style="text-align: right;">-29870.73</td>
+<td style="text-align: right;">-29775.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">K = 5</td>
+<td style="text-align: right;">0.0007641</td>
+<td style="text-align: right;">14950.75</td>
+<td style="text-align: right;">-29869.50</td>
+<td style="text-align: right;">-29869.42</td>
+<td style="text-align: right;">-29760.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 6</td>
+<td style="text-align: right;">0.0006942</td>
+<td style="text-align: right;">15282.75</td>
+<td style="text-align: right;">-30527.50</td>
+<td style="text-align: right;">-30527.39</td>
+<td style="text-align: right;">-30397.59</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-elet_four_fc" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> plota a previsão uma semana a frente para os modelos obtidos. Os dados foram plotados de Setembro em diante para facilitar a visualização.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-elet_four_fc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elet_four_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-elet_four_fc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elet_four_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.12: Previsão uma semana a frente para os modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-din_elet_fc" class="quarto-xref">Tabela&nbsp;<span>7.4</span></a> plota o desempenho obtido para a previsão uma semana a frente considerando os modelos de regressão dinâmica harmônica. Observa-se que o modelo com “K = 3” termos apresentou melhor resultado.</p>
+<div class="cell">
+<div id="tbl-din_elet_fc" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-din_elet_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.4: Desempenho dos modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
+</figcaption>
+<div aria-describedby="tbl-din_elet_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">.model</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">MAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">K = 1</td>
+<td style="text-align: right;">5942.818</td>
+<td style="text-align: right;">4771.082</td>
+<td style="text-align: right;">16.62897</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 2</td>
+<td style="text-align: right;">5271.837</td>
+<td style="text-align: right;">4197.736</td>
+<td style="text-align: right;">14.80960</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">K = 3</td>
+<td style="text-align: right;">5254.736</td>
+<td style="text-align: right;">4185.858</td>
+<td style="text-align: right;">14.78036</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 4</td>
+<td style="text-align: right;">5394.046</td>
+<td style="text-align: right;">4321.869</td>
+<td style="text-align: right;">15.21196</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">K = 5</td>
+<td style="text-align: right;">5384.908</td>
+<td style="text-align: right;">4313.964</td>
+<td style="text-align: right;">15.18824</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K = 6</td>
+<td style="text-align: right;">5345.797</td>
+<td style="text-align: right;">4310.098</td>
+<td style="text-align: right;">15.25338</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ST6.html" class="pagination-link" aria-label="Modelos auto-regressivos integrados de médias móveis (ARIMA)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="Referências">
+        <span class="nav-page-text">Referências</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

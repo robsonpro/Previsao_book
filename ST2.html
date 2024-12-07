@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>Séries Temporais e Previsão - 2&nbsp; Análise descritiva, métodos simples de previsão e diagnóstico</title>
+<title>2&nbsp; Análise descritiva, métodos simples de previsão e diagnóstico – Séries Temporais e Previsão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -91,14 +97,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "mais correspondência neste documento",
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Procurar"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -108,13 +142,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -123,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Séries Temporais e Previsão</a> 
@@ -180,6 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ST7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -187,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -243,19 +283,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="estatísticas-descritivas" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="estatísticas-descritivas"><span class="header-section-number">2.1</span> Estatísticas descritivas</h2>
 <p>Ao iniciar-se a avaliação de séries temporais é importante observar agumas estatísticas simples, de forma a compreender a magnitude dos dados, considerando tendência central e distribuição das observações da série.</p>
 <section id="estatísticas-simples" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="estatísticas-simples"><span class="header-section-number">2.1.1</span> Estatísticas simples</h3>
-<p>A <a href="#tbl-est">Tabela&nbsp;<span>2.1</span></a> expõe a média e o desvio-padrão para a série multivariada de energia produzida em MWh no Brasil em 2023, segundo cada fonte. Observa-se a superioridade da série hidráulica em relação às demais, confirmando a dependência desta fonte na matriz energética brasileira.</p>
+<p>A <a href="#tbl-est" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> expõe a média e o desvio-padrão para a série multivariada de energia produzida em MWh no Brasil em 2023, segundo cada fonte. Observa-se a superioridade da série hidráulica em relação às demais, confirmando a dependência desta fonte na matriz energética brasileira.</p>
 <div class="cell">
+<div id="tbl-est" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-est-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.1: Média e desvio-padrão da série multivariada de Energia
+</figcaption>
+<div aria-describedby="tbl-est-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-est" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.1: Média e desvio-padrão da série multivariada de Energia</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
@@ -288,13 +334,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#tbl-quatis">Tabela&nbsp;<span>2.2</span></a> expõe os quartis da mesma série para todas as fontes consideradas. Recordando, os quartis são valores na série que dividem os dados em quatro partes iguais. O primeiro deixa 25% das observações abaixo deste, o segundo ou a mediana deixa 50% das observações abaixo, enquanto o terceiro e último deixa 75% dos dados abaixo. Observa-se também o mínimo (0%) e máximo (100%) de cada série.</p>
+</div>
+<p>A <a href="#tbl-quatis" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> expõe os quartis da mesma série para todas as fontes consideradas. Recordando, os quartis são valores na série que dividem os dados em quatro partes iguais. O primeiro deixa 25% das observações abaixo deste, o segundo ou a mediana deixa 50% das observações abaixo, enquanto o terceiro e último deixa 75% dos dados abaixo. Observa-se também o mínimo (0%) e máximo (100%) de cada série.</p>
 <div class="cell">
+<div id="tbl-quatis" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quatis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia
+</figcaption>
+<div aria-describedby="tbl-quatis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-quatis" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
@@ -342,6 +394,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 </section>
 </section>
@@ -351,24 +405,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[
 r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
 \]</span></p>
-<p>O correlograma consiste no gráfico que plota tais autocorrelações. A <a href="#fig-corr_co2">Figura&nbsp;<span>2.1</span></a> plota o correlograma da série de níveis de CO2 a partir de 2000. As linhas horizontais tracejadas azuis consistem nas linhas que determinam a significância estatística das autocorrelações, de forma que as que estão acima destas, são significativas. Tais limites são calculados como <span class="math inline">\(\pm 1,96 /\sqrt{T}\)</span>.</p>
+<p>O correlograma consiste no gráfico que plota tais autocorrelações. A <a href="#fig-corr_co2" class="quarto-xref">Figura&nbsp;<span>2.1</span></a> plota o correlograma da série de níveis de CO2 a partir de 2000. As linhas horizontais tracejadas azuis consistem nas linhas que determinam a significância estatística das autocorrelações, de forma que as que estão acima destas, são significativas. Tais limites são calculados como <span class="math inline">\(\pm 1,96 /\sqrt{T}\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-corr_co2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-corr_co2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.1: Correlograma da série de níveis de CO2</figcaption>
+<div id="fig-corr_co2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr_co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-corr_co2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr_co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: Correlograma da série de níveis de CO2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Séries com tendência geralmente apresentam correlações mais altas nas defasagens menores, uma vez que os valores adjacentes na série são próximos. Séries com sazonalidade apresentam autocorrelação alta no período sazonal. Para o caso plotado, pode-se confirmar a presença de tendência e de autocorrelação anual na série.</p>
-<p>A <a href="#tbl-autocor">Tabela&nbsp;<span>2.3</span></a> apresenta algumas estatísticas relacionadas à autocorrelação: o primeiro coeficiente de autocorrelação, <span class="math inline">\(r_1\)</span>; a soma dos quadrados dos primeiros 10 coeficientes de autocorrelação, <span class="math inline">\(\sum_{k=1}^{10}r_i^2\)</span>; o primeiro coeficiente de correlação da série diferenciada; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada; o primeiro coeficiente de correlação da série diferenciada com defasagem de duas observações; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada de duas observações; e o coeficiente de autocorrelação do primeiro lag sazonal, caso a série tenha sazonalidade.</p>
+<p>A <a href="#tbl-autocor" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> apresenta algumas estatísticas relacionadas à autocorrelação: o primeiro coeficiente de autocorrelação, <span class="math inline">\(r_1\)</span>; a soma dos quadrados dos primeiros 10 coeficientes de autocorrelação, <span class="math inline">\(\sum_{k=1}^{10}r_i^2\)</span>; o primeiro coeficiente de correlação da série diferenciada; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada; o primeiro coeficiente de correlação da série diferenciada com defasagem de duas observações; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada de duas observações; e o coeficiente de autocorrelação do primeiro lag sazonal, caso a série tenha sazonalidade.</p>
 <div class="cell">
+<div id="tbl-autocor" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-autocor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.3: Estatísticas relacionadas à autocorrelação
+</figcaption>
+<div aria-describedby="tbl-autocor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-autocor" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.3: Estatísticas relacionadas à autocorrelação</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 11%">
@@ -403,14 +465,20 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>Na <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a> são plotadas algumas séries temporais com o correlograma correspondente. A série da <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(a) corresponde a um ruído branco (<em>white noise</em>) ou uma sequência de números aleatórios seguindo a distribuição normal. Tal série não apresenta autocorrelação significativa, conforme indica o seu correlograma na <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(d). A série da <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(b) apresenta padrão cíclico com sazonalidade de 24h, conforme correlograma da <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(e). Já a série da <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(c) apresenta tendência linear positiva clara com sazonalidade anual, conforme correlograma da <a href="#fig-corr">Figura&nbsp;<span>2.2</span></a>(f).</p>
+</div>
+<p>Na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a> são plotadas algumas séries temporais com o correlograma correspondente. A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(a) corresponde a um ruído branco (<em>white noise</em>) ou uma sequência de números aleatórios seguindo a distribuição normal. Tal série não apresenta autocorrelação significativa, conforme indica o seu correlograma na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(d). A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(b) apresenta padrão cíclico com sazonalidade de 24h, conforme correlograma da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(e). Já a série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(c) apresenta tendência linear positiva clara com sazonalidade anual, conforme correlograma da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>(f).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-corr" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-corr-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.2: Séries e respectivos correlogramas</figcaption>
+<div id="fig-corr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-corr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.2: Séries e respectivos correlogramas
+</figcaption>
 </figure>
 </div>
 </div>
@@ -424,13 +492,17 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=\frac{1}{T}\sum_{t=1}^Ty_t=\frac{y_1+y_2+...+y_T}{T}
 \]</span></p>
-<p>Na <a href="#fig-car">Figura&nbsp;<span>2.3</span></a> expõe-se a previsão com a média para três anos à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car" class="quarto-xref">Figura&nbsp;<span>2.3</span></a> expõe-se a previsão com a média para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-car" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-car-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.3: Previsão por média na série de vendas de carros no Brasil</figcaption>
+<div id="fig-car" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-car-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-car-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-car-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.3: Previsão por média na série de vendas de carros no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -442,13 +514,17 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=y_T
 \]</span></p>
-<p>Na <a href="#fig-car2">Figura&nbsp;<span>2.4</span></a> expõe-se a previsão com o método ingênuo para três anos à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car2" class="quarto-xref">Figura&nbsp;<span>2.4</span></a> expõe-se a previsão com o método ingênuo para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-car2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-car2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.4: Previsão por média na série de vendas de carros no Brasil</figcaption>
+<div id="fig-car2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-car2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-car2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-car2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.4: Previsão por média na série de vendas de carros no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -460,24 +536,32 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T}=y_{T+h-m(k+1)}
 \]</span></p>
-<p>Na <a href="#fig-car3">Figura&nbsp;<span>2.5</span></a> expõe-se a previsão com o método ingênuo sazonal para três anos à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car3" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> expõe-se a previsão com o método ingênuo sazonal para três anos à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-car3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-car3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.5: Previsão por média na série de vendas de carros no Brasil</figcaption>
+<div id="fig-car3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-car3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-car3-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-car3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.5: Previsão por média na série de vendas de carros no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-temp">Figura&nbsp;<span>2.6</span></a> apresenta a série de temperatura instantânea coletada de hora em hora das duas primeiras semanas de maio de 2024 para a cidade de São joão del-Rei. Foram considerados os dados da primeira semana para treinar os modelos, sendo as previsões plotadas para a semana seguinte juntamente com as observações. As previsões obtidas com o método ingênuo sazonal apresentam bom ajuste aos dados.</p>
+<p>A <a href="#fig-temp" class="quarto-xref">Figura&nbsp;<span>2.6</span></a> apresenta a série de temperatura instantânea coletada de hora em hora das duas primeiras semanas de maio de 2024 para a cidade de São joão del-Rei. Foram considerados os dados da primeira semana para treinar os modelos, sendo as previsões plotadas para a semana seguinte juntamente com as observações. As previsões obtidas com o método ingênuo sazonal apresentam bom ajuste aos dados.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-temp" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-temp-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.6: Previsão da temperatura em São João del-Rei em maio de 2024 pelos três métodos benchmarking apresentados</figcaption>
+<div id="fig-temp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-temp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.6: Previsão da temperatura em São João del-Rei em maio de 2024 pelos três métodos benchmarking apresentados
+</figcaption>
 </figure>
 </div>
 </div>
@@ -489,13 +573,17 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <p><span class="math display">\[
 \hat{y}_{T+h|T} = y_T + \frac{h}{T-1}\sum_{t=2}^T(y_t-y_{t-1}) =y_T+h \bigg(\frac{y_T-y_1}{T-1}\bigg)
 \]</span></p>
-<p>Na <a href="#fig-car4">Figura&nbsp;<span>2.7</span></a> aplica-se a previsão com o método da deriva para três dias à frente para a série temporal de produção de carros no Brasil.</p>
+<p>Na <a href="#fig-car4" class="quarto-xref">Figura&nbsp;<span>2.7</span></a> aplica-se a previsão com o método da deriva para três dias à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-car4" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-car4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.7: Previsão por deriva na série de vendas de carros no Brasil</figcaption>
+<div id="fig-car4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-car4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-car4-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-car4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.7: Previsão por deriva na série de vendas de carros no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -506,12 +594,16 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <h2 data-number="2.4" class="anchored" data-anchor-id="resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</h2>
 <p>Os valores ajustados, <span class="math inline">\(\hat y_t\)</span>, são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>, implicando que a estimativa de <span class="math inline">\(\hat{y}_{t}\)</span> é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>.</p>
 <p>Os resíduos de uma série temporal consistem nos valores do erro, sendo calculados como a diferença entre o observado e o ajustado em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
-<p>Na <a href="#tbl-fitres">Tabela&nbsp;<span>2.4</span></a> são explicitados os valores ajustados (<code>.fitted</code>) e os resíduos (<code>.resid</code>) obtidos com o método ingênuo sazonal para as últimas observações da série temporal de volume de carros produzidos no Brasil .</p>
+<p>Na <a href="#tbl-fitres" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> são explicitados os valores ajustados (<code>.fitted</code>) e os resíduos (<code>.resid</code>) obtidos com o método ingênuo sazonal para as últimas observações da série temporal de volume de carros produzidos no Brasil .</p>
 <div class="cell">
+<div id="tbl-fitres" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fitres-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.4: Valores ajustados e residuais obtidos pelo método ingênuo para a série de temperatura em São João del-Rei
+</figcaption>
+<div aria-describedby="tbl-fitres-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-fitres" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.4: Valores ajustados e residuais obtidos pelo método ingênuo para a série de temperatura em São João del-Rei</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Data</th>
@@ -561,6 +653,8 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <section id="diagnósticos-dos-resíduos" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="diagnósticos-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnósticos dos resíduos</h3>
@@ -576,57 +670,77 @@ r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\ba
 <li><p>Normalmente distribuídos.</p></li>
 </ol>
 <p>A homocedasticidade consiste na igualdade de variâncias. Séries com resíduos heterocedásticos podem ser tranformadas, visando obter homocedasticidade e normalidade.</p>
-<p>Na <a href="#fig-ibov">Figura&nbsp;<span>2.8</span></a> é plotada a série histórica de 187 observações do índice Ibovespa, disponível em <a href="https://www.infomoney.com.br/cotacoes/b3/indice/ibovespa/historico/">Cotação do índice Ibovespa - Infomoney</a>.</p>
+<p>Na <a href="#fig-ibov" class="quarto-xref">Figura&nbsp;<span>2.8</span></a> é plotada a série histórica de 187 observações do índice Ibovespa, disponível em <a href="https://www.infomoney.com.br/cotacoes/b3/indice/ibovespa/historico/">Cotação do índice Ibovespa - Infomoney</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibov" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibov-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.8: Série do índice Ibovespa</figcaption>
+<div id="fig-ibov" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibov-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.8: Série do índice Ibovespa
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A previsão de índices da bolsa é geralmente feita com bom resultado usando o método ingênuo. Neste caso os resíduos serão calculados como a diferença da observação atual e anterior, <span class="math inline">\(e_t = y_t - \hat{y}_t = y_t - y_{t-1}\)</span>. Na <a href="#fig-ibovresi">Figura&nbsp;<span>2.9</span></a> são plotados os resíduos para tal método. De forma geral estes aparentam apresentar boa distribuição, sem assimetrias e tendência.</p>
+<p>A previsão de índices da bolsa é geralmente feita com bom resultado usando o método ingênuo. Neste caso os resíduos serão calculados como a diferença da observação atual e anterior, <span class="math inline">\(e_t = y_t - \hat{y}_t = y_t - y_{t-1}\)</span>. Na <a href="#fig-ibovresi" class="quarto-xref">Figura&nbsp;<span>2.9</span></a> são plotados os resíduos para tal método. De forma geral estes aparentam apresentar boa distribuição, sem assimetrias e tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibovresi" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibovresi-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.9: Resíduos da série do índice Ibovespa para o método ingênuo</figcaption>
+<div id="fig-ibovresi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibovresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibovresi-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibovresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.9: Resíduos da série do índice Ibovespa para o método ingênuo
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Na <a href="#fig-ibovhist">Figura&nbsp;<span>2.10</span></a> é plotado o histograma dos resíduos, o qual aparenta adequar-se bem à distribuição normal.</p>
+<p>Na <a href="#fig-ibovhist" class="quarto-xref">Figura&nbsp;<span>2.10</span></a> é plotado o histograma dos resíduos, o qual aparenta adequar-se bem à distribuição normal.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibovhist" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibovhist-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.10: Histograma dos resíduos da série do índice Ibovespa</figcaption>
+<div id="fig-ibovhist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibovhist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibovhist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibovhist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.10: Histograma dos resíduos da série do índice Ibovespa
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Na <a href="#fig-ibovcorr">Figura&nbsp;<span>2.11</span></a> observa-se o correlograma da série do índice Ibovespa. Pode-se observar que a série é autocorrelacionada considerando defasagem de até 22 observações.</p>
+<p>Na <a href="#fig-ibovcorr" class="quarto-xref">Figura&nbsp;<span>2.11</span></a> observa-se o correlograma da série do índice Ibovespa. Pode-se observar que a série é autocorrelacionada considerando defasagem de até 22 observações.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibovcorr" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibovcorr-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.11: Correlograma da série do índice Ibovespa</figcaption>
+<div id="fig-ibovcorr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibovcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibovcorr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibovcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.11: Correlograma da série do índice Ibovespa
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Em sequência, na <a href="#fig-ibovcorr2">Figura&nbsp;<span>2.12</span></a>, plota-se o correlograma dos resíduos. Pode-se observar que o método ingênuo resultou em resíduos não correlacionados, de forma que o modelo considera toda a informação disponível nos dados. Obviamente podem haver modelos melhores que também garantam a ausência de autocorrelação residual.</p>
+<p>Em sequência, na <a href="#fig-ibovcorr2" class="quarto-xref">Figura&nbsp;<span>2.12</span></a>, plota-se o correlograma dos resíduos. Pode-se observar que o método ingênuo resultou em resíduos não correlacionados, de forma que o modelo considera toda a informação disponível nos dados. Obviamente podem haver modelos melhores que também garantam a ausência de autocorrelação residual.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibovcorr2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibovcorr2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.12: Correlograma dos resíduos da série do índice Ibovespa</figcaption>
+<div id="fig-ibovcorr2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibovcorr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibovcorr2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibovcorr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.12: Correlograma dos resíduos da série do índice Ibovespa
+</figcaption>
 </figure>
 </div>
 </div>
@@ -644,12 +758,16 @@ Q = T\sum_{k=1}^l r_k^2
 Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 \]</span></p>
 <p>Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade.</p>
-<p>Na <a href="#tbl-testes">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. Pode-se concluir que, para ambas os testes, as autocorrelações dos resíduos não diferem das de uma série ruído branco.</p>
+<p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. Pode-se concluir que, para ambas os testes, as autocorrelações dos resíduos não diferem das de uma série ruído branco.</p>
 <div class="cell">
+<div id="tbl-testes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-testes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método ingênuo para o índice Ibovespa
+</figcaption>
+<div aria-describedby="tbl-testes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-testes" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método ingênuo para o índice Ibovespa</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 21%">
 <col style="width: 25%">
@@ -689,13 +807,19 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>O método da deriva é um pouco mais adequado que o ingênuo para séries de índices de bolsas de valores. Na <a href="#tbl-testes2">Tabela&nbsp;<span>2.6</span></a> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método.</p>
+</div>
+<p>O método da deriva é um pouco mais adequado que o ingênuo para séries de índices de bolsas de valores. Na <a href="#tbl-testes2" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método.</p>
 <div class="cell">
+<div id="tbl-testes2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa
+</figcaption>
+<div aria-describedby="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-testes2" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 32%">
@@ -735,6 +859,8 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 </section>
 <section id="previsão-e-intervalos-de-confiança" class="level2" data-number="2.6">
@@ -749,10 +875,14 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 <p><span class="math display">\[
 \hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
 \]</span></p>
-<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio">Tabela&nbsp;<span>2.7</span></a> expõe as Equações para estimar o desvio-padrão para os métodos <em>benchmarking</em> até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
-<div id="tbl-desvio" class="anchored">
-<table class="table">
-<caption>Tabela&nbsp;2.7: Desvio-padrão para previsão para os métodos considerados</caption>
+<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> expõe as Equações para estimar o desvio-padrão para os métodos <em>benchmarking</em> até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
+<div id="tbl-desvio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.7: Desvio-padrão para previsão para os métodos considerados
+</figcaption>
+<div aria-describedby="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Método</th>
@@ -779,12 +909,18 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 </tbody>
 </table>
 </div>
-<p>Na <a href="#tbl-ic">Tabela&nbsp;<span>2.8</span></a> são apresentados os intervalos de confiança de 80 e 95% para <span class="math inline">\(h=10\)</span> períodos para o índice Ibovespa.</p>
+</figure>
+</div>
+<p>Na <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> são apresentados os intervalos de confiança de 80 e 95% para <span class="math inline">\(h=10\)</span> períodos para o índice Ibovespa.</p>
 <div class="cell">
+<div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.8: Intervalo de previsão para a série do índice Ibovespa
+</figcaption>
+<div aria-describedby="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ic" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.8: Intervalo de previsão para a série do índice Ibovespa</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 5%">
@@ -888,14 +1024,20 @@ Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-ibovpred">Figura&nbsp;<span>2.13</span></a> plota tais intervalos juntamente com a série.</p>
+</div>
+<p>A <a href="#fig-ibovpred" class="quarto-xref">Figura&nbsp;<span>2.13</span></a> plota tais intervalos juntamente com a série.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ibovpred" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-ibovpred-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.13: Intervalo de previsão para a série do índice Ibovespa</figcaption>
+<div id="fig-ibovpred" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ibovpred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-ibovpred-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ibovpred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.13: Intervalo de previsão para a série do índice Ibovespa
+</figcaption>
 </figure>
 </div>
 </div>
@@ -912,24 +1054,32 @@ w_t = \Bigg\{ \begin{matrix}
              \end{matrix}
 \]</span></p>
 <p>onde <span class="math inline">\(\text{sign}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sign}(y_t) =-1\)</span>, caso contrário.</p>
-<p>Na <a href="#fig-vale">Figura&nbsp;<span>2.14</span></a> apresenta-se graficamente a série temporal das ações da vale (VALE3), <a href="https://br.investing.com/equities/vale-on-n1-historical-data">Dados históricos da ação VALE3 - Investing</a>. Pode-se observar que a série apresenta alta variabilidade, especialmente de 2021 a 2023.</p>
+<p>Na <a href="#fig-vale" class="quarto-xref">Figura&nbsp;<span>2.14</span></a> apresenta-se graficamente a série temporal das ações da vale (VALE3), <a href="https://br.investing.com/equities/vale-on-n1-historical-data">Dados históricos da ação VALE3 - Investing</a>. Pode-se observar que a série apresenta alta variabilidade, especialmente de 2021 a 2023.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-vale" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-vale-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.14: Série temporal do valor da ação VALE3</figcaption>
+<div id="fig-vale" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-vale-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.14: Série temporal do valor da ação VALE3
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Na <a href="#fig-valetrans">Figura&nbsp;<span>2.15</span></a> apresenta-se a mesma série após transformação de Box-Cox com <span class="math inline">\(\lambda = 1,27\)</span>.</p>
+<p>Na <a href="#fig-valetrans" class="quarto-xref">Figura&nbsp;<span>2.15</span></a> apresenta-se a mesma série após transformação de Box-Cox com <span class="math inline">\(\lambda = 1,27\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-valetrans" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-valetrans-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.15: Série temporal do valor da ação VALE3 com transformação de Box-Cox</figcaption>
+<div id="fig-valetrans" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-valetrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-valetrans-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-valetrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.15: Série temporal do valor da ação VALE3 com transformação de Box-Cox
+</figcaption>
 </figure>
 </div>
 </div>
@@ -939,13 +1089,17 @@ w_t = \Bigg\{ \begin{matrix}
 <h2 data-number="2.8" class="anchored" data-anchor-id="avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.8</span> Avaliação de modelos de séries temporais</h2>
 <p>Uma avaliação ideal de um modelo de séries temporais deve ser baseada no desempenho do modelo em novos dados e não nos valores residuais. Para tal, deve-se considerar dados separados para teste do modelo ou em dados futuros. Portanto, não se deve considerar os dados usados para estimar (treinar) o modelo para avaliar seu desempenho.</p>
 <p>Conforme visto no caso para dados de temperatura instantânea para São João del-Rei, uma primeira abordagem consiste em simplesmente usar parte inicial da série para treino do modelo e as últimas observações para teste. O percentual de observações usadas para treino/teste depende do número de observações disponíveis na série.</p>
-<p>Na <a href="#fig-valid">Figura&nbsp;<span>2.16</span></a> ilustra-se arbitrariamente a separação das primeiras 75% observações para treino e os 25% restantes para teste.</p>
+<p>Na <a href="#fig-valid" class="quarto-xref">Figura&nbsp;<span>2.16</span></a> ilustra-se arbitrariamente a separação das primeiras 75% observações para treino e os 25% restantes para teste.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-valid" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST2_files/figure-html/fig-valid-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.16: Observações de treino e teste para validar séries temporais</figcaption>
+<div id="fig-valid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-valid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-valid-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-valid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.16: Observações de treino e teste para validar séries temporais
+</figcaption>
 </figure>
 </div>
 </div>
@@ -954,10 +1108,14 @@ w_t = \Bigg\{ \begin{matrix}
 <p><span class="math display">\[
 e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
 \]</span></p>
-<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-erro">Tabela&nbsp;<span>2.10</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
-<div id="tbl-erro" class="anchored">
-<table class="table">
-<caption>Tabela&nbsp;2.9: Métricas de erro</caption>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.10</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
+<div id="tbl-erro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.9: Métricas de erro
+</figcaption>
+<div aria-describedby="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Métrica</th>
@@ -984,16 +1142,22 @@ e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A fórmula à seguir é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na tabela acima considera tal padronização.</p>
 <p><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 \]</span></p>
-<p>A <a href="#tbl-erro">Tabela&nbsp;<span>2.10</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
+<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.10</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
 <div class="cell">
+<div id="tbl-erro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.10: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei
+</figcaption>
+<div aria-describedby="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-erro" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;2.10: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -1024,6 +1188,8 @@ q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 </tbody>
 </table>
 </div>
+</div>
+</figure>
 </div>
 </div>
 </section>
@@ -1210,11 +1376,19 @@ q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 <section id="exercícios-propostos" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">2.10</span> Exercícios propostos</h2>
 <ol type="1">
-<li><p>Obtenha e interprete as estatísticas descritivas simples para a série temporal de volume de carros produzidos no Brasil.</p></li>
-<li><p>Faça o correlograma da série temporal de temperatura com defasagem máxima de duas semanas. Interprete o padrão de autocorrelação obtido.</p></li>
-<li><p>Realize a modelagem com os métodos da média, ingênuo e da deriva para a série do índice Ibovespa, considerando apenas os primeiros 150 dias da série. Obtenha um gráfico com a série filtrada e a previsão para 37 dias à frente com tais métodos.</p></li>
-<li><p>Avalie os resíduos para os métodos considerados para a série do índice Ibovespa.</p></li>
-<li><p>Faça o teste do modelo com as 37 últimas observações, estimando as métricas de erro MAE, MASE e RMSE.</p></li>
+<li>Obtenha e interprete as estatísticas descritivas simples para a série temporal de volume de carros produzidos no Brasil.</li>
+</ol>
+<ol start="2" type="1">
+<li>Faça o correlograma da série temporal de temperatura com defasagem máxima de uma semana. Interprete o padrão de autocorrelação obtido.</li>
+</ol>
+<ol start="3" type="1">
+<li>Realize a modelagem com os métodos da média, ingênuo e da deriva para a série do índice Ibovespa, considerando apenas os primeiros 150 dias da série. Obtenha um gráfico com a série filtrada e a previsão para 37 dias à frente com tais métodos.</li>
+</ol>
+<ol start="4" type="1">
+<li>Avalie os resíduos para os métodos considerados para a série do índice Ibovespa.</li>
+</ol>
+<ol start="5" type="1">
+<li>Faça o teste do modelo com as 37 últimas observações, estimando as métricas de erro MAE, MASE e RMSE.</li>
 </ol>
 
 
@@ -1256,18 +1430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1299,11 +1462,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1313,8 +1515,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1326,7 +1537,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1370,6 +1704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1395,6 +1730,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1456,17 +1817,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ST1.html" class="pagination-link">
+      <a href="./ST1.html" class="pagination-link" aria-label="Introdução e gráficos">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ST3.html" class="pagination-link">
+      <a href="./ST3.html" class="pagination-link" aria-label="Decomposição de séries temporais">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decomposição de séries temporais</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

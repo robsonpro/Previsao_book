@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>Séries Temporais e Previsão - 1&nbsp; Introdução e gráficos</title>
+<title>1&nbsp; Introdução e gráficos – Séries Temporais e Previsão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -91,14 +97,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "mais correspondência neste documento",
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Procurar"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -108,13 +142,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução e gráficos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -123,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Séries Temporais e Previsão</a> 
@@ -180,6 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ST7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -187,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -233,7 +273,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="introdução-às-séries-temporais-e-previsão" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introdução-às-séries-temporais-e-previsão"><span class="header-section-number">1.1</span> Introdução às séries temporais e previsão</h2>
@@ -245,12 +287,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1.2" class="anchored" data-anchor-id="exemplos-de-séries-e-visualizações"><span class="header-section-number">1.2</span> Exemplos de séries e visualizações</h2>
 <section id="séries-univariadas" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="séries-univariadas"><span class="header-section-number">1.2.1</span> Séries univariadas</h3>
-<p>Na <a href="#fig-ipca1">Figura&nbsp;<span>1.1</span></a> observa-se graficamente a série temporal do índice de preços ao consumidor (IPCA), com frequência mensal a partir de 1980. A série foi obtida em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As primeiras observações da série também são exibidas na <a href="#tbl-ipca">Tabela&nbsp;<span>1.1</span></a>. Observa-se claramente como a inflação no país foi controlada a partir da adoção do plano real.</p>
+<p>Na <a href="#fig-ipca1" class="quarto-xref">Figura&nbsp;<span>1.1</span></a> observa-se graficamente a série temporal do índice de preços ao consumidor (IPCA), com frequência mensal a partir de 1980. A série foi obtida em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As primeiras observações da série também são exibidas na <a href="#tbl-ipca" class="quarto-xref">Tabela&nbsp;<span>1.1</span></a>. Observa-se claramente como a inflação no país foi controlada a partir da adoção do plano real.</p>
 <div class="cell">
+<div id="tbl-ipca" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.1: IPCA no Brasil
+</figcaption>
+<div aria-describedby="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ipca" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;1.1: IPCA no Brasil</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">index</th>
@@ -286,34 +332,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ipca1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-ipca1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.1: IPCA no Brasil</figcaption>
+<div id="fig-ipca1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ipca1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-ipca1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ipca1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.1: IPCA no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para visualizar melhor como o IPCA variou nos últimos 20 anos, pode-se selecionar os dados a partir do ano 2000. O resultado é plotado na <a href="#fig-ipca2">Figura&nbsp;<span>1.2</span></a>.</p>
+<p>Para visualizar melhor como o IPCA variou nos últimos 20 anos, pode-se selecionar os dados a partir do ano 2000. O resultado é plotado na <a href="#fig-ipca2" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ipca2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-ipca2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.2: IPCA no Brasil a partir de 2000</figcaption>
+<div id="fig-ipca2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ipca2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-ipca2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ipca2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.2: IPCA no Brasil a partir de 2000
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-carros">Tabela&nbsp;<span>1.2</span></a> exibe as primeiras observações da série temporal de volume de carros produzidos no Brasil a partir de 1990. A série foi obtida em <a href="https://anfavea.com.br/site/edicoes-em-excel/">dados estatísticos ANFAVEA</a> e apresenta frequência mensal.</p>
+<p>A <a href="#tbl-carros" class="quarto-xref">Tabela&nbsp;<span>1.2</span></a> exibe as primeiras observações da série temporal de volume de carros produzidos no Brasil a partir de 1990. A série foi obtida em <a href="https://anfavea.com.br/site/edicoes-em-excel/">dados estatísticos ANFAVEA</a> e apresenta frequência mensal.</p>
 <div class="cell">
+<div id="tbl-carros" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-carros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.2: Produção de carros no Brasil
+</figcaption>
+<div aria-describedby="tbl-carros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-carros" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;1.2: Produção de carros no Brasil</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">data</th>
@@ -349,36 +409,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A série é plotada na <a href="#fig-carros">Figura&nbsp;<span>1.3</span></a>. Pode-se observar alguns períodos de queda no volume, por exemplo, próximo de 2015 durante a crise política do país e em 2020 durante a pandemia, onde a demanda chegou a níveis anteriores aos dos anos 2000.</p>
+</div>
+<p>A série é plotada na <a href="#fig-carros" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>. Pode-se observar alguns períodos de queda no volume, por exemplo, próximo de 2015 durante a crise política do país e em 2020 durante a pandemia, onde a demanda chegou a níveis anteriores aos dos anos 2000.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-carros" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-carros-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.3: Vendas de carros no Brasil</figcaption>
+<div id="fig-carros" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-carros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-carros-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-carros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.3: Vendas de carros no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-co2">Figura&nbsp;<span>1.4</span></a> apresenta a série temporal de níveis de <span class="math inline">\(CO_2\)</span> na atmosfera medida no Observatório Mauna Loa, Havaí, desde 1958, <a href="https://climate.nasa.gov/vital-signs/carbon-dioxide">Climate Change - NASA</a>). Observa-se um padrão de crescimento não linear com ciclos sazonais bem definidos.</p>
+<p>A <a href="#fig-co2" class="quarto-xref">Figura&nbsp;<span>1.4</span></a> apresenta a série temporal de níveis de <span class="math inline">\(CO_2\)</span> na atmosfera medida no Observatório Mauna Loa, Havaí, desde 1958, <a href="https://climate.nasa.gov/vital-signs/carbon-dioxide">Climate Change - NASA</a>). Observa-se um padrão de crescimento não linear com ciclos sazonais bem definidos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-co2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.4: Emissões de CO2, Observatório Mauna Loa, Havaí</figcaption>
+<div id="fig-co2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-co2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.4: Emissões de CO2, Observatório Mauna Loa, Havaí
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-co2_">Figura&nbsp;<span>1.5</span></a> plota a série a partir de 2020. Pode-se observar que os períodos sazonais de pico coincidem com o fim doinverno no hemisfério norte, enquanto os vales são observados no período de crescimento das plantas, as quais capturam parte significativa do <span class="math inline">\(CO_2\)</span> da atmosfera.</p>
+<p>A <a href="#fig-co2_" class="quarto-xref">Figura&nbsp;<span>1.5</span></a> plota a série a partir de 2020. Pode-se observar que os períodos sazonais de pico coincidem com o fim doinverno no hemisfério norte, enquanto os vales são observados no período de crescimento das plantas, as quais capturam parte significativa do <span class="math inline">\(CO_2\)</span> da atmosfera.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2_" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-co2_-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.5: Emissões de CO2, a partir de 2020</figcaption>
+<div id="fig-co2_" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-co2_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-co2_-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.5: Emissões de CO2, a partir de 2020
+</figcaption>
 </figure>
 </div>
 </div>
@@ -386,12 +460,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="séries-temporais-multivariadas" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="séries-temporais-multivariadas"><span class="header-section-number">1.2.2</span> Séries temporais multivariadas</h3>
-<p>Na <a href="#tbl-energia1">Tabela&nbsp;<span>1.3</span></a> são exibidas apenas as primeiras observações de séries de produção de quatro tipos de energia para o ano de 2023 no Brasil. Os dados são fornecidos em frequência horária e estão disponíveis em <a href="https://dados.ons.org.br/group/programacao-da-operacao">Dados abertos do operador nacional do sistema elétrico</a>.</p>
+<p>Na <a href="#tbl-energia1" class="quarto-xref">Tabela&nbsp;<span>1.3</span></a> são exibidas apenas as primeiras observações de séries de produção de quatro tipos de energia para o ano de 2023 no Brasil. Os dados são fornecidos em frequência horária e estão disponíveis em <a href="https://dados.ons.org.br/group/programacao-da-operacao">Dados abertos do operador nacional do sistema elétrico</a>.</p>
 <div class="cell">
+<div id="tbl-energia1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.3: Produção de energia no Brasil em 2023
+</figcaption>
+<div aria-describedby="tbl-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-energia1" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;1.3: Produção de energia no Brasil em 2023</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">din_instante</th>
@@ -434,46 +512,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A série temporal multivariada é plotada na <a href="#fig-energia1">Figura&nbsp;<span>1.6</span></a>. Pode-se observar a queda de produção da fonte hidráulica no período mais seco do ano, além da tendência de aumento da energia solar a partir de maio.</p>
+</div>
+<p>A série temporal multivariada é plotada na <a href="#fig-energia1" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>. Pode-se observar a queda de produção da fonte hidráulica no período mais seco do ano, além da tendência de aumento da energia solar a partir de maio.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-energia1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-energia1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.6: Produção de energia no Brasil em 2023</figcaption>
+<div id="fig-energia1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-energia1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.6: Produção de energia no Brasil em 2023
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A mesma série temporal é plotada na <a href="#fig-energia1223">Figura&nbsp;<span>1.7</span></a> para o mês de dezembro de 2023. De forma geral é possível ver o padrão cíclico diário de consumo considerando a sazonalidade diária com maior consumo durante o dia e menor durante a noite.</p>
+<p>A mesma série temporal é plotada na <a href="#fig-energia1223" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> para o mês de dezembro de 2023. De forma geral é possível ver o padrão cíclico diário de consumo considerando a sazonalidade diária com maior consumo durante o dia e menor durante a noite.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-energia1223" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-energia1223-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.7: Produção de energia no Brasil em dezembro de 2023</figcaption>
+<div id="fig-energia1223" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energia1223-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-energia1223-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia1223-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.7: Produção de energia no Brasil em dezembro de 2023
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Outro exemplo de série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis é plotada na <a href="ST4.html#fig-bem">Figura&nbsp;<span>4.5</span></a>, porém em painéis separados. A série foi obtida em <a href="https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil?=&amp;t=series-historicas">Pesquisa industrial mensal - produção física do IBGE</a>. Essa visualização é útil, uma vez que possibilita avaliar melhor o padrão e variabilidade de cada série, permitindo ajustar a escala de cada série de forma individual.</p>
+<p>Outro exemplo de série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis é plotada na <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>, porém em painéis separados. A série foi obtida em <a href="https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil?=&amp;t=series-historicas">Pesquisa industrial mensal - produção física do IBGE</a>. Essa visualização é útil, uma vez que possibilita avaliar melhor o padrão e variabilidade de cada série, permitindo ajustar a escala de cada série de forma individual.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bem" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.8: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
+<div id="fig-bem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.8: Bens de consumo duráveis, intermediários e de consumo não duráveis
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>As últimas observações de mais um exemplo de série temporal multivariada são observadas na <a href="#tbl-tolaju">Tabela&nbsp;<span>1.4</span></a> considerando dados de visualizaçoes de 4 vídeos da playlist Tolerâncias e ajustes do canal da engenharia de manufatura e qualidade.</p>
+<p>As últimas observações de mais um exemplo de série temporal multivariada são observadas na <a href="#tbl-tolaju" class="quarto-xref">Tabela&nbsp;<span>1.4</span></a> considerando dados de visualizaçoes de 4 vídeos da playlist Tolerâncias e ajustes do canal da engenharia de manufatura e qualidade.</p>
 <div class="cell">
+<div id="tbl-tolaju" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.4: Visualizações de vídeos de tolerâncias e ajustes no youtube
+</figcaption>
+<div aria-describedby="tbl-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-tolaju" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;1.4: Visualizações de vídeos de tolerâncias e ajustes no youtube</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Date</th>
@@ -516,25 +612,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A série multivariada é plotada na <a href="#fig-tolaju">Figura&nbsp;<span>1.9</span></a>. A série inicia em 2018, ano de início do canal, porém só tem dados segundo a data de lançamento de cada vídeo.</p>
+</div>
+<p>A série multivariada é plotada na <a href="#fig-tolaju" class="quarto-xref">Figura&nbsp;<span>1.9</span></a>. A série inicia em 2018, ano de início do canal, porém só tem dados segundo a data de lançamento de cada vídeo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-tolaju" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-tolaju-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.9: Visualizações de vídeos de tolerâncias e ajustes no youtube</figcaption>
+<div id="fig-tolaju" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-tolaju-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.9: Visualizações de vídeos de tolerâncias e ajustes no youtube
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A série do vídeo 4 a partir de setembro de 2018 é exibida na <a href="#fig-tol4">Figura&nbsp;<span>1.10</span></a>.</p>
+<p>A série do vídeo 4 a partir de setembro de 2018 é exibida na <a href="#fig-tol4" class="quarto-xref">Figura&nbsp;<span>1.10</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-tol4" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-tol4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.10: Visualizações do vídeo 4</figcaption>
+<div id="fig-tol4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tol4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-tol4-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tol4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.10: Visualizações do vídeo 4
+</figcaption>
 </figure>
 </div>
 </div>
@@ -542,46 +648,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="graficos-de-sazonalidade" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="graficos-de-sazonalidade"><span class="header-section-number">1.2.3</span> Graficos de sazonalidade</h3>
-<p>Pode-se visualizar os dados da série do vídeo 4 em subséries anuais, de forma a ver a sazonalidade presente nos dados. A <a href="#fig-saz4">Figura&nbsp;<span>1.11</span></a> expõe o gráfico. Os dados foram agregados mensalmente. Pode-se visualizar os picos de visualizações de Abril a Junho e de Setembro a Outubro, coincidindo com períodos de picos de estudos nos dois semestres anuais.</p>
+<p>Pode-se visualizar os dados da série do vídeo 4 em subséries anuais, de forma a ver a sazonalidade presente nos dados. A <a href="#fig-saz4" class="quarto-xref">Figura&nbsp;<span>1.11</span></a> expõe o gráfico. Os dados foram agregados mensalmente. Pode-se visualizar os picos de visualizações de Abril a Junho e de Setembro a Outubro, coincidindo com períodos de picos de estudos nos dois semestres anuais.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-saz4" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-saz4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.11: Gráfico sazonal: Visualizações do vídeo 4</figcaption>
+<div id="fig-saz4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-saz4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-saz4-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saz4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.11: Gráfico sazonal: Visualizações do vídeo 4
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se plotar o gráfico sazonal visualizando a variação anual dentro de cada mês, conforme <a href="#fig-saz4_">Figura&nbsp;<span>1.12</span></a>.</p>
+<p>Pode-se plotar o gráfico sazonal visualizando a variação anual dentro de cada mês, conforme <a href="#fig-saz4_" class="quarto-xref">Figura&nbsp;<span>1.12</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-saz4_" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-saz4_-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.12: Gráfico de subséries sazonais: Visualizações do vídeo 4</figcaption>
+<div id="fig-saz4_" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-saz4_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-saz4_-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saz4_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.12: Gráfico de subséries sazonais: Visualizações do vídeo 4
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O gráfico sazonal também pode ser útil no caso da série de emissões de CO2, conforme <a href="#fig-co2saz">Figura&nbsp;<span>1.13</span></a>. Observa-se claramente a sazonalidade com pico próximo de maio e declínio próximo de outubro. A tendência de aumento anual de emissões também fica clara na escala de cor que, neste caso, identifica o ano.</p>
+<p>O gráfico sazonal também pode ser útil no caso da série de emissões de CO2, conforme <a href="#fig-co2saz" class="quarto-xref">Figura&nbsp;<span>1.13</span></a>. Observa-se claramente a sazonalidade com pico próximo de maio e declínio próximo de outubro. A tendência de aumento anual de emissões também fica clara na escala de cor que, neste caso, identifica o ano.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2saz" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-co2saz-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.13: Gráfico sazonal de Emissões de CO2</figcaption>
+<div id="fig-co2saz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-co2saz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-co2saz-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2saz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.13: Gráfico sazonal de Emissões de CO2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O gráfico de subséries sazonais, plotado na <a href="#fig-co2_saz_">Figura&nbsp;<span>1.14</span></a>, deixa clara a tendência de aumento de emissões desde o início da série, independente do mês e a sazonalidade com pico em maio e vale em outubro.</p>
+<p>O gráfico de subséries sazonais, plotado na <a href="#fig-co2_saz_" class="quarto-xref">Figura&nbsp;<span>1.14</span></a>, deixa clara a tendência de aumento de emissões desde o início da série, independente do mês e a sazonalidade com pico em maio e vale em outubro.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2_saz_" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-co2_saz_-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.14: Gráfico de subséries sazonais: Emissões de CO2</figcaption>
+<div id="fig-co2_saz_" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-co2_saz_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-co2_saz_-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2_saz_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.14: Gráfico de subséries sazonais: Emissões de CO2
+</figcaption>
 </figure>
 </div>
 </div>
@@ -589,13 +711,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="correlação-entre-séries" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="correlação-entre-séries"><span class="header-section-number">1.2.4</span> Correlação entre séries</h3>
-<p>A <a href="ST4.html#fig-bens_pairs">Figura&nbsp;<span>4.6</span></a> exibe diagramas de dispersão e correlações aos pares para a série multivaria de produção de bens exposta na Figura <a href="ST4.html#fig-bem">Figura&nbsp;<span>4.5</span></a>. Pode-se confirmar a alta relação linear entre tais índices, com correlação linear positiva variando de 0,70 a 0,84.</p>
+<p>A <a href="ST4.html#fig-bens_pairs" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> exibe diagramas de dispersão e correlações aos pares para a série multivaria de produção de bens exposta na Figura <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>. Pode-se confirmar a alta relação linear entre tais índices, com correlação linear positiva variando de 0,70 a 0,84.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bens_pairs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-bens_pairs-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.15: Bens de consumo duráveis, intermediários e de consumo não duráveis</figcaption>
+<div id="fig-bens_pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bens_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-bens_pairs-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bens_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.15: Bens de consumo duráveis, intermediários e de consumo não duráveis
+</figcaption>
 </figure>
 </div>
 </div>
@@ -603,12 +729,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="gráficos-de-decomposição" class="level3" data-number="1.2.5">
 <h3 data-number="1.2.5" class="anchored" data-anchor-id="gráficos-de-decomposição"><span class="header-section-number">1.2.5</span> Gráficos de decomposição</h3>
-<p>Existem diversas formas de decompor séries temporais. A <a href="#tbl-co2decomp">Tabela&nbsp;<span>1.5</span></a> expõe os resultados de uma decomposição aditiva da série CO2. A componente cíclica é removida e o restante é suavizado para encontrar uma tendência. O resíduo consiste na diferença entre a série original e a soma da tendência e da componente sazonal.</p>
+<p>Existem diversas formas de decompor séries temporais. A <a href="#tbl-co2decomp" class="quarto-xref">Tabela&nbsp;<span>1.5</span></a> expõe os resultados de uma decomposição aditiva da série CO2. A componente cíclica é removida e o restante é suavizado para encontrar uma tendência. O resíduo consiste na diferença entre a série original e a soma da tendência e da componente sazonal.</p>
 <div class="cell">
+<div id="tbl-co2decomp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.5: Decomposição da série de níveis de CO2 na atmosfera
+</figcaption>
+<div aria-describedby="tbl-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-co2decomp" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;1.5: Decomposição da série de níveis de CO2 na atmosfera</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;">CO2</th>
@@ -665,14 +795,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-co2decomp">Figura&nbsp;<span>1.16</span></a> expõe o resultado da decomposição da série de emissões de CO2. Observa-se claramente a separação da tendência e do padrão sazonal da série, facilitando a interpretação desta.</p>
+</div>
+<p>A <a href="#fig-co2decomp" class="quarto-xref">Figura&nbsp;<span>1.16</span></a> expõe o resultado da decomposição da série de emissões de CO2. Observa-se claramente a separação da tendência e do padrão sazonal da série, facilitando a interpretação desta.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2decomp" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-co2decomp-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.16: Gráficos de decomposição da série de níveis de CO2 na atmosfera</figcaption>
+<div id="fig-co2decomp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-co2decomp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.16: Gráficos de decomposição da série de níveis de CO2 na atmosfera
+</figcaption>
 </figure>
 </div>
 </div>
@@ -680,13 +816,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="gráficos-de-previsão" class="level3" data-number="1.2.6">
 <h3 data-number="1.2.6" class="anchored" data-anchor-id="gráficos-de-previsão"><span class="header-section-number">1.2.6</span> Gráficos de previsão</h3>
-<p>A Figura <a href="ST4.html#fig-temp_pred_">Figura&nbsp;<span>4.16</span></a> exibe a série de temperatura instantânea na cidade de São joão del-Rei dos dias 15 a 28 de maio. Os dados foram obtidos em <a href="https://tempo.inmet.gov.br/TabelaEstacoes/A001">Instituto Nacional de Meteorologia</a>. Observa-se que a série plotada em cor preta exibe comportamento cíclico dado a variação diária entre a temperatura mínima, que varia de 8 a 13 ºC, e a máxima diárias, que gira em torno de 25 a 28 ºC no período. Também é possível observar uma tendência de aumento na temperatura nos dias considerados. A Figura expõe a previsão para dois dias à frente em azul, com intervalos de confiança de 80 a 90%.</p>
+<p>A Figura <a href="ST4.html#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> exibe a série de temperatura instantânea na cidade de São joão del-Rei dos dias 15 a 28 de maio. Os dados foram obtidos em <a href="https://tempo.inmet.gov.br/TabelaEstacoes/A001">Instituto Nacional de Meteorologia</a>. Observa-se que a série plotada em cor preta exibe comportamento cíclico dado a variação diária entre a temperatura mínima, que varia de 8 a 13 ºC, e a máxima diárias, que gira em torno de 25 a 28 ºC no período. Também é possível observar uma tendência de aumento na temperatura nos dias considerados. A Figura expõe a previsão para dois dias à frente em azul, com intervalos de confiança de 80 a 90%.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-temp_pred_" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST1_files/figure-html/fig-temp_pred_-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;1.17: Previsão da temperatura em São João del-Rei</figcaption>
+<div id="fig-temp_pred_" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-temp_pred_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-temp_pred_-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp_pred_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.17: Previsão da temperatura em São João del-Rei
+</figcaption>
 </figure>
 </div>
 </div>
@@ -855,9 +995,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="execícios-propostos" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="execícios-propostos"><span class="header-section-number">1.4</span> Execícios propostos</h2>
 <ol type="1">
-<li><p>Faça o gráfico da série temporal multivariada de produção de energia para o mês de dezembro de 2023.</p></li>
-<li><p>Faça o gráfico anterior em painéis separados.</p></li>
-<li><p>O código abaixo carrega os dados da série de visualização de vídeos do youtube. Obtenha o gráfico da série do vídeo 4.</p></li>
+<li>Faça o gráfico da série temporal multivariada de produção de energia para o mês de dezembro de 2023.</li>
+</ol>
+<ol start="2" type="1">
+<li>Faça o gráfico anterior em painéis separados.</li>
+</ol>
+<ol start="3" type="1">
+<li>O código abaixo carrega os dados da série de visualização de vídeos do youtube. Obtenha o gráfico da série do vídeo 4.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tolerancia_ajuste.csv"</span>)</span>
@@ -918,18 +1062,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -961,11 +1094,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -975,8 +1147,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -988,7 +1169,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1032,6 +1336,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1057,6 +1362,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1118,17 +1449,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link" aria-label="Prefácio">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ST2.html" class="pagination-link">
+      <a href="./ST2.html" class="pagination-link" aria-label="Análise descritiva, métodos simples de previsão e diagnóstico">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise descritiva, métodos simples de previsão e diagnóstico</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>Séries Temporais e Previsão - 6&nbsp; Modelos auto-regressivos integrados de médias móveis (ARIMA)</title>
+<title>6&nbsp; Modelos auto-regressivos integrados de médias móveis (ARIMA) – Séries Temporais e Previsão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -50,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./ST7.html" rel="next">
 <link href="./ST5.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -67,7 +68,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -76,13 +83,42 @@ div.csl-indent {
     "search-more-match-text": "mais correspondência neste documento",
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -92,12 +128,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -107,7 +143,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Séries Temporais e Previsão</a> 
@@ -164,6 +200,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ST7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -171,7 +213,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -219,18 +261,24 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="estacionariedade-em-séries-temporais" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="estacionariedade-em-séries-temporais"><span class="header-section-number">6.1</span> Estacionariedade em séries temporais</h2>
 <p>As séries temporais estacionárias são aquelas que não apresentam tendência ou sazonalidade, de forma que suas propriedades não dependam do tempo. Um ruído branco é um exemplo de série estacionária. Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
-<p>A <a href="#fig-series">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionária. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
+<p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionária. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-series" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-series-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.1: Exemplos de séries temporais estacionária, com tendência e sazonalidade</figcaption>
+<div id="fig-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-series-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.1: Exemplos de séries temporais estacionária, com tendência e sazonalidade
+</figcaption>
 </figure>
 </div>
 </div>
@@ -250,16 +298,20 @@ y_t-y_{t-1} = \varepsilon_t
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
-<p>A <a href="#fig-difcor">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlagramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
+<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlagramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = c+\varepsilon_t
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-difcor" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-difcor-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.2: Série temporal não estacionária, diferenciação e autocorrelação</figcaption>
+<div id="fig-difcor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-difcor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-difcor-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-difcor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.2: Série temporal não estacionária, diferenciação e autocorrelação
+</figcaption>
 </figure>
 </div>
 </div>
@@ -277,13 +329,17 @@ y_t'' &amp;= y_t'-y_{t-1}' \\
 <p><span class="math display">\[
 y_t'= y_t - y_{t-m}
 \]</span></p>
-<p>A <a href="#fig-voosdiff">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span> e, em seguida, outra diferenciação porém mensal, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
+<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span> e, em seguida, outra diferenciação porém mensal, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-voosdiff" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-voosdiff-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.3: Passageiros em vôos do Brasil: série original, log da série, variação sazonal e variação de segunda ordem</figcaption>
+<div id="fig-voosdiff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-voosdiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-voosdiff-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voosdiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.3: Passageiros em vôos do Brasil: série original, log da série, variação sazonal e variação de segunda ordem
+</figcaption>
 </figure>
 </div>
 </div>
@@ -299,12 +355,16 @@ y'' &amp;= y'-y'_{t-1} \\
 </section>
 <section id="testes-de-raízes-unitárias" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="testes-de-raízes-unitárias"><span class="header-section-number">6.1.2</span> Testes de raízes unitárias</h3>
-<p>Os testes de raízes unitárias servem para avaliar se a série apresenta ou não estacionariedade. O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste reporta 0,01, se o p-valor for menor que 0.01 e reporta 0.1, se o p-valor for maior que 0,1. A <a href="#tbl-kpss1">Tabela&nbsp;<span>6.1</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série.</p>
+<p>Os testes de raízes unitárias servem para avaliar se a série apresenta ou não estacionariedade. O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste reporta 0,01, se o p-valor for menor que 0.01 e reporta 0.1, se o p-valor for maior que 0,1. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série.</p>
 <div class="cell">
+<div id="tbl-kpss1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.1: Teste KPSS para o índice Ibovespa
+</figcaption>
+<div aria-describedby="tbl-kpss1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-kpss1" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.1: Teste KPSS para o índice Ibovespa</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;">kpss_stat</th>
@@ -319,6 +379,8 @@ y'' &amp;= y'-y'_{t-1} \\
 </tbody>
 </table>
 </div>
+</div>
+</figure>
 </div>
 </div>
 </section>
@@ -361,13 +423,17 @@ y_t &amp;= c+\phi_1y_{t-1} + \phi_2y_{t-2} + \ldots + \phi_py_{t-p} + \varepsilo
 &amp;(1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
 \end{align}
 \]</span></p>
-<p>A Figura <a href="#fig-ar">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na Figura <a href="#fig-ar">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
+<p>A Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ar" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-ar-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.4: Processos autorregressivos</figcaption>
+<div id="fig-ar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-ar-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.4: Processos autorregressivos
+</figcaption>
 </figure>
 </div>
 </div>
@@ -398,13 +464,17 @@ y_t&amp;=c+\varepsilon_t+\theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} +
 \]</span></p>
 <p>Como os valores do erro não são observados este modelo não é uma regressão habitual.</p>
 <p>É importante também diferenciar os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para suavização. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, os modelos de suavização visam estimar a tendência de observações passadas de séries temporais.</p>
-<p>A Figura <a href="#fig-ma">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
+<p>A Figura <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ma" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-ma-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.5: Processos de média móvel</figcaption>
+<div id="fig-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-ma-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.5: Processos de média móvel
+</figcaption>
 </figure>
 </div>
 </div>
@@ -431,10 +501,14 @@ y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1
 &amp;(1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t
 \end{align}
 \]</span></p>
-<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo com grau <span class="math inline">\(p\)</span> para a parte autorregressiva, com diferenciação de ordem <span class="math inline">\(d\)</span> e com grau <span class="math inline">\(q\)</span> para a parte de média móvel. A <a href="#tbl-casosarima">Tabela&nbsp;<span>6.2</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
-<div id="tbl-casosarima" class="anchored">
-<table class="table">
-<caption>Tabela&nbsp;6.2: Casos especiais e modelos ARIMA correspondentes</caption>
+<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo com grau <span class="math inline">\(p\)</span> para a parte autorregressiva, com diferenciação de ordem <span class="math inline">\(d\)</span> e com grau <span class="math inline">\(q\)</span> para a parte de média móvel. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
+<div id="tbl-casosarima" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.2: Casos especiais e modelos ARIMA correspondentes
+</figcaption>
+<div aria-describedby="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Caso especial</th>
@@ -465,13 +539,19 @@ y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1
 </tbody>
 </table>
 </div>
-<p>A <a href="#fig-coque">Figura&nbsp;<span>6.6</span></a> expõe a série temporal do volume de produção de coque no Brasil a partir de 2021.</p>
+</figure>
+</div>
+<p>A <a href="#fig-coque" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> expõe a série temporal do volume de produção de coque no Brasil a partir de 2021.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-coque" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-coque-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.6: Volume de produção de coque no Brasil</figcaption>
+<div id="fig-coque" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-coque-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.6: Volume de produção de coque no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
@@ -495,24 +575,32 @@ AIC=1039.35   AICc=1039.95   BIC=1044.7</code></pre>
 <p><span class="math display">\[
 y_t = 271035,56 + 0,28y_{t-1} + \varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-for_fitcoque">Figura&nbsp;<span>6.7</span></a> expõe a previsão de 10 meses à frente usando tal modelo.</p>
+<p>A <a href="#fig-for_fitcoque" class="quarto-xref">Figura&nbsp;<span>6.7</span></a> expõe a previsão de 10 meses à frente usando tal modelo.</p>
 <div class="cell" data-tbl-cap="Previsão para 10 meses via ARIMA para a série de volume de produção de coque no Brasil">
 <div class="cell-output-display">
-<div id="fig-for_fitcoque" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-for_fitcoque-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.7: <strong>?(caption)</strong></figcaption>
+<div id="fig-for_fitcoque" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-for_fitcoque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-for_fitcoque-1.png" id="fig-for_fitcoque" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-for_fitcoque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.7
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-vale20">Figura&nbsp;<span>6.8</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2020.</p>
+<p>A <a href="#fig-vale20" class="quarto-xref">Figura&nbsp;<span>6.8</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2020.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-vale20" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-vale20-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.8: Série temporal do valor da ação VALE3</figcaption>
+<div id="fig-vale20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vale20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-vale20-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vale20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.8: Série temporal do valor da ação VALE3
+</figcaption>
 </figure>
 </div>
 </div>
@@ -536,24 +624,32 @@ AIC=282.53   AICc=284.74   BIC=293.37</code></pre>
 <p><span class="math display">\[
 y_t = 23,94 + 1,46y_{t-1} - 0,79y_{t-2} -0,64\varepsilon_{t-1} + 0,48\varepsilon_{t-2} + \varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-resi">Figura&nbsp;<span>6.9</span></a> expõe os gráficos dos resíduos do modelo ARIMA(2,0,2) aplicado à série do preço da ação VALE3. Observa-se um padrão de ruído branco, com ausência de autocorrelação.</p>
+<p>A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>6.9</span></a> expõe os gráficos dos resíduos do modelo ARIMA(2,0,2) aplicado à série do preço da ação VALE3. Observa-se um padrão de ruído branco, com ausência de autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-resi" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-resi-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.9: Resíduos do modelo ARIMA(2,0,2) para a série do valor da ação VALE3</figcaption>
+<div id="fig-resi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-resi-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.9: Resíduos do modelo ARIMA(2,0,2) para a série do valor da ação VALE3
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Conforme <a href="#fig-for_vale10">Figura&nbsp;<span>6.10</span></a>, dada a previsão 10 meses à frente exibida, o modelo capturou bem o padrão cíclico não sazonal da série.</p>
+<p>Conforme <a href="#fig-for_vale10" class="quarto-xref">Figura&nbsp;<span>6.10</span></a>, dada a previsão 10 meses à frente exibida, o modelo capturou bem o padrão cíclico não sazonal da série.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-for_vale10" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-for_vale10-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.10: Série temporal do valor da ação VALE3</figcaption>
+<div id="fig-for_vale10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-for_vale10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-for_vale10-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-for_vale10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.10: Série temporal do valor da ação VALE3
+</figcaption>
 </figure>
 </div>
 </div>
@@ -571,13 +667,17 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \the
 <h2 data-number="6.5" class="anchored" data-anchor-id="autocorrelação-parcial"><span class="header-section-number">6.5</span> Autocorrelação parcial</h2>
 <p>A autocorrelação <span class="math inline">\(r_k\)</span> mede a relação linear entre a série original <span class="math inline">\(y_t\)</span> e a série defasada <span class="math inline">\(y_{t-k}\)</span>. Entretanto, se <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span> são correlacionadas, então <span class="math inline">\(y_{t-1}\)</span> e <span class="math inline">\(y_{t-2}\)</span> também o serão. Logo, haverá correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span>. Porém, não porque há uma explicação plausível para <span class="math inline">\(y_t\)</span> a partir de <span class="math inline">\(y_{t-2}\)</span>, mas simplesmente porque ambas estão relacionadas indiretamente por <span class="math inline">\(y_{t-1}\)</span>.</p>
 <p>A autocorrelação parcial visa corrigir o problema da autocorrelação, medindo mais diretamente a relação linear entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-k}\)</span> desconsiderando os efeitos das defasagens anteriores, <span class="math inline">\(1,2,\ldots, k-1\)</span>.</p>
-<p>A <a href="#fig-acfpacf">Figura&nbsp;<span>6.11</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
+<p>A <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.11</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-acfpacf" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-acfpacf-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.11: Autocorrelação e autocorrelação parcial da série VALE3</figcaption>
+<div id="fig-acfpacf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-acfpacf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-acfpacf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-acfpacf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.11: Autocorrelação e autocorrelação parcial da série VALE3
+</figcaption>
 </figure>
 </div>
 </div>
@@ -592,7 +692,7 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \the
 <li>A autocorrelação (ACF) decai exponencialmente ou tem padrão senoidal;</li>
 <li>Há significância na autocorrelação parcial (PACF) de lag <span class="math inline">\(p\)</span>, mas não além deste.</li>
 </ul>
-<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da Figura <a href="#fig-acfpacf">Figura&nbsp;<span>6.11</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
+<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da Figura <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.11</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: Valor 
@@ -633,34 +733,46 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 <li>Avalie os resíduos do modelo selecionado;</li>
 <li>Realize previsões com o modelo.</li>
 </ol>
-<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série plotada na <a href="#fig-graos">Figura&nbsp;<span>6.12</span></a>, de produção de grãos no Brasil em toneladas. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
-<p>A <a href="#fig-graos-bc">Figura&nbsp;<span>6.13</span></a> apresenta a série após transformação com <span class="math inline">\(\lambda=0,6264\)</span>.</p>
+<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série plotada na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a>, de produção de grãos no Brasil em toneladas. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
+<p>A <a href="#fig-graos-bc" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> apresenta a série após transformação com <span class="math inline">\(\lambda=0,6264\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-graos" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.12: Produção de grãos no Brasil em toneladas</figcaption>
+<div id="fig-graos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-graos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.12: Produção de grãos no Brasil em toneladas
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-graos-bc" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-graos-bc-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.13: Série de produção de grãos no Brasil com transformação de Box-Cox</figcaption>
+<div id="fig-graos-bc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graos-bc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-graos-bc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos-bc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.13: Série de produção de grãos no Brasil com transformação de Box-Cox
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-kpss_graos">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste de KPSS para a série transformada, indicando a rejeição da hipótese nula de estacionariedade desta.</p>
+<p>A <a href="#tbl-kpss_graos" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste de KPSS para a série transformada, indicando a rejeição da hipótese nula de estacionariedade desta.</p>
 <div class="cell">
+<div id="tbl-kpss_graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.3: Teste KPSS para a série de produção de grãos
+</figcaption>
+<div aria-describedby="tbl-kpss_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-kpss_graos" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.3: Teste KPSS para a série de produção de grãos</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;">kpss_stat</th>
@@ -676,25 +788,35 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-graos-diff">Figura&nbsp;<span>6.14</span></a> apresenta a variação da série transformada. Confirma-se estacionariedade após diferenciação de primeira ordem. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta.</p>
+</div>
+<p>A <a href="#fig-graos-diff" class="quarto-xref">Figura&nbsp;<span>6.14</span></a> apresenta a variação da série transformada. Confirma-se estacionariedade após diferenciação de primeira ordem. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-graos-diff" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-graos-diff-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.14: Variação na produção de grãos no Brasil em toneladas</figcaption>
+<div id="fig-graos-diff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graos-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-graos-diff-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.14: Variação na produção de grãos no Brasil em toneladas
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-graos-autocorr">Figura&nbsp;<span>6.15</span></a> expõe os correlogramas de ACF e PACF para a série diferenciada e transformada. Observa-se que o primeiro indica um modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>, enquanto segundo indica um modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>.</p>
+<p>A <a href="#fig-graos-autocorr" class="quarto-xref">Figura&nbsp;<span>6.15</span></a> expõe os correlogramas de ACF e PACF para a série diferenciada e transformada. Observa-se que o primeiro indica um modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>, enquanto segundo indica um modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-graos-autocorr" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-graos-autocorr-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.15: Autocorrelação e autocorrelação parcial da série de produção de grãos</figcaption>
+<div id="fig-graos-autocorr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graos-autocorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-graos-autocorr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos-autocorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.15: Autocorrelação e autocorrelação parcial da série de produção de grãos
+</figcaption>
 </figure>
 </div>
 </div>
@@ -731,23 +853,31 @@ sigma^2 estimated as 18159:  log likelihood=-289.89
 AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-resi-graos">Figura&nbsp;<span>6.16</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série diferenciada e transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
+<p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.16</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série diferenciada e transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-resi-graos" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-resi-graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.16: Resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
+<div id="fig-resi-graos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resi-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-resi-graos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resi-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.16: Resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ljungbox-graos">Tabela&nbsp;<span>6.4</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
+<p>A <a href="#tbl-ljungbox-graos" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
 <div class="cell">
+<div id="tbl-ljungbox-graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.4: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
+</figcaption>
+<div aria-describedby="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ljungbox-graos" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.4: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -765,14 +895,20 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-for_graos">Figura&nbsp;<span>6.17</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2033 é de 397000 toneladas de grãos.</p>
+</div>
+<p>A <a href="#fig-for_graos" class="quarto-xref">Figura&nbsp;<span>6.17</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2033 é de 397000 toneladas de grãos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-for_graos" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-for_graos-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.17: Previsão com o modelo ARIMA(1,1,0) para a série de produção de grãos</figcaption>
+<div id="fig-for_graos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-for_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-for_graos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-for_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.17: Previsão com o modelo ARIMA(1,1,0) para a série de produção de grãos
+</figcaption>
 </figure>
 </div>
 </div>
@@ -785,34 +921,46 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 <p><span class="math display">\[
 (1-\phi_1B)(1-\Phi_1B^{12})(1-B)(1-B^{12})y_t = c+( 1+\theta_1B)( 1+\Theta_1B^{12})\varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-passbr-dif12">Figura&nbsp;<span>6.18</span></a> expõe a variação sazonal da sériede log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
+<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.18</span></a> expõe a variação sazonal da sériede log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-passbr-dif12" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-passbr-dif12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.18: Variação sazonal no log(passageiros) de vôos no Brasil</figcaption>
+<div id="fig-passbr-dif12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-passbr-dif12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-passbr-dif12-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-dif12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.18: Variação sazonal no log(passageiros) de vôos no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12-1">Figura&nbsp;<span>6.19</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
+<p>A <a href="#fig-passbr-dif12-1" class="quarto-xref">Figura&nbsp;<span>6.19</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-passbr-dif12-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-passbr-dif12-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.19: Série de passageiros de vôos no Brasil</figcaption>
+<div id="fig-passbr-dif12-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-passbr-dif12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-passbr-dif12-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-dif12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.19: Série de passageiros de vôos no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_">Tabela&nbsp;<span>6.5</span></a>, muito próximo dos considerados inicialmente.</p>
+<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_" class="quarto-xref">Tabela&nbsp;<span>6.5</span></a>, muito próximo dos considerados inicialmente.</p>
 <div class="cell">
+<div id="tbl-arima_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.5: Modelos ARIMA testados para a série log(passageiros)
+</figcaption>
+<div aria-describedby="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-arima_" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.5: Modelos ARIMA testados para a série log(passageiros)</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Modelo</th>
@@ -836,13 +984,19 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#tbl-arima_res">Tabela&nbsp;<span>6.6</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
+</div>
+<p>A <a href="#tbl-arima_res" class="quarto-xref">Tabela&nbsp;<span>6.6</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
 <div class="cell">
+<div id="tbl-arima_res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.6: Resultados dos modelos ARIMA testados para a série log(passageiros)
+</figcaption>
+<div aria-describedby="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-arima_res" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.6: Resultados dos modelos ARIMA testados para a série log(passageiros)</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -882,6 +1036,8 @@ AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <p>A seguir são apresentados os coeficientes do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>.</p>
 <div class="cell">
@@ -899,23 +1055,31 @@ sigma^2 estimated as 0.001045:  log likelihood=455.1
 AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-passbr-res">Figura&nbsp;<span>6.20</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para defasagem de 11, 13 e 22 observações.</p>
+<p>A <a href="#fig-passbr-res" class="quarto-xref">Figura&nbsp;<span>6.20</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para defasagem de 11, 13 e 22 observações.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-passbr-res" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-passbr-res-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.20: Série de passageiros de vôos no Brasil</figcaption>
+<div id="fig-passbr-res" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-passbr-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-passbr-res-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.20: Série de passageiros de vôos no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-lb_auto">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
+<p>A <a href="#tbl-lb_auto" class="quarto-xref">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
+<div id="tbl-lb_auto" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.7: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)
+</figcaption>
+<div aria-describedby="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-lb_auto" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.7: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -933,46 +1097,64 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-passbr-for">Figura&nbsp;<span>6.21</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem a tendência dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada em volume de passageiros em vôos do Brasil.</p>
+</div>
+<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.21</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem a tendência dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada em volume de passageiros em vôos do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-passbr-for" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-passbr-for-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.21: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil</figcaption>
+<div id="fig-passbr-for" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-passbr-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-passbr-for-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.21: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prodndur">Figura&nbsp;<span>6.22</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
+<p>A <a href="#fig-prodndur" class="quarto-xref">Figura&nbsp;<span>6.22</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prodndur" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-prodndur-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.22: Produção mensal de bens não duráveis no Brasil</figcaption>
+<div id="fig-prodndur" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prodndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-prodndur-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prodndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.22: Produção mensal de bens não duráveis no Brasil
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_diff12">Figura&nbsp;<span>6.23</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
+<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.23</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ndur_diff12" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-ndur_diff12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.23: Variação sazonal na produção de bens de consumo não duráveis</figcaption>
+<div id="fig-ndur_diff12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ndur_diff12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-ndur_diff12-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur_diff12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.23: Variação sazonal na produção de bens de consumo não duráveis
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur">Tabela&nbsp;<span>6.8</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
+<p>A <a href="#tbl-arima_ndur" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
 <div class="cell">
+<div id="tbl-arima_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.8: Modelos ARIMA testados para a série de bens não duráveis
+</figcaption>
+<div aria-describedby="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-arima_ndur" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.8: Modelos ARIMA testados para a série de bens não duráveis</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
@@ -995,13 +1177,19 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#tbl-arima_ndur_">Tabela&nbsp;<span>6.9</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
+</div>
+<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
 <div class="cell">
+<div id="tbl-arima_ndur_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.9: Resultados dos ARIMA testados para a série de bens não duráveis
+</figcaption>
+<div aria-describedby="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-arima_ndur_" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.9: Resultados dos ARIMA testados para a série de bens não duráveis</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -1033,23 +1221,33 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-ndur_res">Figura&nbsp;<span>6.24</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur">Tabela&nbsp;<span>6.10</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+</div>
+<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ndur_res" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-ndur_res-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.24: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis</figcaption>
+<div id="fig-ndur_res" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ndur_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-ndur_res-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.24: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
+<div id="tbl-lbox_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.10: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis
+</figcaption>
+<div aria-describedby="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-lbox_ndur" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.10: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
@@ -1069,24 +1267,34 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>A <a href="#fig-ndur-for">Figura&nbsp;<span>6.25</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
+</div>
+<p>A <a href="#fig-ndur-for" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ndur-for" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ST6_files/figure-html/fig-ndur-for-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figura&nbsp;6.25: Previsão para 3 anos à frente para a série de bens de consumo não duráveis</figcaption>
+<div id="fig-ndur-for" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ndur-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-ndur-for-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.25: Previsão para 3 anos à frente para a série de bens de consumo não duráveis
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-metrics_ndur">Tabela&nbsp;<span>6.11</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
+<p>A <a href="#tbl-metrics_ndur" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
 <div class="cell">
+<div id="tbl-metrics_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.11: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
+</figcaption>
+<div aria-describedby="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-metrics_ndur" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Tabela&nbsp;6.11: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis</caption>
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">.model</th>
@@ -1112,10 +1320,12 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-hyndman2008automatic" class="csl-entry" role="listitem">
 Hyndman, Rob J, e Yeasmin Khandakar. 2008. <span>«Automatic time series forecasting: the forecast package for R»</span>. <em>Journal of statistical software</em> 27: 1–22.
 </div>
@@ -1158,18 +1368,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1201,11 +1400,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1215,8 +1453,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1228,7 +1475,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1272,6 +1642,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1297,6 +1668,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1358,17 +1755,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ST5.html" class="pagination-link">
+      <a href="./ST5.html" class="pagination-link" aria-label="Suavização exponencial">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Suavização exponencial</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">Referências</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ST7.html" class="pagination-link" aria-label="Regressão dinâmica">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão dinâmica</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
