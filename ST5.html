@@ -231,8 +231,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#modelos-de-ets-e-definição-de-espaço-de-estados" id="toc-modelos-de-ets-e-definição-de-espaço-de-estados" class="nav-link" data-scroll-target="#modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</a>
   <ul class="collapse">
-  <li><a href="#modelo-de-holt-winter-aditivo-etsaaa" id="toc-modelo-de-holt-winter-aditivo-etsaaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter aditivo, ETS(A,A,A)</a></li>
-  <li><a href="#modelo-de-holt-winter-multiplicativo-etsmaa" id="toc-modelo-de-holt-winter-multiplicativo-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winter-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter multiplicativo, ETS(M,A,A)</a></li>
+  <li><a href="#modelo-de-holt-winters-aditivo-etsaaa" id="toc-modelo-de-holt-winters-aditivo-etsaaa" class="nav-link" data-scroll-target="#modelo-de-holt-winters-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winters aditivo, ETS(A,A,A)</a></li>
+  <li><a href="#modelo-de-holt-winters-multiplicativo-etsmaa" id="toc-modelo-de-holt-winters-multiplicativo-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winters-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters multiplicativo, ETS(M,A,A)</a></li>
   </ul></li>
   <li><a href="#previsão-e-intervalo-de-confiança-com-ets" id="toc-previsão-e-intervalo-de-confiança-com-ets" class="nav-link" data-scroll-target="#previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</a></li>
   </ul>
@@ -605,7 +605,7 @@ Figura&nbsp;5.5: Emissões de gases de efeito estufa pela indústria
 <section id="suavização-exponencial-com-sazonalidade" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="suavização-exponencial-com-sazonalidade"><span class="header-section-number">5.3</span> Suavização exponencial com sazonalidade</h2>
 <p><span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> e <span class="citation" data-cites="Winters1960">Winters (<a href="references.html#ref-Winters1960" role="doc-biblioref">1960</a>)</span> consideraram a sazonalidade na suavização exponencial. Logo, além das equações de previsão, nível e tendência, o método inclui uma equação adicional para a sazonalidade. O método considera ambos os casos aditivo e multiplicativo.</p>
-<p>O método Holt-Winter aditivo compreende as equações à seguir:</p>
+<p>O método Holt-Winters aditivo compreende as equações à seguir:</p>
 <p><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + hb_t + s_{t+h-m(k+1)}\\
@@ -718,8 +718,8 @@ l_t &amp;= l_{t-1} + \alpha(y_t-l_{t-1}) \\
 <p>onde <span class="math inline">\(e_t=y_t-l_{t-1}=y_t - \hat{y}_{t|t-1}\)</span> é o resíduo no tempo <span class="math inline">\(t\)</span>. Pode-se, portanto, considerar que a observação de treino é igual ao nível anterior mais o erro, <span class="math inline">\(y_t=l_{t-1}+e_t\)</span>. Logo, deve-se assumir os resíduos como ruído branco, <span class="math inline">\(e_t = \varepsilon_t \sim NID(0,\sigma_\varepsilon^2)\)</span> ou normalmente e identicamente distribuídos.</p>
 <p>Quando o erro é multiplicativo no caso simples tem-se <span class="math inline">\(e_t=(y_t - \hat{y}_{t|t-1})/\hat{y}_{t|t-1}\)</span>.</p>
 <p>A título de exemplo serão apresentados os modelos Holt-Winters aditivos com erro aditivo ETS(A,A,A) e multiplicativo ETS(M,A,A).</p>
-<section id="modelo-de-holt-winter-aditivo-etsaaa" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winter-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winter aditivo, ETS(A,A,A)</h3>
+<section id="modelo-de-holt-winters-aditivo-etsaaa" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winters-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winters aditivo, ETS(A,A,A)</h3>
 <p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo a seguir:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -731,8 +731,8 @@ s_t &amp;= s_{t-m} + \gamma\varepsilon_t, \\
 \]</span></p>
 <p>onde <span class="math inline">\(\beta=\beta^*\alpha\)</span>.</p>
 </section>
-<section id="modelo-de-holt-winter-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winter-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winter multiplicativo, ETS(M,A,A)</h3>
+<section id="modelo-de-holt-winters-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winters-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters multiplicativo, ETS(M,A,A)</h3>
 <p>Para o caso com erro multiplicativo o erro com tendência e sazonalidade aditiva, o erro é calculado conforme segue:</p>
 <p><span class="math display">\[
 e_t=
