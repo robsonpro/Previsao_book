@@ -406,11 +406,11 @@ Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série d
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">0.6438087</td>
+<td style="text-align: right;">0.6406225</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">0.3841448</td>
+<td style="text-align: right;">0.3845760</td>
 </tr>
 </tbody>
 </table>
@@ -452,34 +452,34 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2024 May</td>
-<td style="text-align: right;">0.46</td>
-<td style="text-align: right;">0.3686760</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024 Jun</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.4274712</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024 Jul</td>
+<td style="text-align: left;">2024 jul</td>
 <td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.2874613</td>
+<td style="text-align: right;">0.2880921</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024 Aug</td>
+<td style="text-align: left;">2024 ago</td>
 <td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">0.3470385</td>
+<td style="text-align: right;">0.3469704</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024 Sep</td>
+<td style="text-align: left;">2024 set</td>
 <td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.1107359</td>
+<td style="text-align: right;">0.1118809</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024 Oct</td>
+<td style="text-align: left;">2024 out</td>
 <td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.3227190</td>
+<td style="text-align: right;">0.3220814</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024 nov</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.4744974</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024 dez</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.4203665</td>
 </tr>
 </tbody>
 </table>
@@ -671,12 +671,12 @@ Figura&nbsp;5.8: Modelos de suavização exponencial com tendência e sazonalida
 </div>
 <section id="suavização-exponencial-com-tendência-amortecida-e-sazonalidade" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="suavização-exponencial-com-tendência-amortecida-e-sazonalidade"><span class="header-section-number">5.3.1</span> Suavização exponencial com tendência amortecida e sazonalidade</h3>
-<p>O método de Holt-Winter também pode considerar o amortecimento. O caso multiplicativo geralmente fornece bons resultados, sendo descrito conforme segue.</p>
+<p>O método de Holt-Winters também pode considerar o amortecimento. O caso multiplicativo geralmente fornece bons resultados, sendo descrito conforme segue.</p>
 <p><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= [l_t + (\phi+\phi^2+...+\phi^h)b_t]  s_{t+h-m(k+1)}\\
-\text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+b_{t-1})\\
-\text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}\\
+\text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+\phi b_{t-1})\\
+\text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}\\
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-\phi b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
 \]</span></p>
