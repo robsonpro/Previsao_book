@@ -298,10 +298,7 @@ y_t-y_{t-1} = \varepsilon_t
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
-<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlagramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
-<p><span class="math display">\[
-y_t-y_{t-1} = c+\varepsilon_t
-\]</span></p>
+<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlogramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-difcor" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -325,11 +322,11 @@ y_t'' &amp;= y_t'-y_{t-1}' \\
       &amp;= y_t-2y_{t-1}+y_{t-2}
 \end{align}
 \]</span></p>
-<p>Em séries sazonais é importante aplicar a diferenciação sazonal conforme segue, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
+<p>Em séries sazonais é importante aplicar a diferenciação sazonal, conforme exposto à seguir, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
 <p><span class="math display">\[
 y_t'= y_t - y_{t-m}
 \]</span></p>
-<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span> e, em seguida, outra diferenciação porém mensal, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
+<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span>. Em seguida, outra diferenciação porém mensal foi aplicada, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-voosdiff" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -420,8 +417,11 @@ y_t'' &amp;= y_t-2y_{t-1}+y_{t-2} \\
 \begin{align}
 y_t &amp;= c+\phi_1y_{t-1} + \phi_2y_{t-2} + \ldots + \phi_py_{t-p} + \varepsilon_t \\
     &amp;= c+\phi_1By_t + \phi_2B^2y_t + \ldots + \phi_pB^py_t + \varepsilon_t \\
-&amp;(1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
 \end{align}
+\]</span></p>
+<p>onde, <span class="math inline">\(c = 1-\phi_1-\phi_2-...-\phi_p+\mu\)</span>. Para <span class="math inline">\(\mu=0\)</span>, tem-se:</p>
+<p><span class="math display">\[
+(1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
 \]</span></p>
 <p>A Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
 <div class="cell">
@@ -449,7 +449,7 @@ Figura&nbsp;6.4: Processos autorregressivos
 <p>Os processos autorregressivos são usados para séries estacionárias, sendo algumas restrições impostas:</p>
 <ul>
 <li>Para um modelo <span class="math inline">\(AR(1)\)</span>: <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>.</li>
-<li>Para um modelo <span class="math inline">\(AR(2)\)</span>: <span class="math inline">\(-1&lt;\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_1+\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_2+\phi_1&lt;1\)</span>.</li>
+<li>Para um modelo <span class="math inline">\(AR(2)\)</span>: <span class="math inline">\(-1&lt;\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_1+\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_2-\phi_1&lt;1\)</span>.</li>
 </ul>
 </section>
 <section id="modelos-de-média-móvel" class="level2" data-number="6.3">
@@ -781,7 +781,7 @@ Tabela&nbsp;6.3: Teste KPSS para a série de produção de grãos
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1.219482</td>
+<td style="text-align: right;">1.242214</td>
 <td style="text-align: right;">0.01</td>
 </tr>
 </tbody>
@@ -830,11 +830,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ar1  constant
-      -0.4378  101.1837
-s.e.   0.1329   19.3580
+      -0.4639   41.2969
+s.e.   0.1369    8.4272
 
-sigma^2 estimated as 17775:  log likelihood=-289.42
-AIC=584.85   AICc=585.42   BIC=590.33</code></pre>
+sigma^2 estimated as 3430:  log likelihood=-257.09
+AIC=520.17   AICc=520.73   BIC=525.72</code></pre>
 </div>
 </div>
 <p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>. Foi obtido <span class="math inline">\(ACCc\)</span> = 586,36, indicando que o modelo anterior apresentou melhor ajuste.</p>
@@ -846,11 +846,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ma1  constant
-      -0.3959   69.2422
-s.e.   0.1145   11.9141
+      -0.4384   28.0583
+s.e.   0.1109    4.7877
 
-sigma^2 estimated as 18159:  log likelihood=-289.89
-AIC=585.79   AICc=586.36   BIC=591.27</code></pre>
+sigma^2 estimated as 3446:  log likelihood=-257.18
+AIC=520.36   AICc=520.92   BIC=525.91</code></pre>
 </div>
 </div>
 <p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.16</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série diferenciada e transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
@@ -888,8 +888,8 @@ Tabela&nbsp;6.4: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) par
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ARIMA(box_cox(valor, lambda) ~ pdq(1, 1, 0))</td>
-<td style="text-align: right;">4.951101</td>
-<td style="text-align: right;">0.8385499</td>
+<td style="text-align: right;">4.580951</td>
+<td style="text-align: right;">0.8692027</td>
 </tr>
 </tbody>
 </table>
