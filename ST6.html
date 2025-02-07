@@ -462,7 +462,7 @@ y_t&amp;=c+\varepsilon_t+\theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} +
 &amp;=c+ (1+\theta_1B+\theta_2B^2+\ldots+\theta_qB^q)\varepsilon_t
 \end{align}
 \]</span></p>
-<p>Como os valores do erro não são observados este modelo não é uma regressão habitual.</p>
+<p>Como os valores do erro não são observáveis, este modelo não é uma regressão habitual.</p>
 <p>É importante também diferenciar os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para suavização. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, os modelos de suavização visam estimar a tendência de observações passadas de séries temporais.</p>
 <p>A Figura <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
 <div class="cell">
@@ -498,10 +498,13 @@ y_t &amp;= \phi_1y_{t-1} + \varepsilon_t\\
 \begin{align}
 y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} + \ldots + \theta_q\varepsilon_{t-q} + \varepsilon_t \\
 &amp;= c+\phi_1By'_t + \phi_2B^2y'_t + \ldots + \phi_pB^py'_t+\theta_1B\varepsilon_t + \theta_2B^2\varepsilon_t + \ldots + \theta_qB^q\varepsilon_t + \varepsilon_t \\
-&amp;(1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t
 \end{align}
 \]</span></p>
-<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo com grau <span class="math inline">\(p\)</span> para a parte autorregressiva, com diferenciação de ordem <span class="math inline">\(d\)</span> e com grau <span class="math inline">\(q\)</span> para a parte de média móvel. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
+<p>Logo, considerando ordem de diferenciação <span class="math inline">\(d\)</span>, pode-se representar um modelo ARIMA como segue:</p>
+<p><span class="math display">\[
+(1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t.
+\]</span></p>
+<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo de ordem <span class="math inline">\(p\)</span> para a parte autorregressiva, de ordem <span class="math inline">\(q\)</span> para a parte de média móvel, com diferenciação de ordem <span class="math inline">\(d\)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
 <div id="tbl-casosarima" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -517,7 +520,7 @@ Tabela&nbsp;6.2: Casos especiais e modelos ARIMA correspondentes
 </thead>
 <tbody>
 <tr class="odd">
-<td>Ruído banco</td>
+<td>Ruído branco</td>
 <td><span class="math inline">\(ARIMA(0,0,0)\)</span> sem cte</td>
 </tr>
 <tr class="even">
@@ -654,11 +657,11 @@ Figura&nbsp;6.10: Série temporal do valor da ação VALE3
 </div>
 </div>
 </div>
-<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando <span class="math inline">\(T = T+h\)</span>, onde <span class="math inline">\(h\)</span> é o número de períodos à frente das observações disponíveis. Para o modelo ARIMA genérico exposto, considerando <span class="math inline">\(h=1\)</span>, tem-se o resultado à seguir, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é considerado nulo, <span class="math inline">\(\varepsilon_{T+1}=0\)</span>.</p>
+<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando <span class="math inline">\(T = T+h\)</span>, onde <span class="math inline">\(h\)</span> é o número de períodos à frente das observações disponíveis. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando <span class="math inline">\(h=1\)</span>, tem-se o resultado à seguir, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é considerado nulo, <span class="math inline">\(\varepsilon_{T+1}=0\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
-y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} + \varepsilon_{T+1} \\
-y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-2} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}
+y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} + \varepsilon_{T+1} \\
+\hat y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}
 \end{align}
 \]</span></p>
 <p>Em um modelo ARIMA se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=0\)</span>, então a previsão de longo prazo tenderá para zero. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=1\)</span>, a previsão a longo prazo tenderá para uma constante. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=2\)</span>, a previsão a longo prazo será linear. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=0\)</span>, a previsão a longo prazo será a média das observações. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=1\)</span> a previsão a longo prazo será linear. Para previsões cíclicas é importante <span class="math inline">\(p\geq2\)</span>.</p>
