@@ -442,11 +442,11 @@ Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série d
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">0.6406225</td>
+<td style="text-align: right;">0.6356607</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">0.3845760</td>
+<td style="text-align: right;">0.3857116</td>
 </tr>
 </tbody>
 </table>
@@ -488,34 +488,34 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2024 jul</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.2880921</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">2024 ago</td>
 <td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">0.3469704</td>
+<td style="text-align: right;">0.3468724</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2024 set</td>
 <td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.1118809</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024 out</td>
-<td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.3220814</td>
+<td style="text-align: right;">0.1136660</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024 nov</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">0.4744974</td>
+<td style="text-align: left;">2024 out</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.3211037</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2024 nov</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.4729607</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2024 dez</td>
 <td style="text-align: right;">0.52</td>
-<td style="text-align: right;">0.4203665</td>
+<td style="text-align: right;">0.4202258</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025 jan</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.4836484</td>
 </tr>
 </tbody>
 </table>
@@ -1001,7 +1001,7 @@ Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro
 </div>
 <p>Modelos de suavização exponencial com sazonalidade aditiva e multiplicativa para exportações.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_export <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&lt;=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">aditivo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
@@ -1009,8 +1009,8 @@ Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">multiplicativo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>))</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fc_export <span class="ot">&lt;-</span> fit_export <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>fc_export <span class="sc">|&gt;</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência e sazonalidade para a série de exportações"</span>,</span>
@@ -1019,16 +1019,16 @@ Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro
 </div>
 <p>Suavização exponencial com tendência amortecida e sazonalidade (aditiva e multiplicativa).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit_export2 <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&lt;=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">aditivo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">aditivo2 =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">multiplicativo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">multiplicativo2 =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>))</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>fc_export2 <span class="ot">&lt;-</span> fit_export2 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fc_export2 <span class="sc">|&gt;</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência amortecida e sazonalidade para exportações"</span>,</span>
@@ -1103,9 +1103,13 @@ Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro
 <section id="exercícios-propostos" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">5.7</span> Exercícios propostos</h2>
 <ol type="1">
-<li><p>Seja a série de produção de grãos. Separe os últimos cinco anos para treinar o modelo. Aplique um modelo de suavização exponencial com tendência. Considere também o caso amortecido com <span class="math inline">\(\phi = 0,9\)</span> e <span class="math inline">\(\phi=0,95\)</span>. Avalie os resíduos dos modelos obtidos. Calcule as métricas de ajuste para os dados de teste e escolha o melhor modelo.</p></li>
-<li><p>Seja a série de volume de exportações do Brasil exposta neste capítulo. Considerando os modelos obtidos de suavização exponencial com sazonalidade aditiva e multiplicativa e com tendência simples ou amortecida, avalie os resíduos de todos os modelos. Calcule as métricas de teste para os dados de 2023 à frente e escolha o melhor modelo.</p></li>
-<li><p>Seja a série de fluxo de caminhões de 4 eixos no quilômetro 579 da BR040 para ambos os sentidos. Considere os dados de 11 a 31 de Março para treinar modelos de suavização exponencial sem tendência com sazonalidade e erro aditivos e multiplicativos. Avalie os resíduos dos modelos. Teste os modelos com os dados disponíveis de abril e selecione o melhor modelo.</p></li>
+<li>Seja a série de produção de grãos. Separe os últimos cinco anos para testar o modelo. Aplique um modelo de suavização exponencial com tendência. Considere também o caso amortecido com <span class="math inline">\(\phi = 0,9\)</span> e <span class="math inline">\(\phi=0,95\)</span>. Avalie os resíduos dos modelos obtidos. Calcule as métricas de ajuste para os dados de teste e escolha o melhor modelo.</li>
+</ol>
+<ol start="2" type="1">
+<li>Seja a série de volume de exportações do Brasil exposta neste capítulo. Considerando os modelos obtidos de suavização exponencial com sazonalidade aditiva e multiplicativa e com tendência simples ou amortecida, avalie os resíduos de todos os modelos. Calcule as métricas de teste para os dados de 2023 à frente e escolha o melhor modelo.</li>
+</ol>
+<ol start="3" type="1">
+<li>Seja a série de fluxo de caminhões de 2 eixos no quilômetro 579 da BR040 para ambos os sentidos. Considere os dados de 11 a 31 de Março para treinar modelos de suavização exponencial sem tendência com sazonalidade e erro aditivos e multiplicativos. Avalie os resíduos dos modelos. Exclua algum modelo com problemas maiores nos resíduos e teste os modelos com os dados disponíveis de abril e selecione o melhor modelo.</li>
 </ol>
 
 
