@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -239,7 +239,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#séries-univariadas" id="toc-séries-univariadas" class="nav-link" data-scroll-target="#séries-univariadas"><span class="header-section-number">1.2.1</span> Séries univariadas</a></li>
   <li><a href="#séries-temporais-multivariadas" id="toc-séries-temporais-multivariadas" class="nav-link" data-scroll-target="#séries-temporais-multivariadas"><span class="header-section-number">1.2.2</span> Séries temporais multivariadas</a></li>
-  <li><a href="#graficos-de-sazonalidade" id="toc-graficos-de-sazonalidade" class="nav-link" data-scroll-target="#graficos-de-sazonalidade"><span class="header-section-number">1.2.3</span> Graficos de sazonalidade</a></li>
+  <li><a href="#gráficos-de-sazonalidade" id="toc-gráficos-de-sazonalidade" class="nav-link" data-scroll-target="#gráficos-de-sazonalidade"><span class="header-section-number">1.2.3</span> Gráficos de sazonalidade</a></li>
   <li><a href="#correlação-entre-séries" id="toc-correlação-entre-séries" class="nav-link" data-scroll-target="#correlação-entre-séries"><span class="header-section-number">1.2.4</span> Correlação entre séries</a></li>
   <li><a href="#gráficos-de-decomposição" id="toc-gráficos-de-decomposição" class="nav-link" data-scroll-target="#gráficos-de-decomposição"><span class="header-section-number">1.2.5</span> Gráficos de decomposição</a></li>
   <li><a href="#gráficos-de-previsão" id="toc-gráficos-de-previsão" class="nav-link" data-scroll-target="#gráficos-de-previsão"><span class="header-section-number">1.2.6</span> Gráficos de previsão</a></li>
@@ -287,54 +287,7 @@ window.Quarto = {
 <h2 data-number="1.2" class="anchored" data-anchor-id="exemplos-de-séries-e-visualizações"><span class="header-section-number">1.2</span> Exemplos de séries e visualizações</h2>
 <section id="séries-univariadas" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="séries-univariadas"><span class="header-section-number">1.2.1</span> Séries univariadas</h3>
-<p>Na <a href="#fig-ipca1" class="quarto-xref">Figura&nbsp;<span>1.1</span></a> observa-se graficamente a série temporal do índice de preços ao consumidor (IPCA), com frequência mensal a partir de 1980. A série foi obtida em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As primeiras observações da série também são exibidas na <a href="#tbl-ipca" class="quarto-xref">Tabela&nbsp;<span>1.1</span></a>. Observa-se claramente como a inflação no país foi controlada a partir da adoção do plano real.</p>
-<div class="cell">
-<div id="tbl-ipca" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;1.1: IPCA no Brasil
-</figcaption>
-<div aria-describedby="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">index</th>
-<th style="text-align: right;">value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1980 Feb</td>
-<td style="text-align: right;">4.62</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1980 Mar</td>
-<td style="text-align: right;">6.04</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1980 Apr</td>
-<td style="text-align: right;">5.29</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1980 May</td>
-<td style="text-align: right;">5.70</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1980 Jun</td>
-<td style="text-align: right;">5.31</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1980 Jul</td>
-<td style="text-align: right;">5.55</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
+<p>Na <a href="#fig-ipca1" class="quarto-xref">Figura&nbsp;<span>1.1</span></a> observa-se graficamente a série temporal do índice de preços ao consumidor (IPCA), com frequência mensal a partir de 1980. A série foi obtida em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As seis primeiras observações da série também são exibidas na <a href="#tbl-ipca" class="quarto-xref">Tabela&nbsp;<span>1.1</span></a>. A primeira observação é <span class="math inline">\(y_1 = 4,62\)</span>, ou seja, no primeiro mês de observação da série, fevereiro de 1980, o IPCA foi de 4,62%. Já a segunda observação é <span class="math inline">\(y_2 = 6,04\)</span> e assim sucessivamente, conforme disposição na Tabela. Observa-se graficamente a estabilização do índice a partir de 1994, a partir da adoção do plano real.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ipca1" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -347,6 +300,53 @@ Figura&nbsp;1.1: IPCA no Brasil
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-ipca" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.1: IPCA no Brasil
+</figcaption>
+<div aria-describedby="tbl-ipca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">data</th>
+<th style="text-align: right;">ipca</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1980-02-01</td>
+<td style="text-align: right;">4,62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1980-03-01</td>
+<td style="text-align: right;">6,04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1980-04-01</td>
+<td style="text-align: right;">5,29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1980-05-01</td>
+<td style="text-align: right;">5,70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1980-06-01</td>
+<td style="text-align: right;">5,31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1980-07-01</td>
+<td style="text-align: right;">5,55</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>Para visualizar melhor como o IPCA variou nos últimos 20 anos, pode-se selecionar os dados a partir do ano 2000. O resultado é plotado na <a href="#fig-ipca2" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>.</p>
@@ -377,7 +377,7 @@ Tabela&nbsp;1.2: Produção de carros no Brasil
 <thead>
 <tr class="header">
 <th style="text-align: left;">data</th>
-<th style="text-align: right;">valor</th>
+<th style="text-align: right;">quantidade</th>
 </tr>
 </thead>
 <tbody>
@@ -427,40 +427,25 @@ Figura&nbsp;1.3: Vendas de carros no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-co2" class="quarto-xref">Figura&nbsp;<span>1.4</span></a> apresenta a série temporal de níveis de <span class="math inline">\(CO_2\)</span> na atmosfera medida no Observatório Mauna Loa, Havaí, desde 1958, <a href="https://climate.nasa.gov/vital-signs/carbon-dioxide">Climate Change - NASA</a>). Observa-se um padrão de crescimento não linear com ciclos sazonais bem definidos.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-co2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-co2-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.4: Emissões de CO2, Observatório Mauna Loa, Havaí
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>A <a href="#fig-co2_" class="quarto-xref">Figura&nbsp;<span>1.5</span></a> plota a série a partir de 2020. Pode-se observar que os períodos sazonais de pico coincidem com o fim doinverno no hemisfério norte, enquanto os vales são observados no período de crescimento das plantas, as quais capturam parte significativa do <span class="math inline">\(CO_2\)</span> da atmosfera.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-co2_" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-co2_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-co2_-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.5: Emissões de CO2, a partir de 2020
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="séries-temporais-multivariadas" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="séries-temporais-multivariadas"><span class="header-section-number">1.2.2</span> Séries temporais multivariadas</h3>
-<p>Na <a href="#tbl-energia1" class="quarto-xref">Tabela&nbsp;<span>1.3</span></a> são exibidas apenas as primeiras observações de séries de produção de quatro tipos de energia para o ano de 2023 no Brasil. Os dados são fornecidos em frequência horária e estão disponíveis em <a href="https://dados.ons.org.br/group/programacao-da-operacao">Dados abertos do operador nacional do sistema elétrico</a>.</p>
+<p>A <a href="#fig-br040709" class="quarto-xref">Figura&nbsp;<span>1.4</span></a> expõe a série temporal com frequência horária do volume de ônibus e caminhões de dois eixos trafegando na Br040 no quilômetro 709 nos meses de agosto e setembro de 2025. São plotadas as séries no sentido crescente (C) e decrescente (D). A série está disponível em <a href="https://servicos.dnit.gov.br/dadospnct/mapa">dados do plano nacional de contagem de tráfego</a>. Observa-se padrões sazonais diário e semanal. O primeiro dia do mês de agosto de 2023 foi uma terça-feira. A partir da primeira hora do dia observa-se o crescimento do volume de veículo até um pico de tráfego próximo de 60 veículos com posterior decréscimo com o avançar da noite até um volume mínimo bem próximo de zero. O padrão diário se repete, porém, com menor volume nos fins de semana. O padrão semanal é identificado pela repetição de cinco ciclos de maior fluxo, caracterizando os dias de semana, e dois com menor fluxo, consistindo nos fins de semana.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-br040709" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-br040709-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-br040709-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040709-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.4: Tráfego de ônibus e caminhões de dois eixos na BR040 no quilômetro 709
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na <a href="#tbl-energia1" class="quarto-xref">Tabela&nbsp;<span>1.3</span></a> são exibidas apenas as primeiras observações da série temporal em frequência horária de produção de energia eólica no ano de 2023 no Brasil. Os dados estão disponíveis em <a href="https://dados.ons.org.br/group/programacao-da-operacao">Dados abertos do operador nacional do sistema elétrico</a>.</p>
 <div class="cell">
 <div id="tbl-energia1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -472,41 +457,41 @@ Tabela&nbsp;1.3: Produção de energia no Brasil em 2023
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">din_instante</th>
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">value</th>
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">tipo</th>
+<th style="text-align: right;">energia</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2023-01-01 00:00:00</td>
-<td style="text-align: left;">hidraulica</td>
-<td style="text-align: right;">39057.309</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2023-01-01 00:00:00</td>
-<td style="text-align: left;">termica</td>
-<td style="text-align: right;">5698.335</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2023-01-01 00:00:00</td>
 <td style="text-align: left;">eolica</td>
-<td style="text-align: right;">14138.750</td>
+<td style="text-align: right;">14138,75</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-01-01 00:00:00</td>
-<td style="text-align: left;">solar</td>
-<td style="text-align: right;">21.155</td>
+<td style="text-align: left;">2023-01-01 01:00:00</td>
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">13790,86</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-01-01 01:00:00</td>
-<td style="text-align: left;">hidraulica</td>
-<td style="text-align: right;">39624.650</td>
+<td style="text-align: left;">2023-01-01 02:00:00</td>
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">13612,57</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-01-01 01:00:00</td>
-<td style="text-align: left;">termica</td>
-<td style="text-align: right;">5727.550</td>
+<td style="text-align: left;">2023-01-01 03:00:00</td>
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">13277,32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2023-01-01 04:00:00</td>
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">13009,72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2023-01-01 05:00:00</td>
+<td style="text-align: left;">eolica</td>
+<td style="text-align: right;">12311,20</td>
 </tr>
 </tbody>
 </table>
@@ -515,22 +500,7 @@ Tabela&nbsp;1.3: Produção de energia no Brasil em 2023
 </figure>
 </div>
 </div>
-<p>A série temporal multivariada é plotada na <a href="#fig-energia1" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>. Pode-se observar a queda de produção da fonte hidráulica no período mais seco do ano, além da tendência de aumento da energia solar a partir de maio.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-energia1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-energia1-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.6: Produção de energia no Brasil em 2023
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>A mesma série temporal é plotada na <a href="#fig-energia1223" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> para o mês de dezembro de 2023. De forma geral é possível ver o padrão cíclico diário de consumo considerando a sazonalidade diária com maior consumo durante o dia e menor durante a noite.</p>
+<p>As séries temporais de energia eólica, hidráulica, solar e térmica são plotadas na <a href="#fig-energia1223" class="quarto-xref">Figura&nbsp;<span>1.5</span></a> para o mês de dezembro de 2023. De forma geral é possível ver o padrão cíclico diário de produção. Enquanto a energia solar é obviamente produzida durante os períodos de sol, a eólica tem maior volume de produção durante a noite e madrugada, quando venta mais forte. Já a energia elétrica, fonte dominante no Brasil, pode ser controlada para complementar as demais. A energia térmica, menos sustentável que as demais, é produzida em momentos de queda nos níveis de produção das demais fontes, justificando seu padrão menos previsível. A visualização em painéis separados é útil, uma vez que possibilita avaliar melhor o padrão e variabilidade de cada série, permitindo ajustar a escala de cada série de forma individual.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-energia1223" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -539,13 +509,13 @@ Figura&nbsp;1.6: Produção de energia no Brasil em 2023
 <img src="ST1_files/figure-html/fig-energia1223-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia1223-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.7: Produção de energia no Brasil em dezembro de 2023
+Figura&nbsp;1.5: Produção de energia no Brasil em dezembro de 2023
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Outro exemplo de série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis é plotada na <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>, porém em painéis separados. A série foi obtida em <a href="https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil?=&amp;t=series-historicas">Pesquisa industrial mensal - produção física do IBGE</a>. Essa visualização é útil, uma vez que possibilita avaliar melhor o padrão e variabilidade de cada série, permitindo ajustar a escala de cada série de forma individual.</p>
+<p>Outro exemplo de série multivariada é a de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a> em um mesmo painel gráfico. A série foi obtida em <a href="https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil?=&amp;t=series-historicas">Pesquisa industrial mensal - produção física do IBGE</a>. Essa visualização em um úncio painel é interessante em casos onde as séries apresentam escala similar, possibilitando a comparação destas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bem" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -554,68 +524,13 @@ Figura&nbsp;1.7: Produção de energia no Brasil em dezembro de 2023
 <img src="ST1_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.8: Bens de consumo duráveis, intermediários e de consumo não duráveis
+Figura&nbsp;1.6: Bens de consumo duráveis, intermediários e de consumo não duráveis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>As últimas observações de mais um exemplo de série temporal multivariada são observadas na <a href="#tbl-tolaju" class="quarto-xref">Tabela&nbsp;<span>1.4</span></a> considerando dados de visualizaçoes de 4 vídeos da playlist Tolerâncias e ajustes do canal da engenharia de manufatura e qualidade.</p>
-<div class="cell">
-<div id="tbl-tolaju" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;1.4: Visualizações de vídeos de tolerâncias e ajustes no youtube
-</figcaption>
-<div aria-describedby="tbl-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Date</th>
-<th style="text-align: right;">Views</th>
-<th style="text-align: left;">Video</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">2024-09-15</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">#4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-09-16</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: left;">#4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-09-17</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: left;">#4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-09-18</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: left;">#4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-09-19</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: left;">#4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-09-20</td>
-<td style="text-align: right;">26</td>
-<td style="text-align: left;">#4</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>A série multivariada é plotada na <a href="#fig-tolaju" class="quarto-xref">Figura&nbsp;<span>1.9</span></a>. A série inicia em 2018, ano de início do canal, porém só tem dados segundo a data de lançamento de cada vídeo.</p>
+<p>Um último exemplo de série temporal multivariada considera dados de visualizações de 4 vídeos da playlist Tolerâncias e ajustes do canal da engenharia de manufatura e qualidade. A série multivariada é plotada na <a href="#fig-tolaju" class="quarto-xref">Figura&nbsp;<span>1.7</span></a>. A série se inicia em 2018, ano de lançamento do canal, porém só tem dados segundo a data de lançamento de cada vídeo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tolaju" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -624,31 +539,61 @@ Tabela&nbsp;1.4: Visualizações de vídeos de tolerâncias e ajustes no youtube
 <img src="ST1_files/figure-html/fig-tolaju-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tolaju-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.9: Visualizações de vídeos de tolerâncias e ajustes no youtube
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>A série do vídeo 4 a partir de setembro de 2018 é exibida na <a href="#fig-tol4" class="quarto-xref">Figura&nbsp;<span>1.10</span></a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-tol4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tol4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-tol4-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tol4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.10: Visualizações do vídeo 4
+Figura&nbsp;1.7: Visualizações de vídeos de tolerâncias e ajustes no youtube
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="graficos-de-sazonalidade" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="graficos-de-sazonalidade"><span class="header-section-number">1.2.3</span> Graficos de sazonalidade</h3>
-<p>Pode-se visualizar os dados da série do vídeo 4 em subséries anuais, de forma a ver a sazonalidade presente nos dados. A <a href="#fig-saz4" class="quarto-xref">Figura&nbsp;<span>1.11</span></a> expõe o gráfico. Os dados foram agregados mensalmente. Pode-se visualizar os picos de visualizações de Abril a Junho e de Setembro a Outubro, coincidindo com períodos de picos de estudos nos dois semestres anuais.</p>
+<section id="gráficos-de-sazonalidade" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="gráficos-de-sazonalidade"><span class="header-section-number">1.2.3</span> Gráficos de sazonalidade</h3>
+<p>É possível visualizar padrões sazonais de forma distintas. Sejam os dados de tráfego de veículos de passeio na BR040 no quilômetro 709. A Figura <a href="#fig-sazbr040day" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> ilustra um gráfico de sazonalidade diária para o mês de agosto de 2023 para ambos sentidos de tráfego. Os dias são plotados em escala de cor, enquanto o horizonte diário em horas é plotado no eixo horizontal. Observa-se um tráfego mais baixo nas primeiras horas do dia, com aumento no volume de 3 às 9 da manhã, estabilidade durante a manhã e decréscimo com o início da noite. É possível observar também que para a maior parte dos dias o volume de tráfego nas horas mais movimentadas tem pico em 250 veículos. Porém há dias com volume maior.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sazbr040day" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sazbr040day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-sazbr040day-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sazbr040day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.8: Sazonalidade diária no tráfego de veículos de passeio na BR040
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para uma melhor visualização sejam os dias de semana separados em distintos painéis, conforme Figura <a href="#fig-sazbr040daysem" class="quarto-xref">Figura&nbsp;<span>1.9</span></a>. Observa-se agora mais claramente o padrão para cada dia de semana. Domingos são os dias mais movimentados considerando este tipo de veículo. De terça a quinta o tráfego apresenta padrão similar.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sazbr040daysem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sazbr040daysem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-sazbr040daysem-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sazbr040daysem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.9: Sazonalidade diária no tráfego na BR040, padrões de dias de semana
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ainda considerando os dados de tráfego na BR-040 é possível visualizar a sazonalidade semanal. A <a href="#fig-sazbr040wk" class="quarto-xref">Figura&nbsp;<span>1.10</span></a> considera as semanas em cores e no eixo horizontal o horizonte semanal. Observa-se um padrão consistente para as distintas semanas do mês de Agosto.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sazbr040wk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sazbr040wk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-sazbr040wk-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sazbr040wk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.10: Sazonalidade diária no tráfego de veículos de passeio na BR040
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Tomando novamente os dados de visualizações de vídeos no youtube, pode-se visualizar os dados da série do vídeo 4 em subséries anuais, para avaliar se há sazonalidade. A <a href="#fig-saz4" class="quarto-xref">Figura&nbsp;<span>1.11</span></a> expõe o gráfico de sazonalidade. Os dados foram agregados mensalmente. O padrão cíclico não é tão claro, possivelmente devido a diferenças nos calendários de ensino entre os anos e também devido à pandemia de COVID-19. Pode-se visualizar os picos de visualizações de abril a junho e de Setembro a Novembro, coincidindo com períodos de picos de estudos nos dois semestres anuais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-saz4" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -657,52 +602,22 @@ Figura&nbsp;1.10: Visualizações do vídeo 4
 <img src="ST1_files/figure-html/fig-saz4-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saz4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.11: Gráfico sazonal: Visualizações do vídeo 4
+Figura&nbsp;1.11: Gráfico sazonal de Visualizações do vídeo 4
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se plotar o gráfico sazonal visualizando a variação anual dentro de cada mês, conforme <a href="#fig-saz4_" class="quarto-xref">Figura&nbsp;<span>1.12</span></a>.</p>
+<p>Um gráfico de subsérie sazonal considera uma unidade de tempo em distintos painéis e um múltiplo desta unidade no eixo horizontal. A Figura <a href="#fig-sazcap" class="quarto-xref">Figura&nbsp;<span>1.12</span></a> plota tal gráfico para a série de índice de bens de capital. As linhas horizontais em azul consistem nas médias mensais, permitindo observar a variação ao longo do ano considerando tais médias. Já a subsérie observada em cada painel permitem observar a tendência ao longo dos anos dentro de cada mês. Para este índice, independente do mês observa-se um aumento na produção de bens de capital até 2013/2014, seguido de queda e posterior recuperação seguida de nova queda, provavelmente devido à pandemia de COVID-19.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-saz4_" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-sazcap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-saz4_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-saz4_-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-sazcap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-sazcap-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saz4_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sazcap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.12: Gráfico de subséries sazonais: Visualizações do vídeo 4
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>O gráfico sazonal também pode ser útil no caso da série de emissões de CO2, conforme <a href="#fig-co2saz" class="quarto-xref">Figura&nbsp;<span>1.13</span></a>. Observa-se claramente a sazonalidade com pico próximo de maio e declínio próximo de outubro. A tendência de aumento anual de emissões também fica clara na escala de cor que, neste caso, identifica o ano.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-co2saz" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-co2saz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-co2saz-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2saz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.13: Gráfico sazonal de Emissões de CO2
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>O gráfico de subséries sazonais, plotado na <a href="#fig-co2_saz_" class="quarto-xref">Figura&nbsp;<span>1.14</span></a>, deixa clara a tendência de aumento de emissões desde o início da série, independente do mês e a sazonalidade com pico em maio e vale em outubro.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-co2_saz_" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-co2_saz_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-co2_saz_-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2_saz_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.14: Gráfico de subséries sazonais: Emissões de CO2
 </figcaption>
 </figure>
 </div>
@@ -711,7 +626,7 @@ Figura&nbsp;1.14: Gráfico de subséries sazonais: Emissões de CO2
 </section>
 <section id="correlação-entre-séries" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="correlação-entre-séries"><span class="header-section-number">1.2.4</span> Correlação entre séries</h3>
-<p>A <a href="ST4.html#fig-bens_pairs" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> exibe diagramas de dispersão e correlações aos pares para a série multivaria de produção de bens exposta na Figura <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>. Pode-se confirmar a alta relação linear entre tais índices, com correlação linear positiva variando de 0,70 a 0,84.</p>
+<p>A <a href="ST4.html#fig-bens_pairs" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> exibe diagramas de dispersão e correlações aos pares para a série multivariada de produção de bens exposta na Figura <a href="ST4.html#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>. Pode-se confirmar a alta relação linear entre tais índices, com correlação linear positiva variando de 0,70 a 0,84.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bens_pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -720,7 +635,7 @@ Figura&nbsp;1.14: Gráfico de subséries sazonais: Emissões de CO2
 <img src="ST1_files/figure-html/fig-bens_pairs-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bens_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.15: Bens de consumo duráveis, intermediários e de consumo não duráveis
+Figura&nbsp;1.13: Bens de consumo duráveis, intermediários e de consumo não duráveis
 </figcaption>
 </figure>
 </div>
@@ -729,67 +644,67 @@ Figura&nbsp;1.15: Bens de consumo duráveis, intermediários e de consumo não d
 </section>
 <section id="gráficos-de-decomposição" class="level3" data-number="1.2.5">
 <h3 data-number="1.2.5" class="anchored" data-anchor-id="gráficos-de-decomposição"><span class="header-section-number">1.2.5</span> Gráficos de decomposição</h3>
-<p>Existem diversas formas de decompor séries temporais. A <a href="#tbl-co2decomp" class="quarto-xref">Tabela&nbsp;<span>1.5</span></a> expõe os resultados de uma decomposição aditiva da série CO2. A componente cíclica é removida e o restante é suavizado para encontrar uma tendência. O resíduo consiste na diferença entre a série original e a soma da tendência e da componente sazonal.</p>
+<p>Existem diversas formas de decompor séries temporais. A <a href="#tbl-capdecomp" class="quarto-xref">Tabela&nbsp;<span>1.4</span></a> expõe os resultados de uma decomposição aditiva usando o método STL para a série de produção de bens de capital. Tal método será explicado no capítulo 3. A componente cíclica é removida e o restante é suavizado para aproximar a tendência. O resíduo consiste na série original subtraída da tendência e da componente sazonal.</p>
 <div class="cell">
-<div id="tbl-co2decomp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-capdecomp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;1.5: Decomposição da série de níveis de CO2 na atmosfera
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-capdecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.4: Decomposição da série de produção de bens de capital
 </figcaption>
-<div aria-describedby="tbl-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-capdecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: right;">CO2</th>
+<th style="text-align: left;">Data</th>
+<th style="text-align: right;">valor</th>
 <th style="text-align: right;">trend</th>
 <th style="text-align: right;">season_year</th>
 <th style="text-align: right;">remainder</th>
-<th style="text-align: right;">season_adjust</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">315.71</td>
-<td style="text-align: right;">314.9477</td>
-<td style="text-align: right;">1.0263767</td>
-<td style="text-align: right;">-0.2640423</td>
-<td style="text-align: right;">314.6836</td>
+<td style="text-align: left;">2002 jan</td>
+<td style="text-align: right;">58,19</td>
+<td style="text-align: right;">66,25</td>
+<td style="text-align: right;">-8,87</td>
+<td style="text-align: right;">0,81</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">317.45</td>
-<td style="text-align: right;">315.0187</td>
-<td style="text-align: right;">2.2221543</td>
-<td style="text-align: right;">0.2091377</td>
-<td style="text-align: right;">315.2278</td>
+<td style="text-align: left;">2002 fev</td>
+<td style="text-align: right;">56,75</td>
+<td style="text-align: right;">65,93</td>
+<td style="text-align: right;">-9,81</td>
+<td style="text-align: right;">0,63</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">317.51</td>
-<td style="text-align: right;">315.0898</td>
-<td style="text-align: right;">2.7703197</td>
-<td style="text-align: right;">-0.3500701</td>
-<td style="text-align: right;">314.7397</td>
+<td style="text-align: left;">2002 mar</td>
+<td style="text-align: right;">64,68</td>
+<td style="text-align: right;">65,62</td>
+<td style="text-align: right;">1,80</td>
+<td style="text-align: right;">-2,74</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">317.27</td>
-<td style="text-align: right;">315.1608</td>
-<td style="text-align: right;">2.2787986</td>
-<td style="text-align: right;">-0.1695914</td>
-<td style="text-align: right;">314.9912</td>
+<td style="text-align: left;">2002 abr</td>
+<td style="text-align: right;">68,90</td>
+<td style="text-align: right;">65,30</td>
+<td style="text-align: right;">-2,54</td>
+<td style="text-align: right;">6,14</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">315.87</td>
-<td style="text-align: right;">315.2266</td>
-<td style="text-align: right;">0.8557299</td>
-<td style="text-align: right;">-0.2123500</td>
-<td style="text-align: right;">315.0143</td>
+<td style="text-align: left;">2002 mai</td>
+<td style="text-align: right;">66,66</td>
+<td style="text-align: right;">65,02</td>
+<td style="text-align: right;">1,92</td>
+<td style="text-align: right;">-0,28</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">314.93</td>
-<td style="text-align: right;">315.2924</td>
-<td style="text-align: right;">-1.0241591</td>
-<td style="text-align: right;">0.6617119</td>
-<td style="text-align: right;">315.9542</td>
+<td style="text-align: left;">2002 jun</td>
+<td style="text-align: right;">61,72</td>
+<td style="text-align: right;">64,74</td>
+<td style="text-align: right;">-0,13</td>
+<td style="text-align: right;">-2,90</td>
 </tr>
 </tbody>
 </table>
@@ -798,16 +713,16 @@ Tabela&nbsp;1.5: Decomposição da série de níveis de CO2 na atmosfera
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-co2decomp" class="quarto-xref">Figura&nbsp;<span>1.16</span></a> expõe o resultado da decomposição da série de emissões de CO2. Observa-se claramente a separação da tendência e do padrão sazonal da série, facilitando a interpretação desta.</p>
+<p>A <a href="#fig-capdecomp" class="quarto-xref">Figura&nbsp;<span>1.14</span></a> expõe graficamente a decomposição da série do índice de produção de bens de capital. Observa-se claramente a separação da tendência e do padrão sazonal da série, facilitando a interpretação desta.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-co2decomp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-capdecomp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST1_files/figure-html/fig-co2decomp-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-capdecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST1_files/figure-html/fig-capdecomp-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-co2decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.16: Gráficos de decomposição da série de níveis de CO2 na atmosfera
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-capdecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.14: Gráficos de decomposição da série de produção de bens de capital
 </figcaption>
 </figure>
 </div>
@@ -816,7 +731,8 @@ Figura&nbsp;1.16: Gráficos de decomposição da série de níveis de CO2 na atm
 </section>
 <section id="gráficos-de-previsão" class="level3" data-number="1.2.6">
 <h3 data-number="1.2.6" class="anchored" data-anchor-id="gráficos-de-previsão"><span class="header-section-number">1.2.6</span> Gráficos de previsão</h3>
-<p>A Figura <a href="ST4.html#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> exibe a série de temperatura instantânea na cidade de São joão del-Rei dos dias 15 a 28 de maio. Os dados foram obtidos em <a href="https://tempo.inmet.gov.br/TabelaEstacoes/A001">Instituto Nacional de Meteorologia</a>. Observa-se que a série plotada em cor preta exibe comportamento cíclico dado a variação diária entre a temperatura mínima, que varia de 8 a 13 ºC, e a máxima diárias, que gira em torno de 25 a 28 ºC no período. Também é possível observar uma tendência de aumento na temperatura nos dias considerados. A Figura expõe a previsão para dois dias à frente em azul, com intervalos de confiança de 80 a 90%.</p>
+<p>Um dos objetivos principais da análise e modelagem de séries temporais é a realização de previsões. Quando a série tem padrão não aleatório, com tendência e/ou sazonalidade, por exemplo, existem diversos métodos adequados para realizar modelagem e obter boas previsões. Obviamente quanto maior o horiznte de previsão almejado, maior a dificuldade de obter bons resultados.</p>
+<p>A Figura <a href="ST4.html#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> exibe a série de temperatura instantânea na cidade de São joão del-Rei dos dias 15 a 29 de maio. Os dados foram obtidos em <a href="https://tempo.inmet.gov.br/TabelaEstacoes/A001">Instituto Nacional de Meteorologia</a>. Observa-se que a série plotada em cor preta exibe comportamento cíclico dada a variação diária entre a temperatura mínima, que varia de 8 a 13 ºC, e a máxima diárias, que gira em torno de 25 a 28 ºC no período. Também é possível observar uma tendência de aumento na temperatura nos dias considerados. A Figura expõe a previsão para dois dias à frente em azul, com intervalos de confiança de 80 e 95%.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -825,7 +741,7 @@ Figura&nbsp;1.16: Gráficos de decomposição da série de níveis de CO2 na atm
 <img src="ST1_files/figure-html/fig-temp_pred_-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp_pred_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.17: Previsão da temperatura em São João del-Rei
+Figura&nbsp;1.15: Previsão da temperatura em São João del-Rei
 </figcaption>
 </figure>
 </div>
@@ -838,189 +754,186 @@ Figura&nbsp;1.17: Previsão da temperatura em São João del-Rei
 <p>A seguir apresenta-se boa parte da implementação na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo. Os dados utilizados estão disponíveis em <a href="https://github.com/robsonpro/Previsao">Previsão, por Robson Bruno Dutra Pereira</a>.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbcb)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série temporal do IPCA obtida usando o pacote <code>rbcb</code>.</p>
+<p>Leitura dos dados de IPCA. Os dados em extensão <code>*.csv</code> são inicialmente armazenados em um <code>data.frame</code> no R, com duas colunas, <code>data</code> e <code>ipca</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> <span class="fu">get_series</span>(<span class="fu">c</span>(<span class="at">IPCA =</span> <span class="dv">433</span>), <span class="at">as =</span> <span class="st">"ts"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ipca_ts <span class="ot">&lt;-</span> <span class="fu">as_tsibble</span>(ipca, <span class="at">index =</span> index)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ipca_ts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ipca.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando a série.</p>
+<p>É necessário transformar o <code>data.frame</code> em um tipo de dados ideal para séries temporais. O tipo <code>tsibble</code> é adequado para a sintaxe que será usada neste curso. Antes, porém, é necessário transformar a coluna data em <code>Date</code>, de forma que o R entenda como tal, pois inicialmente a coluna com data como lida de um <code>*.csv</code> pode ser reconhecida como <code>character</code> ou como <code>numeric</code>, dependendo do formato desta coluna. O operador <code>|&gt;</code> é o operador <em>pipe</em> do R, o qual serve para encadear operações. O comando <code>mutate</code> é usado junto com o comando <code>as.Date</code> para mudar a coluna data para <code>Data</code>. É necessário entender como os dados estão armazenados para definir o argumento <code>format</code>, com a ordem adequada de entrada. O dia é identificado com <code>"%d"</code>, enquanto o mês numérico com <code>"%m"</code> ou mês character com <code>"%b"</code>, enquanto o dia é identificado com <code>"%d"</code>. Sugere-se usar <code>?as.Date</code> para mais detalhes e exemplos. O comando <code>as_tsibble</code> visa transformar o <code>data.frame</code> em <code>tsibble</code>, sendo que o argumento <code>index</code> deve receber uma coluna do tipo <code>Date</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"IPCA"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">title=</span><span class="st">"IPCA no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ipca_ts <span class="ot">&lt;-</span> ipca <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(<span class="st">"01"</span>, data), <span class="at">format =</span> <span class="st">"%d %Y %b"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ipca_ts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Vizualizando a série a partir de 2020.</p>
+<p>Para visualizar a série pode-se usar o comando <code>autoplot</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(index) <span class="sc">&gt;=</span> <span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"IPCA"</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"IPCA no Brasil a partir de 2020"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>, <span class="at">title=</span><span class="st">"IPCA no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vizualizando a série a partir de 2018, usando o comando <code>filter_index</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ipca_ts <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(year(data) &gt;= 2018) |&gt; # outra opcao</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"IPCA"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"IPCA no Brasil a partir de 2020"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de volume de produção de carros no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>carros <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vendas_veiculos.csv"</span>, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep=</span><span class="st">";"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>carros_ts <span class="ot">&lt;-</span> carros <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carros_ts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>carros <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vendas_veiculos.csv"</span>, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep=</span><span class="st">";"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>carros_ts <span class="ot">&lt;-</span> carros <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carros_ts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Visualizando a série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>carros_ts <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"Carros produzidos"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Produção de carros no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>carros_ts <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(quantidade) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"Carros produzidos"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Produção de carros no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série multivariada de produção de energia em 2023 no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>energia_2023 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"BALANCO_ENERGIA_SUBSISTEMA_2023.csv"</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">";"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>energia_2023 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"energia_2023_sin.csv"</span>, <span class="at">header =</span> T)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(energia_2023) |&gt; gt()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>No caso de séries com frequência horária é importante usar o comando <code>as.POSIXct</code>, definindo também hora - <code>"%H"</code>, minuto - <code>"%M"</code>, e segundo - <code>"%S"</code>. Séries multivariadas podem ser alocadas em múltiplas colunas, como no caso da série em questão. Pode-se empilhar as séries com o comando <code>pivot_longer</code>, identificando corretamente o nome da coluna com as séries com o argumento <code>values_to</code> e o nome da coluna com a identificação das séries com o argumento <code>values_to</code>. Ao transformar em <code>tsibble</code> após empilhar as séries é importante identificar as séries com o argumento <code>key</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="ot">&lt;-</span> energia_2023 <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id_subsistena <span class="sc">==</span> <span class="st">"SIN"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">tolower</span>(<span class="fu">gsub</span>(<span class="st">"val_ger"</span>, <span class="st">""</span>, .x))) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">din_instante =</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">as.POSIXct</span>(din_instante,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> din_instante) <span class="sc">|&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(id_subsistena, nom_subsistema,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            val_carga,val_intercambio)) <span class="sc">|&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>din_instante)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(energia_2023_ts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="ot">&lt;-</span> energia_2023 <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.POSIXct</span>(data, <span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>data, <span class="at">names_to =</span> <span class="st">"tipo"</span>, <span class="at">values_to =</span> <span class="st">"energia"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">key =</span> tipo)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>energia_2023_ts<span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando a série.</p>
+<p>Visualizando os dados de dezembro em painéis separados. Usa-se para tal o comando <code>facet_wrap</code> para plotar cada série em um painel gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Energia (MWh)"</span>, <span class="at">x=</span><span class="st">""</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Produção de energia no Brasil em 2023"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2023-12"</span>) <span class="sc">|&gt;</span>   </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(energia) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">4</span>, <span class="sc">~</span> tipo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Energia"</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Produção de energia no Brasil em dezembro de 2023"</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour=</span><span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de índices de produção de bens de consumo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Producao_bens.csv"</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header=</span>T)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">$</span>Data <span class="ot">&lt;-</span> <span class="fu">yearmonth</span>(<span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2002/1/1"</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">length=</span><span class="dv">271</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">by=</span><span class="st">"month"</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>capital<span class="sc">:</span>nao_duraveis)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key=</span>name, <span class="at">index=</span>Data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Producao_bens.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">$</span>Data <span class="ot">&lt;-</span> <span class="fu">yearmonth</span>(<span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2002/1/1"</span>), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">length=</span><span class="dv">271</span>, <span class="at">by=</span><span class="st">"month"</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> capital<span class="sc">:</span>nao_duraveis,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"indice"</span>, <span class="at">values_to =</span> <span class="st">"valor"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> indice, <span class="at">index =</span> Data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando em painéis separados.</p>
+<p>Visualizando em um único gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow =</span> <span class="dv">4</span>, <span class="sc">~</span>name, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour=</span><span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Correlação entre séries.</p>
+<p>Seja a série de fluxo de veículos na BR040 no quilômetro 709 no ano de 2023. A série apresenta frequência horária. O comando <code>dmy_h</code> pode ser usado para criar a data a partir das colunas de data e hora, após concatená-las com <code>paste</code>. Essa série é duplamente multivariada uma vez que apresenta dois sentidos e diversos tipos de veículos identificados de A a L. Porém, neste caso, será considera apenas a série de veículos de passeio (L) nos dois sentidos, crescente (C) e decrescente (D).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_prod <span class="ot">&lt;-</span> prod_ts <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>name,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from=</span>value)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_prod, <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>br040_709 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"040_709_2023.csv"</span>, <span class="at">header =</span> T)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>br040_709_ts <span class="ot">&lt;-</span> br040_709 <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">datatempo =</span> <span class="fu">dmy_h</span>(<span class="fu">paste</span>(Data, Hora))) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Data, <span class="sc">-</span>Hora) <span class="sc">|&gt;</span>  </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> datatempo, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">key =</span> Sentido)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série de emissão de CO2.</p>
+<p>O gráfico sazonal ´pode ser obtido com o comando <code>gg_season</code>. Para esta série é interessante visualizar tanto a sazonalidade diária, <code>period = "1d"</code>, quanto a semanal, <code>period = "1w"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"co2_mm_mlo.txt"</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">header=</span>T,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">skip=</span><span class="dv">41</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">""</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> co2[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(co2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"decimal.date"</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"monthly.averaged"</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"de-season.alized"</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>co2<span class="sc">$</span>Date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(co2<span class="sc">$</span>year, co2<span class="sc">$</span>month, <span class="st">"01"</span>,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">sep=</span><span class="st">"-"</span>))</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>co2_ts <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">Date =</span> co2<span class="sc">$</span>Date,</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CO2 =</span> co2<span class="sc">$</span>monthly.averaged,</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">index =</span> Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>br040_709_ts <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2023-08"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(Sentido == "C") |&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(I, <span class="at">period =</span> <span class="st">"1d"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"hora"</span>, </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Veículos"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Sazonalidade diária no tráfego na BR040"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando a série.</p>
+<p>O Gráfico de subséries sazonais pode ser obtido com o comando <code>gg_subseries</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>co2_ts <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(CO2) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"CO2 [PPM]"</span>, <span class="at">x=</span><span class="st">""</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Emissões de CO2"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(indice <span class="sc">==</span> <span class="st">"capital"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_subseries</span>(valor) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gráfico sazonal.</p>
+<p>Para avaliar a correlação entre séries os dados devem estar no fromato de <code>data.frame</code>. Logo, pode-se usar o comando <code>pivot_wider</code> para desempilhar as séries. Sugere-se usar o comando <code>ggpairs</code> que provê gráficos de dispersão aos apres entre as séries, gráficos de densidades amostrais individuais e o coeficiente de correlação de Pearson para todos os pares de séries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>co2_ts <span class="ot">&lt;-</span> co2_ts <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(CO2))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>co2_ts <span class="ot">&lt;-</span> co2_ts <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearMonth =</span> <span class="fu">yearmonth</span>(Date)) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">CO2 =</span> <span class="fu">sum</span>(CO2, <span class="at">na.rm=</span>T))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>co2_ts <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(CO2) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"CO2 [PPM]"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Gráfico sazonal: emissões de CO2"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Gráfico de subséries sazonais.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>co2_tsibble <span class="sc">|&gt;</span> <span class="fu">gg_subseries</span>(CO2) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">"CP2 [PPM]"</span>) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Gráfico de subséries sazonais: CO2"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_prod <span class="ot">&lt;-</span> prod_ts <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>indice,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from=</span>valor)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_prod, <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">progress =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="execícios-propostos" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="execícios-propostos"><span class="header-section-number">1.4</span> Execícios propostos</h2>
 <ol type="1">
-<li>Faça o gráfico da série temporal multivariada de produção de energia para o mês de dezembro de 2023.</li>
+<li>Faça o gráfico da série temporal multivariada de produção de energia para o mês de julho de 2023.</li>
 </ol>
 <ol start="2" type="1">
 <li>Faça o gráfico anterior em painéis separados.</li>
 </ol>
 <ol start="3" type="1">
-<li>O código abaixo carrega os dados da série de visualização de vídeos do youtube. Obtenha o gráfico da série do vídeo 4.</li>
+<li>O código abaixo carrega os dados da série de visualização de vídeos do youtube. <code>tol4_tsibble</code> consiste na série do vídeo 4. Obtenha o gráfico da série do vídeo 4.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tolerancia_ajuste.csv"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tol_tsibble <span class="ot">&lt;-</span> tol <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(Date, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Date, <span class="at">key =</span> Video)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>tol4_tsibble <span class="ot">&lt;-</span> tol_tsibble <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Video <span class="sc">==</span> <span class="st">"#4"</span>, <span class="fu">year</span>(Date) <span class="sc">&gt;=</span> <span class="dv">2019</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(Date)<span class="sc">&lt;</span><span class="dv">2024</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tolerancia_ajuste.csv"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>tol_ts <span class="ot">&lt;-</span> tol <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(Date, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Date, <span class="at">key =</span> Video)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>tol4_ts <span class="ot">&lt;-</span> tol_ts <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Video <span class="sc">==</span> <span class="st">"#4"</span>, <span class="fu">year</span>(Date) <span class="sc">&gt;=</span> <span class="dv">2019</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(Date)<span class="sc">&lt;</span><span class="dv">2024</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>O código abaixo acumula mensalmente as visualizações do vídeo 4. Obtenha os gráficos sazonais para a série mensal.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tol4_mensal <span class="ot">&lt;-</span> tol4_tsibble <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">YearMonth =</span> <span class="fu">yearmonth</span>(Date)) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Views =</span> <span class="fu">sum</span>(Views))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tol4_mensal <span class="ot">&lt;-</span> tol4_ts <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">YearMonth =</span> <span class="fu">yearmonth</span>(Date)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Views =</span> <span class="fu">sum</span>(Views))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>O código a seguir carrega a série de temperatura horária de São João del-Rei para 2024. Considerando os dados de 14 dias faça o gráfico de sazonalidade diária e interprete-o.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"sjdr2024.csv"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header=</span>T)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_ts <span class="ot">&lt;-</span> tempo_sjdr <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Data =</span> <span class="fu">as.POSIXct</span>(<span class="fu">paste</span>(Data,Hora), </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">format =</span> <span class="st">"%Y/%m/%d %H"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>Hora) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Data)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr_ts <span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-06-15 00:00:00"</span> <span class="sc">~</span> <span class="st">"2024-06-2923:00:00"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1109,8 +1022,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1221,7 +1132,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

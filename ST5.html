@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -92,10 +92,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -442,11 +442,11 @@ Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série d
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">0.6356607</td>
+<td style="text-align: right;">0.5722074</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">0.3857116</td>
+<td style="text-align: right;">0.3963222</td>
 </tr>
 </tbody>
 </table>
@@ -488,34 +488,34 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2024 ago</td>
-<td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">0.3468724</td>
+<td style="text-align: left;">2025 fev</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.2951604</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024 set</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.1136660</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024 out</td>
+<td style="text-align: left;">2025 mar</td>
 <td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.3211037</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024 nov</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">0.4729607</td>
+<td style="text-align: right;">0.8758592</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024 dez</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: right;">0.4202258</td>
+<td style="text-align: left;">2025 abr</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">0.6951222</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025 jan</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">0.4836484</td>
+<td style="text-align: left;">2025 mai</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.5434173</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025 jun</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.3812438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025 jul</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.3004231</td>
 </tr>
 </tbody>
 </table>
@@ -1215,8 +1215,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1327,7 +1325,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
