@@ -401,11 +401,11 @@ Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia
 </section>
 <section id="autocorrelação" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="autocorrelação"><span class="header-section-number">2.2</span> Autocorrelação</h2>
-<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k= 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
+<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k= 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
 <p><span id="eq-autoc"><span class="math display">\[
 r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
 \tag{2.1}\]</span></span></p>
-<p>A <a href="#tbl-lagserie" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> expõe uma série temporal arbitrária com 10 observações, dada integralmente na coluna “série”. Na coluna “série_l1” observa-se a série defasada de uma observação. Nas colunas seguintes são observadas a série com defasagem de duas e três observações, respectivamente. A autocorrelação para defasagem de uma observação consiste na correlação entre as colunas “série” e “série_l1”. A autocorrelação é geralmente realizada para diversas defasagens e o correlograma é um gráfico que plota autocorrelações para defasagens diversas, facilitando o trabalho de interpretação da série.</p>
+<p>A <a href="#tbl-lagserie" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> expõe uma série temporal arbitrária com 10 observações, dada integralmente na coluna “série”. Na coluna “série_l1” observa-se a série defasada de uma observação. Nas colunas seguintes são observadas a série com defasagem de duas e três observações, respectivamente. A autocorrelação para defasagem de uma observação consiste na correlação entre as colunas “série” e “série_l1”. A autocorrelação é geralmente calculada para diversas defasagens e o correlograma é um gráfico que plota as autocorrelações, facilitando a interpretação da série.</p>
 <div class="cell">
 <div id="tbl-lagserie" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -533,54 +533,7 @@ Figura&nbsp;2.2: Correlograma da série de exportações do Brasil
 </div>
 </div>
 <p>Séries com tendência geralmente apresentam autocorrelação positiva decrescente com o aumento da defasagem. Séries com sazonalidade apresentam autocorrelação alta no período sazonal. Para o caso plotado, pode-se confirmar a presença de tendência e de sazonalidade anual na série.</p>
-<p>A <a href="#tbl-autocor" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> apresenta algumas estatísticas relacionadas à autocorrelação: o primeiro coeficiente de autocorrelação, <span class="math inline">\(r_1\)</span>; a soma dos quadrados dos 10 primeiros coeficientes de autocorrelação, <span class="math inline">\(\sum_{k=1}^{10}r_i^2\)</span>; o primeiro coeficiente de autocorrelação da série diferenciada; a soma dos quadrados dos 10 primeiros coeficientes da série diferenciada; o primeiro coeficiente de autocorrelação da série diferenciada com defasagem de duas observações; a soma dos quadrados dos primeiros 10 coeficientes da série diferenciada de duas observações; e o coeficiente de autocorrelação do primeiro lag sazonal, caso a série tenha sazonalidade.</p>
-<div class="cell">
-<div id="tbl-autocor" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-autocor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.4: Estatísticas relacionadas à autocorrelação
-</figcaption>
-<div aria-describedby="tbl-autocor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 11%">
-<col style="width: 14%">
-<col style="width: 15%">
-<col style="width: 14%">
-<col style="width: 15%">
-<col style="width: 15%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">acf1</th>
-<th style="text-align: right;">acf10</th>
-<th style="text-align: right;">diff1_acf1</th>
-<th style="text-align: right;">diff1_acf10</th>
-<th style="text-align: right;">diff2_acf1</th>
-<th style="text-align: right;">diff2_acf10</th>
-<th style="text-align: right;">season_acf1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0,9712421</td>
-<td style="text-align: right;">8,309198</td>
-<td style="text-align: right;">-0,3004712</td>
-<td style="text-align: right;">0,2368351</td>
-<td style="text-align: right;">-0,6220989</td>
-<td style="text-align: right;">0,612888</td>
-<td style="text-align: right;">0,8829225</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a> são plotadas algumas séries temporais com o correlograma correspondente. A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(a) corresponde a um ruído branco (<em>white noise</em>) ou uma sequência de números aleatórios segundo a distribuição normal. Tal série não apresenta autocorrelação significativa, conforme indica o seu correlograma, exibido na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(d). A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(b) apresenta padrão cíclico com sazonalidade de 24h. O seu correlograma, plotado na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(e), é característico deste tipo de série, por apresentar correlação positiva decrescente com o aumento da defasagem até ficar negativa com mínimo na defasagem de 12h, metade do período sazonal. Já a série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(c), com frequência mensal, apresenta tendência linear clara juntamente com sazonalidade anual. O seu correlograma, exibino na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(f), apresenta autocorrelação positiva decrescente com a defasagem, além do padrão cíclico anual, dado os ciclos de 12 em 12 meses.</p>
+<p>Na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a> são plotadas algumas séries temporais com o correlograma correspondente. A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(a) corresponde a um ruído branco (<em>white noise</em>) ou uma sequência de números aleatórios segundo a distribuição normal. Tal série não apresenta autocorrelação significativa, conforme indica o seu correlograma, exibido na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(d). A série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(b) apresenta padrão cíclico com sazonalidade de 24h. O seu correlograma, plotado na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(e), é característico deste tipo de série, por apresentar correlação positiva decrescente com o aumento da defasagem até ficar negativa com mínimo na defasagem de 12h, metade do período sazonal. Já a série da <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(c), com frequência mensal, apresenta tendência linear clara juntamente com sazonalidade anual. O seu correlograma, exibido na <a href="#fig-corr" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>(f), apresenta autocorrelação positiva decrescente com a defasagem, além do padrão cíclico anual, dado os ciclos de 12 em 12 meses.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -692,12 +645,12 @@ Figura&nbsp;2.7: Previsão por deriva na série de vendas de carros no Brasil
 <h2 data-number="2.4" class="anchored" data-anchor-id="resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</h2>
 <p>Os valores ajustados, ou seja, os valores aproximados pelo modelo estimado para as observações da série de interesse, <span class="math inline">\(y_t\)</span>, são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>. Tal notação implica que a estimativa de <span class="math inline">\(y_t\)</span>, dita <span class="math inline">\(\hat y_t\)</span>, é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>. É importante diferenciar os valores ajustados dos valores previstos. Enquanto os primeiros são aqueles aproximados a partir de um modelo para os dados observados da série, os previstos consistem em observações futuras projetadas para a série em questão.</p>
 <p>Os resíduos de uma série temporal consistem no erro, sendo calculados como a diferença entre o observado e o ajustado em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
-<p>Na <a href="#tbl-fitres" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> são explicitados os valores ajustados e os resíduos obtidos com o método ingênuo sazonal para as últimas horas do dia 07 de maio da série temporal de temperatura em São João del-Rei.</p>
+<p>Na <a href="#tbl-fitres" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> são explicitados os valores ajustados e os resíduos obtidos com o método ingênuo sazonal para as últimas horas do dia 07 de maio da série temporal de temperatura em São João del-Rei.</p>
 <div class="cell">
 <div id="tbl-fitres" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fitres-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.5: Valores ajustados e residuais obtidos pelo método ingênuo para a série de temperatura em São João del-Rei
+Tabela&nbsp;2.4: Valores ajustados e residuais obtidos pelo método ingênuo para a série de temperatura em São João del-Rei
 </figcaption>
 <div aria-describedby="tbl-fitres-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -856,12 +809,12 @@ Q = T\sum_{k=1}^l r_k^2
 Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 \tag{2.7}\]</span></span></p>
 <p>A hipótese nula de ambos os testes reside na nulidade de todas as alto correlações. Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade. O teste de Ljung-Box apresenta poder do teste mais alto, por isso é o mais recomendado.</p>
-<p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. O p-valor consiste na probabilidade associada à estatística calculada, <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span>. Como <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span> &lt; <span class="math inline">\(\chi^2_{(df=10, \alpha = 0,05)} = 18,31\)</span> ou como o p-valor &gt; 0,05 = <span class="math inline">\(\alpha\)</span>, para ambos os testes, não se rejeita a hipótese nula. Logo, pode-se concluir que as autocorrelações dos resíduos não diferem das de um ruído branco.</p>
+<p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. O p-valor consiste na probabilidade associada à estatística calculada, <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span>. Como <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span> &lt; <span class="math inline">\(\chi^2_{(df=10, \alpha = 0,05)} = 18,31\)</span> ou como o p-valor &gt; 0,05 = <span class="math inline">\(\alpha\)</span>, para ambos os testes, não se rejeita a hipótese nula. Logo, pode-se concluir que as autocorrelações dos resíduos não diferem das de um ruído branco.</p>
 <div class="cell">
 <div id="tbl-testes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-testes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método ingênuo para o índice Ibovespa
+Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método ingênuo para o índice Ibovespa
 </figcaption>
 <div aria-describedby="tbl-testes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -891,12 +844,12 @@ Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método i
 </figure>
 </div>
 </div>
-<p>O método da deriva é um pouco mais adequado que o ingênuo para séries de índices de bolsas de valores. Na <a href="#tbl-testes2" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método. Os resíduos resultantes são não autocorrelacionados, portanto tem um padrão de ruído branco.</p>
+<p>O método da deriva é um pouco mais adequado que o ingênuo para séries de índices de bolsas de valores. Na <a href="#tbl-testes2" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método. Os resíduos resultantes são não autocorrelacionados, portanto tem um padrão de ruído branco.</p>
 <div class="cell">
 <div id="tbl-testes2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.7: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa
+Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa
 </figcaption>
 <div aria-describedby="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -939,11 +892,11 @@ Tabela&nbsp;2.7: Valores das estatísticas Q e Q* para os resíduos do método d
 <p><span id="eq-dp"><span class="math display">\[
 \hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
 \tag{2.9}\]</span></span></p>
-<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> expõe as Equações para estimar o desvio-padrão para os métodos até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
+<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> expõe as Equações para estimar o desvio-padrão para os métodos até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
 <div id="tbl-desvio" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.8: Desvio-padrão para previsão para os métodos considerados
+Tabela&nbsp;2.7: Desvio-padrão para previsão para os métodos considerados
 </figcaption>
 <div aria-describedby="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -994,14 +947,14 @@ Figura&nbsp;2.13: Intervalo de previsão para a série do índice Ibovespa
 <section id="transformações" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="transformações"><span class="header-section-number">2.7</span> Transformações</h2>
 <p>Há diversos casos de séries temporais que seguem um padrão de variação cíclica com amplitude variável com o tempo. Tal variabilidade dita heterocedástica pode dificultar a modelagem da série. Transformações podem ser usadas nas séries temporais, de forma a garantir, por exemplo, que as pressuposições sobre os resíduos sejam cumpridas, ou que alguma variação que aumenta ou cresce com o tempo seja corrigida. A transformação logarítmica é geralmente útil para estabilizar a variação de séries. Tomando a série original, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, a série transformada fica <span class="math inline">\(w_1, w_2, ..., w_T\)</span>, com <span class="math inline">\(w_t =log(y_t)\)</span>, <span class="math inline">\(t=1,...,T\)</span>. Uma mudança de uma unidade na escala log de base 10 corresponde a uma multiplicação por 10 na escala original.</p>
-<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transformações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme segue.</p>
-<p><span class="math display">\[
+<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transformações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme <a href="#eq-boxcox" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>.</p>
+<p><span id="eq-boxcox"><span class="math display">\[
 w_t = \Bigg\{ \begin{matrix}
                 \text{log}(y_t), \text{ }\lambda=0 \\
-                (\text{sign}(y_t)|y_t|^\lambda-1)/\lambda, \text{ }\lambda&gt;0
+                (\text{sinal}(y_t)|y_t|^\lambda-1)/\lambda, \text{ }\lambda&gt;0,
              \end{matrix}
-\]</span></p>
-<p>onde <span class="math inline">\(\text{sign}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sign}(y_t) =-1\)</span>, caso contrário.</p>
+\tag{2.10}\]</span></span></p>
+<p>onde <span class="math inline">\(\text{sinal}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sinal}(y_t) =-1\)</span>, caso contrário.</p>
 <p>A <a href="#fig-exptrans" class="quarto-xref">Figura&nbsp;<span>2.14</span></a> apresenta a série de Exportações após transformação de Box-Cox com <span class="math inline">\(\lambda = -0,0656\)</span>. Pode-se observar que a transformação estabiliza a variância da série. Certamente trabalhar com a série transformada viabilizará obtenção de resíduos mais adequados e de previsões melhores. Ao final é possível isolar <span class="math inline">\(y_t\)</span> em <span class="math inline">\(w_t\)</span>, de forma a realizar previsões na unidade original da série.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1037,15 +990,15 @@ Figura&nbsp;2.15: Observações de treino e teste para validar séries temporais
 </div>
 </div>
 </div>
-<p>O erro de previsão (não confundir com resíduo) é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>, onde <span class="math inline">\(y_1,...,y_T\)</span> são os dados de treino e <span class="math inline">\(y_{T+1}, y_{T+2}, ...\)</span> de teste.</p>
+<p>O erro de previsão (não confundir com resíduo) é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, onde <span class="math inline">\(y_1,...,y_T\)</span> são os dados de treino e <span class="math inline">\(y_{T+1}, y_{T+2}, ...\)</span> de teste.</p>
 <p><span id="eq-erroo"><span class="math display">\[
 e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
-\tag{2.10}\]</span></span></p>
-<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
+\tag{2.11}\]</span></span></p>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
 <div id="tbl-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.9: Métricas de erro
+Tabela&nbsp;2.8: Métricas de erro
 </figcaption>
 <div aria-describedby="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1077,16 +1030,16 @@ Tabela&nbsp;2.9: Métricas de erro
 </div>
 </figure>
 </div>
-<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.11</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.10</span></a> considera tal padronização.</p>
+<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> considera tal padronização.</p>
 <p><span id="eq-qj"><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
-\tag{2.11}\]</span></span></p>
-<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.10</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
+\tag{2.12}\]</span></span></p>
+<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
 <div class="cell">
 <div id="tbl-erro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.10: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei
+Tabela&nbsp;2.9: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei
 </figcaption>
 <div aria-describedby="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
