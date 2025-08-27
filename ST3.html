@@ -243,11 +243,10 @@ window.Quarto = {
   <li><a href="#média-móvel" id="toc-média-móvel" class="nav-link" data-scroll-target="#média-móvel"><span class="header-section-number">3.4</span> Média móvel</a></li>
   <li><a href="#estimando-a-tendência-com-dados-sazonais" id="toc-estimando-a-tendência-com-dados-sazonais" class="nav-link" data-scroll-target="#estimando-a-tendência-com-dados-sazonais"><span class="header-section-number">3.5</span> Estimando a tendência com dados sazonais</a></li>
   <li><a href="#decomposição-clássica" id="toc-decomposição-clássica" class="nav-link" data-scroll-target="#decomposição-clássica"><span class="header-section-number">3.6</span> Decomposição clássica</a></li>
-  <li><a href="#métodos-usados-por-agências-de-estatística" id="toc-métodos-usados-por-agências-de-estatística" class="nav-link" data-scroll-target="#métodos-usados-por-agências-de-estatística"><span class="header-section-number">3.7</span> Métodos usados por agências de estatística</a></li>
-  <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.8</span> Decomposição via STL</a></li>
-  <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.9</span> Previsão via decomposição</a></li>
-  <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">3.10</span> Implementação em R</a></li>
-  <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">3.11</span> Exercícios propostos</a></li>
+  <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.7</span> Decomposição via STL</a></li>
+  <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.8</span> Previsão via decomposição</a></li>
+  <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">3.9</span> Implementação em R</a></li>
+  <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">3.10</span> Exercícios propostos</a></li>
   </ul>
 </nav>
     </div>
@@ -281,7 +280,7 @@ window.Quarto = {
 
 <section id="decomposição" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="decomposição"><span class="header-section-number">3.1</span> Decomposição</h2>
-<p>As séries temporais exibem comportamentos variados. A decomposição destas pode facilitar a análise e previsão. Geralmente considera-se a tendência, sazonalidade e o resto na decomposição, havendo vários métodos para separar tais componentes. Antes, porém, são importantes algumas considerações sobre tratamentos iniciais às vezes necessários.</p>
+<p>As séries temporais exibem comportamentos variados. A decomposição destas pode facilitar a análise e previsão. Geralmente considera-se a tendência, sazonalidade e o resto ou resíduos na decomposição, havendo vários métodos para separar tais componentes. Antes, porém, são importantes algumas considerações sobre tratamentos iniciais às vezes necessários.</p>
 <section id="ajustes-e-transformações" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="ajustes-e-transformações"><span class="header-section-number">3.1.1</span> Ajustes e transformações</h3>
 <p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidades devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
@@ -370,88 +369,57 @@ Tabela&nbsp;3.1: Decomposição aditiva da série do índice de produção mensa
 <div aria-describedby="tbl-prodintdecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 8%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 16%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: left;">.model</th>
 <th style="text-align: left;">Data</th>
-<th style="text-align: right;">value</th>
-<th style="text-align: right;">trend</th>
-<th style="text-align: right;">season_year</th>
-<th style="text-align: right;">remainder</th>
-<th style="text-align: right;">season_adjust</th>
+<th style="text-align: right;">Valor</th>
+<th style="text-align: right;">Tendência</th>
+<th style="text-align: right;">Sazonalidade</th>
+<th style="text-align: right;">Resto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 jan</td>
 <td style="text-align: right;">87.97245</td>
 <td style="text-align: right;">95.10887</td>
 <td style="text-align: right;">-7.0894994</td>
 <td style="text-align: right;">-0.0469214</td>
-<td style="text-align: right;">95.06195</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 fev</td>
 <td style="text-align: right;">85.22869</td>
 <td style="text-align: right;">95.33164</td>
 <td style="text-align: right;">-11.1630761</td>
 <td style="text-align: right;">1.0601292</td>
-<td style="text-align: right;">96.39177</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 mar</td>
 <td style="text-align: right;">94.94150</td>
 <td style="text-align: right;">95.55440</td>
 <td style="text-align: right;">0.8473573</td>
 <td style="text-align: right;">-1.4602601</td>
-<td style="text-align: right;">94.09414</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 abr</td>
 <td style="text-align: right;">96.00238</td>
 <td style="text-align: right;">95.77717</td>
 <td style="text-align: right;">-2.0387398</td>
 <td style="text-align: right;">2.2639509</td>
-<td style="text-align: right;">98.04112</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 mai</td>
 <td style="text-align: right;">99.12757</td>
 <td style="text-align: right;">95.99987</td>
 <td style="text-align: right;">3.8247141</td>
 <td style="text-align: right;">-0.6970134</td>
-<td style="text-align: right;">95.30286</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">intermediarios</td>
-<td style="text-align: left;">stl</td>
 <td style="text-align: left;">2002 jun</td>
 <td style="text-align: right;">97.15759</td>
 <td style="text-align: right;">96.22257</td>
 <td style="text-align: right;">1.7226365</td>
 <td style="text-align: right;">-0.7876163</td>
-<td style="text-align: right;">95.43495</td>
 </tr>
 </tbody>
 </table>
@@ -636,7 +604,7 @@ Figura&nbsp;3.10: Tendência para a série de produtos intermediários estimada 
 </section>
 <section id="decomposição-clássica" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="decomposição-clássica"><span class="header-section-number">3.6</span> Decomposição clássica</h2>
-<p>A decomposição clássica tem um século de tradição e é o primeiro método para tal. Ela contempla a forma aditiva e a multiplicativa. A seguir são expostos os passos para a decomposição aditiva:</p>
+<p>A decomposição clássica tem um século de tradição e é o primeiro método de decomposição. Ela contempla a forma aditiva e a multiplicativa. A seguir são expostos os passos para a decomposição aditiva:</p>
 <ol type="1">
 <li><p>Se o período sazonal, <span class="math inline">\(m\)</span>, é par, estime a tendência <span class="math inline">\(\hat{T}_t\)</span> como uma média móvel <span class="math inline">\(2\times m\)</span>-MA. Se <span class="math inline">\(m\)</span> é ímpar, estime a tendência com uma média móvel <span class="math inline">\(m\)</span>-MA.</p></li>
 <li><p>Calcule a série sem a tendência, <span class="math inline">\(y_t - \hat{T}_t\)</span>.</p></li>
@@ -665,7 +633,7 @@ Figura&nbsp;3.11: Decomposição clássica da série de produtos intermediários
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a razão da série em relação à tendência e à sazonalidade, <span class="math inline">\(\hat{R}_t=y_t / (\hat{T}_t \times \hat{S}_t)\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-passbr" class="quarto-xref">Figura&nbsp;<span>3.12</span></a> plota o número de passageiros em vôos no Brasil, disponível em <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos">Dados Abertos da Agência Nacional de Aviação Civil (ANAC)</a>.</p>
+<p>A <a href="#fig-passbr" class="quarto-xref">Figura&nbsp;<span>3.12</span></a> plota o número de passageiros em vôos no Brasil, disponível em <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/todos-os-dados-abertos">Dados Abertos da Agência Nacional de Aviação Civil (ANAC)</a>. Pode-se observar além da tendência uma variação cíclica com amplitude crescente ao longo dos anos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -680,7 +648,7 @@ Figura&nbsp;3.12: Série de passageiros de vôos no Brasil
 </div>
 </div>
 </div>
-<p>Observa-se na <a href="#fig-passbr_saz" class="quarto-xref">Figura&nbsp;<span>3.13</span></a> sazonalidade anual com picos nos períodos de férias escolares, em Julho e Dezembro/Janeiro.</p>
+<p>Observa-se na <a href="#fig-passbr_saz" class="quarto-xref">Figura&nbsp;<span>3.13</span></a> sazonalidade anual com picos nos períodos de férias escolares, em Julho e Dezembro/Janeiro. A mudança ao longo dos anos na inclinação das linhas nos períodos de pico confirma o padrão heterocedástico da série.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr_saz" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -711,52 +679,18 @@ Figura&nbsp;3.14: Decomposição clássica multiplicativa da série de passageir
 </div>
 </div>
 </section>
-<section id="métodos-usados-por-agências-de-estatística" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="métodos-usados-por-agências-de-estatística"><span class="header-section-number">3.7</span> Métodos usados por agências de estatística</h2>
-<p>O método X-11 é discutido em Dagum &amp; Bianconcini (2016). Possibilita a decomposição aditiva e a multiplicativa, é robusto a altas variações e <em>outliers</em> e a estimativa de tendência é disponível em toda série. O método também captura outras formas de sazonalidade e feriados.</p>
-<p>A <a href="#fig-decomp_x11" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> exibe o resultado da decomposição aditiva pelo método X-11 na série do índice de produção de produtos intermediários.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-decomp_x11" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decomp_x11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST3_files/figure-html/fig-decomp_x11-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_x11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.15: Decomposição da série de produtos intermediários via X-11
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>O método SEATS consiste em uma decomposição sazonal de séries temporais por ARIMA (ARIMA será discutida futuramente) e foi proposto pelo Banco da Espanha. A <a href="#fig-decomp_seats" class="quarto-xref">Figura&nbsp;<span>3.16</span></a> expõe o resultado gráfico do método SEATS para decompor a série de passageiros em vôos do Brasil.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-decomp_seats" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decomp_seats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST3_files/figure-html/fig-decomp_seats-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_seats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.16: Decomposição da série de produtos intermediários via SEATS
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="decomposição-via-stl" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.8</span> Decomposição via STL</h2>
-<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS, enquanto LOESS é um método de regressão não linear, <em>locally estimated scatterplot smoothing</em>, ou em tradução livre suavização por regressão local.</p>
+<section id="decomposição-via-stl" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.7</span> Decomposição via STL</h2>
+<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS. LOESS significa <em>locally estimated scatterplot smoothing</em>, sendo um método de regressão não linear, que é cmumente chamado de regressão local.</p>
 <p>O método STL apresenta diversas vantagens em relação aos anteriores:</p>
 <ul>
 <li>Trata qualquer tipo de sazonalidade;</li>
 <li>A componente sazonal pode mudar com o tempo;</li>
 <li>A suavização da tendência pode ser controlada pelo usuário;</li>
-<li>Pode ser robusto a <em>outliers</em> (há uma opção para tal), de forma que desvios não usuáis não afetarão a tendência e ciclo, mas o resto.</li>
+<li>Pode ser robusto a <em>outliers</em> (há uma opção para tal), de forma que desvios não usuais não afetarão a tendência e ciclo, mas o resto.</li>
 </ul>
-<p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos multiplicativos, recomenda-se transformar a série via logaritmo e depois fazer a decomposição aditiva.</p>
-<p>A <a href="#fig-decomp_logpass" class="quarto-xref">Figura&nbsp;<span>3.17</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil.</p>
+<p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos multiplicativos, recomenda-se transformar a série via logaritmo ou Box-Cox e depois fazer a decomposição aditiva.</p>
+<p>A <a href="#fig-decomp_logpass" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil. A tendência é estimada usando uma janela definida para definir o intervalo do atraso para a janela da regressão local. Já a sazonalidade deve ter seu período definido, além da janela da suavização.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_logpass" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -765,16 +699,16 @@ Figura&nbsp;3.16: Decomposição da série de produtos intermediários via SEATS
 <img src="ST3_files/figure-html/fig-decomp_logpass-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_logpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.17: Decomposição da série log(passageiros) em vôos no Brasil via STL
+Figura&nbsp;3.15: Decomposição da série log(passageiros) em vôos no Brasil via STL
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="previsão-via-decomposição" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.9</span> Previsão via decomposição</h2>
-<p>A Figura <a href="#fig-decomp_pred" class="quarto-xref">Figura&nbsp;<span>3.18</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis.</p>
+<section id="previsão-via-decomposição" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.8</span> Previsão via decomposição</h2>
+<p>A Figura <a href="#fig-decomp_pred" class="quarto-xref">Figura&nbsp;<span>3.16</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -783,13 +717,13 @@ Figura&nbsp;3.17: Decomposição da série log(passageiros) em vôos no Brasil v
 <img src="ST3_files/figure-html/fig-decomp_pred-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.18: Previsão via decomposição da série de log(passageiros) de vôos no Brasil
+Figura&nbsp;3.16: Previsão via decomposição da série de log(passageiros) de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-decomp_resi" class="quarto-xref">Figura&nbsp;<span>3.19</span></a> apresenta os resíduos obtidos da decomposição para o caso anterior. Observa-se que apresentam boa aderência à normal e sem presença de autocorrelação.</p>
+<p>A <a href="#fig-decomp_resi" class="quarto-xref">Figura&nbsp;<span>3.17</span></a> apresenta os resíduos obtidos da decomposição para o caso anterior. Observa-se que apresentam boa aderência à normal e sem presença de autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -798,23 +732,27 @@ Figura&nbsp;3.18: Previsão via decomposição da série de log(passageiros) de 
 <img src="ST3_files/figure-html/fig-decomp_resi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.19: Resíduos do modelo obtido via decomposição por STL da série de log(passageiros)
+Figura&nbsp;3.17: Resíduos do modelo obtido via decomposição por STL da série de log(passageiros)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="implementação-em-r" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">3.10</span> Implementação em R</h2>
+<section id="implementação-em-r" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">3.9</span> Implementação em R</h2>
 <p>A seguir apresenta-se parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo. Os dados utilizados estão disponíveis em <a href="https://github.com/robsonpro/Previsao">Previsão, por Robson Bruno Dutra Pereira</a>.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série mensal de produção de gás natural no Brasil.</p>
 <div class="cell">
@@ -853,219 +791,194 @@ Figura&nbsp;3.19: Resíduos do modelo obtido via decomposição por STL da séri
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(Producao_normalizada, lambda)) <span class="sc">+</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Série transformada de LGN no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série do índice de produção de bens intermediários.</p>
+<p>Série do índice de produção de bens intermediários. A série com todos os índices foi apresentada no capítulo 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Producao_bens.csv"</span>, <span class="at">header =</span> T)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">$</span>Data <span class="ot">&lt;-</span> <span class="fu">yearmonth</span>(<span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2002/1/1"</span>), </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">length=</span><span class="dv">271</span>, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">by=</span><span class="st">"month"</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> capital<span class="sc">:</span>nao_duraveis)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="ot">&lt;-</span> prod <span class="sc">|&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> name, <span class="at">index =</span> Data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prod_ts <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="ot">&lt;-</span> prod_ts <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name<span class="sc">==</span><span class="st">"intermediarios"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>name)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="ot">&lt;-</span> prod_ts <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(indice<span class="sc">==</span><span class="st">"intermediarios"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>indice)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gráfico sazonal da série de produtos intermediários.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(value)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(valor)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tendência para a série de produção de produtos intermediários via média móvel.</p>
+<p>Tendência para a série de produção de produtos intermediários via média móvel. O comando <code>slide_dbl</code> itera é usado para tal, sendo definida a janela com <code>.before</code> e <code>.after</code>. Faz-se inicialmente a média móvel 12-MA e depois 2-MA no resultado da primeira, de forma a obter a média móvel <span class="math inline">\(2\times12\)</span>-MA.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">12-MA</span><span class="st">`</span> <span class="ot">=</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(value, mean,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.before =</span> <span class="dv">5</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.after =</span> <span class="dv">6</span>, </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.complete =</span> T),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">2x12-MA</span><span class="st">`</span> <span class="ot">=</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(<span class="st">`</span><span class="at">12-MA</span><span class="st">`</span>, mean,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.before =</span> <span class="dv">1</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.after =</span> <span class="dv">0</span>, </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.complete =</span> T))</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="st">`</span><span class="at">2x12-MA</span><span class="st">`</span>), <span class="at">colour =</span> <span class="st">"seagreen"</span>) <span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">12-MA</span><span class="st">`</span> <span class="ot">=</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(valor, mean,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.before =</span> <span class="dv">5</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.after =</span> <span class="dv">6</span>, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.complete =</span> T),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">2x12-MA</span><span class="st">`</span> <span class="ot">=</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(<span class="st">`</span><span class="at">12-MA</span><span class="st">`</span>, mean,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.before =</span> <span class="dv">1</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.after =</span> <span class="dv">0</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.complete =</span> T))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="st">`</span><span class="at">2x12-MA</span><span class="st">`</span>), <span class="at">colour =</span> <span class="st">"seagreen"</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Decomposição clássica aditiva da série de produtos intermediários.</p>
+<p>Decomposição clássica aditiva da série de produtos intermediários. Usa-se o comando <code>classical_decomposition</code> com o argumento <code>type = "additive"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dcomp <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">classical_decomposition</span>(value, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">type =</span> <span class="st">"additive"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>dcomp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dcomp <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">classical_decomposition</span>(valor, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">type =</span> <span class="st">"additive"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dcomp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dcomp <span class="sc">|&gt;</span> <span class="fu">autoplot</span>() </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dcomp <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Decomposição via X-11 da série de produtos intermediários.</p>
+<p>Série de passageiros em vôos domésticos do Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x11_dcmp <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">x11 =</span> <span class="fu">X_13ARIMA_SEATS</span>(value <span class="sc">~</span> <span class="fu">x11</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(x11_dcmp)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>voosbr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"voosbr_ts.csv"</span>, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> T)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> voosbr <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tsibble</span>(<span class="at">index =</span> data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Passageiros) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Passageiros em vôos no Brasil"</span>, <span class="at">x=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Decomposição via STL da série de passageiros com transformação logaritimica. Deve-se usar o comando <code>STL</code>. Tanta a tendência com <code>trend</code> quando a sazonalidade com <code>season</code> podem ter a janela ajustada como argumento <code>window</code>, com número impar. Para o exemplo abaixo foi deixado o padrão para a parte sazonal e 7 para a tendência. Se <code>window = "periodic"</code> na sazonalidade, então obtém-se a parte sazonal idêntica ao longo dos anos. O período da sazonalidade é fornecido com argumento <code>period</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">robust =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Decomposição da série log(passageiros) em vôos do Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelagem via decomposição. Modelo STL para a série de produtos intermediários.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Data)<span class="sc">&lt;</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">stl =</span> <span class="fu">decomposition_model</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(value <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>), <span class="at">robust =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NAIVE</span>(season_adjust)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Data)<span class="sc">&lt;</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">stl =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(valor <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>), </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NAIVE</span>(season_adjust)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão para 2 anos e 7 meses à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">31</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(prod_inter) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Previsão para o índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">31</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(prod_inter) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Previsão para o índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Métricas de desempenho para a previsão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fc <span class="ot">&lt;-</span> pi_stl_fit <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">31</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>pi_future <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Data)<span class="sc">&gt;=</span><span class="dv">2022</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(pi_stl_fc, pi_future) <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Série de número de passageiros em vôos no Brasil. Estes dados não estão disponíveis no github do autor, mas no link citado no capítulo. Caso não consiga fazer o download, sugere-se pular os dois blocos de código seguinters e seguir com a leitura dos dados já tratados disponibilizados em seguida.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vroom)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>voosbr <span class="ot">&lt;-</span> <span class="fu">vroom</span>(<span class="st">"voos_BR_comp.csv"</span>, </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_names =</span> T, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">skip =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Agregando os dados e transformando em série temporal.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> voosbr <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Passageiros =</span> PASSAGEIROS_GRATIS<span class="sc">+</span>PASSAGEIROS_PAGOS) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">ymd</span>(</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(ANO, MES, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)))) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS)) <span class="sc">|&gt;</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Passageiros =</span> <span class="fu">sum</span>(Passageiros, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Usando os dados simplificados <code>voosbr_ts.csv</code> para trabalhar a série de passageiros em vôos no Brasil.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">"LC_TIME"</span>, <span class="st">"en_GB.UTF-8"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"voosbr_ts.csv"</span>, <span class="at">header =</span> T)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">as.yearmon</span>(data, <span class="at">format =</span> <span class="st">"%Y %b"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Vizualizando a série.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Passageiros) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Passageiros em vôos no Brasil"</span>, <span class="at">x=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(Passageiros) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fc <span class="ot">&lt;-</span> pi_stl_fit <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">31</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>pi_future <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Data)<span class="sc">&gt;=</span><span class="dv">2022</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(pi_stl_fc, pi_future) <span class="sc">|&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Decomposição clássica multiplicativa da série de passageiros.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">classical_decomposition</span>(Passageiros, <span class="at">type =</span> <span class="st">"multiplicative"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decomposição clássica multiplicativa da série Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">classical_decomposition</span>(Passageiros, <span class="at">type =</span> <span class="st">"multiplicative"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decomposição clássica multiplicativa da série Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo via decomposição por STL.</p>
+<p>Modelo via decomposição por STL. São testados dois modelos variando a janela da tendência.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2018</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">stlf =</span> <span class="fu">decomposition_model</span>(</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>), <span class="at">robust =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NAIVE</span>(season_adjust)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2018</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl1 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                                                      <span class="at">window=</span><span class="st">"periodic"</span>), </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NAIVE</span>(season_adjust)),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl2 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                                                      <span class="at">window =</span> <span class="dv">11</span>), </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NAIVE</span>(season_adjust))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando a previsão para 2019 e 2020 juntamente com os dados.</p>
+<p>Visualizando a previsão para 2019 e 2020 juntamente com os dados a partir de 2015.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>() <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>)) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Previsão via decomposição da série de log(passageiros)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter_index</span>(<span class="st">"2015"</span><span class="sc">~</span><span class="st">"2020"</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Previsão via decomposição da série de log(passageiros)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Resíduos do modelo via decomposição por STL.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(stl2) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Métricas de desempenho para os dois anos separados para teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>voos_future <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&gt;=</span><span class="dv">2018</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>voos_fc <span class="ot">&lt;-</span> fit_dcmp <span class="sc">|&gt;</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">24</span>) </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(voos_fc, voos_future) <span class="sc">|&gt;</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>voos_future <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&gt;=</span><span class="dv">2018</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>voos_fc <span class="ot">&lt;-</span> fit_dcmp <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">24</span>) </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(voos_fc, voos_future) <span class="sc">|&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercícios-propostos" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">3.11</span> Exercícios propostos</h2>
+<section id="exercícios-propostos" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">3.10</span> Exercícios propostos</h2>
 <ol type="1">
-<li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique uma transformação de Box-Cox na série. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
+<li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique a transformação de Box-Cox na série. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente) <span class="sc">|&gt;</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> name, </span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>name)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente, </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"derivado"</span>, <span class="at">values_to =</span> <span class="st">"volume"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> derivado, </span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li><p>Uma vez que a série exibe um padrão de sazonalidade anual e tem frequência mensal, qual a ordem de média móvel seria adequada para estimar a tendência via método clássico?</p></li>
-<li><p>Faça um gráfico da série transformada de produção de asfalto com curva da tendência usando média móvel com a ordem adequada, segundo sua resposta na questão anterior.</p></li>
+<li><p>Faça um gráfico da série de produção de asfalto transformada com curva da tendência usando média móvel com a ordem adequada, segundo sua resposta na questão anterior.</p></li>
 </ol>
 <ol start="5" type="1">
 <li>Faça a decomposição aditiva da série do índice de produção de bens de consumo duráveis usando o método clássico.</li>
@@ -1074,7 +987,7 @@ Figura&nbsp;3.19: Resíduos do modelo obtido via decomposição por STL da séri
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ST3_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ST3_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1083,10 +996,13 @@ Figura&nbsp;3.19: Resíduos do modelo obtido via decomposição por STL da séri
 <li>Faça a decomposição clássica da série transformada de produção de asfalto usando o método clássico. Uma vez que a série foi transformada, você recomenda usar o método aditivo ou multiplicativo?</li>
 </ol>
 <ol start="7" type="1">
-<li>Estime um modelo via decomposição por STL da série de produção de asfalto. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Faça um gráfico da série com a previsão obtida com o modelo STL para os 32 meses disponíveis a partir de 2023 <code>(h=32)</code>.</li>
+<li>Estime modelos via decomposição por STL da série de produção de asfalto. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Teste modelos com janela de 5 e 11 para a tendência e janela de 11 e infinita (“periodic” ou Inf) para a sazonalidade. Faça um gráfico da série com as previsões obtidas com o modelo STL para os 32 meses disponíveis a partir de 2023 <code>(h=32)</code>.</li>
 </ol>
 <ol start="8" type="1">
 <li>Calcule as métricas de desempenho para o modelo avaliado nos meses separados para teste.</li>
+</ol>
+<ol start="9" type="1">
+<li>Avalie os resíduos do melhor modelo.</li>
 </ol>
 
 
