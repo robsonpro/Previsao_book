@@ -277,9 +277,9 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
-<p>A regressão de séries temporais serve para prever uma série em função de outra ou mais relacionadas. Não é o método mais usual e sofisticado, uma vez que os métodos mais avançados consideram o padrão da própria série para modelagem e previsão. Entretanto, em algumas situações tal abordagem pode ser útil. Ademais, há possibilidade de combinar a regressão com ARIMA, conforme será abordado futuramente.</p>
+<p>A regressão de séries temporais visa modelar uma série de interesse, dita dependente, em função de outra ou mais séries, referidas como independentes, às quais são supostamente relacionadas. Os métodos mais tradicionais consideram a dependência temporal da própria série para modelagem e previsão. Entretanto, em situações onde há séries relacionadas disponíveis a regressão pode ser útil. Ademais, há possibilidade de combinar a regressão com modelos autoregressivos integrados de m[edias móveis, conforme será abordado no capítulo 7.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
-<p>Na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As séries apresentam tendência de crescimento não linear.</p>
+<p>Na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As séries apresentam tendência de crescimento não linear com algumas flutuações.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -309,7 +309,7 @@ Figura&nbsp;4.2: Área plantada versus Produção de grãos
 </div>
 </div>
 </div>
-<p>Conforme observado na <a href="#fig-reg_graos" class="quarto-xref">Figura&nbsp;<span>4.3</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
+<p>Conforme observado na <a href="#fig-reg_graos" class="quarto-xref">Figura&nbsp;<span>4.3</span></a>, pode-se considerar neste caso e em diversos outros a aproximação de uma função linear para tal relação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-reg_graos" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -324,18 +324,18 @@ Figura&nbsp;4.3: Modelo de regressão linear simples para produção de grãos e
 </div>
 </div>
 </div>
-<p>O modelo linear plotado em azul pode ser descrito conforme Equação abaixo, onde <span class="math inline">\(\beta_0\)</span> é uma constante e <span class="math inline">\(\beta_1\)</span> é um coeficiente linear.</p>
-<p><span class="math display">\[
+<p>O modelo linear plotado em azul pode ser descrito conforme a <a href="#eq-linreg" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>, onde <span class="math inline">\(\beta_0\)</span> é uma constante e <span class="math inline">\(\beta_1\)</span> é um coeficiente linear.</p>
+<p><span id="eq-linreg"><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}x_t
-\]</span></p>
-<p>As observações da série dependente ou resposta podem ser descritas conforme segue, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>.</p>
-<p><span class="math display">\[
+\tag{4.1}\]</span></span></p>
+<p>As observações da série dependente ou resposta, <span class="math inline">\(y_t\)</span>, podem ser descritas conforme <a href="#eq-obs" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>.</p>
+<p><span id="eq-obs"><span class="math display">\[
 \begin{aligned}
 y_t = \hat{y}_t + \varepsilon_t \\
 y_t = \beta_0 + \beta_1x_t + \varepsilon_t \\
 \end{aligned}
-\]</span></p>
-<p>Considerando as <span class="math inline">\(T\)</span> observações das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, sendo os resíduos normalmente distribuídos, com média nula e variância igual a <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> plota em linhas vermelhas verticais os resíduos. O modelo plotado minimiza a soma dos quadrados de tais erros.</p>
+\tag{4.2}\]</span></span></p>
+<p>Considerando as <span class="math inline">\(T\)</span> observações disponíveis das séries, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_T, y_T)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2\)</span>. A Figura <a href="#fig-erros_graos" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> plota em linhas vermelhas verticais os resíduos. O modelo plotado minimiza a soma dos quadrados dos erros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros_graos" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -362,33 +362,33 @@ Residuals:
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   -1.726e+05  1.248e+04  -13.84   &lt;2e-16 ***
-area_plantada  6.285e+00  2.561e-01   24.54   &lt;2e-16 ***
+(Intercept)   -1,726e+05  1,248e+04  -13,84   &lt;2e-16 ***
+area_plantada  6,285e+00  2,561e-01   24,54   &lt;2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
 Residual standard error: 21080 on 46 degrees of freedom
-Multiple R-squared: 0.929,  Adjusted R-squared: 0.9275
-F-statistic: 602.2 on 1 and 46 DF, p-value: &lt; 2.22e-16</code></pre>
+Multiple R-squared: 0,929,  Adjusted R-squared: 0,9275
+F-statistic: 602,2 on 1 and 46 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
-<p>O modelo para prever a produção de grãos em função da área plantada fica:</p>
+<p>O modelo para prever a produção de grãos, <span class="math inline">\(y_t\)</span>, em função da área plantada, <span class="math inline">\(x_t\)</span>, fica:</p>
 <p><span class="math display">\[
-\hat{y}_t = -1,89 \times 10^{5} + 6,782x_t
+\hat{y}_t = -1,726 \times 10^{5} + 6,285x_t
 \]</span></p>
 </section>
 <section id="regressão-linear-múltipla" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">4.2</span> Regressão linear múltipla</h2>
-<p>No caso de onde há múltiplas séries independentes ou regressoras de interesse, <span class="math inline">\(x_{t1}, x_{t2}, ..., x_{tk}\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, isto é:</p>
-<p><span class="math display">\[
+<p>No caso de onde há múltiplas séries exógenas ou regressoras de interesse, <span class="math inline">\(x_{t1}, x_{t2}, ..., x_{tk}\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-lnm" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
+<p><span id="eq-lnm"><span class="math display">\[
 \hat{y}_t = \beta_0 + \beta_1x_{t1} + \beta_2x_{t2} + \cdots + \beta_kx_{tk} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{tj},  
-\]</span></p>
-<p>ou de forma matricial com <span class="math inline">\(\mathbf{X}_{[T\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
-<p><span class="math display">\[
+\tag{4.3}\]</span></span></p>
+<p>ou de forma matricial segundo <a href="#eq-lnmm" class="quarto-xref">Equação&nbsp;<span>4.4</span></a>, com <span class="math inline">\(\mathbf{X}_{[T\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
+<p><span id="eq-lnmm"><span class="math display">\[
 \begin{aligned}
 \hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
 \end{aligned},
-\]</span></p>
+\tag{4.4}\]</span></span></p>
 <p>onde a matrix <span class="math inline">\(\mathbf{X}\)</span> contém uma coluna unitária para a constante e uma coluna para cada série independente:</p>
 <p><span class="math display">\[
 \mathbf{X} =
@@ -399,19 +399,19 @@ F-statistic: 602.2 on 1 and 46 DF, p-value: &lt; 2.22e-16</code></pre>
 1 &amp; x_{T1} &amp; x_{T2} &amp; \cdots &amp; x_{Tk} \\
 \end{bmatrix}, e\\
 \]</span></p>
-<p>e <span class="math inline">\(\beta\)</span> consite no vetor de coeficientes:</p>
+<p>e <span class="math inline">\(\beta\)</span> consiste no vetor de coeficientes:</p>
 <p><span class="math display">\[
 \mathbf{\beta}^T =
 \begin{bmatrix}
 \beta_0 &amp; \beta_1 &amp; \cdots &amp; \beta_k\\
 \end{bmatrix}. \\
 \]</span></p>
-<p>Os valores observados da série <span class="math inline">\(\mathbf{y}\)</span> podem ser recuperados somando os valores preditos e o erro.</p>
-<p><span class="math display">\[
+<p>Os valores observados da série <span class="math inline">\(\mathbf{y}\)</span> podem ser recuperados somando os valores preditos e o erro, conforme <a href="#eq-obsm" class="quarto-xref">Equação&nbsp;<span>4.5</span></a>.</p>
+<p><span id="eq-obsm"><span class="math display">\[
 \begin{aligned}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\varepsilon}
 \end{aligned}
-\]</span></p>
+\tag{4.5}\]</span></span></p>
 <p>Tomando tal notação, a soma dos quadrados dos erros pode ser descrita como <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2 = \mathbf{\varepsilon}^T\mathbf{\varepsilon}\)</span>. Desenvolvendo tal expressão tem-se:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -423,11 +423,13 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 <p><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial \mathbf{\beta}} = -2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{\beta} = 0 \\
-\hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \]</span></p>
-<p>A estimativa dos coeficientes <span class="math inline">\(\hat\beta\)</span> obtida minimiza a soma dos quadrados dos resíduos, <span class="math inline">\(\sum \varepsilon_i^2\)</span>, sendo portanto as estimativas de mínimos quadrados.</p>
-<p>Seja a série multivariada de índices de produção de bens de capital, de consumo duráveis, intermediários e de consumo não duráveis, plotada na <a href="#fig-bem" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>.</p>
+<p>As estimativas dos coeficientes <span class="math inline">\(\hat\beta\)</span> obtidas segundo a <a href="#eq-ols" class="quarto-xref">Equação&nbsp;<span>4.6</span></a> minimizam a soma dos quadrados dos resíduos, <span class="math inline">\(\sum \varepsilon_i^2\)</span>, sendo, portanto, as estimativas de mínimos quadrados.</p>
+<p><span id="eq-ols"><span class="math display">\[
+\hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
+\tag{4.6}\]</span></span></p>
+<p>Seja a série multivariada de exportação, importação, produção e vendas de fertilizantes no Brasil, plotada na <span class="quarto-unresolved-ref">?fig-fert</span>, disponível em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. A série tem frequência mensal e possui dados a partir de 1998, exceto para a de exportação, disponível a partir de 2013. Observa-se um volume muito maior de importações que produção e exportações, além de sazonalidade. As séries de importação e vendas apresentam padrão de crescimento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bem" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -436,72 +438,73 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 <img src="ST4_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.5: Bens de consumo duráveis, intermediários e de consumo não duráveis
+Figura&nbsp;4.5: Fertilizantes no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Observa-se na <a href="#fig-bens_pairs" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> diagramas de dispersão e correlações aos pares, ficando clara a relação linear entre tais índices.</p>
+<p>Observa-se na <a href="#fig-fert_pairs" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> diagramas de dispersão e correlações aos pares para os dados a partir de 2013. Há correlação positiva mais significativa entre as séries de vendas e importação. A partir de 2013, a queda na produção é acompanhada do aumento nas importações, o que justifica a correlação negativa.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bens_pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fert_pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bens_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-bens_pairs-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fert_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-fert_pairs-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bens_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.6: Bens de consumo duráveis, intermediários e de consumo não duráveis
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert_pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.6: Correlação entre as séries de fertilizantes
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Uma vez que os bens de consumo duráveis dependem dos bens de capital, os quais consistem nos ativos de empresas para produzir produtos ou serviços, e dos bens intermediários, supõe-se a possibilidade de obter um modelo de regressão múltipla desta série em função daquelas. A seguir apresenta-se o modelo de regressão múltipla estimado para a prever o índice de bens de consumos duráveis <span class="math inline">\(y_t\)</span> em função dos de capital, <span class="math inline">\(x_{t1}\)</span>, e de produtos intermediários, <span class="math inline">\(x_{t2}\)</span>. Ambos apresentaram significância estatística.</p>
+<p>Seja um modelo de regressão para prever a venda de fertilizantes em função das outras séries a partir de 2013. A seguir apresenta-se tal modelo. Apenas a série de exportações não foi significativa.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Series: consumo_duraveis 
+<pre><code>Series: vendas 
 Model: TSLM 
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--38.361  -7.949   1.382   8.824  33.937 
+     Min       1Q   Median       3Q      Max 
+-1342150  -397913    32404   402134  1619150 
 
 Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)    -60.12405    9.55694  -6.291 1.28e-09 ***
-capital          0.73046    0.05886  12.409  &lt; 2e-16 ***
-intermediarios   1.09143    0.12334   8.849  &lt; 2e-16 ***
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -8,085e+05  4,687e+05  -1,725  0,08690 .  
+producao     1,872e+00  5,821e-01   3,215  0,00165 ** 
+importacao   1,099e+00  7,735e-02  14,210  &lt; 2e-16 ***
+exportacao  -5,323e-01  2,742e+00  -0,194  0,84640    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
-Residual standard error: 13.04 on 268 degrees of freedom
-Multiple R-squared: 0.7734, Adjusted R-squared: 0.7717
-F-statistic: 457.4 on 2 and 268 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual standard error: 585300 on 128 degrees of freedom
+Multiple R-squared: 0,6446, Adjusted R-squared: 0,6363
+F-statistic: 77,39 on 3 and 128 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
-<p>O modelo obtido pode ser escrito confirme segue:</p>
-<p><span class="math display">\[
-\hat y_t = -60,12 + 0,73x_{t1} + 1,09x_{t2}
-\]</span></p>
+<p>O modelo obtido pode ser escrito conforme <a href="#eq-regfert" class="quarto-xref">Equação&nbsp;<span>4.7</span></a>, onde <span class="math inline">\(\hat y_t\)</span> consiste na estimativa de vendas n período <span class="math inline">\(t\)</span>, <span class="math inline">\(x_{t1}\)</span> consiste no volume produzido, <span class="math inline">\(x_{t2}\)</span> no volume importado e <span class="math inline">\(x_{t3}\)</span> no volume exportado no período <span class="math inline">\(t\)</span>.</p>
+<p><span id="eq-regfert"><span class="math display">\[
+\hat y_t = -8,08\times10^5 + 1,87x_{t1} + 1,10x_{t2} -5,32x_{t3}
+\tag{4.7}\]</span></span></p>
 </section>
 <section id="desempenho-do-modelo-de-regressão" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="desempenho-do-modelo-de-regressão"><span class="header-section-number">4.3</span> Desempenho do modelo de regressão</h2>
-<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme segue,</p>
-<p><span class="math display">\[
+<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme a <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>4.8</span></a>,</p>
+<p><span id="eq-r2"><span class="math display">\[
 \begin{align}
 R^2 &amp;= 1- SS_{E}/SS_T \\
 R^2 &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2} = 1- \frac{\sum_{t=1}^{T}\varepsilon_t^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2},
 \end{align}
-\]</span></p>
+\tag{4.8}\]</span></span></p>
 <p>onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros e <span class="math inline">\(SS_T\)</span> consiste na soma dos quadrados total, ou no numerador da variância da série a ser predita.</p>
-<p>O <span class="math inline">\(R^2\)</span> sempre aumenta ao se adicionar novos termos no modelo, mesmo se estes não são significativos, uma vez que não leva em conta os graus de liberdade no cálculo. O coeficiente de determinação múltipla ajustado, <span class="math inline">\(R^2_{aj}\)</span>, é uma métrica mais interessante, já que considera as médias dos quadrados ao invés das somas dos quadrados dos erros, conforme segue:</p>
-<p><span class="math display">\[
+<p>O <span class="math inline">\(R^2\)</span> sempre aumenta ao se adicionar novos termos no modelo, mesmo se estes não são significativos, uma vez que não leva em conta os graus de liberdade no cálculo. O coeficiente de determinação múltipla ajustado, <span class="math inline">\(R^2_{aj}\)</span>, é uma métrica mais interessante, já que considera as médias dos quadrados ao invés das somas dos quadrados dos erros, conforme a <a href="#eq-r2aj" class="quarto-xref">Equação&nbsp;<span>4.9</span></a>.</p>
+<p><span id="eq-r2aj"><span class="math display">\[
 \begin{align}
 R^2_{aj} &amp;= 1- MS_{E}/MS_T \\
 R^2_{aj} &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2/(T-K-1)}{\sum_{t=1}^{T}(y_t-\overline{y})^2/(T-1)},
 \end{align}
-\]</span></p>
+\tag{4.9}\]</span></span></p>
 <p>onde <span class="math inline">\(K\)</span> é o número de termos no modelo, <span class="math inline">\(MS_E\)</span> consiste média dos quadrados dos erros, que consiste na estimativa de variância dos resíduos, enquanto <span class="math inline">\(MS_T\)</span> consiste na média dos quadrados total, ou na variância da série a ser predita.</p>
 <p>Para o modelo de regressão simples para produção de grãos em função da área plantada foi obtido um ajuste de mais de 91%, garantindo tal percentual de explicação da variabilidade da série de produção em função da área plantada. A <a href="#fig-graos_fit" class="quarto-xref">Figura&nbsp;<span>4.7</span></a> plota a série de produção de grãos observada e a aproximada pelo modelo de regressão.</p>
 <div class="cell">
@@ -518,15 +521,15 @@ Figura&nbsp;4.7: Produção de grãos
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prod_fit" class="quarto-xref">Figura&nbsp;<span>4.8</span></a> plota a série do índice de produção de bens de consumo duráveis observada e a aproximada pelo modelo de regressão múltipla.</p>
+<p>A <a href="#fig-fert_fit" class="quarto-xref">Figura&nbsp;<span>4.8</span></a> plota a série de vendas de fertilizantes observada e a aproximada pelo modelo de regressão múltipla.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prod_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fert_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-prod_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-prod_fit-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fert_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-fert_fit-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prod_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;4.8: Bens de consumo duráveis
 </figcaption>
 </figure>
@@ -536,7 +539,7 @@ Figura&nbsp;4.8: Bens de consumo duráveis
 </section>
 <section id="diagnóstico-dos-resíduos" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="diagnóstico-dos-resíduos"><span class="header-section-number">4.4</span> Diagnóstico dos resíduos</h2>
-<p>A <a href="#fig-graos_resi" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de ordem 4. Logo, há informação importante não capturada pelo modelo de regressão.</p>
+<p>A <a href="#fig-graos_resi" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> apresenta alguns gráficos dos resíduos do modelo de produção de grãos em função da área plantada. Pode-se observar que o primeiro gráfico apresenta tendências em alguns instantes, com padrão não aleatório, indicando presença de autocorrelação. O correlograma confirma presença de autocorrelação nos resíduos até a defasagem de 5 observações. Logo, há informação importante não capturada pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos_resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -554,11 +557,11 @@ Figura&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área 
 </section>
 <section id="preditores-úteis" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="preditores-úteis"><span class="header-section-number">4.5</span> Preditores úteis</h2>
-<p>Muitas séries temporais costumam apresentar tendência. Um modelo linear simples pode considerar o tempo, <span class="math inline">\(t\)</span>, como preditor, de forma a capturar a tendência.</p>
-<p><span class="math display">\[
+<p>Muitas séries temporais costumam apresentar tendência linear. Um modelo linear simples pode considerar o tempo, <span class="math inline">\(t\)</span>, como preditor, de forma a modelar a tendência, conforme <a href="#eq-linmodt" class="quarto-xref">Equação&nbsp;<span>4.10</span></a>.</p>
+<p><span id="eq-linmodt"><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t
-\]</span></p>
-<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>.</p>
+\tag{4.10}\]</span></span></p>
+<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>, com o modelo descrito na <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a>. É importante observar que não é necessária a inclusão de todas variáveis dicotômicas no modelo, uma vez que se <span class="math inline">\(d_{2,t}=d_{3,t}=d_{4,t}=0\)</span>, então <span class="math inline">\(d_{1,t}=1\)</span>.</p>
 <div id="tbl-dummy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -623,6 +626,10 @@ Tabela&nbsp;4.1: Criação de variáveis dummy
 </div>
 </figure>
 </div>
+<p>A Equação <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a> expõe o modelo de regressão com tais variáveis além do termo de tendência.</p>
+<p><span id="eq-linmoddumm"><span class="math display">\[
+\hat{y}_t = \beta_0+\beta_{1}t + \beta_2d_{2,t} + \beta_3d_{3,t} + \beta_4d_{4,t}
+\tag{4.11}\]</span></span></p>
 <p>A <a href="#fig-temp_sjdr" class="quarto-xref">Figura&nbsp;<span>4.10</span></a> exibe a série temporal de temperatura de São João del-Rei para os dias 15 a 28 de junho com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -656,46 +663,46 @@ Figura&nbsp;4.11: Gráfico sazonal da temperatura em São João del-Rei
 <p>Um modelo de regressão considerando a tendência e sazonalidade para este caso deve considerar como variáveis <em>dummy</em> o dia, de forma a capturar a variação hora a hora. Logo, neste caso, 24 variáveis dummy são criadas. Observa-se que além da tendência a maior parte de tais variáveis apresenta significância e o modelo contempla mais de 95% de variabilidade da série.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Series: Temp 
+<pre><code>Series: Temperatura 
 Model: TSLM 
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--3.24262 -0.76670 -0.08595  0.83706  2.98696 
+-3,20212 -0,76300 -0,08292  0,87326  2,92845 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   14.8450939  0.3398667  43.679  &lt; 2e-16 ***
-trend()        0.0092571  0.0006713  13.790  &lt; 2e-16 ***
-season()day2  -0.9164000  0.4499590  -2.037 0.042534 *  
-season()day3  -1.5470856  0.4499605  -3.438 0.000665 ***
-season()day4  -2.2770295  0.4501793  -5.058 7.25e-07 ***
-season()day5  -3.2077152  0.4501588  -7.126 7.25e-12 ***
-season()day6  -3.9241152  0.4501393  -8.718  &lt; 2e-16 ***
-season()day7  -4.4405151  0.4501208  -9.865  &lt; 2e-16 ***
-season()day8  -5.0712008  0.4501032 -11.267  &lt; 2e-16 ***
-season()day9  -5.5018864  0.4500867 -12.224  &lt; 2e-16 ***
-season()day10 -6.0897150  0.4500712 -13.531  &lt; 2e-16 ***
-season()day11 -6.2989721  0.4500567 -13.996  &lt; 2e-16 ***
-season()day12 -5.1868006  0.4500432 -11.525  &lt; 2e-16 ***
-season()day13 -2.0460577  0.4500306  -4.546 7.82e-06 ***
-season()day14  2.7518281  0.4500191   6.115 2.89e-09 ***
-season()day15  6.7997138  0.4500086  15.110  &lt; 2e-16 ***
-season()day16  8.4261710  0.4499991  18.725  &lt; 2e-16 ***
-season()day17  9.2883425  0.4499906  20.641  &lt; 2e-16 ***
-season()day18  9.8719425  0.4499831  21.938  &lt; 2e-16 ***
-season()day19  9.9483997  0.4499766  22.109  &lt; 2e-16 ***
-season()day20  9.1105712  0.4499711  20.247  &lt; 2e-16 ***
-season()day21  7.9013141  0.4499666  17.560  &lt; 2e-16 ***
-season()day22  4.6491999  0.4499631  10.332  &lt; 2e-16 ***
-season()day23  3.0685142  0.4499605   6.820 4.76e-11 ***
-season()day24  1.5949714  0.4499590   3.545 0.000453 ***
+(Intercept)    1,953e+01  3,454e-01  56,556  &lt; 2e-16 ***
+trend()        8,882e-03  6,822e-04  13,020  &lt; 2e-16 ***
+season()day2  -1,580e+00  4,573e-01  -3,456 0,000624 ***
+season()day3  -3,053e+00  4,573e-01  -6,678 1,12e-10 ***
+season()day4  -4,528e+00  4,575e-01  -9,897  &lt; 2e-16 ***
+season()day5  -5,372e+00  4,575e-01 -11,744  &lt; 2e-16 ***
+season()day6  -6,074e+00  4,574e-01 -13,278  &lt; 2e-16 ***
+season()day7  -6,933e+00  4,574e-01 -15,157  &lt; 2e-16 ***
+season()day8  -7,863e+00  4,574e-01 -17,191  &lt; 2e-16 ***
+season()day9  -8,579e+00  4,574e-01 -18,757  &lt; 2e-16 ***
+season()day10 -9,095e+00  4,574e-01 -19,886  &lt; 2e-16 ***
+season()day11 -9,726e+00  4,574e-01 -21,265  &lt; 2e-16 ***
+season()day12 -1,016e+01  4,573e-01 -22,206  &lt; 2e-16 ***
+season()day13 -1,074e+01  4,573e-01 -23,491  &lt; 2e-16 ***
+season()day14 -1,095e+01  4,573e-01 -23,949  &lt; 2e-16 ***
+season()day15 -9,840e+00  4,573e-01 -21,517  &lt; 2e-16 ***
+season()day16 -6,699e+00  4,573e-01 -14,648  &lt; 2e-16 ***
+season()day17 -1,900e+00  4,573e-01  -4,156 4,20e-05 ***
+season()day18  2,148e+00  4,573e-01   4,697 3,97e-06 ***
+season()day19  3,775e+00  4,573e-01   8,255 4,39e-15 ***
+season()day20  4,637e+00  4,573e-01  10,141  &lt; 2e-16 ***
+season()day21  5,221e+00  4,573e-01  11,418  &lt; 2e-16 ***
+season()day22  5,298e+00  4,573e-01  11,586  &lt; 2e-16 ***
+season()day23  4,461e+00  4,573e-01   9,755  &lt; 2e-16 ***
+season()day24  3,252e+00  4,573e-01   7,111 7,93e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
-Residual standard error: 1.19 on 311 degrees of freedom
-Multiple R-squared: 0.9622, Adjusted R-squared: 0.9593
-F-statistic: 330.3 on 24 and 311 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual standard error: 1,21 on 311 degrees of freedom
+Multiple R-squared: 0,961,  Adjusted R-squared: 0,958
+F-statistic: 319,5 on 24 and 311 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
 <p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
@@ -761,7 +768,7 @@ Figura&nbsp;4.15: Correlação entre petróleo refinado e derivados
 </div>
 </div>
 </div>
-<p>A seguir expõe-se um modelo de regressão múltipla do petróleo refinado em função do volume produzido dos derivados. Apenas GLP, coque, querosene de avião, querosene iluminante e solvente não apresentaram significância estatística.</p>
+<p>A seguir expõe-se um modelo de regressão múltipla do petróleo refinado em função do volume produzido dos derivados. Apenas GLP, coque, parafina e solvente não apresentaram significância estatística a 0,05 de significância.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: petroleo 
@@ -769,38 +776,68 @@ Model: TSLM
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--606505  -83530    1027   87600  505807 
+-728213 -101803   13923  108790  409621 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            4,781e+05  1,720e+05   2,780 0,005800 ** 
+GLP                    4,487e-01  2,633e-01   1,704 0,089439 .  
+asfalto                1,044e+00  2,804e-01   3,724 0,000237 ***
+coque                  5,506e-01  3,585e-01   1,536 0,125750    
+gasolina               4,264e-01  9,076e-02   4,698 4,11e-06 ***
+lubrificante           3,463e+00  1,037e+00   3,339 0,000954 ***
+nafta                  1,001e+00  1,421e-01   7,048 1,39e-11 ***
+oleo_combustivel       9,055e-01  7,052e-02  12,841  &lt; 2e-16 ***
+oleo_diesel            1,138e+00  5,430e-02  20,960  &lt; 2e-16 ***
+outros_nao_energeticos 1,497e+00  2,916e-01   5,133 5,31e-07 ***
+parafina               6,667e+00  3,943e+00   1,691 0,091924 .  
+querosene_aviao        1,409e+00  1,712e-01   8,230 6,99e-15 ***
+querosene_iluminante   8,834e+00  2,943e+00   3,001 0,002929 ** 
+solvente               1,358e+00  9,322e-01   1,456 0,146383    
+---
+Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
+
+Residual standard error: 176300 on 282 degrees of freedom
+Multiple R-squared: 0,9503, Adjusted R-squared: 0,948
+F-statistic: 414,9 on 13 and 282 DF, p-value: &lt; 2,22e-16</code></pre>
+</div>
+</div>
+<p>A seguir expõe-se um modelo de regressão múltipla excluindo os termos não significativos do modelo inicial. O modelo apresentou melhora no ajuste, com <span class="math inline">\(R^2_{aj} = 0,9558\)</span>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: petroleo 
+Model: TSLM 
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-657756  -91477    9494   92705  484690 
 
 Coefficients:
                          Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)             1.777e+06  2.207e+05   8.053 2.31e-14 ***
-GLP                     3.063e-01  2.373e-01   1.291 0.197927    
-asfalto                 1.161e+00  2.524e-01   4.600 6.39e-06 ***
-coque                   1.437e+00  3.397e-01   4.229 3.18e-05 ***
-gasolina                4.606e-01  8.168e-02   5.638 4.18e-08 ***
-lubrificante            1.479e+00  9.627e-01   1.536 0.125627    
-nafta                   7.169e-01  1.323e-01   5.419 1.29e-07 ***
-oleo_combustivel        1.118e+00  6.843e-02  16.341  &lt; 2e-16 ***
-oleo_diesel             1.110e+00  4.892e-02  22.694  &lt; 2e-16 ***
-outros_nao_energeticos  9.948e-01  2.691e-01   3.697 0.000262 ***
-parafina                8.141e-01  3.614e+00   0.225 0.821944    
-querosene_aviao         1.458e+00  1.540e-01   9.472  &lt; 2e-16 ***
-querosene_iluminante   -1.496e+00  2.927e+00  -0.511 0.609642    
-solvente                8.388e-01  8.403e-01   0.998 0.319019    
-data                   -8.128e+01  9.855e+00  -8.248 6.28e-15 ***
+(Intercept)             1,763e+06  1,956e+05   9,010  &lt; 2e-16 ***
+asfalto                 9,308e-01  2,470e-01   3,768 0,000200 ***
+gasolina                5,786e-01  7,556e-02   7,658 2,96e-13 ***
+lubrificante            1,541e+00  9,571e-01   1,610 0,108587    
+nafta                   6,184e-01  1,180e-01   5,238 3,15e-07 ***
+oleo_combustivel        1,057e+00  6,619e-02  15,975  &lt; 2e-16 ***
+oleo_diesel             1,221e+00  3,998e-02  30,550  &lt; 2e-16 ***
+outros_nao_energeticos  9,912e-01  2,634e-01   3,763 0,000204 ***
+querosene_aviao         1,546e+00  1,537e-01  10,058  &lt; 2e-16 ***
+querosene_iluminante   -1,690e+00  2,792e+00  -0,605 0,545491    
+data                   -6,809e+01  8,892e+00  -7,658 2,96e-13 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
-Residual standard error: 158500 on 281 degrees of freedom
-Multiple R-squared:  0.96,  Adjusted R-squared: 0.958
-F-statistic: 481.7 on 14 and 281 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual standard error: 162500 on 285 degrees of freedom
+Multiple R-squared: 0,9573, Adjusted R-squared: 0,9558
+F-statistic: 639,7 on 10 and 285 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
 <p>Geralmente, em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
 <p><span class="math display">\[
 AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
 \]</span></p>
-<p>A <a href="#tbl-fit_petro" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e um modelo sem os parâmetros GLP, lubrificante, parafina, querosene iluminante e solvente. O modelo reduzido apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
+<p>A <a href="#tbl-fit_petro" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e o modelo reduzido. O modelo reduzido apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
 <div class="cell">
 <div id="tbl-fit_petro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -821,15 +858,15 @@ Tabela&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrig
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">completo</td>
-<td style="text-align: right;">0.9580020</td>
-<td style="text-align: right;">7104.830</td>
-<td style="text-align: right;">7106.780</td>
+<td style="text-align: right;">0,9480198</td>
+<td style="text-align: right;">7167,001</td>
+<td style="text-align: right;">7168,715</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">reduzido</td>
-<td style="text-align: right;">0.9576833</td>
-<td style="text-align: right;">7102.288</td>
-<td style="text-align: right;">7103.218</td>
+<td style="text-align: right;">0,9558487</td>
+<td style="text-align: right;">7115,814</td>
+<td style="text-align: right;">7116,917</td>
 </tr>
 </tbody>
 </table>
@@ -838,7 +875,7 @@ Tabela&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrig
 </figure>
 </div>
 </div>
-<p>A forma correta de realizar a remoção de coeficientes, conforme pode-se presumir pelo exemplo anterior, não é considerando a significância. Ademais, não sugere-se a remoção manual de coeficientes. Recomenda-se o uso de um algoritmo para tal fim. O algoritmo <em>stepwise</em> com eliminação para trás segue os seguintes passos:</p>
+<p>A forma correta de realizar a remoção de coeficientes, não é considerando a significância. Ademais, não sugere-se a remoção manual de coeficientes. Recomenda-se o uso de um algoritmo para tal fim. O algoritmo <em>stepwise</em> com eliminação para trás segue os seguintes passos:</p>
 <ol type="1">
 <li>Comece com o modelo completo.</li>
 <li>Remova um preditor por vez. Mantenha o modelo com melhor desempenho, considerando por exemplo o AIC.</li>
@@ -847,7 +884,7 @@ Tabela&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrig
 </section>
 <section id="previsão" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.7</span> Previsão</h2>
-<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditores uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A Figura <a href="#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
+<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditoras, uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A <a href="#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -862,16 +899,16 @@ Figura&nbsp;4.16: Previsão da temperatura em São João del-Rei
 </div>
 </div>
 </div>
-<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditores, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever o índice de produção de bens de consumo duráveis em função dos bens de capital e intermediários. A <a href="#fig-prev_cenar" class="quarto-xref">Figura&nbsp;<span>4.17</span></a> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
+<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditoras, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever a venda de fertilizantes. A <span class="quarto-unresolved-ref">?fig-prev_cenar</span> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prev_cenar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fert_cenar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-prev_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-prev_cenar-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fert_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-fert_cenar-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prev_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.17: Previsão de cenários para produção de bens de capital
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.17: Previsão de cenários para venda de fertilizantes
 </figcaption>
 </figure>
 </div>
@@ -885,7 +922,7 @@ Figura&nbsp;4.17: Previsão de cenários para produção de bens de capital
 <p><span class="math display">\[
 \text{log} (y_t) = \beta_0+\beta_1\text{log} (x_t)
 \]</span></p>
-<p>Pode-se pensar em considerar um termo quadrático ou de ordem maior para a tendência, de forma a contemplar uma tendência não linear. Entretanto não se recomenda tal estratégia, uma vez que na maioria dos casos a previsão resultante extrapola muito a realidade.</p>
+<p>Pode-se pensar em considerar um termo quadrático ou de ordem maior para a tendência, de forma a contemplar uma tendência não linear. Entretanto, não se recomenda tal estratégia, uma vez que na maioria dos casos a previsão resultante extrapola muito a realidade.</p>
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t+\beta_{2}t^2
 \]</span></p>
@@ -899,31 +936,31 @@ Figura&nbsp;4.17: Previsão de cenários para produção de bens de capital
               t-\tau \text{, se } t\geq \tau
 \end{align}
 \]</span></p>
-<p>A <a href="#fig-peito" class="quarto-xref">Figura&nbsp;<span>4.18</span></a> expõe a série temporal da evolução do recorde na prova de 100m nado peito na categoria masculina. Pode-se observar que de 1960 até 1980 o melhor tempo diminuiu com maior intensidade, passando para outro padrão de variação de 1980 a 2000 e, posteriormente, de 2000 até aqui com outra tendência.</p>
+<p>Na <a href="#fig-emissagro" class="quarto-xref">Figura&nbsp;<span>4.18</span></a> é exibida a série temporal de emissões de gases de efeito estufa devido a produção de energia no Brasil. Os dados tem frequência anual e são disponibilizados desde 1990 até 2020 em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. As emissões são disponibilizadas em giga gramas (Gg) de dióxido de carbono equivalente. Observa-se tendência de aumento até 2014 e queda a partir de então.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-peito" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-emissagro" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-peito-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-peito-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-emissagro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-emissagro-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-peito-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.18: Evolução do recorde na prova de nado peito, 100m, masculino
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emissagro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.18: Emissões de gases de efeito estufa por atividades de produção de energia no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-peito_mod" class="quarto-xref">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial. Também foi considerado um modelo linear e outro linear por partes (<em>piecewise</em>). Foram consideradas duas partições, em 1977 e 2000. Pode-se observar que o terceiro caso parece interessante para ajustar-se melhor em cada momento considerado da série.</p>
+<p>A <a href="#fig-emissagro_mod" class="quarto-xref">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um modelo linear e outro linear por partes (<em>piecewise</em>). Para os três modelos foram utilizados dados de até 2017 para treinamento. Para o modelo por partes foram consideradas duas partições, em 2005 e 2014. Foi realizada a previsão para 5 anos a partir de 2018. Pode-se observar que o terceiro caso parece mais interessante pois ajusta-se melhor à queda observada nos últimos anos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-peito_mod" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-emissagro_mod" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-peito_mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-peito_mod-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-emissagro_mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-emissagro_mod-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-peito_mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.19: Evolução do record na prova de nado peito, 100m, masculino com modelos não lineares
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emissagro_mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produção de energia no Brasil
 </figcaption>
 </figure>
 </div>
@@ -934,235 +971,268 @@ Figura&nbsp;4.19: Evolução do record na prova de nado peito, 100m, masculino c
 <h2 data-number="4.9" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">4.9</span> Implementação em R</h2>
 <p>A seguir são apresentadas boa parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo.</p>
 <p>Carregando pacotes.</p>
-<p>Séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas.</p>
+<p>Séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas. O pacote <code>ipeadatar</code> disponibiliza diversas séries econométricas via função <code>ipeadata</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata("DEPAE_SAFRA")</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># available_series()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata("DEPAE_SAFRA")</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># available_series()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>graos_plan <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRAAREA"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>graos_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRA"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graos_plan <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRAAREA"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>graos_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRA"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Transformando as séries em <code>tsibble</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graos  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(graos_plan<span class="sc">$</span>value,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                            graos_prod<span class="sc">$</span>value),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">c</span>(graos_plan<span class="sc">$</span>date,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                     graos_prod<span class="sc">$</span>date)),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">id =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"area_plantada"</span>, <span class="fu">nrow</span>(graos_plan)),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">"producao"</span>, <span class="fu">nrow</span>(graos_prod))),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">key=</span>id, <span class="at">index=</span>data)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>id.labs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"área plantada [ha]"</span>, <span class="st">"produção [ton]"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(id.labs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"area_plantada"</span>, <span class="st">"producao"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>graos  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(graos_plan<span class="sc">$</span>value,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                            graos_prod<span class="sc">$</span>value),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">c</span>(graos_plan<span class="sc">$</span>date,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                     graos_prod<span class="sc">$</span>date)),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">id =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"area_plantada"</span>, <span class="fu">nrow</span>(graos_plan)),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">"producao"</span>, <span class="fu">nrow</span>(graos_prod))),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">key=</span>id, <span class="at">index=</span>data)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>id.labs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"área plantada [ha]"</span>, <span class="st">"produção [ton]"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(id.labs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"area_plantada"</span>, <span class="st">"producao"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando.</p>
+<p>Visualizando as séries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(valor) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(col = "slategrey") +</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">2</span>, <span class="sc">~</span> id, <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">id =</span> id.labs)) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">""</span>, <span class="at">title =</span> <span class="st">"Produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(valor) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(col = "slategrey") +</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">2</span>, <span class="sc">~</span> id, <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">id =</span> id.labs)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">""</span>, <span class="at">title =</span> <span class="st">"Produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Diagrama de dispersão e correlação entre as séries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_graos <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>id,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">values_from=</span>valor)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_graos, <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_graos <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>id,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">values_from=</span>valor)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_graos, <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo de regressão linear simples para produção em função da área plantada.</p>
+<p>Modelo de regressão linear simples para produção em função da área plantada. Deve-se usar o comando <code>TSLM</code>. O modelo deve conter a série dependente e as indepndentes após <code>~</code>. Neste caso há uma única série independente ou exógena, <code>area_plantada</code>. Porém, em casos onde há múltiplas séries exógenas, é importante usar <code>+</code> para separá-las.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_graos <span class="ot">&lt;-</span> df_graos <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(producao <span class="sc">~</span> area_plantada))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_graos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit_graos <span class="ot">&lt;-</span> df_graos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(producao <span class="sc">~</span> area_plantada))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_graos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série ajustada para produção de grãos a partir do modelo de regressão obtido.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_graos) <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> data)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> producao, <span class="at">colour =</span> <span class="st">"Data"</span>)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">"Fitted"</span>)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Grãos [ton]"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Produção de grãos"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">Data=</span><span class="st">"grey"</span>,<span class="at">Fitted=</span><span class="st">"slateblue"</span>)) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_graos) <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> data)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> producao, <span class="at">colour =</span> <span class="st">"Data"</span>)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">"Fitted"</span>)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Grãos [ton]"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Produção de grãos"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">Data=</span><span class="st">"grey"</span>,<span class="at">Fitted=</span><span class="st">"slateblue"</span>)) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Resíduos para o modelo de produção de grãos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_graos <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fit_graos <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série temporal de temperatura de São João del-Rei.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"INMET_SJDR_2024.csv"</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header=</span>T)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>tempo_sjdr<span class="sc">$</span>Hora..UTC. <span class="ot">&lt;-</span> tempo_sjdr<span class="sc">$</span>Hora..UTC.<span class="sc">/</span><span class="dv">100</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>tempo_sjdr <span class="ot">&lt;-</span> tempo_sjdr[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>tempo_sjdr <span class="ot">&lt;-</span> tempo_sjdr <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Data =</span> <span class="fu">dmy</span>(Data)) <span class="sc">|&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Data =</span> <span class="fu">make_datetime</span>(<span class="fu">year</span>(Data), <span class="fu">month</span>(Data), <span class="fu">day</span>(Data), Hora..UTC.)) <span class="sc">|&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>Hora..UTC.) <span class="sc">|&gt;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Data) <span class="sc">|&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Temp =</span> Temp..Ins...C.)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"sjdr2024.csv"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header=</span>T)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_ts <span class="ot">&lt;-</span> tempo_sjdr <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Data =</span> <span class="fu">as.POSIXct</span>(<span class="fu">paste</span>(Data,Hora), </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">format =</span> <span class="st">"%Y/%m/%d %H"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>Hora) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_inicial <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-06-15 00:00:00"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>datas_especificas <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> data_inicial, <span class="at">by =</span> <span class="st">"hour"</span>, <span class="at">length.out =</span> <span class="dv">14</span><span class="sc">*</span><span class="dv">24</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Data <span class="sc">%in%</span> datas_especificas)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_inicial <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-06-15 00:00:00"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>datas_especificas <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> data_inicial, <span class="at">by =</span> <span class="st">"hour"</span>, <span class="at">length.out =</span> <span class="dv">14</span><span class="sc">*</span><span class="dv">24</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr_ts <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Data <span class="sc">%in%</span> datas_especificas)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando.</p>
+<p>Modelo de regressão com termo de tendência e sazonalidade. São usados para tal os termos <code>trend()</code> e <code>season()</code>. O segundo cria as variáveis <strong>dummy</strong> necessárias para capturar a sazonalidade na regressão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(Temp) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Temp [°C]"</span>, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Temperatura em São João del-Rei"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_tempo <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(Temperatura <span class="sc">~</span> <span class="fu">trend</span>() <span class="sc">+</span> <span class="fu">season</span>()))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_tempo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gráfico sazonal.</p>
+<p>Série aproximada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(Temp, <span class="at">period =</span> <span class="st">"day"</span>) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Hora"</span>, <span class="at">y =</span> <span class="st">"Temp [°C]"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Temperatura: Gráfico sazonal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_tempo <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(Temp <span class="sc">~</span> <span class="fu">trend</span>() <span class="sc">+</span> <span class="fu">season</span>()))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_tempo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Série ajustada.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_tempo) <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Data)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Temp, <span class="at">colour =</span> <span class="st">"Data"</span>)) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">"Fitted"</span>)) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">Data =</span> <span class="st">"black"</span>, <span class="at">Fitted =</span> <span class="st">"orangered"</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Series"</span>)) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Temp [°C]"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Temperatura em São João del-Rei"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_tempo) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Data)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Temperatura, <span class="at">colour =</span> <span class="st">"Data"</span>)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> <span class="st">"Fitted"</span>)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">Data =</span> <span class="st">"black"</span>, <span class="at">Fitted =</span> <span class="st">"orangered"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Series"</span>)) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Temp [°C]"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Temperatura em São João del-Rei"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão do tempo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fc_tempo <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_tempo)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fc_tempo <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Previsão do tempo para São João del-Rei"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temp [°C]"</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fc_tempo <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_tempo)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fc_tempo <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Previsão do tempo para São João del-Rei"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temp [°C]"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de produção de petróleo e derivados.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> name, </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> name, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>petro_ <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>name,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from=</span>value)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>petro_ <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>name,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from=</span>value)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">14</span>, <span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">14</span>, <span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Correlação entre as séries.</p>
+<p>Correlação entre as séries. Usa-se o comando <code>corrplot</code> do pacote homônimo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">cor</span>(petro[,<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>])</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(R, <span class="at">method =</span> <span class="st">'color'</span>, <span class="at">order =</span> <span class="st">'hclust'</span>, <span class="at">type =</span> <span class="st">'upper'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">cor</span>(petro[,<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(R, <span class="at">method =</span> <span class="st">'color'</span>, <span class="at">order =</span> <span class="st">'hclust'</span>, <span class="at">type =</span> <span class="st">'upper'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo de regressão múltipla da série de produção de petróleo em função dos derivados.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fit_petro <span class="ot">&lt;-</span> petro_ <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(petroleo <span class="sc">~</span> .<span class="sc">-</span>petroleo<span class="sc">-</span>data))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report</span>(fit_petro)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit_petro <span class="ot">&lt;-</span> petro_ <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(petroleo <span class="sc">~</span> .<span class="sc">-</span>petroleo<span class="sc">-</span>data))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report</span>(fit_petro)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série temporal do record de 100m nado peito masculino.</p>
+<p>Série temporal de emissões de gases de efeito estufa por produção de energia no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>peito <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"nado_peito_100m_M.csv"</span>, <span class="at">header=</span>T)</span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>emissoes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"emissoes.csv"</span>, <span class="at">header =</span> T)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="ot">&lt;-</span> emissoes <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ano =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">paste</span>(Ano,<span class="st">"01 01"</span>), <span class="at">format =</span> <span class="st">"%Y %m %d"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Ano)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Modelos com tendência linear, exponencial e de regressão por partes. Para o último deve-se definir os <em>knots</em> ou divisões e provê-los como argumento em <code>trend</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>knots <span class="ot">&lt;-</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2005-01-01"</span>, <span class="st">"2014-01-01"</span>), <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>peito <span class="ot">&lt;-</span> peito[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">15</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">34</span>),]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>peito_ts <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">recorde =</span> peito<span class="sc">$</span>Time,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">date =</span> <span class="fu">as.Date</span>(peito<span class="sc">$</span>Date, </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>),</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">index=</span>date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>fit_trends <span class="ot">&lt;-</span> emissoes_ts <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2017"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linear =</span> <span class="fu">TSLM</span>(Energia <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">exponencial =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(Energia) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">linear por partes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">TSLM</span>(Energia <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">knots =</span> knots))</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>fc_trends <span class="ot">&lt;-</span> fit_trends <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Visualizando a série com as previsões.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>peito_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(recorde) <span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"tempo [s]"</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Evolução do record na prova de nado peito"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Modelos com tendência linear, exponencial e de regressão por partes.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>knots <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"1977-08-18"</span>, <span class="st">"2000-06-15"</span>), <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>fit_trends <span class="ot">&lt;-</span> peito_ts <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linear =</span> <span class="fu">TSLM</span>(recorde <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">exponencial =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(recorde) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">linear por partes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">TSLM</span>(recorde <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">knots =</span> knots))</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>fc_trends <span class="ot">&lt;-</span> fit_trends <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">365</span><span class="sc">*</span><span class="dv">3</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>peito_ts <span class="sc">|&gt;</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(recorde) <span class="sc">+</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">fitted</span>(fit_trends),</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> .model)) <span class="sc">+</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc_trends, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">level =</span> <span class="dv">95</span>) <span class="sc">+</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"tempo [s]"</span>,</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Recorde nado peito"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Energia) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">fitted</span>(fit_trends),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">y =</span> .fitted, <span class="at">colour =</span> .model)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc_trends, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Ano"</span>, <span class="at">y=</span><span class="st">"Gg de CO2e"</span>, <span class="at">title=</span><span class="st">"Emissões de gases de efeito estufa na produção de energia no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos" class="level2" data-number="4.10">
 <h2 data-number="4.10" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">4.10</span> Exercícios propostos</h2>
+<p>O código à seguir é utilizado para obter as séries de fertilizantes apresentadas neste capítulo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fert_venda <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_VFERTILIZ12"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fert_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_PFERTILIZ12"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>fert_exp <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_NPKFERTILIZ12"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>fert_imp <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_MFERTILIZ12"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fert  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(fert_venda<span class="sc">$</span>value,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                           fert_prod<span class="sc">$</span>value,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                           fert_exp<span class="sc">$</span>value,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                           fert_imp<span class="sc">$</span>value</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                           ),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">c</span>(fert_venda<span class="sc">$</span>date,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                                     fert_prod<span class="sc">$</span>date,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                                     fert_exp<span class="sc">$</span>date,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                                     fert_imp<span class="sc">$</span>date</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                                     )),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">id =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"vendas"</span>, <span class="fu">nrow</span>(fert_venda)),</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">"producao"</span>, <span class="fu">nrow</span>(fert_prod)),</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">"exportacao"</span>, <span class="fu">nrow</span>(fert_exp)),</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">"importacao"</span>, <span class="fu">nrow</span>(fert_imp))),</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">key=</span>id, <span class="at">index=</span>data)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>id.labs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Vendas"</span>, <span class="st">"Produção"</span>, <span class="st">"Exportação"</span>, <span class="st">"Importação"</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(id.labs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"vendas"</span>, <span class="st">"producao"</span>, <span class="st">"exportacao"</span>, <span class="st">"importacao"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol type="1">
-<li><p>Faça um modelo de regressão para a série de produção de bens de consumo duráveis em função da série de bens de capital e da série de bens intermediários. Interprete o modelo obtido.</p></li>
-<li><p>Faça a análise dos resíduos para o modelo obtido. Interprete os resultados.</p></li>
-<li><p>Obtenha os valores ajustados e visualize-os junto com a série de bens de consumo duráveis.</p></li>
-<li><p>A seguir expõe-se o código para realizar a previsão baseada em cenários para o modelo de regressão para produção de grãos em função da área plantada. Foram considerados dois cenários: um de aumento na área plantada nos dois próximos anos com 82000 e 85000 hectares plantados; outro de queda na área plantada nos dois próximos anos com 75000 e 72000 hectares.</p></li>
+<li>Obtenha um modelo para prever o volume de vendas de fertilizantes em função dos volumes de produção, importação e exportação a partir de 2013 até o fim de 2023. Use <code>filter_index(~ "2023-12")</code> para definir o horizonte de tempo. Use o modelo <code>vendas ~ producao + importacao + exportacao</code> em <code>TSLM</code>. Interprete o modelo obtido.</li>
 </ol>
+<ol start="2" type="1">
+<li>Se algum termo não for significativo, refaça o modelo desconsiderando-o e compare os modelos obtidos.</li>
+</ol>
+<ol start="3" type="1">
+<li>Obtenha um modelo para a venda de fertilizantes em função apenas da tendência e sazonalidade da própria série.</li>
+</ol>
+<p>O código a seguir obtém <span class="math inline">\(R^2_{aj}\)</span>, AIC e AICc dos modelos (adapte os nomes dos três modelos, segundo seu código).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>future_scenarios <span class="ot">&lt;-</span> <span class="fu">scenarios</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Aumento =</span> <span class="fu">new_data</span>(df_graos, <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">area_plantada =</span> <span class="fu">c</span>(<span class="dv">82000</span>,<span class="dv">85000</span>)),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Queda =</span> <span class="fu">new_data</span>(df_graos, <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">area_plantada =</span> <span class="fu">c</span>(<span class="dv">75000</span>, <span class="dv">72000</span>)),</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"Cenários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">glance</span>(fit_fert) <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adj_r_squared, AIC, AICc)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">glance</span>(fit_fert2) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adj_r_squared, AIC, AICc)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">glance</span>(fit_fert3) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adj_r_squared, AIC, AICc)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(fit1,fit2,fit3) <span class="sc">|&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"completo"</span>, <span class="st">"reduzido"</span>, <span class="st">"tredn+season"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(model)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>Faça a análise de resíduos para o melhor modelo obtido.</li>
+</ol>
+<ol start="5" type="1">
+<li>Compare a capacidade de previsão dos modelos considerando dados de janeiro de 2024 até maio de 2025 como dados de teste. Use o argumento <code>new_data</code> em <code>forecast</code> e forneça a série de 17 observações para os modelos que dependem das variáveis exógenas. Para o último modelo forneça apenas <code>h=17</code>.</li>
+</ol>
+<ol start="6" type="1">
+<li>Faça um modelo de regressão para a série de produção de bens de consumo duráveis em função da série de bens de capital e da série de bens intermediários. Interprete o modelo obtido.</li>
+</ol>
+<ol start="7" type="1">
+<li>Faça a análise dos resíduos para o modelo obtido no exercício anterior. Interprete os resultados.</li>
+</ol>
+<ol start="8" type="1">
+<li>Obtenha os valores ajustados e visualize-os junto à série de bens de consumo duráveis.</li>
+</ol>
+<p>A seguir expõe-se o código para realizar a previsão baseada em cenários para o modelo de regressão para produção de grãos em função da área plantada. Foram considerados dois cenários: um de aumento na área plantada nos dois próximos anos com 82000 e 85000 hectares plantados; outro de queda na área plantada nos dois próximos anos com 75000 e 72000 hectares.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>future_scenarios <span class="ot">&lt;-</span> <span class="fu">scenarios</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Aumento =</span> <span class="fu">new_data</span>(df_graos, <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">area_plantada =</span> <span class="fu">c</span>(<span class="dv">82000</span>,<span class="dv">85000</span>)),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Queda =</span> <span class="fu">new_data</span>(df_graos, <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">area_plantada =</span> <span class="fu">c</span>(<span class="dv">75000</span>, <span class="dv">72000</span>)),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"Cenários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_graos, <span class="at">new_data =</span> future_scenarios)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_graos <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(producao) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Previsão de cenários para produção de grãos"</span>,        <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_graos, <span class="at">new_data =</span> future_scenarios)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df_graos <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(producao) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc, <span class="at">level =</span> <span class="dv">95</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Previsão de cenários para produção de grãos"</span>, <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Faça uma previsão de cenários usando o modelo de regressão para a série de produção de bens de consumo duráveis. Considere três meses à frente e um cenários de queda e outro de aumento nos índices de produção de bens de capital e da série de bens intermediários. A seguir expõe-se como seria implementado um cenário para este caso de regressão múltipla.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Aumento <span class="ot">=</span> <span class="fu">new_data</span>(df_prod, <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">capital =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">110</span>,<span class="dv">120</span>), </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">intermediarios =</span> <span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">100</span>,<span class="dv">110</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<ol start="9" type="1">
+<li>Faça uma previsão de cenários usando o modelo de regressão para a série de produção de bens de consumo duráveis. Considere três meses à frente e um cenários de queda e outro de aumento nos índices de produção de bens de capital e da série de bens intermediários. A seguir expõe-se como seria implementado um cenário para este caso de regressão múltipla.</li>
+</ol>
 
 
 </section>
