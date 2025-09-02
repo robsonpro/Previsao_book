@@ -429,15 +429,15 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 <p><span id="eq-ols"><span class="math display">\[
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \tag{4.6}\]</span></span></p>
-<p>Seja a série multivariada de exportação, importação, produção e vendas de fertilizantes no Brasil, plotada na <span class="quarto-unresolved-ref">?fig-fert</span>, disponível em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. A série tem frequência mensal e possui dados a partir de 1998, exceto para a de exportação, disponível a partir de 2013. Observa-se um volume muito maior de importações que produção e exportações, além de sazonalidade. As séries de importação e vendas apresentam padrão de crescimento.</p>
+<p>Seja a série multivariada de exportação, importação, produção e vendas de fertilizantes no Brasil, plotada na <a href="#fig-fert" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>, disponível em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. A série tem frequência mensal e possui dados a partir de 1998, exceto para a de exportação, disponível a partir de 2013. Observa-se um volume muito maior de importações que produção e exportações, além de sazonalidade. As séries de importação e vendas apresentam padrão de crescimento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fert" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-bem-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-fert-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;4.5: Fertilizantes no Brasil
 </figcaption>
 </figure>
@@ -530,7 +530,7 @@ Figura&nbsp;4.7: Produção de grãos
 <img src="ST4_files/figure-html/fig-fert_fit-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.8: Bens de consumo duráveis
+Figura&nbsp;4.8: Vendas de fertilizantes
 </figcaption>
 </figure>
 </div>
@@ -1051,7 +1051,7 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr_ts <span class="sc">|&gt;</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Data <span class="sc">%in%</span> datas_especificas)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo de regressão com termo de tendência e sazonalidade. São usados para tal os termos <code>trend()</code> e <code>season()</code>. O segundo cria as variáveis <strong>dummy</strong> necessárias para capturar a sazonalidade na regressão.</p>
+<p>Modelo de regressão com termo de tendência e sazonalidade. São usados para tal os termos <code>trend()</code> e <code>season()</code>. O segundo cria as variáveis <em>dummy</em> necessárias para capturar a sazonalidade na regressão.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_tempo <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(Temperatura <span class="sc">~</span> <span class="fu">trend</span>() <span class="sc">+</span> <span class="fu">season</span>()))</span>
