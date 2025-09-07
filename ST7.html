@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -316,7 +316,7 @@ Figura&nbsp;7.3: Gráficos de resíduos para o erro ARIMA
 <div id="tbl-lb_hidro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_hidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;7.1: Teste Ljung-Box para o modelo de regressão dinâmica para o consumod e energia hidráulica
+Tabela&nbsp;7.1: Teste Ljung-Box para o modelo de regressão dinâmica para o consumo de energia hidráulica
 </figcaption>
 <div aria-describedby="tbl-lb_hidro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -394,11 +394,11 @@ Model: LM w/ ARIMA(1,1,0) errors
 
 Coefficients:
           ar1  area_plantada  intercept
-      -0.4952          0.651   4780.281
-s.e.   0.1320          0.729   1152.363
+      -0.5777         2.3417  3330.9042
+s.e.   0.1248         0.6146   967.0258
 
-sigma^2 estimated as 111683106:  log likelihood=-447.33
-AIC=902.67   AICc=903.75   BIC=909.62</code></pre>
+sigma^2 estimated as 87293212:  log likelihood=-442.22
+AIC=892.45   AICc=893.53   BIC=899.4</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
@@ -461,8 +461,8 @@ Tabela&nbsp;7.2: Teste Ljung-Box para o modelo de regressão dinâmica para prod
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ARIMA(producao ~ area_plantada)</td>
-<td style="text-align: right;">8.251295</td>
-<td style="text-align: right;">0.5090337</td>
+<td style="text-align: right;">7.915622</td>
+<td style="text-align: right;">0.5426714</td>
 </tr>
 </tbody>
 </table>
@@ -640,31 +640,31 @@ Tabela&nbsp;7.4: Desempenho dos modelos de regressão dinâmica harmônica para 
 <tr class="even">
 <td style="text-align: left;">K = 2</td>
 <td style="text-align: right;">5271.837</td>
-<td style="text-align: right;">4197.736</td>
+<td style="text-align: right;">4197.735</td>
 <td style="text-align: right;">14.80960</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 3</td>
-<td style="text-align: right;">5254.736</td>
+<td style="text-align: right;">5254.738</td>
 <td style="text-align: right;">4185.858</td>
 <td style="text-align: right;">14.78036</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 4</td>
-<td style="text-align: right;">5394.046</td>
-<td style="text-align: right;">4321.869</td>
-<td style="text-align: right;">15.21196</td>
+<td style="text-align: right;">5394.069</td>
+<td style="text-align: right;">4321.885</td>
+<td style="text-align: right;">15.21199</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 5</td>
-<td style="text-align: right;">5384.908</td>
-<td style="text-align: right;">4313.964</td>
-<td style="text-align: right;">15.18824</td>
+<td style="text-align: right;">5384.912</td>
+<td style="text-align: right;">4313.968</td>
+<td style="text-align: right;">15.18825</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 6</td>
 <td style="text-align: right;">5345.797</td>
-<td style="text-align: right;">4310.098</td>
+<td style="text-align: right;">4310.099</td>
 <td style="text-align: right;">15.25338</td>
 </tr>
 </tbody>
@@ -761,8 +761,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -873,7 +871,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -305,10 +305,10 @@ window.Quarto = {
 <section id="suavização-exponencial-simples" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="suavização-exponencial-simples"><span class="header-section-number">5.1</span> Suavização exponencial simples</h2>
 <p>A suavização exponencial consiste em uma média ponderada das observações anteriores, com peso decaindo exponencialmente à medida que as observações ficam mais distantes no tempo.</p>
-<p>O caso simples pode ser descrito matematicamente conforme segue:</p>
-<p><span class="math display">\[
+<p>A previsão para a suavização exponencial simples pode ser denotada conforme <a href="#eq-suavexpsimp" class="quarto-xref">Equação&nbsp;<span>5.2</span></a></p>
+<p><span id="eq-suavexpsimp"><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T + \alpha(1-\alpha)y_{T-1} + \alpha(1-\alpha)^2y_{T-2}+...
-\]</span></p>
+\tag{5.1}\]</span></span></p>
 <p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para cinco últimas observações da série para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
 <div id="tbl-pesos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -382,14 +382,14 @@ Figura&nbsp;5.1: Pesos na suavização exponencial simples
 </div>
 </div>
 </div>
-<p>O modelo exposto para prever a observação futura pode ser descrito sempre considerando a última observação e a previsão desta:</p>
-<p><span class="math display">\[
+<p>O modelo exposto para prever a observação futura pode ser descrito sempre considerando a última observação e a previsão desta, conforme <span class="quarto-unresolved-ref">?eq-suavexpsimp2</span>.</p>
+<p><span id="eq-suavexpsimp"><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T +(1-\alpha)\hat y_{T|T-1}
-\]</span></p>
-<p>De forma similar os valores estimados para a série ficam:</p>
-<p><span class="math display">\[
+\tag{5.2}\]</span></span></p>
+<p>De forma similar os valores ajustados para a série ficam conforme <a href="#eq-suavexpsimpaj" class="quarto-xref">Equação&nbsp;<span>5.3</span></a>.</p>
+<p><span id="eq-suavexpsimpaj"><span class="math display">\[
 \hat y_{t+1|t} = \alpha y_t +(1-\alpha)\hat y_{t|t-1},
-\]</span></p>
+\tag{5.3}\]</span></span></p>
 <p>para <span class="math inline">\(t=1,...,T\)</span>.</p>
 <p>Seja <span class="math inline">\(l_0\)</span> o valor estimado para a primeira observação, <span class="math inline">\(t=1\)</span>, então:</p>
 <p><span class="math display">\[
@@ -402,8 +402,8 @@ Figura&nbsp;5.1: Pesos na suavização exponencial simples
 \hat y_{T+1|T} &amp;= \alpha y_{T} +(1-\alpha) \hat y_{T|T-1} \\
 \end{align}
 \]</span></p>
-<p>Observe que cada equação pode ser substituída na posterior:</p>
-<p><span class="math display">\[
+<p>Observe que cada equação pode ser substituída na posterior, conforme <a href="#eq-suavexpsimp3" class="quarto-xref">Equação&nbsp;<span>5.4</span></a>.</p>
+<p><span id="eq-suavexpsimp3"><span class="math display">\[
 \begin{align}
 \hat y_{3|2} &amp;= \alpha y_2 +(1-\alpha) [\alpha y_1 +(1-\alpha) l_0] \\
 &amp;= \alpha y_2 + \alpha(1-\alpha)y_1 +(1-\alpha)^2 l_0\\
@@ -412,18 +412,19 @@ Figura&nbsp;5.1: Pesos na suavização exponencial simples
 \vdots \\
 \hat y_{T+1|T} &amp;= \sum_{j=0}^{T-1} \alpha (1-\alpha)^j y_{T-j}+ (1-\alpha)^T l_0 \\
 \end{align}
-\]</span></p>
+\tag{5.4}\]</span></span></p>
 <p>Como o último termo fica muito pequeno para <span class="math inline">\(T\)</span> grande, então a equação fica conforme o modelo apresentado inicialmente.</p>
-<p>A representação em componentes também é comum para a suavização exponencial, sendo o caso simples conforme segue:</p>
-<p><span class="math display">\[
+<p>A representação em componentes também é comum para a suavização exponencial, sendo o caso simples expresso na <a href="#eq-suavexpsimpcomp" class="quarto-xref">Equação&nbsp;<span>5.5</span></a>.</p>
+<p><span id="eq-suavexpsimpcomp"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t\\
 \text{Equação de suavização:    } l_t &amp;= \alpha y_t + (1-\alpha)l_{t-1},\\
 \end{align}
-\]</span></p>
+\tag{5.5}\]</span></span></p>
 <p>onde <span class="math inline">\(l_t\)</span> consiste no nível no período <span class="math inline">\(t\)</span> e <span class="math inline">\(\hat y_{t+h} = l_t\)</span> a previsão no período <span class="math inline">\(t+h\)</span>.</p>
-<p>Se <span class="math inline">\(h=1\)</span>, tem-se o valor estimado, enquanto se <span class="math inline">\(t=T\)</span>, tem-se a previsão para além dos dados de treino. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e suavização, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
-<p>A <a href="#fig-ipca_expsimp" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span> expostos na <a href="#tbl-ipca_fit" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
+<p>Se <span class="math inline">\(h=1\)</span>, tem-se o valor ajustado, enquanto se <span class="math inline">\(t=T\)</span>, tem-se a previsão para além dos dados disponíveis para treino ou estimativa da série. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e suavização, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
+<p>Modelo de suavização exponencial simples para a série do IPCA. Usa-se a função <code>ETS</code> e deve-se definir os tipos de termos de erro, tendência e sazonalidade com <code>error</code>, <code>trend</code> e <code>season</code>.</p>
+<p>A <a href="#fig-ipca_expsimp" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados, <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span>, expostos na <a href="#tbl-ipca_fit" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
 <div class="cell">
 <div id="tbl-ipca_fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -463,13 +464,13 @@ Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série d
 <img src="ST5_files/figure-html/fig-ipca_expsimp-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ipca_expsimp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.2: Exponencial simples para a série IPCA no Brasil a partir de 2019
+Figura&nbsp;5.2: Previsão e valores ajustados para o IPCA via suavização exponencial simples
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ipca_for" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> apresenta os valores estimados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
+<p>A <a href="#tbl-ipca_for" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> apresenta os valores ajustados <span class="math inline">\(\hat y_t\)</span> para as últimas observações da série.</p>
 <div class="cell">
 <div id="tbl-ipca_for" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -481,41 +482,41 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">index</th>
-<th style="text-align: right;">value</th>
-<th style="text-align: right;">.fitted</th>
+<th style="text-align: left;">Data</th>
+<th style="text-align: right;">Variação</th>
+<th style="text-align: right;">y_hat</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2025 fev</td>
 <td style="text-align: right;">1.31</td>
-<td style="text-align: right;">0.2951604</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 mar</td>
 <td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.8758592</td>
+<td style="text-align: right;">0.88</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025 abr</td>
 <td style="text-align: right;">0.43</td>
-<td style="text-align: right;">0.6951222</td>
+<td style="text-align: right;">0.70</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 mai</td>
 <td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.5434173</td>
+<td style="text-align: right;">0.54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025 jun</td>
 <td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.3812438</td>
+<td style="text-align: right;">0.38</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 jul</td>
 <td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.3004231</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 </tbody>
 </table>
@@ -527,16 +528,16 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 </section>
 <section id="suavização-exponencial-com-tendência" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="suavização-exponencial-com-tendência"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</h2>
-<p>Em casos com tendência pode-se considerar o método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span>, o qual considera uma equação para o nível, <span class="math inline">\(l_t\)</span>, uma para a tendência, <span class="math inline">\(b_t\)</span>, e a de previsão, <span class="math inline">\(\hat y_{t+h|t}\)</span>.</p>
-<p><span class="math display">\[
+<p>Em casos com tendência pode-se considerar o método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span>, o qual considera uma equação para o nível, <span class="math inline">\(l_t\)</span>, uma para a tendência, <span class="math inline">\(b_t\)</span>, e a de previsão, <span class="math inline">\(\hat y_{t+h|t}\)</span>, conforme <a href="#eq-holt" class="quarto-xref">Equação&nbsp;<span>5.6</span></a>.</p>
+<p><span id="eq-holt"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + hb_t\\
 \text{Equação do nível:    } l_t &amp;= \alpha y_t + (1-\alpha)(l_{t-1}+b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}
 \end{align}
-\]</span></p>
-<p>Neste caso <span class="math inline">\(l_t\)</span> é uma média ponderada da observação <span class="math inline">\(y_t\)</span> e da previsão um passo a frente, dada por <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>. A equação de tendência mostra que <span class="math inline">\(b_t\)</span> é uma média ponderada da tendência no tempo <span class="math inline">\(t\)</span>, baseada em <span class="math inline">\(l_t-l_{t-1}\)</span>, e na estimativa anterior da tendência, <span class="math inline">\(b_{t-1}\)</span>.</p>
-<p>A <a href="#fig-pop_br" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em <a href="https://seriesestatisticas.ibge.gov.br/default.aspx">IBGE</a>. Observa-se tendência de crescimento muito próxima de linear.</p>
+\tag{5.6}\]</span></span></p>
+<p>Neste caso <span class="math inline">\(l_t\)</span> é uma média ponderada da observação <span class="math inline">\(y_t\)</span> e da previsão um passo a frente, dada por <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>. A equação de tendência, <span class="math inline">\(b_t\)</span>, consiste em uma média ponderada da tendência no tempo <span class="math inline">\(t\)</span>, baseada em <span class="math inline">\(l_t-l_{t-1}\)</span>, e na estimativa anterior da tendência, <span class="math inline">\(b_{t-1}\)</span>.</p>
+<p>A <a href="#fig-pop_br" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> expõe a série anual da população projetada para o Brasil até 2010, revisada em 2008, disponível em <a href="https://seriesestatisticas.ibge.gov.br/default.aspx">IBGE</a>. Observa-se tendência de crescimento próxima de linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -563,31 +564,26 @@ Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a s
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">.model</th>
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
+<th style="text-align: left;">Termo</th>
+<th style="text-align: right;">Estimativa</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">AAN</td>
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">9.953798e-01</td>
+<td style="text-align: right;">1.00</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">AAN</td>
 <td style="text-align: left;">beta</td>
-<td style="text-align: right;">4.433299e-01</td>
+<td style="text-align: right;">0.44</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">AAN</td>
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">1.169488e+08</td>
+<td style="text-align: right;">116948789.80</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">AAN</td>
 <td style="text-align: left;">b[0]</td>
-<td style="text-align: right;">2.842713e+06</td>
+<td style="text-align: right;">2842713.24</td>
 </tr>
 </tbody>
 </table>
@@ -606,7 +602,7 @@ Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a s
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}
 \end{align}
 \]</span></p>
-<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 212 milhões de pessoas em 2020, enquanto o mesmo amortecido projetaria 204 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.9\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 203 milhões de pessoas.</p>
+<p>Caso <span class="math inline">\(\phi=1\)</span>, então tem-se o método de Holt já exposto. O método tende a gerar previsões com tendência para curtos períodos e previsões constantes em longos horizontes à frente das observações. A <a href="#fig-pop_br_fit" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> expõe as previsões 15 anos à frente para a população do Brasil considerando os dados projetados até 2010. Observa-se que o método de Holt projetaria 216 milhões de pessoas em 2022, enquanto o mesmo amortecido projetaria 208,7 milhões para o mesmo ano. Foi considerado neste caso <span class="math inline">\(\phi=0.95\)</span>. Dados já observados do censo de 2022 indicam que a população do Brasil neste ano atingiu 210,3 milhões de pessoas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pop_br_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -621,7 +617,7 @@ Figura&nbsp;5.4: População do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, disponível em <a href="https://plataforma.seeg.eco.br/">Sistema de Estimativa de Emissão de Gases</a>. Foi considerado um <span class="math inline">\(\phi = 0.95\)</span> para o caso com amortecimento.</p>
+<p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, em Gg de CO2 equivalente, disponível em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. Foi considerado um <span class="math inline">\(\phi = 0.90\)</span> para o caso com amortecimento. O amortecimento é importante, uma vez que o método Holt apresenta geralmente tendência acentuada, com inclinação com mais peso em relação ao observado nos últimos anos, que pode não se confirmar a médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissoes_ind" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -641,26 +637,26 @@ Figura&nbsp;5.5: Emissões de gases de efeito estufa pela indústria
 <section id="suavização-exponencial-com-sazonalidade" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="suavização-exponencial-com-sazonalidade"><span class="header-section-number">5.3</span> Suavização exponencial com sazonalidade</h2>
 <p><span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> e <span class="citation" data-cites="Winters1960">Winters (<a href="references.html#ref-Winters1960" role="doc-biblioref">1960</a>)</span> consideraram a sazonalidade na suavização exponencial. Logo, além das equações de previsão, nível e tendência, o método inclui uma equação adicional para a sazonalidade. O método considera ambos os casos aditivo e multiplicativo.</p>
-<p>O método Holt-Winters aditivo compreende as equações à seguir:</p>
-<p><span class="math display">\[
+<p>O método Holt-Winters aditivo é denotado conforme a <a href="#eq-HoltWinters" class="quarto-xref">Equação&nbsp;<span>5.7</span></a>.</p>
+<p><span id="eq-HoltWinters"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + hb_t + s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha (y_t-s_{t-m}) + (1-\alpha)(l_{t-1}+b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}\\
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma(y_t-l_{t-1}-b_{t-1})+(1-\gamma)s_{t-1},
 \end{align}
-\]</span></p>
+\tag{5.7}\]</span></span></p>
 <p>onde <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span> que garante que a estimativa dos índices sazonais usados para previsão vêm do último período sazonal da série. A equação de nível consiste em uma média ponderada entre a observação ajustada sazonalmente, <span class="math inline">\(y_t-s_{t-m}\)</span>, e a previsão não sazonal, <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>, para o tempo <span class="math inline">\(t\)</span>. A equação de tendência não muda e a sazonal considera uma média móvel do índice sazonal atual, <span class="math inline">\(y_t-l_{t-1}-b_{t-1}\)</span>, e do mesmo período da estação anterior, <span class="math inline">\(s_{t-1}\)</span>.</p>
-<p>O caso multiplicativo é exposto à seguir.</p>
-<p><span class="math display">\[
+<p>O caso multiplicativo é exposto na <a href="#eq-HoltWintersm" class="quarto-xref">Equação&nbsp;<span>5.8</span></a>.</p>
+<p><span id="eq-HoltWintersm"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= (l_t + hb_t)  s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}\\
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
-\]</span></p>
-<p>A <a href="#fig-export" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento com estagnação de 2016 a 2021 devido a crise político-econômica e a pandemia.</p>
+\tag{5.8}\]</span></span></p>
+<p>A <a href="#fig-export" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento, estagnação de 2011 a 2021 dada a crise político-econômica e a pandemia, seguida de nova tendência de crescimento nos anos pós-pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -675,7 +671,7 @@ Figura&nbsp;5.6: Exportações do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_season" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas nota-se maior volume de exportações de março a agosto.</p>
+<p>A <a href="#fig-export_season" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas especialmente nos últimos anos nota-se maior volume de exportações de março a agosto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export_season" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -690,7 +686,7 @@ Figura&nbsp;5.7: Gráfico sazonal para a série de exportações do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_fit" class="quarto-xref">Figura&nbsp;<span>5.8</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões plotadas 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
+<p>A <a href="#fig-export_fit" class="quarto-xref">Figura&nbsp;<span>5.8</span></a> expõe modelos de suavização exponencial com tendência e sazonalidade para a série de exportações do Brasil. Os modelos foram estimados considerando dados de até 2022, sendo as previsões realizadas para 3 anos à frente. O resultado foi plotado a partir de 2020, para melhor visualização.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export_fit" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -707,15 +703,15 @@ Figura&nbsp;5.8: Modelos de suavização exponencial com tendência e sazonalida
 </div>
 <section id="suavização-exponencial-com-tendência-amortecida-e-sazonalidade" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="suavização-exponencial-com-tendência-amortecida-e-sazonalidade"><span class="header-section-number">5.3.1</span> Suavização exponencial com tendência amortecida e sazonalidade</h3>
-<p>O método de Holt-Winters também pode considerar o amortecimento. O caso multiplicativo geralmente fornece bons resultados, sendo descrito conforme segue.</p>
-<p><span class="math display">\[
+<p>O método de Holt-Winters também pode considerar o amortecimento. O caso multiplicativo geralmente fornece bons resultados, sendo descrito conforme <a href="#eq-HoltWintersma" class="quarto-xref">Equação&nbsp;<span>5.9</span></a>.</p>
+<p><span id="eq-HoltWintersma"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= [l_t + (\phi+\phi^2+...+\phi^h)b_t]  s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+\phi b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}\\
 \text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-\phi b_{t-1})}+(1-\gamma)s_{t-1},
 \end{align}
-\]</span></p>
+\tag{5.9}\]</span></span></p>
 <p>A <a href="#fig-exportfit" class="quarto-xref">Figura&nbsp;<span>5.9</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -731,12 +727,62 @@ Figura&nbsp;5.9: Modelos de suavização exponencial com tendência amortecida e
 </div>
 </div>
 </div>
+<p>Para melhor avaliação dos resultados plotados para os modelos com sazonalidade com e sem amortecimento, a <a href="#tbl-exportteste" class="quarto-xref">Tabela&nbsp;<span>5.5</span></a> resume os resultados de erro dos modelos para previsão de 2020 à frente, conformando que o modelo multiplicativo com amortecimento apresentou melhores resultados.</p>
+<div class="cell">
+<div id="tbl-exportteste" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exportteste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.5: Resultados das métricas de teste para os modelos de suavização com tendência e sazonalidade com e sem amortecimento
+</figcaption>
+<div aria-describedby="tbl-exportteste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">modelo</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">MAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">aditivo sazonal</td>
+<td style="text-align: right;">2195052170</td>
+<td style="text-align: right;">1834091706</td>
+<td style="text-align: right;">6.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aditivo sazonal amort</td>
+<td style="text-align: right;">2384479823</td>
+<td style="text-align: right;">2028508291</td>
+<td style="text-align: right;">7.24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mult sazonal</td>
+<td style="text-align: right;">1979894926</td>
+<td style="text-align: right;">1550871084</td>
+<td style="text-align: right;">5.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mult sazonal amort</td>
+<td style="text-align: right;">1961497440</td>
+<td style="text-align: right;">1353227812</td>
+<td style="text-align: right;">4.73</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 </section>
 <section id="modelos-de-ets-e-definição-de-espaço-de-estados" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</h2>
-<p>Os modelos de suavização exponencial podem ser concebidos como modelos de espaço de estados, com uma equação de medição que descreve os dados observados e outras de estados, por exemplo as de nível, tendência e sazonalidade, que descrevem como os componentes ou estados mudam no horizonte de tempo. Outro aspecto importante ainda não abordado é que além de considerar o erro aditivo há a possibilidade de considerar o erro multiplicativo nos modelos de suavização exponencial.</p>
-<p>Os modelos de suavização exponencial são geralmente denotados por ETS(.,.,.) para descrever as três componentes (erro, tendência, suavização). O erro pode ser aditivo ou multiplicativo, E={A,M}. A tendência pode ser não considerada (N), aditiva (A) ou atitiva amortecida (<em>damped</em>) (Ad), T ={N,A,Ad}. Por fim, a sazonalidade pode ser não considerada, aditiva ou multiplicativa, S={N,A,M}. Logo, há 18 modelos possíveis.</p>
+<p>Os modelos de suavização exponencial podem ser concebidos como modelos de espaço de estados, com uma equação de medição que descreve os dados observados e outras de estados, por exemplo as de nível, tendência e sazonalidade, que descrevem como os componentes ou estados mudam no horizonte de tempo. Outro aspecto importante ainda não abordado é que, além de considerar o erro aditivo, há a possibilidade de considerar o erro multiplicativo nos modelos de suavização exponencial.</p>
+<p>Os modelos de suavização exponencial são geralmente denotados por ETS(.,.,.) para descrever as três componentes (erro, tendência, suavização). O erro pode ser aditivo ou multiplicativo, E={A,M}. A tendência pode ser não considerada (N), aditiva (A) ou aditiva amortecida (<em>damped</em>) (Ad), T ={N,A,Ad}. Por fim, a sazonalidade pode ser desconsiderada, aditiva ou multiplicativa, S={N,A,M}. Logo, há 18 modelos possíveis.</p>
 <p>Retomando a suavização exponencial simples representada em componentes:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -756,109 +802,202 @@ l_t &amp;= l_{t-1} + \alpha(y_t-l_{t-1}) \\
 <p>A título de exemplo serão apresentados os modelos Holt-Winters aditivos com erro aditivo ETS(A,A,A) e multiplicativo ETS(M,A,A).</p>
 <section id="modelo-de-holt-winters-aditivo-etsaaa" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winters-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winters aditivo, ETS(A,A,A)</h3>
-<p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo a seguir:</p>
-<p><span class="math display">\[
+<p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo exposto na <a href="#eq-hwaaa" class="quarto-xref">Equação&nbsp;<span>5.10</span></a>.</p>
+<p><span id="eq-hwaaa"><span class="math display">\[
 \begin{align}
 y_t &amp;= l_{t-1} + b_{t-1} + s_{t-m} + \varepsilon_t\\
 l_t &amp;= l_{t-1}+b_{t-1}+ \alpha \varepsilon_t\\
 b_t &amp;=b_{t-1} + \beta\varepsilon_t \\
 s_t &amp;= s_{t-m} + \gamma\varepsilon_t, \\
 \end{align}
-\]</span></p>
+\tag{5.10}\]</span></span></p>
 <p>onde <span class="math inline">\(\beta=\beta^*\alpha\)</span>.</p>
 </section>
 <section id="modelo-de-holt-winters-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winters-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters multiplicativo, ETS(M,A,A)</h3>
-<p>Para o caso com erro multiplicativo o erro com tendência e sazonalidade aditiva, o erro é calculado conforme segue:</p>
-<p><span class="math display">\[
+<p>Para o caso com erro multiplicativo o erro com tendência e sazonalidade aditiva, o erro é calculado conforme a <a href="#eq-erromult" class="quarto-xref">Equação&nbsp;<span>5.11</span></a>.</p>
+<p><span id="eq-erromult"><span class="math display">\[
 e_t=
 \frac{y_t - (l_{t-1} + b_{t-1} + s_{t-m})}{(l_{t-1} + b_{t-1} + s_{t-m} )}
-\]</span></p>
-<p>O modelo fica conforme segue:</p>
-<p><span class="math display">\[
+\tag{5.11}\]</span></span></p>
+<p>O modelo fica conforme a <a href="#eq-hwmaa" class="quarto-xref">Equação&nbsp;<span>5.12</span></a>.</p>
+<p><span id="eq-hwmaa"><span class="math display">\[
 \begin{align}
 y_t &amp;= (l_{t-1} + b_{t-1} + s_{t-m} ) (1+\varepsilon_t)\\
 l_t &amp;= l_{t-1}+b_{t-1}+ \alpha (l_{t-1}-b_{t-1}-s_{t-m})\varepsilon_t\\
 b_t &amp;=b_{t-1} + \beta(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t \\
 s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 \end{align}
-\]</span> Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
+\tag{5.12}\]</span></span></p>
+<p>Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
 </section>
 </section>
 <section id="previsão-e-intervalo-de-confiança-com-ets" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
-<p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_T+1 = l_{T} + b_{T} + s_{T}\)</span>.</p>
+<p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_{T+1} = l_{T} + b_{T} + s_{T}\)</span>.</p>
 <p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
-<p>A <a href="#fig-br040km579" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta o fluxo de veículos no kilômetro 579 da BR040 em Minas Gerais de 01/03 a 07/04/2019, considerando os dois sentidos de circulação. A série está disponível em <a href="https://servicos.dnit.gov.br/dadospnct/ContagemContinua">DNIT</a>. Observa-se uma sazonalidade semanal e diária na série, com fluxo distinto nos dias 3 e 4 de março devido ao carnaval.</p>
+<p>A <a href="#fig-ferteip" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta novamente as séries temporais de exportação, importação e produção de fertilizantes no Brasil em um mesmo painel gráfico, viabilizando a comparação entre estas. Observa-se de forma mais clara a preponderância das importações, especialmente nos últimos anos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-ferteip" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-br040km579-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST5_files/figure-html/fig-br040km579-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-ferteip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-ferteip-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.10: Fluxo de veículos na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ferteip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.10: Exportação, importação e Produção de fertilizantes no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_passeio" class="quarto-xref">Figura&nbsp;<span>5.11</span></a> plota a série apenas para os carros de passeio a partir de 11 de março, primeira semana após a do carnaval de 2019. Observa-se regularidade no fluxo e pico nas sextas e domingos.</p>
+<p>A disponibilidade de fertilizantes no Brasil pode ser obtida somando os volumes de importação e exportação e subtraindo o volume de exportações. Tal série é plotada na <a href="#fig-fertdisp" class="quarto-xref">Figura&nbsp;<span>5.11</span></a>. Observa-se tendência de crescimento com variação sazonal homogênea no tempo. O ano de 2022 apresentou disponibilidade mais baixa possivelmente em reflexo à pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_passeio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fertdisp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-br040km579_passeio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST5_files/figure-html/fig-br040km579_passeio-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fertdisp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-fertdisp-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_passeio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.11: Fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fertdisp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.11: Disponibilidade de fertilizantes no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_week" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> expõe o gráfico sazonal da série anterior considerando a semana como período sazonal. Enfatiza-se a regularidade entre as 4 semanas disponíveis e observa-se novamente o pico de fluxo nas sextas e domingos devido idas e retornos de fins de semana.</p>
+<p>A <a href="#fig-fertdispsaz" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> expõe o gráfico de disponibilidade de fertilizantes para o Brasil. Observa-se aumento da disponibilidade ao longo dos anos e maior disponibilidade no segundo semestre dos anos de observação.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_saz_week" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fertdispsaz" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-br040km579_saz_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST5_files/figure-html/fig-br040km579_saz_week-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fertdispsaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-fertdispsaz-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_saz_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.12: Gráfico sazonal semanal do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fertdispsaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.12: Gráfico sazonal para Disponibilidade de fertilizantes
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_saz_day" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> expõe o gráfico sazonal diário do fluxo de veículos na via e kilômetro considerados. Observa-se fluxo mínimo de 0 às 4h da manhã e máximo de 7 às 17h na maior parte dos dias. Nas segundas-feiras observa-se um fluxo maior a partir das 6 da manhã. Nas sextas e domingos observa-se um fluxo maior entre as 12 e 18h.</p>
+<p>A <a href="#fig-fertpred" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> exibe novamente a série com resultados de previsões a partir de 2022 para 4 distintos modelos ETS, aditivos e multiplicativos, com e sem amortecimento na tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_saz_day" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fertpred" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-br040km579_saz_day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST5_files/figure-html/fig-br040km579_saz_day-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-fertpred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-fertpred-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_saz_day-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.13: Gráfico sazonal diário do fluxo de carros de passeio na BR040 no kilômetro 579 de 01/03 a 07/04/2019
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fertpred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.13: Previsão para Disponibilidade de fertilizantes usando distintos modelos ETS
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-br040km579_pred" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> expõe o resultado do modelo de suavização exponencial com tendência amortecida e sazonalidade. Foram considerados os dias de março para estimativa e a série completa é plotada juntamente com a previsão para a primeira semana de abril. Será importante avaliar posteriormente métodos que capturem variações sazonais distintas.</p>
+<p>A <a href="#tbl-fertperf" class="quarto-xref">Tabela&nbsp;<span>5.6</span></a> resume o desempenho dos modelos considerando os dados de 2022 à frente. Observa-se que o modelo aditivo com amortecimento, ETS(A,Ad,A), apresentou melhor resultado para todas as métricas de erro.</p>
+<div class="cell">
+<div id="tbl-fertperf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.6: Desempenho dos modelos ETS para prever a disponibilidade de fertilizantes
+</figcaption>
+<div aria-describedby="tbl-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">modelo</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">MAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ETS(A,A,A)</td>
+<td style="text-align: right;">845372.4</td>
+<td style="text-align: right;">716194.6</td>
+<td style="text-align: right;">21.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ETS(A,Ad,A)</td>
+<td style="text-align: right;">685842.9</td>
+<td style="text-align: right;">544237.5</td>
+<td style="text-align: right;">16.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ETS(M,A,M)</td>
+<td style="text-align: right;">842781.1</td>
+<td style="text-align: right;">707120.8</td>
+<td style="text-align: right;">20.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ETS(M,Ad,M)</td>
+<td style="text-align: right;">774105.7</td>
+<td style="text-align: right;">585567.3</td>
+<td style="text-align: right;">16.96</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-resietsaada" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> expõe os gráficos de resíduos para o modelo ETS(A,Ad,A). Observa-se padrão aleatório na série residual, bom ajuste à normal e autocorrelação residual com significância para duas defasagens apenas. Para esclarecer se esta autocorrelação pode representar um problema, a <a href="#tbl-ljboxfert" class="quarto-xref">Tabela&nbsp;<span>5.7</span></a> exibe o resultado do teste. Não se pode garantir a ausência de autocorrelação residual.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-br040km579_pred" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-resietsaada" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-br040km579_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST5_files/figure-html/fig-br040km579_pred-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-resietsaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-resietsaada-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-br040km579_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro 579 para a primeira semana de abril
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resietsaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.14: Gráficos de resíduos para o modelo ETS(A,Ad,A)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-ljboxfert" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ljboxfert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de fertilizantes
+</figcaption>
+<div aria-describedby="tbl-ljboxfert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">32.92371</td>
+<td style="text-align: right;">0.0343968</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Finalmente, a <a href="#fig-predetaaada" class="quarto-xref">Figura&nbsp;<span>5.15</span></a> expõe a previsão usando o modelo ETS(A,Ad,A) para quatro anos à frente. Observa-se boa aproximação às observações recentes, especialmente nos últimos dois anos .</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-predetaaada" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-predetaaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-predetaaada-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predetaaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para disponibilidade de fertilizantes
 </figcaption>
 </figure>
 </div>
@@ -872,244 +1011,255 @@ Figura&nbsp;5.14: Previsão do fluxo de carros de passeio na BR040 no kilômetro
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbcb)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série do IPCA.</p>
+<p>IPCA a partir de 2019. Esta série já foi lida no primeiro capítulo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipca <span class="ot">&lt;-</span> <span class="fu">get_series</span>(<span class="fu">c</span>(<span class="at">IPCA =</span> <span class="dv">433</span>), <span class="at">as =</span> <span class="st">"ts"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ipca_tsibble <span class="ot">&lt;-</span> <span class="fu">as_tsibble</span>(ipca, <span class="at">index =</span> index)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ipca_2019_ <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2019-01"</span><span class="sc">~</span>.)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>IPCA a partir de 2019.</p>
+<p>Modelo de suavização exponencial simples para a série do IPCA. Usa-se a função <code>ETS</code> e deve-se definir os tipos de termos de erro, tendência e sazonalidade com <code>error</code>, <code>trend</code> e <code>season</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ipca_2019_ <span class="ot">&lt;-</span> ipca_tsibble <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(index) <span class="sc">&gt;=</span> <span class="dv">2019</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Modelo de suavização exponencial simples para a série do IPCA.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> ipca_2019_  <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ETS</span>(value <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit)[,<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> ipca_2019_  <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ETS</span>(ipca <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit)[,<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão 5 meses à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">5</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fc</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">5</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fc</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotando a série com os valores ajustados e a previsão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca_2019_) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted), <span class="at">col=</span><span class="st">"orangered"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> <span class="fu">augment</span>(fit)) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">"IPCA no Brasil a partir de 2019"</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca_2019_) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted), <span class="at">col=</span><span class="st">"orangered"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> <span class="fu">augment</span>(fit)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">"IPCA no Brasil a partir de 2019"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Valores ajustados e observados para os últimos meses da série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit[[<span class="dv">1</span>]][[<span class="dv">1</span>]]<span class="sc">$</span>fit<span class="sc">$</span>est[,<span class="sc">-</span><span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit[[<span class="dv">1</span>]][[<span class="dv">1</span>]]<span class="sc">$</span>fit<span class="sc">$</span>est[,<span class="sc">-</span><span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>População projetada no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pop_br <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"populacao_br.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pop_br <span class="ot">&lt;-</span> pop_br <span class="sc">|&gt;</span> <span class="fu">filter</span>(ano<span class="sc">&lt;=</span><span class="dv">2010</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pop_ts <span class="ot">&lt;-</span> pop_br <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(ano),<span class="at">format=</span><span class="st">"%Y"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ano) <span class="sc">|&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pop_br <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"populacao_br.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pop_br <span class="ot">&lt;-</span> pop_br <span class="sc">|&gt;</span> <span class="fu">filter</span>(ano<span class="sc">&lt;=</span><span class="dv">2010</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pop_ts <span class="ot">&lt;-</span> pop_br <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(ano),<span class="at">format=</span><span class="st">"%Y"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ano) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pop_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(pop) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"População projetada do Brasil"</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pessoas"</span>, <span class="at">x=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pop_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(pop) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"População projetada do Brasil"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pessoas"</span>, <span class="at">x=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo de suavização exponencial com tendência (método de Holt).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> pop_ts <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AAN =</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> pop_ts <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt amortecido</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão com modelos de Holt e Holt amortecido.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pop_ts <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt amortecido</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(pop_ts, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"População do Brasil"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Milhões"</span>,<span class="at">x=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Forecast"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fc_pop <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">15</span>) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fc_pop <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(pop_ts, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"População do Brasil"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Milhões"</span>,<span class="at">x=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Forecast"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série de emissões de CO2 pela indústria.</p>
+<p>Série de emissões de CO2.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>emissoes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"SEEG_emissoes.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="ot">&lt;-</span> emissoes <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(Mudanca.de.Uso.da.Terra.e.Floresta<span class="sc">:</span>Processos.Industriais) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ano =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(Ano), <span class="st">"%Y"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key=</span>name,<span class="at">index=</span>Ano)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>emissoes_ind<span class="ot">&lt;-</span> emissoes_ts <span class="sc">|&gt;</span> </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Processos.Industriais"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>emissoes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"emissoes.csv"</span>, <span class="at">header =</span> T)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="ot">&lt;-</span> emissoes <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ano =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">paste</span>(Ano,<span class="st">"01 01"</span>), <span class="at">format =</span> <span class="st">"%Y %m %d"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Ano)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Modelo de Holt e Holt amortecido para Emissões de Co2 pela indústria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>emissoes_ind <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(value <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt amortecido</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(value <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.95</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(emissoes_ind , <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Emissões de gases de efeito estufa pela indústria"</span>,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"GWP"</span>,<span class="at">x=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Forecast"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Industria <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt amortecido</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Industria <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.90</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(emissoes_ts , <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Emissões de gases de efeito estufa pela indústria"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Gg de CO2e"</span>,<span class="at">x=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Previsão"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série de exportações do Brasil.</p>
+<p>Série de exportações do Brasil. A série já foi lida no capítulo 2. Gráfico sazonal da série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>export <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"exportacoes_BR.csv"</span>,<span class="at">header=</span>T)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="ot">&lt;-</span> export <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_yearmonth</span>(<span class="at">year=</span>ano, <span class="at">month=</span>mes)) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(ano,mes)) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span> <span class="fu">gg_season</span>(Exp) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Exportações [US$ FOB]: Gráfico sazonal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Modelos de suavização exponencial com sazonalidade aditiva e multiplicativa para exportações e com tendência amortecida ou não.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Exp) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Exportações [US$ FOB]"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit_export <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&lt;=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,A,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,A,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,Ad,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>fc_export <span class="ot">&lt;-</span> fit_export <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>fc_export <span class="sc">|&gt;</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência e sazonalidade para a série de exportações"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Previsão"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gráfico sazonal da série.</p>
+<p>A série de disponibilidade de fertilizantes é obtida considerando as séries de exportação, importação e produção de fertilizantes, já apresentadas no capítulo 4.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span> <span class="fu">gg_season</span>(Exp) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Exportações [US$ FOB]: Gráfico sazonal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fert_ <span class="ot">&lt;-</span> fert <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>id,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from=</span>valor)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>fert_disp <span class="ot">&lt;-</span> fert_ <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2013-01"</span><span class="sc">~</span>.) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">disponibilidade =</span> producao<span class="sc">+</span>importacao<span class="sc">-</span>exportacao)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelos de suavização exponencial com sazonalidade aditiva e multiplicativa para exportações.</p>
+<p>Plotando a série.</p>
+<p>Gráfico sazonal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_export <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&lt;=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fert_disp <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(disponibilidade, <span class="at">labels =</span> <span class="st">"right"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels_repel =</span> T)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estimando 4 modelos ETS para a disponibilidade até 2021.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="ot">&lt;-</span> fert_disp <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2021-12"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">aditivo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">multiplicativo =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>))</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fc_export <span class="ot">&lt;-</span> fit_export <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>fc_export <span class="sc">|&gt;</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência e sazonalidade para a série de exportações"</span>,</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Previsão"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,A,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,A,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,Ad,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Suavização exponencial com tendência amortecida e sazonalidade (aditiva e multiplicativa).</p>
+<p>Previsão de 2022 até o fim de 2025.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit_export2 <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&lt;=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">aditivo2 =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">multiplicativo2 =</span> <span class="fu">ETS</span>(Exp <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">season</span>(<span class="st">"M"</span>))</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>fc_export2 <span class="ot">&lt;-</span> fit_export2 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fc_export2 <span class="sc">|&gt;</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência amortecida e sazonalidade para exportações"</span>,</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Previsão"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="ot">&lt;-</span> fit_disp <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"4 years"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS para disponibilidade de fertilizantes"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Modelo"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série de fluxo de veículos na BR 040 no kilômetro 579 de março a abril de 2019.</p>
+<p>Avaliando a acuracidade dos modelos usando dados de 2022 até junho de 2025.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>BR040_km_579_mar_abr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"BR040_km_579_mar_abr.csv"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>BR040_km_579_mar_abr <span class="ot">&lt;-</span> BR040_km_579_mar_abr <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mes =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">31</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">3</span>),<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">7</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">3</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(eixos_2<span class="sc">:</span>outros)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>BR040_km_579_mar_abr <span class="ot">&lt;-</span> BR040_km_579_mar_abr <span class="sc">|&gt;</span> </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">ymd_h</span>(<span class="fu">paste</span>(<span class="st">"2019"</span>, mes, dia, hora, <span class="at">sep =</span> <span class="st">"-"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(dia,hora,mes)) <span class="sc">|&gt;</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key=</span><span class="fu">c</span>(sentido,name),<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fc_disp, fert_disp <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">filter_index</span>(<span class="st">"2022-01"</span><span class="sc">~</span>.)) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Gráficos de resíduos do melhor modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>BR040_km_579_mar_abr <span class="sc">|&gt;</span> <span class="fu">filter</span>(sentido<span class="sc">==</span><span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sentido) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2019-03-01"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">nrow=</span><span class="dv">4</span>, <span class="sc">~</span> name, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y=</span><span class="st">"unidades"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">title=</span><span class="st">"Fluxo de veículos na BR040, km579, 2019"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Plotando a série de carros de passeio.</p>
+<p>Teste de Ljung-Box para os resíduos do melhor modelo. Consideram-se 4 termos no modelo no caso amortecido.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>passeio <span class="ot">&lt;-</span> BR040_km_579_mar_abr <span class="sc">|&gt;</span> <span class="fu">filter</span>(sentido<span class="sc">==</span><span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sentido) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2019-03-11"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name<span class="sc">==</span><span class="st">"passeio"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>passeio <span class="sc">|&gt;</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(value) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y=</span><span class="st">"unidades"</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">title=</span><span class="st">"Fluxo de carros de passeio na BR040, km579, 2019"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_disp <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">dof =</span> <span class="dv">4</span>, <span class="at">lag =</span> <span class="dv">24</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Sazonalidade semanal.</p>
+<p>Previsão com intervalo de confiança para o melhor modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>passeio <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(value, <span class="at">period =</span> <span class="st">"week"</span>, </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"unidades"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Fluxo de carros de passeio: gráfico sazonal semanal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Sazonalidade diária.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>passeio <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(value, <span class="at">period =</span> <span class="st">"day"</span>, </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="st">"none"</span>) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"unidades"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Fluxo de carros de passeio: gráfico sazonal diário"</span>, <span class="at">y=</span><span class="st">"unidades"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Modelo de suavização exponencial com erro aditivo e sazonalidade multiplicativa.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>passeio <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">month</span>(data)<span class="sc">==</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hw =</span> <span class="fu">ETS</span>(value <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"1 weeks"</span>, <span class="at">level =</span> <span class="dv">80</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(passeio) <span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Previsão do fluxo de carros de passeio na BR040"</span>,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"unidades"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model<span class="sc">==</span><span class="st">"ETS(A,Ad,A)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS(A,Ad,A) para disponibilidade de fertilizantes"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">5.7</span> Exercícios propostos</h2>
 <ol type="1">
-<li>Seja a série de produção de grãos. Separe os últimos cinco anos para testar o modelo. Aplique um modelo de suavização exponencial com tendência. Considere também o caso amortecido com <span class="math inline">\(\phi = 0,9\)</span> e <span class="math inline">\(\phi=0,95\)</span>. Avalie os resíduos dos modelos obtidos. Calcule as métricas de ajuste para os dados de teste e escolha o melhor modelo.</li>
+<li>Seja a série de produção de grãos. Separe os últimos cinco anos para testar o modelo. Aplique um modelo de suavização exponencial com tendência. Considere também o caso amortecido com <span class="math inline">\(\phi = 0,9\)</span> e <span class="math inline">\(\phi=0,95\)</span>.</li>
 </ol>
 <ol start="2" type="1">
-<li>Seja a série de volume de exportações do Brasil exposta neste capítulo. Considerando os modelos obtidos de suavização exponencial com sazonalidade aditiva e multiplicativa e com tendência simples ou amortecida, avalie os resíduos de todos os modelos. Calcule as métricas de teste para os dados de 2023 à frente e escolha o melhor modelo.</li>
+<li>Avalie os resíduos dos modelos obtidos.</li>
 </ol>
 <ol start="3" type="1">
-<li>Seja a série de fluxo de caminhões de 2 eixos no quilômetro 579 da BR040 para ambos os sentidos. Considere os dados de 11 a 31 de Março para treinar modelos de suavização exponencial sem tendência com sazonalidade e erro aditivos e multiplicativos. Avalie os resíduos dos modelos. Exclua algum modelo com problemas maiores nos resíduos e teste os modelos com os dados disponíveis de abril e selecione o melhor modelo.</li>
+<li>Calcule as métricas de ajuste para os dados de teste e escolha o melhor modelo.</li>
+</ol>
+<ol start="4" type="1">
+<li>Seja a série de volume de exportações do Brasil exposta neste capítulo. Considerando os modelos obtidos de suavização exponencial com sazonalidade aditiva e multiplicativa e com tendência simples ou amortecida, avalie os resíduos de todos os modelos. Calcule as métricas de teste para os dados de 2023 à frente e escolha o melhor modelo.</li>
+</ol>
+<p>Seja a série de produção de asfalto obtida conforme segue a partir da série de derivados do petróleo do capítulo 4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>asfalto <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(volume)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Filtre a série até o fim do ano de 2023 e estime 8 modelos ETS usando sazonalidade aditiva ou multiplicativa, tendência com ou sem amortecimento e erro aditivo ou multiplicativo e plote os resultados.</li>
+</ol>
+<ol start="6" type="1">
+<li>Faça a previsão 2 anos à frente para a série.</li>
+</ol>
+<ol start="7" type="1">
+<li>Avalie o desempenho dos modelos considerando observações disponíveis de 2024.</li>
+</ol>
+<ol start="8" type="1">
+<li>Avalie os resíduos do modelo que apresentou menor erro.</li>
+</ol>
+<ol start="9" type="1">
+<li>Faça o teste de Ljung-Box para o melhor modelo.</li>
+</ol>
+<p>Seja a série de passageiros em vôos do Brasil já apresentada no capítulo 3.</p>
+<ol start="10" type="1">
+<li>Filtre a série até o fim do ano de 2017 e estime 8 modelos ETS usando sazonalidade aditiva ou multiplicativa, tendência com ou sem amortecimento e erro aditivo ou multiplicativo e plote os resultados.</li>
+</ol>
+<ol start="11" type="1">
+<li>Faça a previsão 2 anos à frente para a série.</li>
+</ol>
+<ol start="12" type="1">
+<li>Avalie o desempenho dos modelos considerando observações disponíveis de 2024.</li>
+</ol>
+<ol start="13" type="1">
+<li>Avalie os resíduos do modelo que apresentou menor erro.</li>
+</ol>
+<ol start="14" type="1">
+<li>Faça o teste de Ljung-Box para o melhor modelo.</li>
 </ol>
 
 
