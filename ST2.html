@@ -421,7 +421,7 @@ Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia
 </section>
 <section id="autocorrelação" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="autocorrelação"><span class="header-section-number">2.2</span> Autocorrelação</h2>
-<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais, uma vez que consiste na correlação entre distintos segmentos da série temporal <span class="citation" data-cites="yule1926we">(<a href="references.html#ref-yule1926we" role="doc-biblioref">Yule 1926</a>)</span>. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k = 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
+<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k= 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
 <p><span id="eq-autoc"><span class="math display">\[
 r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
 \tag{2.1}\]</span></span></p>
@@ -596,7 +596,7 @@ Figura&nbsp;2.4: Previsão por média para a série do IPCA
 </section>
 <section id="método-ingênuo" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="método-ingênuo"><span class="header-section-number">2.3.2</span> Método ingênuo</h3>
-<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">Box et al. (<a href="references.html#ref-box2015time" role="doc-biblioref">2015</a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.3</span></a> é útil para realizar previsões via método ingênuo.</p>
+<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">(<a href="references.html#ref-box2015time" role="doc-biblioref"><strong>box2015time?</strong></a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.3</span></a> é útil para realizar previsões via método ingênuo.</p>
 <p><span id="eq-ingenuo"><span class="math display">\[
 \hat{y}_{T+h|T}=y_T
 \tag{2.3}\]</span></span></p>
@@ -1287,9 +1287,6 @@ Tabela&nbsp;2.9: Desempenho dos metodos para a previsão da temperatura instant�
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-box2015time" class="csl-entry" role="listitem">
-Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2015. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
-</div>
 <div id="ref-box1970distribution" class="csl-entry" role="listitem">
 Box, George EP, e David A Pierce. 1970. <span>«Distribution of residual autocorrelations in autoregressive-integrated moving average time series models»</span>. <em>Journal of the American statistical Association</em> 65 (332): 1509–26.
 </div>
@@ -1301,9 +1298,6 @@ Ljung, Greta M, e George EP Box. 1978. <span>«On a measure of lack of fit in ti
 </div>
 <div id="ref-makridakis1982accuracy" class="csl-entry" role="listitem">
 Makridakis, Spyros, Allan Andersen, Robert Carbone, Robert Fildes, Michele Hibon, Rudolf Lewandowski, Joseph Newton, Emanuel Parzen, e Robert Winkler. 1982. <span>«The accuracy of extrapolation (time series) methods: Results of a forecasting competition»</span>. <em>Journal of forecasting</em> 1 (2): 111–53.
-</div>
-<div id="ref-yule1926we" class="csl-entry" role="listitem">
-Yule, G Udny. 1926. <span>«Why do we sometimes get nonsense-correlations between Time-Series?–a study in sampling and the nature of time-series»</span>. <em>Journal of the royal statistical society</em> 89 (1): 1–63.
 </div>
 </div>
 </section>
