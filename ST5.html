@@ -305,7 +305,7 @@ window.Quarto = {
 <section id="suavização-exponencial-simples" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="suavização-exponencial-simples"><span class="header-section-number">5.1</span> Suavização exponencial simples</h2>
 <p>A suavização exponencial consiste em uma média ponderada das observações anteriores, com peso decaindo exponencialmente à medida que as observações ficam mais distantes no tempo.</p>
-<p>A previsão para a suavização exponencial simples pode ser denotada conforme <a href="#eq-suavexpsimp" class="quarto-xref">Equação&nbsp;<span>5.2</span></a></p>
+<p>A previsão para a suavização exponencial simples pode ser denotada conforme <a href="#eq-suavexpsimp" class="quarto-xref">Equação&nbsp;<span>5.1</span></a></p>
 <p><span id="eq-suavexpsimp"><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T + \alpha(1-\alpha)y_{T-1} + \alpha(1-\alpha)^2y_{T-2}+...
 \tag{5.1}\]</span></span></p>
@@ -382,8 +382,8 @@ Figura&nbsp;5.1: Pesos na suavização exponencial simples
 </div>
 </div>
 </div>
-<p>O modelo exposto para prever a observação futura pode ser descrito sempre considerando a última observação e a previsão desta, conforme <span class="quarto-unresolved-ref">?eq-suavexpsimp2</span>.</p>
-<p><span id="eq-suavexpsimp"><span class="math display">\[
+<p>O modelo exposto para prever a observação futura pode ser descrito sempre considerando a última observação e a previsão desta, conforme <a href="#eq-suavexpsimp2" class="quarto-xref">Equação&nbsp;<span>5.2</span></a>.</p>
+<p><span id="eq-suavexpsimp2"><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T +(1-\alpha)\hat y_{T|T-1}
 \tag{5.2}\]</span></span></p>
 <p>De forma similar, os valores ajustados para a série ficam conforme <a href="#eq-suavexpsimpaj" class="quarto-xref">Equação&nbsp;<span>5.3</span></a>.</p>
