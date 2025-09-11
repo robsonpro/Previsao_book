@@ -268,7 +268,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#resíduos-e-valores-ajustados" id="toc-resíduos-e-valores-ajustados" class="nav-link" data-scroll-target="#resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</a>
   <ul class="collapse">
-  <li><a href="#diagnósticos-dos-resíduos" id="toc-diagnósticos-dos-resíduos" class="nav-link" data-scroll-target="#diagnósticos-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnósticos dos resíduos</a></li>
+  <li><a href="#diagnóstico-dos-resíduos" id="toc-diagnóstico-dos-resíduos" class="nav-link" data-scroll-target="#diagnóstico-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnóstico dos resíduos</a></li>
   </ul></li>
   <li><a href="#testes-para-diagnóstico-de-autocorrelação" id="toc-testes-para-diagnóstico-de-autocorrelação" class="nav-link" data-scroll-target="#testes-para-diagnóstico-de-autocorrelação"><span class="header-section-number">2.5</span> Testes para diagnóstico de autocorrelação</a></li>
   <li><a href="#previsão-e-intervalos-de-confiança" id="toc-previsão-e-intervalos-de-confiança" class="nav-link" data-scroll-target="#previsão-e-intervalos-de-confiança"><span class="header-section-number">2.6</span> Previsão e intervalos de confiança</a></li>
@@ -421,7 +421,7 @@ Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia
 </section>
 <section id="autocorrelação" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="autocorrelação"><span class="header-section-number">2.2</span> Autocorrelação</h2>
-<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k= 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
+<p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais, uma vez que consiste na correlação entre distintos segmentos da série temporal <span class="citation" data-cites="yule1926we">(<a href="references.html#ref-yule1926we" role="doc-biblioref">Yule 1926</a>)</span>. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k = 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente. A autocorrelação para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
 <p><span id="eq-autoc"><span class="math display">\[
 r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
 \tag{2.1}\]</span></span></p>
@@ -596,7 +596,7 @@ Figura&nbsp;2.4: Previsão por média para a série do IPCA
 </section>
 <section id="método-ingênuo" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="método-ingênuo"><span class="header-section-number">2.3.2</span> Método ingênuo</h3>
-<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">(<a href="references.html#ref-box2015time" role="doc-biblioref"><strong>box2015time?</strong></a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.3</span></a> é útil para realizar previsões via método ingênuo.</p>
+<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">Box et al. (<a href="references.html#ref-box2008time" role="doc-biblioref">2008</a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.3</span></a> é útil para realizar previsões via método ingênuo.</p>
 <p><span id="eq-ingenuo"><span class="math display">\[
 \hat{y}_{T+h|T}=y_T
 \tag{2.3}\]</span></span></p>
@@ -663,7 +663,7 @@ Figura&nbsp;2.7: Previsão por deriva na série de vendas de carros no Brasil
 </section>
 <section id="resíduos-e-valores-ajustados" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="resíduos-e-valores-ajustados"><span class="header-section-number">2.4</span> Resíduos e valores ajustados</h2>
-<p>Os valores ajustados, ou seja, os valores aproximados pelo modelo estimado para as observações da série de interesse, <span class="math inline">\(y_t\)</span>, são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>. Tal notação implica que a estimativa de <span class="math inline">\(y_t\)</span>, dita <span class="math inline">\(\hat y_t\)</span>, é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>. É importante diferenciar os valores ajustados dos valores previstos. Enquanto os primeiros são aqueles aproximados a partir de um modelo para os dados observados da série, os previstos consistem em observações futuras projetadas para a série em questão.</p>
+<p>Os valores ajustados, ou seja, os valores aproximados pelo modelo estimado para as observações da série de interesse, <span class="math inline">\(y_t\)</span>, também referidos como ajustados, são denotados por <span class="math inline">\(\hat{y}_{t|t-1}\)</span>. Tal notação implica que a estimativa de <span class="math inline">\(y_t\)</span>, dita <span class="math inline">\(\hat y_t\)</span>, é baseada nas observações anteriores, <span class="math inline">\(y_1, ..., y_{t-1}\)</span>. É importante diferenciar os valores ajustados dos valores previstos, <span class="math inline">\(\hat y_{T+h|T}\)</span>. Enquanto os primeiros são aqueles aproximados a partir de um modelo para os dados observados da série, <span class="math inline">\(t=1,\dots,T\)</span>, os previstos consistem em observações futuras projetadas para a série em questão para <span class="math inline">\(h\)</span> períodos à frente.</p>
 <p>Os resíduos de uma série temporal consistem no erro, sendo calculados como a diferença entre o observado e o ajustado em cada instante de tempo, <span class="math inline">\(e_t=y_t-\hat{y}_t\)</span>.</p>
 <p>Na <a href="#tbl-fitres" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> são explicitados os valores ajustados e os resíduos obtidos com o método ingênuo sazonal para as últimas horas do dia 07 de maio da série temporal de temperatura em São João del-Rei.</p>
 <div class="cell">
@@ -727,8 +727,8 @@ Tabela&nbsp;2.4: Valores ajustados e residuais obtidos pelo método ingênuo par
 </figure>
 </div>
 </div>
-<section id="diagnósticos-dos-resíduos" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="diagnósticos-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnósticos dos resíduos</h3>
+<section id="diagnóstico-dos-resíduos" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="diagnóstico-dos-resíduos"><span class="header-section-number">2.4.1</span> Diagnóstico dos resíduos</h3>
 <p>Os resíduos de um modelo de série temporal contém informações importantes a respeito da qualidade do modelo estimado. Os resíduos de um modelo de série temporal devem ser:</p>
 <ol type="1">
 <li><p>Não correlacionados.</p></li>
@@ -864,41 +864,6 @@ Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método i
 </figure>
 </div>
 </div>
-<p>O método da deriva é um pouco mais adequado que o ingênuo para séries de índices de bolsas de valores. Na <a href="#tbl-testes2" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> são exibidos os resultados dos testes de <strong>Box-Pierce</strong> e de <strong>Ljung-Box</strong> para as autocorrelações residuais de tal método. Os resíduos resultantes são não autocorrelacionados, portanto tem um padrão de ruído branco.</p>
-<div class="cell">
-<div id="tbl-testes2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método da deriva para o índice Ibovespa
-</figcaption>
-<div aria-describedby="tbl-testes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Teste</th>
-<th style="text-align: right;">estatística</th>
-<th style="text-align: right;">pvalor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Box-Pierce (Q)</td>
-<td style="text-align: right;">9,180843</td>
-<td style="text-align: right;">0,5150314</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ljung-Box (Q*)</td>
-<td style="text-align: right;">9,508178</td>
-<td style="text-align: right;">0,4846474</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
 </section>
 <section id="previsão-e-intervalos-de-confiança" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="previsão-e-intervalos-de-confiança"><span class="header-section-number">2.6</span> Previsão e intervalos de confiança</h2>
@@ -912,11 +877,11 @@ Tabela&nbsp;2.6: Valores das estatísticas Q e Q* para os resíduos do método d
 <p><span id="eq-dp"><span class="math display">\[
 \hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
 \tag{2.9}\]</span></span></p>
-<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> expõe as Equações para estimar o desvio-padrão para os métodos até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
+<p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> expõe as Equações para estimar o desvio-padrão para os métodos até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
 <div id="tbl-desvio" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.7: Desvio-padrão para previsão para os métodos considerados
+Tabela&nbsp;2.6: Desvio-padrão para previsão para os métodos considerados
 </figcaption>
 <div aria-describedby="tbl-desvio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -948,7 +913,7 @@ Tabela&nbsp;2.7: Desvio-padrão para previsão para os métodos considerados
 </div>
 </figure>
 </div>
-<p>A <a href="#fig-ibovpred" class="quarto-xref">Figura&nbsp;<span>2.13</span></a> plota os intervalos de confiança de 0,80 e 0,95 juntamente com a série do índice Ibovespa.</p>
+<p>A <a href="#fig-ibovpred" class="quarto-xref">Figura&nbsp;<span>2.13</span></a> plota a previsão para 10 dias à frente com os intervalos de confiança de 0,80 e 0,95 para o método ingênuo para a série do índice Ibovespa. Observa-se que à medida que o horizonte de previsão aumenta, aumenta-se a incerteza quanto ao valor previsto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ibovpred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -971,7 +936,7 @@ Figura&nbsp;2.13: Intervalo de previsão para a série do índice Ibovespa
 <p><span id="eq-boxcox"><span class="math display">\[
 w_t = \Bigg\{ \begin{matrix}
                 \text{log}(y_t), \text{ }\lambda=0 \\
-                (\text{sinal}(y_t)|y_t|^\lambda-1)/\lambda, \text{ }\lambda&gt;0,
+                \frac{|y_t|^\lambda-1}{\lambda}, \text{ }\lambda&gt;0,
              \end{matrix}
 \tag{2.10}\]</span></span></p>
 <p>onde <span class="math inline">\(\text{sinal}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sinal}(y_t) =-1\)</span>, caso contrário.</p>
@@ -1014,11 +979,11 @@ Figura&nbsp;2.15: Observações de treino e teste para validar séries temporais
 <p><span id="eq-erroo"><span class="math display">\[
 e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
 \tag{2.11}\]</span></span></p>
-<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
 <div id="tbl-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.8: Métricas de erro
+Tabela&nbsp;2.7: Métricas de erro
 </figcaption>
 <div aria-describedby="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1050,16 +1015,16 @@ Tabela&nbsp;2.8: Métricas de erro
 </div>
 </figure>
 </div>
-<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> considera tal padronização.</p>
+<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> considera tal padronização.</p>
 <p><span id="eq-qj"><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 \tag{2.12}\]</span></span></p>
-<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
+<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
 <div class="cell">
 <div id="tbl-erro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.9: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei
+Tabela&nbsp;2.8: Desempenho dos metodos para a previsão da temperatura instantânea em São João del-Rei
 </figcaption>
 <div aria-describedby="tbl-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1287,6 +1252,9 @@ Tabela&nbsp;2.9: Desempenho dos metodos para a previsão da temperatura instant�
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-box2008time" class="csl-entry" role="listitem">
+Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
+</div>
 <div id="ref-box1970distribution" class="csl-entry" role="listitem">
 Box, George EP, e David A Pierce. 1970. <span>«Distribution of residual autocorrelations in autoregressive-integrated moving average time series models»</span>. <em>Journal of the American statistical Association</em> 65 (332): 1509–26.
 </div>
@@ -1298,6 +1266,9 @@ Ljung, Greta M, e George EP Box. 1978. <span>«On a measure of lack of fit in ti
 </div>
 <div id="ref-makridakis1982accuracy" class="csl-entry" role="listitem">
 Makridakis, Spyros, Allan Andersen, Robert Carbone, Robert Fildes, Michele Hibon, Rudolf Lewandowski, Joseph Newton, Emanuel Parzen, e Robert Winkler. 1982. <span>«The accuracy of extrapolation (time series) methods: Results of a forecasting competition»</span>. <em>Journal of forecasting</em> 1 (2): 111–53.
+</div>
+<div id="ref-yule1926we" class="csl-entry" role="listitem">
+Yule, G Udny. 1926. <span>«Why do we sometimes get nonsense-correlations between Time-Series?–a study in sampling and the nature of time-series»</span>. <em>Journal of the royal statistical society</em> 89 (1): 1–63.
 </div>
 </div>
 </section>
