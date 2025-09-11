@@ -303,8 +303,8 @@ window.Quarto = {
 
 <section id="estacionariedade-em-séries-temporais" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="estacionariedade-em-séries-temporais"><span class="header-section-number">6.1</span> Estacionariedade em séries temporais</h2>
-<p>As séries temporais estacionárias são aquelas que não apresentam tendência ou sazonalidade, de forma que suas propriedades não dependam do tempo. Um ruído branco é um exemplo de série estacionária. Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
-<p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionária. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
+<p>As séries temporais estacionárias são aquelas que não apresentam tendência ou sazonalidade, de forma que suas propriedades estatísticas permaneçam constantes ao longo do tempo. Séries estacionárias variam com média e variância constantes. Apesar de muitas séries temporais não serem estacionárias, não é difícil torná-las estacionárias. Um ruído branco é um exemplo de série estacionária. Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
+<p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionárias. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-series" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -313,7 +313,7 @@ window.Quarto = {
 <img src="ST6_files/figure-html/fig-series-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.1: Exemplos de séries temporais
+Figura&nbsp;6.1: Exemplos de séries temporais estacionárias
 </figcaption>
 </figure>
 </div>
@@ -321,20 +321,20 @@ Figura&nbsp;6.1: Exemplos de séries temporais
 </div>
 <section id="diferenciação" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="diferenciação"><span class="header-section-number">6.1.1</span> Diferenciação</h3>
-<p>A diferenciação é útil para tornar uma série não estacionária em estacionária. Ela serve para remover a variação no nível de uma série, estabilizando sua média.</p>
-<p>A série diferenciada consiste na mudança entre observações subsequentes, contendo esta ao final <span class="math inline">\(T-1\)</span> observações.</p>
-<p><span class="math display">\[
+<p>A diferenciação é útil para tornar uma série não estacionária em estacionária. Aésar de muitas séries observadas na indústria, na economia em negócios apresentarem variação nas suas propriedades, o comportamento da variação da série, isto é, o comportamento da série diferenciada é geralmente estacionário <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, a diferenciação serve para remover a variação no nível de uma série, estabilizando sua média.</p>
+<p>A diferenciação consiste na variação entre observações subsequentes. Logo, considernado uma série com <span class="math inline">\(T\)</span> observações, a série diferenciada contém ao final <span class="math inline">\(T-1\)</span> observações. A série diferenciada é denotada <span class="math inline">\(y_t'\)</span>, sendo obtida conforme a <a href="#eq-diff" class="quarto-xref">Equação&nbsp;<span>6.1</span></a>.</p>
+<p><span id="eq-diff"><span class="math display">\[
 y_t' = y_t-y_{t-1}
-\]</span></p>
+\tag{6.1}\]</span></span></p>
 <p>Se a série diferenciada consiste em um ruído branco, <span class="math inline">\(\varepsilon_t\)</span>, então pode-se escrever:</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t
 \]</span></p>
-<p>Um modelo onde a observação posterior é igual à anterior adicionada de um ruído branco é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se considerar uma constante, conforme segue, onde a constante, <span class="math inline">\(c\)</span>, consiste na média das diferenças.</p>
+<p>Um modelo onde a observação posterior é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
-<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlogramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
+<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária do índice Ibovespa, além da série obtida a partir da diferenciação desta, que obviamente consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlogramas da série do índice e da variação deste. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-difcor" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -350,19 +350,19 @@ Figura&nbsp;6.2: Série temporal não estacionária, diferenciação e autocorre
 </div>
 </div>
 <p>O modelo de caminhada aleatória é muito útil para séries econométricas e de finanças. Geralmente tais séries apresentam longos períodos de tendência de queda ou crescimento, com mudanças inesperadas de difícil explicação.</p>
-<p>Em casos onde a diferenciação de primeira ordem não garante a estacionariedade, pode-se ainda aplicar uma diferenciação de segunda ordem.</p>
-<p><span class="math display">\[
+<p>Em casos onde a diferenciação de primeira ordem não garante a estacionariedade, pode-se ainda aplicar uma diferenciação de segunda ordem, conforme expresso na <a href="#eq-diff2" class="quarto-xref">Equação&nbsp;<span>6.2</span></a>.</p>
+<p><span id="eq-diff2"><span class="math display">\[
 \begin{align}
 y_t'' &amp;= y_t'-y_{t-1}' \\
       &amp;= (y_t-y_{t-1})-(y_{t-1}-y_{t-2}) \\
       &amp;= y_t-2y_{t-1}+y_{t-2}
 \end{align}
-\]</span></p>
-<p>Em séries sazonais é importante aplicar a diferenciação sazonal, conforme exposto à seguir, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
-<p><span class="math display">\[
+\tag{6.2}\]</span></span></p>
+<p>Em séries sazonais é importante aplicar a diferenciação sazonal, conforme exposto na <a href="#eq-diffsaz" class="quarto-xref">Equação&nbsp;<span>6.3</span></a>, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
+<p><span id="eq-diffsaz"><span class="math display">\[
 y_t'= y_t - y_{t-m}
-\]</span></p>
-<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span>. Em seguida, outra diferenciação porém mensal foi aplicada, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
+\tag{6.3}\]</span></span></p>
+<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span>. Em seguida, a diferenciação simples foi aplicada, de forma a garantir a estacionariedade. Portanto, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-voosdiff" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -388,7 +388,7 @@ y'' &amp;= y'-y'_{t-1} \\
 </section>
 <section id="testes-de-raízes-unitárias" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="testes-de-raízes-unitárias"><span class="header-section-number">6.1.2</span> Testes de raízes unitárias</h3>
-<p>Os testes de raízes unitárias servem para avaliar se a série apresenta ou não estacionariedade. O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste reporta 0,01, se o p-valor for menor que 0.01 e reporta 0.1, se o p-valor for maior que 0,1. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série.</p>
+<p>Os testes de raízes unitárias servem para avaliar se a série apresenta ou não estacionariedade. O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste reporta 0,01, se o p-valor for menor que 0,01 e reporta 0,1, se o p-valor for maior que 0,1. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série.</p>
 <div class="cell">
 <div id="tbl-kpss1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1759,6 +1759,9 @@ Tabela&nbsp;6.11: Métricas para comparar o desenho dos modelos testados para a 
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-box2008time" class="csl-entry" role="listitem">
+Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
+</div>
 <div id="ref-hyndman2008automatic" class="csl-entry" role="listitem">
 Hyndman, Rob J, e Yeasmin Khandakar. 2008. <span>«Automatic time series forecasting: the forecast package for R»</span>. <em>Journal of statistical software</em> 27: 1–22.
 </div>
