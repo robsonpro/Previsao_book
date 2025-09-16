@@ -990,9 +990,9 @@ Figura&nbsp;2.16: Observações de treino e teste para validar séries temporais
 </div>
 </div>
 </div>
-<p>O erro de previsão (não confundir com resíduo) é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, onde <span class="math inline">\(y_1,...,y_T\)</span> são os dados de treino e <span class="math inline">\(y_{T+1}, y_{T+2}, ...\)</span> de teste.</p>
+<p>O erro de previsão (não confundir com resíduo) é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, para <span class="math inline">\(t=T+1, \dots, T+h\)</span>.</p>
 <p><span id="eq-erroo"><span class="math display">\[
-e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
+e_{t} = y_{t} - \hat{y}_{t}
 \tag{2.11}\]</span></span></p>
 <p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
 <div id="tbl-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1030,7 +1030,7 @@ Tabela&nbsp;2.7: Métricas de erro
 </div>
 </figure>
 </div>
-<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O MASE na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> considera tal padronização.</p>
+<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O erro médio absoluto e escalonado (<em>mean absolute scaled error</em> - MASE) na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> considera tal padronização.</p>
 <p><span id="eq-qj"><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t+2}^T |y_t-y_{t-1}|}
 \tag{2.12}\]</span></span></p>
@@ -1055,21 +1055,21 @@ Tabela&nbsp;2.8: Desempenho dos metodos para a previsão da temperatura instant�
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Ingênuo</td>
-<td style="text-align: right;">5,923621</td>
-<td style="text-align: right;">4,980952</td>
-<td style="text-align: right;">23,721859</td>
+<td style="text-align: right;">5,92</td>
+<td style="text-align: right;">4,98</td>
+<td style="text-align: right;">23,72</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Ingênuo sazonal</td>
-<td style="text-align: right;">1,700928</td>
-<td style="text-align: right;">1,405357</td>
-<td style="text-align: right;">8,140928</td>
+<td style="text-align: right;">1,70</td>
+<td style="text-align: right;">1,41</td>
+<td style="text-align: right;">8,14</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">média</td>
-<td style="text-align: right;">5,697090</td>
-<td style="text-align: right;">5,171627</td>
-<td style="text-align: right;">27,555762</td>
+<td style="text-align: right;">5,70</td>
+<td style="text-align: right;">5,17</td>
+<td style="text-align: right;">27,56</td>
 </tr>
 </tbody>
 </table>

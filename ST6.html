@@ -540,18 +540,26 @@ y_t'' &amp;= y_t-2y_{t-1}+y_{t-2} \\
 </section>
 <section id="modelos-autorregressivos" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="modelos-autorregressivos"><span class="header-section-number">6.2</span> Modelos autorregressivos</h2>
-<p>Um modelo autorregressivo consiste em um modelo de regressão para a série, <span class="math inline">\(y_t\)</span>, em função do seu passado, ou para termos defasados, <span class="math inline">\(y_{t-1}, y_{t-2}, ..., y_{t-p}\)</span>. Um modelo autorregressivo de ordem <span class="math inline">\(p\)</span> ou <span class="math inline">\(AR(p)\)</span> pode ser escrito segundo a <a href="#eq-armodel" class="quarto-xref">Equação&nbsp;<span>6.8</span></a>.</p>
+<p>Um modelo autorregressivo consiste em um modelo de regressão para a série, <span class="math inline">\(y_t\)</span>, em função do seu passado, isto é, em função de termos defasados da série, <span class="math inline">\(y_{t-1}, y_{t-2}, ..., y_{t-p}\)</span>. Um modelo autorregressivo de ordem <span class="math inline">\(p\)</span> ou <span class="math inline">\(AR(p)\)</span> pode ser escrito segundo a <a href="#eq-armodel" class="quarto-xref">Equação&nbsp;<span>6.8</span></a>.</p>
 <p><span id="eq-armodel"><span class="math display">\[
 \begin{align}
 y_t &amp;= c+\phi_1y_{t-1} + \phi_2y_{t-2} + \ldots + \phi_py_{t-p} + \varepsilon_t \\
     &amp;= c+\phi_1By_t + \phi_2B^2y_t + \ldots + \phi_pB^py_t + \varepsilon_t \\
 \end{align}
 \tag{6.8}\]</span></span></p>
-<p>onde, <span class="math inline">\(c = 1-\phi_1-\phi_2-...-\phi_p+\mu_y\)</span>. Para <span class="math inline">\(\mu_y=0\)</span>, pode-se usar a representação com notação de defasagem da <a href="#eq-armodel2" class="quarto-xref">Equação&nbsp;<span>6.9</span></a>. Pode-se observar que tal modelo é um modelo de regressão que ao invés de considerar outras variáveis independentes, considera valores anteriores da prória série, <span class="math inline">\(y_t\)</span>, sendo, portanto, um modelo autoregressivo. É importante dizer que tal modelo não deve ser tratado como um modelo de regressão obtido por mínimos quadrados. Primeiro, porque a independencia dos erros pode ser violada, dado o usual relacionamento entre os termos do lado direito. Segundo, pois a determinação da maior defasagem, <span class="math inline">\(p\)</span>, no modelo não é simples <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>.</p>
+<p>Em um modelo autoregressivo de primeira ordem, tem-se <span class="math inline">\(y_t = c+ \phi_1 y_{t-1} + \varepsilon_t\)</span>. Em uma série estacionária tem-se <span class="math inline">\(E(y_t) = E(y_{t-1}) = \mu_y\)</span>. Subtraindo-se a média tanto na série quanto no termo defasado, pode-se eliminar a constante:</p>
+<p><span class="math display">\[
+\begin{align}
+y_t - \mu_y=&amp; \phi_1(y_{t-1}-\mu_y) + \varepsilon_t \\
+y_t =&amp; \phi_1y_{t-1}+ \mu_y -\phi_1\mu_y + \varepsilon_t \\
+y_t =&amp; \phi_1y_{t-1}+ \mu_y(1 -\phi_1) + \varepsilon_t \\
+\end{align}
+\]</span></p>
+<p>Logo, <span class="math inline">\(c=\mu_y(1 -\phi_1)\)</span> para um modelo <span class="math inline">\(AR(1)\)</span> e, generalizando, <span class="math inline">\(c = \mu_y(1-\phi_1-\phi_2-...-\phi_p) = \mu_y(1-\sum_i^p \phi_i)\)</span> para um modelo <span class="math inline">\(AR(p)\)</span> <span class="citation" data-cites="makridakis2008forecasting hamilton2020time">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>; <a href="references.html#ref-hamilton2020time" role="doc-biblioref">Hamilton 2020</a>)</span>. Para <span class="math inline">\(\mu_y=0\)</span>, pode-se usar a representação com notação de defasagem da <a href="#eq-armodel2" class="quarto-xref">Equação&nbsp;<span>6.9</span></a>. Pode-se observar que tal modelo é um modelo de regressão que ao invés de considerar outras variáveis independentes, considera valores anteriores da prória série, <span class="math inline">\(y_t\)</span>, sendo, portanto, um modelo autoregressivo. Tal modelo não deve, entretanto, ser tratado como um modelo de regressão obtido por mínimos quadrados. Primeiro, porque a independência dos erros pode ser violada, dado o usual relacionamento entre os termos do lado direito. Segundo, pois a determinação da maior defasagem, <span class="math inline">\(p\)</span>, no modelo não é simples <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>.</p>
 <p><span id="eq-armodel2"><span class="math display">\[
 (1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
 \tag{6.9}\]</span></span></p>
-<p>A Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
+<p>A <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ar" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -574,7 +582,7 @@ Figura&nbsp;6.4: Processos autorregressivos
 <li>Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(\phi_1=1\)</span>, tem-se uma caminhada aleatória com deriva.</li>
 <li>Se <span class="math inline">\(\phi_1&lt;1\)</span>, <span class="math inline">\(y_t\)</span> tende a oscilar em torno da média.</li>
 </ul>
-<p>Os processos autorregressivos são usados para descrever séries estacionárias, devendo satisfazer algumas restrições:</p>
+<p>Os processos autorregressivos são úteis para modelar séries estacionárias, devendo satisfazer algumas restrições:</p>
 <ul>
 <li>Para um modelo <span class="math inline">\(AR(1)\)</span>: <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>.</li>
 <li>Para um modelo <span class="math inline">\(AR(2)\)</span>: <span class="math inline">\(-1&lt;\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_1+\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_2-\phi_1&lt;1\)</span>.</li>
@@ -591,7 +599,7 @@ y_t&amp;=c+\varepsilon_t+\theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} +
 \end{align}
 \tag{6.10}\]</span></span></p>
 <p>É importante também distinguir os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para suavização. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, os de suavização visam estimar a tendência de observações passadas de séries temporais.</p>
-<p>A Figura <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
+<p>A <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -620,18 +628,18 @@ y_t &amp;= \phi_1y_{t-1} + \varepsilon_t\\
 </section>
 <section id="modelos-arima-não-sazonais" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="modelos-arima-não-sazonais"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</h2>
-<p>Um modelo autorregressivo integrado de média móvel (ARIMA) combina um modelo autorregressivo da série diferenciada e um de média móvel, conforme segue.</p>
-<p><span class="math display">\[
+<p>Um modelo autorregressivo integrado de média móvel (ARIMA) combina um modelo autorregressivo da série diferenciada e um de média móvel, conforme <a href="#eq-arimaa" class="quarto-xref">Equação&nbsp;<span>6.11</span></a>.</p>
+<p><span id="eq-arimaa"><span class="math display">\[
 \begin{align}
 y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} + \ldots + \theta_q\varepsilon_{t-q} + \varepsilon_t \\
 &amp;= c+\phi_1By'_t + \phi_2B^2y'_t + \ldots + \phi_pB^py'_t+\theta_1B\varepsilon_t + \theta_2B^2\varepsilon_t + \ldots + \theta_qB^q\varepsilon_t + \varepsilon_t \\
 \end{align}
-\]</span></p>
-<p>Logo, considerando ordem de diferenciação <span class="math inline">\(d\)</span>, pode-se representar um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> como segue:</p>
-<p><span class="math display">\[
+\tag{6.11}\]</span></span></p>
+<p>Logo, considerando ordem de diferenciação <span class="math inline">\(d\)</span>, pode-se representar um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> como <a href="#eq-arimaa2" class="quarto-xref">Equação&nbsp;<span>6.12</span></a>.</p>
+<p><span id="eq-arimaa2"><span class="math display">\[
 (1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t.
-\]</span></p>
-<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo de ordem <span class="math inline">\(p\)</span> para a parte autorregressiva, de ordem <span class="math inline">\(q\)</span> para a parte de média móvel, com diferenciação de ordem <span class="math inline">\(d\)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
+\tag{6.12}\]</span></span></p>
+<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo de ordem <span class="math inline">\(p\)</span> para a parte autorregressiva, de ordem <span class="math inline">\(q\)</span> para a parte de média móvel, com diferenciação de ordem <span class="math inline">\(d\)</span>. Quando não é necessária a diferenciação da série, tem-se um modelo <span class="math inline">\(ARMA(p,d)\)</span> <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
 <div id="tbl-casosarima" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -822,7 +830,7 @@ Figura&nbsp;6.11: Autocorrelação e autocorrelação parcial da série VALE3
 <li>A autocorrelação (ACF) decai exponencialmente ou tem padrão senoidal;</li>
 <li>Há significância na autocorrelação parcial (PACF) de lag <span class="math inline">\(p\)</span>, mas não além deste.</li>
 </ul>
-<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da Figura <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.11</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
+<p>A seguir apresenta-se o resultado do modelo ARIMA(3,0,0) indicado pela interpretação dos correlogramas da <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.11</span></a>. O modelo obtido apresentou resultado para <span class="math inline">\(ACCc\)</span> muito próximo ao obtido pela estimativa automática apresentado anteriormente.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: Valor 
@@ -1852,6 +1860,9 @@ Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-box2008time" class="csl-entry" role="listitem">
 Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-hamilton2020time" class="csl-entry" role="listitem">
+Hamilton, James D. 2020. <em>Time series analysis</em>. Princeton university press.
 </div>
 <div id="ref-hyndman2018forecasting" class="csl-entry" role="listitem">
 Hyndman, RJ, e G Athanasopoulos. 2021. <em>Forecasting: principles and practice</em>. OTexts. <a href="https://OTexts.com/fpp3">OTexts.com/fpp3</a>.
