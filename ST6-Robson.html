@@ -303,8 +303,8 @@ window.Quarto = {
 
 <section id="estacionariedade-em-séries-temporais" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="estacionariedade-em-séries-temporais"><span class="header-section-number">6.1</span> Estacionariedade em séries temporais</h2>
-<p>As séries temporais estacionárias são aquelas que não apresentam tendência ou sazonalidade, de forma que suas propriedades estatísticas permaneçam constantes ao longo do tempo. Séries estacionárias variam com média e variância constantes. Apesar de muitas séries temporais não serem estacionárias, não é difícil torná-las estacionárias. Um ruído branco é um exemplo de série estacionária. Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
-<p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionárias. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
+<p>As séries temporais estacionárias são aquelas que não apresentam tendência ou sazonalidade, de forma que suas propriedades não dependam do tempo. Um ruído branco é um exemplo de série estacionária. Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
+<p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionária. À esquerda observa-se um ruído branco, no centro uma série com tendência, sendo esta a série do valor de fechamento da ação PETR3 da Petrobrás e, à direita uma série com sazonalidade, neste caso uma série de produção de energia solar no Brasil para os primeiros dias de dezembro de 2023, com frequência horária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-series" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -313,7 +313,7 @@ window.Quarto = {
 <img src="ST6_files/figure-html/fig-series-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.1: Exemplos de séries temporais estacionárias
+Figura&nbsp;6.1: Exemplos de séries temporais
 </figcaption>
 </figure>
 </div>
@@ -321,84 +321,20 @@ Figura&nbsp;6.1: Exemplos de séries temporais estacionárias
 </div>
 <section id="diferenciação" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="diferenciação"><span class="header-section-number">6.1.1</span> Diferenciação</h3>
-<p>A diferenciação é útil para tornar uma série não estacionária em estacionária. Aésar de muitas séries observadas na indústria, na economia em negócios apresentarem variação nas suas propriedades, o comportamento da variação da série, isto é, o comportamento da série diferenciada é geralmente estacionário <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, a diferenciação serve para remover a variação no nível de uma série, estabilizando sua média.</p>
-<p>A diferenciação consiste na variação entre observações subsequentes. Logo, considernado uma série com <span class="math inline">\(T\)</span> observações, a série diferenciada contém ao final <span class="math inline">\(T-1\)</span> observações. A série diferenciada é denotada <span class="math inline">\(y_t'\)</span>, sendo obtida conforme a <a href="#eq-diff" class="quarto-xref">Equação&nbsp;<span>6.1</span></a>.</p>
-<p><span id="eq-diff"><span class="math display">\[
+<p>A diferenciação é útil para tornar uma série não estacionária em estacionária. Ela serve para remover a variação no nível de uma série, estabilizando sua média.</p>
+<p>A série diferenciada consiste na mudança entre observações subsequentes, contendo esta ao final <span class="math inline">\(T-1\)</span> observações.</p>
+<p><span class="math display">\[
 y_t' = y_t-y_{t-1}
-\tag{6.1}\]</span></span></p>
-<p>A <a href="#tbl-diffibov" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> expõe as primeiras observações na série do índice Ibovespa e variação deste. Observa-se para estas primeiras observações variação positiva para maioria dos dias, mas também variações negativas.</p>
-<div class="cell">
-<div id="tbl-diffibov" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diffibov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.1: Primeiras observações do índice Ibovespa e sua variação
-</figcaption>
-<div aria-describedby="tbl-diffibov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Fechamento</th>
-<th style="text-align: right;">Variação</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">131.59</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">132.16</td>
-<td style="text-align: right;">0.57</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">130.57</td>
-<td style="text-align: right;">-1.59</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">131.06</td>
-<td style="text-align: right;">0.50</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">133.12</td>
-<td style="text-align: right;">2.06</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">133.75</td>
-<td style="text-align: right;">0.62</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">134.96</td>
-<td style="text-align: right;">1.21</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">135.12</td>
-<td style="text-align: right;">0.16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">134.88</td>
-<td style="text-align: right;">-0.24</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">134.03</td>
-<td style="text-align: right;">-0.85</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
+\]</span></p>
 <p>Se a série diferenciada consiste em um ruído branco, <span class="math inline">\(\varepsilon_t\)</span>, então pode-se escrever:</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t
 \]</span></p>
-<p>Um modelo onde a observação posterior é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
+<p>Um modelo onde a observação posterior é igual à anterior adicionada de um ruído branco é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se considerar uma constante, conforme segue, onde a constante, <span class="math inline">\(c\)</span>, consiste na média das diferenças.</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
-<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária do índice Ibovespa, além da série obtida a partir da diferenciação desta, que obviamente consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlogramas da série do índice e da variação deste. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
+<p>A <a href="#fig-difcor" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe a série não estacionária para o índice Ibovespa, além da série obtida a partir da diferenciação desta, a qual consiste na variação diária do índice. A série diferenciada apresenta estacionariedade. A Figura exibe também os correlogramas da série original e da diferenciada. Observa-se que a série diferenciada, ao contrário da original, não apresenta autocorrelação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-difcor" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -414,19 +350,19 @@ Figura&nbsp;6.2: Série temporal não estacionária, diferenciação e autocorre
 </div>
 </div>
 <p>O modelo de caminhada aleatória é muito útil para séries econométricas e de finanças. Geralmente tais séries apresentam longos períodos de tendência de queda ou crescimento, com mudanças inesperadas de difícil explicação.</p>
-<p>Em casos onde a diferenciação de primeira ordem não garante a estacionariedade, pode-se ainda aplicar uma diferenciação de segunda ordem, conforme expresso na <a href="#eq-diff2" class="quarto-xref">Equação&nbsp;<span>6.2</span></a>.</p>
-<p><span id="eq-diff2"><span class="math display">\[
+<p>Em casos onde a diferenciação de primeira ordem não garante a estacionariedade, pode-se ainda aplicar uma diferenciação de segunda ordem.</p>
+<p><span class="math display">\[
 \begin{align}
 y_t'' &amp;= y_t'-y_{t-1}' \\
       &amp;= (y_t-y_{t-1})-(y_{t-1}-y_{t-2}) \\
       &amp;= y_t-2y_{t-1}+y_{t-2}
 \end{align}
-\tag{6.2}\]</span></span></p>
-<p>Em séries sazonais é importante aplicar a diferenciação sazonal, conforme exposto na <a href="#eq-diffsaz" class="quarto-xref">Equação&nbsp;<span>6.3</span></a>, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
-<p><span id="eq-diffsaz"><span class="math display">\[
+\]</span></p>
+<p>Em séries sazonais é importante aplicar a diferenciação sazonal, conforme exposto à seguir, onde <span class="math inline">\(m\)</span> é o número de períodos sazonais.</p>
+<p><span class="math display">\[
 y_t'= y_t - y_{t-m}
-\tag{6.3}\]</span></span></p>
-<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span>. Em seguida, realizou-se a diferenciação simples, de forma a garantir a estacionariedade. Pode-se observar que a diferenciação anual elimina a sazonalidade e a mensal a tendência.</p>
+\]</span></p>
+<p>A <a href="#fig-voosdiff" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> apresenta a série de passageiros em vôos do Brasil. Foi aplicado logaritmo para estabilizar a variação anual. Posteriormente, foi realizada diferenciação sazonal, <span class="math inline">\(m=12\)</span>. Em seguida, outra diferenciação porém mensal foi aplicada, de forma a garantir a estacionariedade. Logo, neste caso, a diferenciação anual trata a sazonalidade e a mensal a tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-voosdiff" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -441,32 +377,31 @@ Figura&nbsp;6.3: Passageiros em vôos do Brasil: série original, log da série,
 </div>
 </div>
 </div>
-<p>Tomando a diferenciação de primeira ordem como sendo sazonal, <span class="math inline">\(y' = y_t-y_{t-m}\)</span>, então a diferenciação de segunda ordem pode ser expressa conforme a <a href="#eq-difsaz" class="quarto-xref">Equação&nbsp;<span>6.4</span></a>.</p>
-<p><span id="eq-difsaz"><span class="math display">\[
+<p>Tomando a diferenciação de primeira ordem como sendo sazonal, <span class="math inline">\(y' = y_t-y_{t-m}\)</span>, então a diferenciação de segunda ordem, fica:</p>
+<p><span class="math display">\[
 \begin{align}
 y'' &amp;= y'-y'_{t-1} \\
     &amp;= (y_t-y_{t-m})-(y_{t-1}-y_{t-m-1}) \\
     &amp;= y_t - y_{t-m} -y_{t-1}+y_{t-m-1} \\
 \end{align}
-\tag{6.4}\]</span></span></p>
+\]</span></p>
 </section>
 <section id="testes-de-raízes-unitárias" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="testes-de-raízes-unitárias"><span class="header-section-number">6.1.2</span> Testes de raízes unitárias</h3>
-<p>Um modelo autoregressivo de primeira ordem, <span class="math inline">\(y_t = \phi y_{t-1}+\varepsilon_t\)</span>, consiste em um modelo estacionário se <span class="math inline">\(|\phi|&lt;1\)</span>. Se <span class="math inline">\(\phi=1\)</span>, tem-se um modelo de caminhada aleatória, a série tem raiz unitária e é, consequentemente, não estacionária <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, os testes de raízes unitárias tem o objetivo de avaliar se a série apresenta ou não estacionariedade.</p>
-<p>O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) <span class="citation" data-cites="kwiatkowski1992testing">(<a href="references.html#ref-kwiatkowski1992testing" role="doc-biblioref">Kwiatkowski et al. 1992</a>)</span> é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste no pacote <code>feasts</code> reporta 0,01, se o p-valor for menor que 0,01 e reporta 0,1, se o p-valor for maior que 0,1 <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série. A <a href="#tbl-kpss1dif" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste para a série do índice diferenciada. Observa-se neste caso que o resultado sugere que a hipótese nula de estacionariedade da série não deve ser rejeitada.</p>
+<p>Os testes de raízes unitárias servem para avaliar se a série apresenta ou não estacionariedade. O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste reporta 0,01, se o p-valor for menor que 0.01 e reporta 0.1, se o p-valor for maior que 0,1. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série.</p>
 <div class="cell">
 <div id="tbl-kpss1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.2: Teste KPSS para o índice Ibovespa
+Tabela&nbsp;6.1: Teste KPSS para o índice Ibovespa
 </figcaption>
 <div aria-describedby="tbl-kpss1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: right;">Estatística</th>
-<th style="text-align: right;">pvalor</th>
+<th style="text-align: right;">kpss_stat</th>
+<th style="text-align: right;">kpss_pvalue</th>
 </tr>
 </thead>
 <tbody>
@@ -481,76 +416,49 @@ Tabela&nbsp;6.2: Teste KPSS para o índice Ibovespa
 </figure>
 </div>
 </div>
-<div class="cell">
-<div id="tbl-kpss1dif" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss1dif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.3: Teste KPSS para a variação do índice Ibovespa
-</figcaption>
-<div aria-describedby="tbl-kpss1dif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Estatística</th>
-<th style="text-align: right;">pvalor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.1841354</td>
-<td style="text-align: right;">0.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
 </section>
 <section id="operador-de-defasagem" class="level3" data-number="6.1.3">
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="operador-de-defasagem"><span class="header-section-number">6.1.3</span> Operador de defasagem</h3>
-<p>O operador ou notação de defasagem (<em>backward shift notation</em> - <span class="math inline">\(B\)</span>) é útil para trabalhar com diferenciação <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>, defasagem (<em>lag</em>) de séries temporais e para representação de modelos ARIMA. O operador <span class="math inline">\(B\)</span> em <span class="math inline">\(y_t\)</span> defasa a observação em um período no tempo, conforme <a href="#eq-bsop" class="quarto-xref">Equação&nbsp;<span>6.5</span></a>.</p>
-<p><span id="eq-bsop"><span class="math display">\[
+<p>O operador ou notação de defasagem (<em>backward shift notation</em> - <span class="math inline">\(B\)</span>) é útil para trabalhar com diferenciação, defasagem (<em>lag</em>) e para representação de modelos ARIMA. O operador <span class="math inline">\(B\)</span> em <span class="math inline">\(y_t\)</span> defasa a observação em um período no tempo:</p>
+<p><span class="math display">\[
 By_t = y_{t-1}
-\tag{6.5}\]</span></span></p>
+\]</span></p>
 <p>No caso de defasagem de segunda ordem, tem-se:</p>
 <p><span class="math display">\[
-B(By_t) = B^2y_t = By_{t-1} = y_{t-2}
+B(By_t) = B^2y_t = y_{t-2}
 \]</span></p>
-<p>Para casos sazonais, por exemplo em séries de frquência horária e sazonalidade diária, pode ser útil usar <span class="math inline">\(B^{24}y_t = y_{t-24}\)</span>, de forma a retornar na mesma hora no dia anterior.</p>
-<p>A diferenciação de primeira ordem com a notação de defasagem pode ser escrita segundo a <a href="#eq-Bdif" class="quarto-xref">Equação&nbsp;<span>6.6</span></a>.</p>
-<p><span id="eq-Bdif"><span class="math display">\[
+<p>Para caso sazonal, por exemplo em séries de frquência horária e sazonalidade diária, pode ser útil usar <span class="math inline">\(B^{24}y_t = y_{t-24}\)</span>, de forma a retornar na mesma hora no dia anterior.</p>
+<p>A diferenciação de primeira ordem com tal notação pode ser escrita como:</p>
+<p><span class="math display">\[
 \begin{align}
 y'_t &amp;= y_t-y_{t-1} \\
      &amp;=y_t-By_t \\
      &amp;=(1-B)y_t
 \end{align}
-\tag{6.6}\]</span></span></p>
-<p>De forma análoga, a diferenciação de segunda ordem fica segundo a <a href="#eq-Bdif2" class="quarto-xref">Equação&nbsp;<span>6.7</span></a>.</p>
-<p><span id="eq-Bdif2"><span class="math display">\[
+\]</span></p>
+<p>De forma análoga, a diferenciação de segunda ordem fica:</p>
+<p><span class="math display">\[
 \begin{align}
 y_t'' &amp;= y_t-2y_{t-1}+y_{t-2} \\
       &amp;= y_t-2By_t+B^2y_t \\
       &amp;= (1-B)^2y_t
 \end{align}
-\tag{6.7}\]</span></span></p>
+\]</span></p>
 </section>
 </section>
 <section id="modelos-autorregressivos" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="modelos-autorregressivos"><span class="header-section-number">6.2</span> Modelos autorregressivos</h2>
-<p>Um modelo autorregressivo consiste em um modelo de regressão para a série, <span class="math inline">\(y_t\)</span>, em função do seu passado, ou para termos defasados, <span class="math inline">\(y_{t-1}, y_{t-2}, ..., y_{t-p}\)</span>. Um modelo autorregressivo de ordem <span class="math inline">\(p\)</span> ou <span class="math inline">\(AR(p)\)</span> pode ser escrito segundo a <a href="#eq-armodel" class="quarto-xref">Equação&nbsp;<span>6.8</span></a>.</p>
-<p><span id="eq-armodel"><span class="math display">\[
+<p>Um modelo autorregressivo consiste em um modelo de regressão para a série, <span class="math inline">\(y_t\)</span>, em função do seu passado, ou para termos defasados, <span class="math inline">\(y_{t-1}, y_{t-2}, ..., y_{t-p}\)</span>. Um modelo autorregressivo de ordem <span class="math inline">\(p\)</span> ou <span class="math inline">\(AR(p)\)</span> pode ser escrito como:</p>
+<p><span class="math display">\[
 \begin{align}
 y_t &amp;= c+\phi_1y_{t-1} + \phi_2y_{t-2} + \ldots + \phi_py_{t-p} + \varepsilon_t \\
     &amp;= c+\phi_1By_t + \phi_2B^2y_t + \ldots + \phi_pB^py_t + \varepsilon_t \\
 \end{align}
-\tag{6.8}\]</span></span></p>
-<p>onde, <span class="math inline">\(c = 1-\phi_1-\phi_2-...-\phi_p+\mu_y\)</span>. Para <span class="math inline">\(\mu_y=0\)</span>, pode-se usar a representação com notação de defasagem da <a href="#eq-armodel2" class="quarto-xref">Equação&nbsp;<span>6.9</span></a>. Pode-se observar que tal modelo é um modelo de regressão que ao invés de considerar outras variáveis independentes, considera valores anteriores da prória série, <span class="math inline">\(y_t\)</span>, sendo, portanto, um modelo autoregressivo. É importante dizer que tal modelo não deve ser tratado como um modelo de regressão obtido por mínimos quadrados. Primeiro, porque a independencia dos erros pode ser violada, dado o usual relacionamento entre os termos do lado direito. Segundo, pois a determinação da maior defasagem, <span class="math inline">\(p\)</span>, no modelo não é simples <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>.</p>
-<p><span id="eq-armodel2"><span class="math display">\[
+\]</span></p>
+<p>onde, <span class="math inline">\(c = 1-\phi_1-\phi_2-...-\phi_p+\mu\)</span>. Para <span class="math inline">\(\mu=0\)</span>, tem-se:</p>
+<p><span class="math display">\[
 (1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
-\tag{6.9}\]</span></span></p>
+\]</span></p>
 <p>A Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> expõe séries temporais que seguem processos autorregressivos <span class="math inline">\(AR(1)\)</span> e <span class="math inline">\(AR(2)\)</span>. Na <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(a) tem-se um processo autorregressivo de primeira ordem, <span class="math inline">\(AR(1)\)</span>, com <span class="math inline">\(y_t=15-0.5y_{t-1}+\varepsilon_t\)</span>. Na Figura <a href="#fig-ar" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>(b) tem-se um processo autorregressivo de segunda ordem, <span class="math inline">\(AR(2)\)</span>, com <span class="math inline">\(y_t = 8+1.3y_{t-1}-0.7y_{t-2}+\varepsilon_t\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -566,7 +474,7 @@ Figura&nbsp;6.4: Processos autorregressivos
 </div>
 </div>
 </div>
-<p>Os processos autorregressivos são muito flexíveis. A mudança dos parâmetros <span class="math inline">\(\phi_1,..., \phi_p\)</span> pode resultar em padrões de séries temporais muito distintos <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>.</p>
+<p>Os processos autorregressivos são muito flexíveis. A mudança dos parâmetros <span class="math inline">\(\phi_1,..., \phi_p\)</span> pode resultar em padrões muito distintos.</p>
 <p>Para um modelo <span class="math inline">\(AR(1)\)</span>, <span class="math inline">\(y_t=c+\phi_1y_{t-1} + \varepsilon_t\)</span>:</p>
 <ul>
 <li>Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(\phi_1=0\)</span>, tem-se um ruído branco.</li>
@@ -574,7 +482,7 @@ Figura&nbsp;6.4: Processos autorregressivos
 <li>Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(\phi_1=1\)</span>, tem-se uma caminhada aleatória com deriva.</li>
 <li>Se <span class="math inline">\(\phi_1&lt;1\)</span>, <span class="math inline">\(y_t\)</span> tende a oscilar em torno da média.</li>
 </ul>
-<p>Os processos autorregressivos são usados para descrever séries estacionárias, devendo satisfazer algumas restrições:</p>
+<p>Os processos autorregressivos são usados para séries estacionárias, sendo algumas restrições impostas:</p>
 <ul>
 <li>Para um modelo <span class="math inline">\(AR(1)\)</span>: <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>.</li>
 <li>Para um modelo <span class="math inline">\(AR(2)\)</span>: <span class="math inline">\(-1&lt;\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_1+\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_2-\phi_1&lt;1\)</span>.</li>
@@ -582,15 +490,16 @@ Figura&nbsp;6.4: Processos autorregressivos
 </section>
 <section id="modelos-de-média-móvel" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="modelos-de-média-móvel"><span class="header-section-number">6.3</span> Modelos de média móvel</h2>
-<p>Um modelo de média móvel considera os erros passados ao invés das observações passadas, sendo um modelo de média móvel de ordem <span class="math inline">\(q\)</span>, <span class="math inline">\(MA(q)\)</span> definido conforme <a href="#eq-mamodel" class="quarto-xref">Equação&nbsp;<span>6.10</span></a>. Como os valores do erro não são observáveis, este modelo também não é uma regressão habitual <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>.</p>
-<p><span id="eq-mamodel"><span class="math display">\[
+<p>Um modelo de média móvel considera os erros passados ao invés das observações passadas, sendo um modelo de média móvel de ordem <span class="math inline">\(q\)</span>, <span class="math inline">\(MA(q)\)</span> definido conforme segue:</p>
+<p><span class="math display">\[
 \begin{align}
 y_t&amp;=c+\varepsilon_t+\theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} + \ldots + \theta_q\varepsilon_{t-q}\\
 &amp;=c+\varepsilon_t+\theta_1B\varepsilon_t+\theta_2B^2\varepsilon_t+\ldots+\theta_qB^q\varepsilon_t \\
 &amp;=c+ (1+\theta_1B+\theta_2B^2+\ldots+\theta_qB^q)\varepsilon_t
 \end{align}
-\tag{6.10}\]</span></span></p>
-<p>É importante também distinguir os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para suavização. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, os de suavização visam estimar a tendência de observações passadas de séries temporais.</p>
+\]</span></p>
+<p>Como os valores do erro não são observáveis, este modelo não é uma regressão habitual.</p>
+<p>É importante também diferenciar os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para suavização. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, os modelos de suavização visam estimar a tendência de observações passadas de séries temporais.</p>
 <p>A Figura <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -616,7 +525,7 @@ y_t &amp;= \phi_1y_{t-1} + \varepsilon_t\\
     &amp;= ...\\
 \end{align}
 \]</span></p>
-<p>À medida que <span class="math inline">\(k\)</span> aumenta, <span class="math inline">\(\phi_1^k\)</span> diminui, considerando <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>, de forma que o termo de potência maior pode ser desconsiderado. Fazendo <span class="math inline">\(\phi_1 = \theta_1\)</span>, <span class="math inline">\(\phi_1^2 = \theta_2\)</span> e assim sucessivamente, tem-se o modelo de média móvel inicialmente exposto. De forma análoga, impondo algumas restrições nos parâmetros do modelo <span class="math inline">\(MA(q)\)</span> é possível escrevê-lo como um processo <span class="math inline">\(AR(\infty)\)</span>.</p>
+<p>À medida que <span class="math inline">\(k\)</span> aumenta, <span class="math inline">\(\phi_1^k\)</span> diminui, considerando <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>, de forma que o termo de potência maior pode ser desconsiderado. Fazendo <span class="math inline">\(\phi_1 = \theta_1\)</span>, <span class="math inline">\(\phi_1^2 = \theta_2\)</span> e assim sucessivamente, tem-se o modelo de média móvel inicialmente exposto. Impondo algumas restrições nos parâmetros do modelo <span class="math inline">\(MA(q)\)</span> é possível escrevê-lo como um processo <span class="math inline">\(AR(\infty)\)</span>.</p>
 </section>
 <section id="modelos-arima-não-sazonais" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="modelos-arima-não-sazonais"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</h2>
@@ -627,15 +536,15 @@ y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1
 &amp;= c+\phi_1By'_t + \phi_2B^2y'_t + \ldots + \phi_pB^py'_t+\theta_1B\varepsilon_t + \theta_2B^2\varepsilon_t + \ldots + \theta_qB^q\varepsilon_t + \varepsilon_t \\
 \end{align}
 \]</span></p>
-<p>Logo, considerando ordem de diferenciação <span class="math inline">\(d\)</span>, pode-se representar um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> como segue:</p>
+<p>Logo, considerando ordem de diferenciação <span class="math inline">\(d\)</span>, pode-se representar um modelo ARIMA como segue:</p>
 <p><span class="math display">\[
 (1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t.
 \]</span></p>
-<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo de ordem <span class="math inline">\(p\)</span> para a parte autorregressiva, de ordem <span class="math inline">\(q\)</span> para a parte de média móvel, com diferenciação de ordem <span class="math inline">\(d\)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
+<p>Um modelo <span class="math inline">\(ARIMA(p,d,q)\)</span> consiste em um modelo de ordem <span class="math inline">\(p\)</span> para a parte autorregressiva, de ordem <span class="math inline">\(q\)</span> para a parte de média móvel, com diferenciação de ordem <span class="math inline">\(d\)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais.</p>
 <div id="tbl-casosarima" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.4: Casos especiais e modelos ARIMA correspondentes
+Tabela&nbsp;6.2: Casos especiais e modelos ARIMA correspondentes
 </figcaption>
 <div aria-describedby="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -893,12 +802,12 @@ Figura&nbsp;6.13: Série de produção de grãos no Brasil com transformação d
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-kpss_graos" class="quarto-xref">Tabela&nbsp;<span>6.5</span></a> apresenta o resultado do teste de KPSS para a série transformada, indicando a rejeição da hipótese nula de estacionariedade desta.</p>
+<p>A <a href="#tbl-kpss_graos" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste de KPSS para a série transformada, indicando a rejeição da hipótese nula de estacionariedade desta.</p>
 <div class="cell">
 <div id="tbl-kpss_graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.5: Teste KPSS para a série de produção de grãos
+Tabela&nbsp;6.3: Teste KPSS para a série de produção de grãos
 </figcaption>
 <div aria-describedby="tbl-kpss_graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -998,12 +907,12 @@ Figura&nbsp;6.16: Resíduos do modelo ARIMA(1,1,0) para a série de produção d
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ljungbox-graos" class="quarto-xref">Tabela&nbsp;<span>6.6</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
+<p>A <a href="#tbl-ljungbox-graos" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
 <div class="cell">
 <div id="tbl-ljungbox-graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.6: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
+Tabela&nbsp;6.4: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
 </figcaption>
 <div aria-describedby="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1081,12 +990,12 @@ Figura&nbsp;6.19: Série de passageiros de vôos no Brasil
 </div>
 </div>
 </div>
-<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_" class="quarto-xref">Tabela&nbsp;<span>6.7</span></a>, muito próximo dos considerados inicialmente.</p>
+<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_" class="quarto-xref">Tabela&nbsp;<span>6.5</span></a>, muito próximo dos considerados inicialmente.</p>
 <div class="cell">
 <div id="tbl-arima_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.7: Modelos ARIMA testados para a série log(passageiros)
+Tabela&nbsp;6.5: Modelos ARIMA testados para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1117,12 +1026,12 @@ Tabela&nbsp;6.7: Modelos ARIMA testados para a série log(passageiros)
 </figure>
 </div>
 </div>
-<p>A <a href="#tbl-arima_res" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
+<p>A <a href="#tbl-arima_res" class="quarto-xref">Tabela&nbsp;<span>6.6</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
 <div class="cell">
 <div id="tbl-arima_res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.8: Resultados dos modelos ARIMA testados para a série log(passageiros)
+Tabela&nbsp;6.6: Resultados dos modelos ARIMA testados para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1200,12 +1109,12 @@ Figura&nbsp;6.20: Série de passageiros de vôos no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-lb_auto" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
+<p>A <a href="#tbl-lb_auto" class="quarto-xref">Tabela&nbsp;<span>6.7</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
 <div id="tbl-lb_auto" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.9: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)
+Tabela&nbsp;6.7: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1275,12 +1184,12 @@ Figura&nbsp;6.23: Variação sazonal na produção de bens de consumo não durá
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
+<p>A <a href="#tbl-arima_ndur" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
 <div class="cell">
 <div id="tbl-arima_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.10: Modelos ARIMA testados para a série de bens não duráveis
+Tabela&nbsp;6.8: Modelos ARIMA testados para a série de bens não duráveis
 </figcaption>
 <div aria-describedby="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1310,12 +1219,12 @@ Tabela&nbsp;6.10: Modelos ARIMA testados para a série de bens não duráveis
 </figure>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">R. J. Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
+<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
 <div class="cell">
 <div id="tbl-arima_ndur_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não duráveis
+Tabela&nbsp;6.9: Resultados dos ARIMA testados para a série de bens não duráveis
 </figcaption>
 <div aria-describedby="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1354,7 +1263,7 @@ Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não durá
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.12</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_res" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1373,7 +1282,7 @@ Figura&nbsp;6.24: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produ
 <div id="tbl-lbox_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.12: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis
+Tabela&nbsp;6.10: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis
 </figcaption>
 <div aria-describedby="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1415,12 +1324,12 @@ Figura&nbsp;6.25: Previsão para 3 anos à frente para a série de bens de consu
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-metrics_ndur" class="quarto-xref">Tabela&nbsp;<span>6.13</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
+<p>A <a href="#tbl-metrics_ndur" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
 <div class="cell">
 <div id="tbl-metrics_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
+Tabela&nbsp;6.11: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
 </figcaption>
 <div aria-describedby="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1850,20 +1759,8 @@ Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a 
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-box2008time" class="csl-entry" role="listitem">
-Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
-</div>
-<div id="ref-hyndman2018forecasting" class="csl-entry" role="listitem">
-Hyndman, RJ, e G Athanasopoulos. 2021. <em>Forecasting: principles and practice</em>. OTexts. <a href="https://OTexts.com/fpp3">OTexts.com/fpp3</a>.
-</div>
 <div id="ref-hyndman2008automatic" class="csl-entry" role="listitem">
 Hyndman, Rob J, e Yeasmin Khandakar. 2008. <span>«Automatic time series forecasting: the forecast package for R»</span>. <em>Journal of statistical software</em> 27: 1–22.
-</div>
-<div id="ref-kwiatkowski1992testing" class="csl-entry" role="listitem">
-Kwiatkowski, Denis, Peter CB Phillips, Peter Schmidt, e Yongcheol Shin. 1992. <span>«Testing the null hypothesis of stationarity against the alternative of a unit root: How sure are we that economic time series have a unit root?»</span> <em>Journal of econometrics</em> 54 (1-3): 159–78.
-</div>
-<div id="ref-makridakis2008forecasting" class="csl-entry" role="listitem">
-Makridakis, Spyros, Steven C Wheelwright, e Rob J Hyndman. 2008. <em>Forecasting methods and applications</em>. John wiley &amp; sons.
 </div>
 </div>
 </section>
