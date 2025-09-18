@@ -379,7 +379,7 @@ Figura&nbsp;3.4: Produção mensal de produtos intermediários no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-prodintdecomp" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> exibe as primeiras linhas das componentes da série, considerando a decomposição aditiva.</p>
+<p>A <a href="#tbl-prodintdecomp" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> exibe as primeiras linhas das componentes da série, considerando a decomposição aditivavia método STL.</p>
 <div class="cell">
 <div id="tbl-prodintdecomp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -527,7 +527,7 @@ Figura&nbsp;3.8: Média móvel para a série de carros produzidos com distintas 
 </div>
 </div>
 <p>É interessante em alguns casos realizar a média móvel de uma média móvel, com o objetivo final de centrar médias móveis pares. Uma média móvel <span class="math inline">\(2\times4\)</span>-MA consiste em uma média móvel <span class="math inline">\(4\)</span>-MA seguida de uma <span class="math inline">\(2\)</span>-MA.</p>
-<p>Por exemplo, para a série da <a href="#tbl-maexp" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim.</p>
+<p>Por exemplo, para a série da <a href="#tbl-maexp" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim. É importante observar que a média móvel <span class="math inline">\(4\)</span>-MA considera uma observação anterior, e duas posteriores, além da observação no período <span class="math inline">\(t\)</span>. Já a média móvel <span class="math inline">\(2\)</span>-MA considera a observação anterior e a do o período <span class="math inline">\(t\)</span>.</p>
 <div id="tbl-maexp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-maexp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -626,7 +626,7 @@ Figura&nbsp;3.10: Tendência para a série de produtos intermediários estimada 
 <h2 data-number="3.6" class="anchored" data-anchor-id="decomposição-clássica"><span class="header-section-number">3.6</span> Decomposição clássica</h2>
 <p>A decomposição clássica tem um século de tradição e é o primeiro método de decomposição <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>. Ela contempla a forma aditiva e a multiplicativa. A seguir são expostos os passos para a decomposição aditiva:</p>
 <ol type="1">
-<li><p>Se o período sazonal, <span class="math inline">\(m\)</span>, é par, estime a tendência <span class="math inline">\(\hat{T}_t\)</span> como uma média móvel <span class="math inline">\(2\times m\)</span>-MA. Se <span class="math inline">\(m\)</span> é ímpar, estime a tendência com uma média móvel <span class="math inline">\(m\)</span>-MA.</p></li>
+<li><p>Se o período sazonal, <span class="math inline">\(m\)</span>, é par, estime a tendência, <span class="math inline">\(\hat{T}_t\)</span>,, como uma média móvel <span class="math inline">\(2\times m\)</span>-MA. Se <span class="math inline">\(m\)</span> é ímpar, estime a tendência com uma média móvel <span class="math inline">\(m\)</span>-MA.</p></li>
 <li><p>Calcule a série sem a tendência, <span class="math inline">\(y_t - \hat{T}_t\)</span>.</p></li>
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a diferença da série em relação à tendência a sazonalidade, <span class="math inline">\(\hat{R}_t=y_t - \hat{T}_t - \hat{S}_t\)</span>.</p></li>
