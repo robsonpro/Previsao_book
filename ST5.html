@@ -442,11 +442,11 @@ Tabela&nbsp;5.2: Parâmetros de suavização exponencial simples para a série d
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">0.5722074</td>
+<td style="text-align: right;">0,5722074</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">0.3963222</td>
+<td style="text-align: right;">0,3963222</td>
 </tr>
 </tbody>
 </table>
@@ -489,33 +489,33 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2025 fev</td>
-<td style="text-align: right;">1.31</td>
-<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">1,31</td>
+<td style="text-align: right;">0,30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 mar</td>
-<td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">0,56</td>
+<td style="text-align: right;">0,88</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025 abr</td>
-<td style="text-align: right;">0.43</td>
-<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0,43</td>
+<td style="text-align: right;">0,70</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 mai</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0,26</td>
+<td style="text-align: right;">0,54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025 jun</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0,24</td>
+<td style="text-align: right;">0,38</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025 jul</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0,26</td>
+<td style="text-align: right;">0,30</td>
 </tr>
 </tbody>
 </table>
@@ -570,19 +570,19 @@ Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a s
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">alpha</td>
-<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1,00</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">beta</td>
-<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0,44</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">l[0]</td>
-<td style="text-align: right;">116948789.80</td>
+<td style="text-align: right;">116948789,80</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">b[0]</td>
-<td style="text-align: right;">2842713.24</td>
+<td style="text-align: right;">2842713,24</td>
 </tr>
 </tbody>
 </table>
@@ -619,7 +619,7 @@ Figura&nbsp;5.4: População do Brasil
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;distribution[1]&gt;
-[1] N(2.2e+08, 1.5e+13)</code></pre>
+[1] N(2,2e+08, 1,5e+13)</code></pre>
 </div>
 </div>
 <p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os resultados das previsões obtidas pelos mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, em Gg de CO2 equivalente, disponível em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. Foi considerado um <span class="math inline">\(\phi = 0,90\)</span> para o caso com amortecimento. O amortecimento é importante, uma vez que o método Holt apresenta geralmente tendência acentuada, com inclinação com mais peso em relação ao observado nos últimos anos, que pode não se confirmar a médio prazo.</p>
@@ -755,25 +755,25 @@ Tabela&nbsp;5.5: Resultados das métricas de teste para os modelos de suavizaç�
 <td style="text-align: left;">aditivo sazonal</td>
 <td style="text-align: right;">2195052170</td>
 <td style="text-align: right;">1834091706</td>
-<td style="text-align: right;">6.62</td>
+<td style="text-align: right;">6,62</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">aditivo sazonal amort</td>
 <td style="text-align: right;">2384479823</td>
 <td style="text-align: right;">2028508291</td>
-<td style="text-align: right;">7.24</td>
+<td style="text-align: right;">7,24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">mult sazonal</td>
 <td style="text-align: right;">1979894926</td>
 <td style="text-align: right;">1550871084</td>
-<td style="text-align: right;">5.54</td>
+<td style="text-align: right;">5,54</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">mult sazonal amort</td>
 <td style="text-align: right;">1961497440</td>
 <td style="text-align: right;">1353227812</td>
-<td style="text-align: right;">4.73</td>
+<td style="text-align: right;">4,73</td>
 </tr>
 </tbody>
 </table>
@@ -922,27 +922,27 @@ Tabela&nbsp;5.6: Desempenho dos modelos ETS para prever a disponibilidade de fer
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ETS(A,A,A)</td>
-<td style="text-align: right;">845372.4</td>
-<td style="text-align: right;">716194.6</td>
-<td style="text-align: right;">21.17</td>
+<td style="text-align: right;">845372,4</td>
+<td style="text-align: right;">716194,6</td>
+<td style="text-align: right;">21,17</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ETS(A,Ad,A)</td>
-<td style="text-align: right;">685842.9</td>
-<td style="text-align: right;">544237.5</td>
-<td style="text-align: right;">16.21</td>
+<td style="text-align: right;">685842,9</td>
+<td style="text-align: right;">544237,5</td>
+<td style="text-align: right;">16,21</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ETS(M,A,M)</td>
-<td style="text-align: right;">842781.1</td>
-<td style="text-align: right;">707120.8</td>
-<td style="text-align: right;">20.23</td>
+<td style="text-align: right;">842781,1</td>
+<td style="text-align: right;">707120,8</td>
+<td style="text-align: right;">20,23</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ETS(M,Ad,M)</td>
-<td style="text-align: right;">774105.7</td>
-<td style="text-align: right;">585567.3</td>
-<td style="text-align: right;">16.96</td>
+<td style="text-align: right;">774105,7</td>
+<td style="text-align: right;">585567,3</td>
+<td style="text-align: right;">16,96</td>
 </tr>
 </tbody>
 </table>
@@ -983,8 +983,8 @@ Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de f
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">32.92371</td>
-<td style="text-align: right;">0.0343968</td>
+<td style="text-align: right;">32,92371</td>
+<td style="text-align: right;">0,0343968</td>
 </tr>
 </tbody>
 </table>

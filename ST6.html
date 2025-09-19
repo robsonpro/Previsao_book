@@ -353,44 +353,44 @@ Tabela&nbsp;6.1: Primeiras observações do índice Ibovespa e sua variação
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">131.59</td>
+<td style="text-align: right;">131,59</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">132.16</td>
-<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">132,16</td>
+<td style="text-align: right;">0,57</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">130.57</td>
-<td style="text-align: right;">-1.59</td>
+<td style="text-align: right;">130,57</td>
+<td style="text-align: right;">-1,59</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">131.06</td>
-<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">131,06</td>
+<td style="text-align: right;">0,50</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">133.12</td>
-<td style="text-align: right;">2.06</td>
+<td style="text-align: right;">133,12</td>
+<td style="text-align: right;">2,06</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">133.75</td>
-<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">133,75</td>
+<td style="text-align: right;">0,62</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">134.96</td>
-<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">134,96</td>
+<td style="text-align: right;">1,21</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">135.12</td>
-<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">135,12</td>
+<td style="text-align: right;">0,16</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">134.88</td>
-<td style="text-align: right;">-0.24</td>
+<td style="text-align: right;">134,88</td>
+<td style="text-align: right;">-0,24</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">134.03</td>
-<td style="text-align: right;">-0.85</td>
+<td style="text-align: right;">134,03</td>
+<td style="text-align: right;">-0,85</td>
 </tr>
 </tbody>
 </table>
@@ -462,7 +462,7 @@ y'' &amp;= y'-y'_{t-1} \\
 <section id="testes-de-raízes-unitárias" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="testes-de-raízes-unitárias"><span class="header-section-number">6.1.2</span> Testes de raízes unitárias</h3>
 <p>Um modelo autoregressivo de primeira ordem, <span class="math inline">\(y_t = \phi y_{t-1}+\varepsilon_t\)</span>, consiste em um modelo estacionário se <span class="math inline">\(|\phi|&lt;1\)</span>. Se <span class="math inline">\(\phi=1\)</span>, tem-se um modelo de caminhada aleatória, a série tem raiz unitária e é, consequentemente, não estacionária <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, os testes de raízes unitárias tem o objetivo de avaliar se a série apresenta ou não estacionariedade.</p>
-<p>O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) <span class="citation" data-cites="kwiatkowski1992testing">(<a href="references.html#ref-kwiatkowski1992testing" role="doc-biblioref">Kwiatkowski et al. 1992</a>)</span> é uma opção, com a hipótese nula indicando a estacionariedade da série. A saída do teste no pacote <code>feasts</code> reporta 0,01, se o p-valor for menor que 0,01 e reporta 0,1, se o p-valor for maior que 0,1 <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série. A <a href="#tbl-kpss1dif" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste para a série do índice diferenciada. Observa-se neste caso que o resultado sugere que a hipótese nula de estacionariedade da série não deve ser rejeitada.</p>
+<p>O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) <span class="citation" data-cites="kwiatkowski1992testing">(<a href="references.html#ref-kwiatkowski1992testing" role="doc-biblioref">Kwiatkowski et al. 1992</a>)</span> é uma opção, com a hipótese nula indicando a estacionariedade da série. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série. A <a href="#tbl-kpss1dif" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste para a série do índice diferenciada. Observa-se neste caso que o resultado sugere que a hipótese nula de estacionariedade da série não deve ser rejeitada.</p>
 <div class="cell">
 <div id="tbl-kpss1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -480,8 +480,8 @@ Tabela&nbsp;6.2: Teste KPSS para o índice Ibovespa
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.7490546</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0,7490546</td>
+<td style="text-align: right;">0,01</td>
 </tr>
 </tbody>
 </table>
@@ -507,8 +507,8 @@ Tabela&nbsp;6.3: Teste KPSS para a variação do índice Ibovespa
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.1841354</td>
-<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0,1841354</td>
+<td style="text-align: right;">0,1</td>
 </tr>
 </tbody>
 </table>
@@ -786,11 +786,11 @@ Model: ARIMA(1,0,0) w/ mean
 
 Coefficients:
          ar1    constant
-      0.2763  271035.558
-s.e.  0.1433    4547.139
+      0,2763  271035,558
+s.e.  0,1433    4547,139
 
-sigma^2 estimated as 969282769:  log likelihood=-516.68
-AIC=1039.35   AICc=1039.95   BIC=1044.7</code></pre>
+sigma^2 estimated as 969282769:  log likelihood=-516,68
+AIC=1039,35   AICc=1039,95   BIC=1044,7</code></pre>
 </div>
 </div>
 <p>Foi obtido um modelo ARIMA(1,0,0) exposto a seguir, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco com <span class="math inline">\(\sigma_\varepsilon = 31133,31\)</span>.</p>
@@ -835,11 +835,11 @@ Model: ARIMA(2,0,2) w/ mean
 
 Coefficients:
          ar1      ar2      ma1     ma2  constant
-      1.4603  -0.7901  -0.6441  0.4800   23.9391
-s.e.  0.1549   0.1356   0.2359  0.1225    0.5966
+      1,4603  -0,7901  -0,6441  0,4800   23,9391
+s.e.  0,1549   0,1356   0,2359  0,1225    0,5966
 
-sigma^2 estimated as 25.64:  log likelihood=-135.27
-AIC=282.53   AICc=284.74   BIC=293.37</code></pre>
+sigma^2 estimated as 25,64:  log likelihood=-135,27
+AIC=282,53   AICc=284,74   BIC=293,37</code></pre>
 </div>
 </div>
 <p>Foi obtido um modelo <span class="math inline">\(ARIMA(2,0,2)\)</span>:</p>
@@ -878,14 +878,14 @@ Figura&nbsp;6.10: Série temporal do valor da ação VALE3
 </div>
 <section id="previsão-com-modelos-arima-não-sazonais" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="previsão-com-modelos-arima-não-sazonais"><span class="header-section-number">6.4.1</span> Previsão com modelos ARIMA não sazonais</h3>
-<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos à frente de interesse, <span class="math inline">\(h\)</span>, à frente das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autoregressivos e os de média móvel, lembrando que este últimos apresentará todos termos de erro nulos sempre que <span class="math inline">\(h\geq\)</span>, uma vez que são desconhecidos.</p>
+<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos à frente de interesse, <span class="math inline">\(h\)</span>, à frente das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autoregressivos e os de média móvel, lembrando que este último apresentará todos termos de erro nulos sempre que <span class="math inline">\(h\geq q\)</span>, uma vez que são desconhecidos.</p>
 <p><span id="eq-predarima1"><span class="math display">\[
 \begin{align}
 y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} + \varepsilon_{T+1} \\
 \hat y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} \\
 \hat y_{T+1} - y_{T} &amp;= c + \phi_1(y_T-y_{T-1}) + \phi_2(y_{T-1}-y_{T-2}) + \dots + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}  \\
 \hat y_{T+1} &amp;= c + y_{T} + \phi_1y_T-\phi_1y_{T-1} + \phi_2y_{T-1}-\phi_2y_{T-2} + \dots + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}  \\
-\hat y_{T+1} &amp;= c + y_{T}(1 + \phi_1)+y_{T-1}(\phi_2-\phi_1)y_{T-1} + \dots + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}  \\
+\hat y_{T+1} &amp;= c + y_{T}(1 + \phi_1)+y_{T-1}(\phi_2-\phi_1) + \dots + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}  \\
 \end{align}
 \tag{6.22}\]</span></span></p>
 <p>Em um modelo ARIMA se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=0\)</span>, então a previsão de longo prazo tenderá para zero. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=1\)</span>, a previsão a longo prazo tenderá para uma constante. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=2\)</span>, a previsão a longo prazo será linear. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=0\)</span>, a previsão a longo prazo será a média das observações. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=1\)</span> a previsão a longo prazo será linear. Para previsões cíclicas é importante <span class="math inline">\(p\geq2\)</span> <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>.</p>
@@ -893,7 +893,7 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \the
 </section>
 <section id="autocorrelação-parcial" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="autocorrelação-parcial"><span class="header-section-number">6.5</span> Autocorrelação parcial</h2>
-<p>A autocorrelação <span class="math inline">\(r_k\)</span> mede a relação linear entre a série original <span class="math inline">\(y_t\)</span> e a série defasada <span class="math inline">\(y_{t-k}\)</span>. Entretanto, se <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span> são correlacionadas, então <span class="math inline">\(y_{t-1}\)</span> e <span class="math inline">\(y_{t-2}\)</span> também serão. Logo, haverá correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span>. Porém, não porque há uma explicação plausível para <span class="math inline">\(y_t\)</span> a partir de <span class="math inline">\(y_{t-2}\)</span>, mas simplesmente porque ambas estão relacionadas indiretamente por <span class="math inline">\(y_{t-1}\)</span>.</p>
+<p>A autocorrelação <span class="math inline">\(r_k\)</span> mede a relação linear entre a série original <span class="math inline">\(y_t\)</span> e a série defasada <span class="math inline">\(y_{t-k}\)</span>. Entretanto, se <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span> são correlacionadas, então <span class="math inline">\(y_{t-1}\)</span> e <span class="math inline">\(y_{t-2}\)</span> também serão. Logo, haverá correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span>. Porém, não porque necessariamente há uma explicação plausível para <span class="math inline">\(y_t\)</span> a partir de <span class="math inline">\(y_{t-2}\)</span>, mas simplesmente porque ambas estão relacionadas indiretamente por <span class="math inline">\(y_{t-1}\)</span>.</p>
 <p>A autocorrelação parcial visa corrigir este viés da autocorrelação, medindo mais diretamente a relação linear entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-k}\)</span> desconsiderando os efeitos das defasagens anteriores, <span class="math inline">\(1,2,\ldots, k-1\)</span>.</p>
 <p>A <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.11</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e a última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
 <div class="cell">
@@ -928,17 +928,17 @@ Model: ARIMA(3,0,0) w/ mean
 
 Coefficients:
          ar1     ar2      ar3  constant
-      0.8779  0.1577  -0.4693   31.4916
-s.e.  0.1268  0.1812   0.1290    0.7465
+      0,8779  0,1577  -0,4693   31,4916
+s.e.  0,1268  0,1812   0,1290    0,7465
 
-sigma^2 estimated as 26.71:  log likelihood=-136.62
-AIC=283.25   AICc=284.78   BIC=292.28</code></pre>
+sigma^2 estimated as 26,71:  log likelihood=-136,62
+AIC=283,25   AICc=284,78   BIC=292,28</code></pre>
 </div>
 </div>
 <section id="modelagem-e-seleção-de-modelos" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="modelagem-e-seleção-de-modelos"><span class="header-section-number">6.5.1</span> Modelagem e seleção de modelos</h3>
 <p>Os modelos ARIMA podem ser estimados de distintas formas. Para um modelo de ordem <span class="math inline">\(p,d,q\)</span> pode-se maximizar o log da máxima verossimilhança para estimar os parâmetros <span class="math inline">\(c\)</span>, <span class="math inline">\(\phi_1,\ldots,\phi_p\)</span> e <span class="math inline">\(\theta_1,\ldots,\theta_q\)</span>, conforme realizado no pacote <code>fable</code>. É importante esclarecer que existem distintos algoritmos e, neste sentido, linguagens e pacotes computacionais diferentes podem não reportar os mesmos resultados.</p>
-<p>Para comparar e selecionar modelos pode-se considerar o critério de informação de Akaike (AIC), calculado conforme segue, onde <span class="math inline">\(k=0\)</span>, se <span class="math inline">\(c=0\)</span>, e <span class="math inline">\(k=1\)</span>, caso contrário.</p>
+<p>Para comparar e selecionar modelos pode-se considerar o critério de informação de Akaike (<span class="math inline">\(AIC\)</span>), calculado conforme segue, onde <span class="math inline">\(k=0\)</span>, se <span class="math inline">\(c=0\)</span>, e <span class="math inline">\(k=1\)</span>, caso contrário.</p>
 <p><span class="math display">\[
 AIC = -2\text{log}(L) + 2(p+k+q+1)
 \]</span></p>
@@ -950,8 +950,7 @@ AIC_c = AIC+ \frac{2(p+k+q+1)(p+k+q+2)}{T-p-q-k-2}
 <p><span class="math display">\[
 BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 \]</span></p>
-<p>O modelo que minimizar tais métricas deve ser escolhido, sugerindo-se priorizar o <span class="math inline">\(AICc\)</span>.</p>
-<p>Uma abordagem para seleção de modelos ARIMA para casos não sazonais pode seguir os seguintes passos <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>:</p>
+<p>O modelo que minimizar tais métricas deve ser escolhido, sugerindo-se priorizar o <span class="math inline">\(AICc\)</span>. Uma abordagem para seleção de modelos ARIMA para casos não sazonais pode seguir os seguintes passos <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>:</p>
 <ol type="1">
 <li>Visualize a série e identifique observações não usuais;</li>
 <li>Realize transformação de Box-Cox para estabilizar a variância, se necessário;</li>
@@ -961,7 +960,7 @@ BIC = AIC + [\text{log}(T)-2](p+k+q+1)
 <li>Avalie os resíduos do modelo selecionado;</li>
 <li>Realize previsões com o modelo.</li>
 </ol>
-<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série de produção de grãos no Brasil em toneladas apresentada no capítulo 4 na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a>. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
+<p>Em caso de autocorrelação nos resíduos, tente ajustar outro modelo. Para exemplificar o procedimento, considere a série de produção de grãos no Brasil em toneladas, apresentada no capítulo 4, na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a>. Como a série aparenta apresentar leve heterocedasticidade, será realizada transformação de Box-Cox.</p>
 <p>A <a href="#fig-graos-bc" class="quarto-xref">Figura&nbsp;<span>6.12</span></a> apresenta a série após transformação com <span class="math inline">\(\lambda=0,6264\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -995,8 +994,8 @@ Tabela&nbsp;6.5: Teste KPSS para a série de produção de grãos
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1.242214</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1,242214</td>
+<td style="text-align: right;">0,01</td>
 </tr>
 </tbody>
 </table>
@@ -1005,7 +1004,7 @@ Tabela&nbsp;6.5: Teste KPSS para a série de produção de grãos
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-graos-diff" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> apresenta a variação da série transformada. Confirma-se estacionariedade após diferenciação de primeira ordem. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta.</p>
+<p>A <a href="#fig-graos-diff" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> apresenta a variação da série transformada. Mesmo com a transformação de Box-Cox, após 2015 houve períodos de variação mais alta. Confirma-se estacionariedade após diferenciação de primeira ordem da série transformada, conforme <a href="#tbl-kpss_graosvar" class="quarto-xref">Tabela&nbsp;<span>6.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-graos-diff" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1018,6 +1017,33 @@ Figura&nbsp;6.13: Variação da série transformada de produção de grãos no B
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-kpss_graosvar" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kpss_graosvar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.6: Teste KPSS para a variação da série transformada de produção de grãos
+</figcaption>
+<div aria-describedby="tbl-kpss_graosvar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0,5364439</td>
+<td style="text-align: right;">0,0334586</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>A <a href="#fig-graos-autocorr" class="quarto-xref">Figura&nbsp;<span>6.14</span></a> expõe os correlogramas de ACF e PACF para a série diferenciada e transformada. Observa-se que o primeiro indica um modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>, enquanto o segundo indica um modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>.</p>
@@ -1044,11 +1070,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ar1  constant
-      -0.4639   41.2969
-s.e.   0.1369    8.4272
+      -0,4639   41,2969
+s.e.   0,1369    8,4272
 
-sigma^2 estimated as 3430:  log likelihood=-257.09
-AIC=520.17   AICc=520.73   BIC=525.72</code></pre>
+sigma^2 estimated as 3430:  log likelihood=-257,09
+AIC=520,17   AICc=520,73   BIC=525,72</code></pre>
 </div>
 </div>
 <p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>. Foi obtido <span class="math inline">\(ACCc\)</span> = 586,36, indicando que o modelo anterior apresentou melhor ajuste.</p>
@@ -1060,14 +1086,14 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ma1  constant
-      -0.4384   28.0583
-s.e.   0.1109    4.7877
+      -0,4384   28,0583
+s.e.   0,1109    4,7877
 
-sigma^2 estimated as 3446:  log likelihood=-257.18
-AIC=520.36   AICc=520.92   BIC=525.91</code></pre>
+sigma^2 estimated as 3446:  log likelihood=-257,18
+AIC=520,36   AICc=520,92   BIC=525,91</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.15</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio considerável de normalidade.</p>
+<p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.15</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio significativo de normalidade.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi-graos" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1082,12 +1108,12 @@ Figura&nbsp;6.15: Resíduos do modelo ARIMA(1,1,0) para a série de produção d
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-ljungbox-graos" class="quarto-xref">Tabela&nbsp;<span>6.6</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
+<p>A <a href="#tbl-ljungbox-graos" class="quarto-xref">Tabela&nbsp;<span>6.7</span></a> resume o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> para a série de produção de grãos. O teste deve ser realizado considerando <span class="math inline">\(K=p+q\)</span> graus de liberdade. O alto p-valor obtido indica não haver indícios para rejeição da hipótese nula de ausência de autocorrelação.</p>
 <div class="cell">
 <div id="tbl-ljungbox-graos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.6: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
+Tabela&nbsp;6.7: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) para a série de produção de grãos
 </figcaption>
 <div aria-describedby="tbl-ljungbox-graos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1100,8 +1126,8 @@ Tabela&nbsp;6.6: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) par
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">4.580951</td>
-<td style="text-align: right;">0.8692027</td>
+<td style="text-align: right;">4,580951</td>
+<td style="text-align: right;">0,8692027</td>
 </tr>
 </tbody>
 </table>
@@ -1129,11 +1155,239 @@ Figura&nbsp;6.16: Previsão com o modelo ARIMA(1,1,0) para a série de produçã
 </section>
 <section id="sarima-arima-com-sazonalidade" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="sarima-arima-com-sazonalidade"><span class="header-section-number">6.6</span> SARIMA: ARIMA com sazonalidade</h2>
-<p>Modelos ARIMA também podem ser aplicados a casos sazonais, sendo denotados <span class="math inline">\(ARIMA(p,d,q)(P,D,Q)_m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal e os termos da parte sazonal do modelo são denotados por letras maiúsculas. Um modelo <span class="math inline">\(ARIMA(1,1,1)(1,1,1)_{12}\)</span> para uma série de frequência mensal seria para sazonalidade anual e pode ser escrito em notação de defasagem conforme segue, onde <span class="math inline">\(\Phi\)</span> e <span class="math inline">\(\Theta\)</span> são, respectivamente, os termos autorregressivos e de média móvel, para a parte sazonal. Os modelos ARIMA sazonais são comumente chamados de SARIMA.</p>
+<p>Modelos ARIMA também podem ser aplicados a casos sazonais, sendo denotados <span class="math inline">\(ARIMA(p,d,q)(P,D,Q)_m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal e os termos da parte sazonal do modelo são denotados por letras maiúsculas. Um modelo <span class="math inline">\(ARIMA(1,1,1)(1,1,1)_{12}\)</span> para uma série de frequência mensal seria para sazonalidade anual e pode ser escrito em notação de defasagem conforme segue, onde <span class="math inline">\(\Phi_1\)</span> e <span class="math inline">\(\Theta_1\)</span> são, respectivamente, os termos autorregressivo e de média móvel, para a parte sazonal. Os modelos ARIMA sazonais são comumente chamados de SARIMA.</p>
 <p><span class="math display">\[
 (1-\phi_1B)(1-\Phi_1B^{12})(1-B)(1-B^{12})y_t = c+( 1+\theta_1B)( 1+\Theta_1B^{12})\varepsilon_t
 \]</span></p>
-<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.17</span></a> expõe a variação sazonal da série de log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
+<p>A</p>
+<p>A <a href="#fig-cheg" class="quarto-xref">Figura&nbsp;<span>6.17</span></a> expõe graficamente a série de chegada de turistas no Brasil, incluindo brasileiros que vivem no exterior e estrangeiros. A série tem frequência mensal e está disponível em <a href="https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil">Estimativas de Chegadas de Turistas Internacionais ao Brasil</a>. Observa-se tendência de crescimento no volume de chegadas com variação sazonal anual com padrão não constante. A partir de 2020 observa-se queda brusca no volume de chegadas devido à pandemia de COVID-19.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cheg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cheg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-cheg-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cheg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.17: Série de chegada turistas do exterior no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-chegsaz" class="quarto-xref">Figura&nbsp;<span>6.18</span></a> ilustra o gráfico sazonal da série de chegada de turistas no Brasil. Confirma-se a sazonalidade anual, com maior volume nas chegadas em dezembro e janeiro, além de volume maior em julho, em relação aos meses do outono e do inverno. Fica clara, também, a tendência de crescimento na duas últimas décadas, em relação aos anos 90 e início dos anos 2000. Destaca-se, também, o pico de chegadas em junho de 2014, devido à copa do mundo de futebol.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-chegsaz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chegsaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-chegsaz-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegsaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.18: Chegada turistas no Brasil: gráfico sazonal
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-chegdifflog" class="quarto-xref">Figura&nbsp;<span>6.19</span></a> expõe novamente a série de chegada de turistas do exterior no Brasil, considerando o período de 2015 a 2019. A Figura também apresenta a série transformada via logarítmo, com diferenciação sazonal e diferenciação dupla. Observa-se que, por neste período a série não apresentar tendência clara, a diferenciação sazonal já praticamente viabiliza a estacionariedade. A <a href="#tbl-chegkpss" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> expõe o resultado do teste de KPSS, o qual indica a não rejeição da hipótese nula de estacionariedade da variação no log série de chegada turistas no Brasil.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-chegdifflog" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chegdifflog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-chegdifflog-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegdifflog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.19: Chegada turistas do exterior no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-chegkpss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegada turistas no Brasil
+</figcaption>
+<div aria-describedby="tbl-chegkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0,0591714</td>
+<td style="text-align: right;">0,1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-chegcorr" class="quarto-xref">Figura&nbsp;<span>6.20</span></a> expõe os correlogramas de ACF e PACF para a variação sazonal no log série de chegada turistas no Brasil. Observa-se no correlograma de ACF pico nas autocorrelações com defasagem de uma e de doze observações, sugerindo <span class="math inline">\(q=1\)</span> e <span class="math inline">\(Q=1\)</span>. O correlograma de PACF apresenta padrão similar, sugerindo <span class="math inline">\(p=1\)</span> e <span class="math inline">\(P=1\)</span>. Logo, serão testados os modelos <span class="math inline">\(ARIMA(1,0,0)(1,1,0)_{12}\)</span> e <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>, além do modelo ARIMA automático.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-chegcorr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chegcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-chegcorr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.20: Correlogramas para a variação sazonal no log série de chegada turistas no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-chegarimafit" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado dos modelos ARIMA testados para o log série de chegada turistas no Brasil. Observa-se que o modelo automático apresentou os mesmos resultados que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>. A seguir expõe-se a saída do modelo ARIMA automático, indicando que ele é exatamente igual ao supracitado. Logo, foi possível identificar via PACF a ordem da média móvel da parte simples e da sazonal do modelo ARIMA.</p>
+<div class="cell">
+<div id="tbl-chegarimafit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegarimafit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.9: Modelos ARIMA para o log série de chegada turistas no Brasil
+</figcaption>
+<div aria-describedby="tbl-chegarimafit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: right;">sigma2</th>
+<th style="text-align: right;">log_lik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">BIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">arima001011</td>
+<td style="text-align: right;">0,0164671</td>
+<td style="text-align: right;">29,06562</td>
+<td style="text-align: right;">-52,13123</td>
+<td style="text-align: right;">-51,58578</td>
+<td style="text-align: right;">-46,51763</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">auto</td>
+<td style="text-align: right;">0,0164671</td>
+<td style="text-align: right;">29,06562</td>
+<td style="text-align: right;">-52,13123</td>
+<td style="text-align: right;">-51,58578</td>
+<td style="text-align: right;">-46,51763</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">arima100110</td>
+<td style="text-align: right;">0,0173195</td>
+<td style="text-align: right;">28,71595</td>
+<td style="text-align: right;">-51,43190</td>
+<td style="text-align: right;">-50,88645</td>
+<td style="text-align: right;">-45,81830</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: Chegadas 
+Model: ARIMA(0,0,1)(0,1,1)[12] 
+Transformation: log(Chegadas) 
+
+Coefficients:
+         ma1     sma1
+      0,2236  -0,5806
+s.e.  0,1361   0,2472
+
+sigma^2 estimated as 0,01647:  log likelihood=29,07
+AIC=-52,13   AICc=-51,59   BIC=-46,52</code></pre>
+</div>
+</div>
+<p>A <a href="#fig-chegresi" class="quarto-xref">Figura&nbsp;<span>6.21</span></a> expõe os gráficos de resíduos, indicando autocorrelção isolada para o lag 3, além de histograma com um pouco de assimetria à esquerda, porém, não representando desvio grave de normalidade. A <a href="#tbl-chegresilb" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a> expõe o resultado do teste de Ljung-Box, que sugere a não rejeição da hipótese nula de ausência de autocorrelação nos resíduos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-chegresi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chegresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-chegresi-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.21: Gráficos para os resíduos do modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> para a variação sazonal no log série de chegada turistas no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-chegresilb" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegresilb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.10: Modelos ARIMA para o log série de chegada turistas no Brasil
+</figcaption>
+<div aria-describedby="tbl-chegresilb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">31,34185</td>
+<td style="text-align: right;">0,0893296</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-chegfc" class="quarto-xref">Figura&nbsp;<span>6.22</span></a> expõe o resultado da previsão dos modelos ARIMA considerados. Obviamente ambos os modelos não capturam a queda no volume de vôos nos anos da pandemia. Entretanto, as previsões apresentam boa proximidade com os resultados dos anos de 2023 e 2024. A <a href="#tbl-chegfcperf" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> expõe o desempenho dos modelos para os anos de 2023 e 2024. Confirma-se que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> apresentou melhor desempenho, com 10,3% de erro para estes anos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-chegfc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chegfc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST6_files/figure-html/fig-chegfc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegfc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.22: Previsão dos modelos ARIMA para a chegada turistas no Brasil
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="tbl-chegfcperf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegfcperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log série de chegada turistas no Brasil para os anos de 2023 e 2024
+</figcaption>
+<div aria-describedby="tbl-chegfcperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  .model        RMSE    MAE  MAPE
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 arima001011 55576. 47824.  10.3
+2 arima100110 74168. 64852.  14.2</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.23</span></a> expõe a variação sazonal da série de log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1142,13 +1396,13 @@ Figura&nbsp;6.16: Previsão com o modelo ARIMA(1,1,0) para a série de produçã
 <img src="ST6_files/figure-html/fig-passbr-dif12-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-dif12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.17: Variação sazonal no log(passageiros) de vôos no Brasil
+Figura&nbsp;6.23: Variação sazonal no log(passageiros) de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12-1" class="quarto-xref">Figura&nbsp;<span>6.18</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
+<p>A <a href="#fig-passbr-dif12-1" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 26 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12-1" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1157,18 +1411,18 @@ Figura&nbsp;6.17: Variação sazonal no log(passageiros) de vôos no Brasil
 <img src="ST6_files/figure-html/fig-passbr-dif12-1-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-dif12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.18: Série de passageiros de vôos no Brasil
+Figura&nbsp;6.24: Série de passageiros de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_" class="quarto-xref">Tabela&nbsp;<span>6.7</span></a>, muito próximo dos considerados inicialmente.</p>
+<p>Além dos modelos sugeridos, o método automático do pacote <code>fable</code> sugere um modelo de ordem <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>, conforme <a href="#tbl-arima_" class="quarto-xref">Tabela&nbsp;<span>6.12</span></a>, muito próximo dos considerados inicialmente.</p>
 <div class="cell">
 <div id="tbl-arima_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.7: Modelos ARIMA testados para a série log(passageiros)
+Tabela&nbsp;6.12: Modelos ARIMA testados para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-arima_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1199,12 +1453,12 @@ Tabela&nbsp;6.7: Modelos ARIMA testados para a série log(passageiros)
 </figure>
 </div>
 </div>
-<p>A <a href="#tbl-arima_res" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
+<p>A <a href="#tbl-arima_res" class="quarto-xref">Tabela&nbsp;<span>6.13</span></a> resume o resultado dos três modelos. Considerando o AICc, o modelo automático apresentou por pouco o melhor resultado.</p>
 <div class="cell">
 <div id="tbl-arima_res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.8: Resultados dos modelos ARIMA testados para a série log(passageiros)
+Tabela&nbsp;6.13: Resultados dos modelos ARIMA testados para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-arima_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1222,27 +1476,27 @@ Tabela&nbsp;6.8: Resultados dos modelos ARIMA testados para a série log(passage
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">auto</td>
-<td style="text-align: right;">0.0010447</td>
-<td style="text-align: right;">455.1001</td>
-<td style="text-align: right;">-902.2002</td>
-<td style="text-align: right;">-902.0201</td>
-<td style="text-align: right;">-888.5004</td>
+<td style="text-align: right;">0,0010447</td>
+<td style="text-align: right;">455,1001</td>
+<td style="text-align: right;">-902,2002</td>
+<td style="text-align: right;">-902,0201</td>
+<td style="text-align: right;">-888,5004</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">arima011011</td>
-<td style="text-align: right;">0.0010532</td>
-<td style="text-align: right;">453.7601</td>
-<td style="text-align: right;">-901.5202</td>
-<td style="text-align: right;">-901.4126</td>
-<td style="text-align: right;">-891.2453</td>
+<td style="text-align: right;">0,0010532</td>
+<td style="text-align: right;">453,7601</td>
+<td style="text-align: right;">-901,5202</td>
+<td style="text-align: right;">-901,4126</td>
+<td style="text-align: right;">-891,2453</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">arima110210</td>
-<td style="text-align: right;">0.0011762</td>
-<td style="text-align: right;">444.0289</td>
-<td style="text-align: right;">-880.0578</td>
-<td style="text-align: right;">-879.8776</td>
-<td style="text-align: right;">-866.3580</td>
+<td style="text-align: right;">0,0011762</td>
+<td style="text-align: right;">444,0289</td>
+<td style="text-align: right;">-880,0578</td>
+<td style="text-align: right;">-879,8776</td>
+<td style="text-align: right;">-866,3580</td>
 </tr>
 </tbody>
 </table>
@@ -1260,14 +1514,14 @@ Transformation: log(Passageiros)
 
 Coefficients:
          ar1      ma1     sma1
-      0.5214  -0.6437  -0.7410
-s.e.  0.2121   0.1859   0.0584
+      0,5214  -0,6437  -0,7410
+s.e.  0,2121   0,1859   0,0584
 
-sigma^2 estimated as 0.001045:  log likelihood=455.1
-AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
+sigma^2 estimated as 0,001045:  log likelihood=455,1
+AIC=-902,2   AICc=-902,02   BIC=-888,5</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-passbr-res" class="quarto-xref">Figura&nbsp;<span>6.19</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para as defasagens de 11, 13 e 22 observações.</p>
+<p>A <a href="#fig-passbr-res" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> apresenta os gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>. A série residual apresenta padrão estacionário e não há indícios de desvio de normalidade pelo histograma. Há significância na autocorrelação para as defasagens de 11, 13 e 22 observações.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-res" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1276,18 +1530,18 @@ AIC=-902.2   AICc=-902.02   BIC=-888.5</code></pre>
 <img src="ST6_files/figure-html/fig-passbr-res-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.19: Série de passageiros de vôos no Brasil
+Figura&nbsp;6.25: Série de passageiros de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-lb_auto" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
+<p>A <a href="#tbl-lb_auto" class="quarto-xref">Tabela&nbsp;<span>6.14</span></a> apresenta o resultado do teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série log(passageiros). No caso sazonal, considera-se <span class="math inline">\(K=p+q+P+Q\)</span> graus de liberdade no teste. Considerando um nível de significância de 0,05, não há indícios suficientes para rejeição da hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
 <div id="tbl-lb_auto" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.9: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)
+Tabela&nbsp;6.14: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a série log(passageiros)
 </figcaption>
 <div aria-describedby="tbl-lb_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1300,8 +1554,8 @@ Tabela&nbsp;6.9: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a sér
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">28.77407</td>
-<td style="text-align: right;">0.1195322</td>
+<td style="text-align: right;">28,77407</td>
+<td style="text-align: right;">0,1195322</td>
 </tr>
 </tbody>
 </table>
@@ -1310,7 +1564,7 @@ Tabela&nbsp;6.9: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a sér
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.20</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada no volume de passageiros em vôos do Brasil.</p>
+<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.26</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada no volume de passageiros em vôos do Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-for" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1319,13 +1573,13 @@ Tabela&nbsp;6.9: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a sér
 <img src="ST6_files/figure-html/fig-passbr-for-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.20: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil
+Figura&nbsp;6.26: Previsão para 3 anos à frente para a série de passageiros de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prodndur" class="quarto-xref">Figura&nbsp;<span>6.21</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
+<p>A <a href="#fig-prodndur" class="quarto-xref">Figura&nbsp;<span>6.27</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodndur" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1334,13 +1588,13 @@ Figura&nbsp;6.20: Previsão para 3 anos à frente para a série de passageiros d
 <img src="ST6_files/figure-html/fig-prodndur-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prodndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.21: Produção mensal de bens não duráveis no Brasil
+Figura&nbsp;6.27: Produção mensal de bens não duráveis no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.22</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
+<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.28</span></a> expõe a série de variação sazonal de bens de consumo não duráveis, considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (3,1,0) para a parte não sazonal e um modelo de ordem (2,0,0) para a parte sazonal, dado o pico nos atrasos de 12 e 24 meses.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_diff12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1349,18 +1603,18 @@ Figura&nbsp;6.21: Produção mensal de bens não duráveis no Brasil
 <img src="ST6_files/figure-html/fig-ndur_diff12-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur_diff12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.22: Variação sazonal na produção de bens de consumo não duráveis
+Figura&nbsp;6.28: Variação sazonal na produção de bens de consumo não duráveis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
+<p>A <a href="#tbl-arima_ndur" class="quarto-xref">Tabela&nbsp;<span>6.15</span></a> expõe os modelos testados manualmente e o selecionado automaticamente.</p>
 <div class="cell">
 <div id="tbl-arima_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.10: Modelos ARIMA testados para a série de bens não duráveis
+Tabela&nbsp;6.15: Modelos ARIMA testados para a série de bens não duráveis
 </figcaption>
 <div aria-describedby="tbl-arima_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1390,12 +1644,12 @@ Tabela&nbsp;6.10: Modelos ARIMA testados para a série de bens não duráveis
 </figure>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">R. J. Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
+<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.16</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">R. J. Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
 <div class="cell">
 <div id="tbl-arima_ndur_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não duráveis
+Tabela&nbsp;6.16: Resultados dos ARIMA testados para a série de bens não duráveis
 </figcaption>
 <div aria-describedby="tbl-arima_ndur_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1413,19 +1667,19 @@ Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não durá
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">auto</td>
-<td style="text-align: right;">14.09469</td>
-<td style="text-align: right;">-591.4166</td>
-<td style="text-align: right;">1196.833</td>
-<td style="text-align: right;">1197.374</td>
-<td style="text-align: right;">1220.428</td>
+<td style="text-align: right;">14,09469</td>
+<td style="text-align: right;">-591,4166</td>
+<td style="text-align: right;">1196,833</td>
+<td style="text-align: right;">1197,374</td>
+<td style="text-align: right;">1220,428</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">arima310200</td>
-<td style="text-align: right;">16.65650</td>
-<td style="text-align: right;">-649.3569</td>
-<td style="text-align: right;">1312.714</td>
-<td style="text-align: right;">1313.225</td>
-<td style="text-align: right;">1336.688</td>
+<td style="text-align: right;">16,65650</td>
+<td style="text-align: right;">-649,3569</td>
+<td style="text-align: right;">1312,714</td>
+<td style="text-align: right;">1313,225</td>
+<td style="text-align: right;">1336,688</td>
 </tr>
 </tbody>
 </table>
@@ -1434,7 +1688,7 @@ Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não durá
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.23</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.12</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.29</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.17</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_res" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1443,7 +1697,7 @@ Tabela&nbsp;6.11: Resultados dos ARIMA testados para a série de bens não durá
 <img src="ST6_files/figure-html/fig-ndur_res-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur_res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.23: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis
+Figura&nbsp;6.29: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produção de bens de consumo não duráveis
 </figcaption>
 </figure>
 </div>
@@ -1453,7 +1707,7 @@ Figura&nbsp;6.23: Resíduos do modelo ARIMA(4,1,1)(0,1,1)12 para série de produ
 <div id="tbl-lbox_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.12: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis
+Tabela&nbsp;6.17: Teste de Ljung-Box para os resíduos da série de produção de bens de consumo não duráveis
 </figcaption>
 <div aria-describedby="tbl-lbox_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1470,8 +1724,8 @@ Tabela&nbsp;6.12: Teste de Ljung-Box para os resíduos da série de produção d
 <tr class="odd">
 <td style="text-align: left;">nao_duraveis</td>
 <td style="text-align: left;">auto</td>
-<td style="text-align: right;">25.45438</td>
-<td style="text-align: right;">0.1129033</td>
+<td style="text-align: right;">25,45438</td>
+<td style="text-align: right;">0,1129033</td>
 </tr>
 </tbody>
 </table>
@@ -1480,7 +1734,7 @@ Tabela&nbsp;6.12: Teste de Ljung-Box para os resíduos da série de produção d
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur-for" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
+<p>A <a href="#fig-ndur-for" class="quarto-xref">Figura&nbsp;<span>6.30</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur-for" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1489,18 +1743,18 @@ Tabela&nbsp;6.12: Teste de Ljung-Box para os resíduos da série de produção d
 <img src="ST6_files/figure-html/fig-ndur-for-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ndur-for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.24: Previsão para 3 anos à frente para a série de bens de consumo não duráveis
+Figura&nbsp;6.30: Previsão para 3 anos à frente para a série de bens de consumo não duráveis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-metrics_ndur" class="quarto-xref">Tabela&nbsp;<span>6.13</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
+<p>A <a href="#tbl-metrics_ndur" class="quarto-xref">Tabela&nbsp;<span>6.18</span></a> finaliza a análise comparando o desempenho dos modelos estimados aplicados aos dados de teste para a série de bens de consumo não duráveis. Confirma-se a superioridade do modelo estimado automaticamente.</p>
 <div class="cell">
 <div id="tbl-metrics_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
+Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
 </figcaption>
 <div aria-describedby="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1516,15 +1770,15 @@ Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a 
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">arima310200</td>
-<td style="text-align: right;">6.659694</td>
-<td style="text-align: right;">5.664403</td>
-<td style="text-align: right;">5.710309</td>
+<td style="text-align: right;">6,659694</td>
+<td style="text-align: right;">5,664403</td>
+<td style="text-align: right;">5,710309</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">auto</td>
-<td style="text-align: right;">5.714044</td>
-<td style="text-align: right;">4.262668</td>
-<td style="text-align: right;">4.127184</td>
+<td style="text-align: right;">5,714044</td>
+<td style="text-align: right;">4,262668</td>
+<td style="text-align: right;">4,127184</td>
 </tr>
 </tbody>
 </table>
@@ -1539,349 +1793,349 @@ Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a 
 <p>A seguir são apresentadas boa parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbcb)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbcb)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Simulando uma série temporal de ruído branco.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>white <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="st">"2024-01-01"</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">199</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>)<span class="sc">+</span><span class="dv">70</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>white <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(value) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">title=</span><span class="st">"Ruído branco"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>white <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="st">"2024-01-01"</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">199</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>)<span class="sc">+</span><span class="dv">70</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>white <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(value) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">title=</span><span class="st">"Ruído branco"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Diferenciação da série do índice Ibovespa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Ibovespa_ InfoMoney_2024.csv"</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header=</span>T)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DATA =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ibov)) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(DATA,FECHAMENTO) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> DATA)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(FECHAMENTO) <span class="sc">+</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"R$"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">difference</span>(FECHAMENTO)) <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"R$"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Ibovespa_ InfoMoney_2024.csv"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header=</span>T)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DATA =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ibov)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(DATA,FECHAMENTO) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> DATA)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(FECHAMENTO, <span class="at">lag_max =</span> <span class="dv">30</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(FECHAMENTO) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"R$"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(<span class="fu">difference</span>(FECHAMENTO), <span class="at">lag_max =</span> <span class="dv">30</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">difference</span>(FECHAMENTO)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"R$"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(FECHAMENTO, <span class="at">lag_max =</span> <span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(<span class="fu">difference</span>(FECHAMENTO), <span class="at">lag_max =</span> <span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Teste de raíz unitária da série do índice Ibovespa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>kpss1 <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(FECHAMENTO, unitroot_kpss)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>kpss1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>kpss1 <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(FECHAMENTO, unitroot_kpss)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>kpss1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Simulação de modelos autorregressivos AR(1) e AR(2).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">105</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">105</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">105</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  y[i] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>y[i<span class="dv">-1</span>] <span class="sc">+</span> e[i]</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)], <span class="at">index =</span> idx)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"AR(1)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">110</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>e2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">110</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">110</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  y2[i] <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="fl">1.3</span><span class="sc">*</span>y2[i<span class="dv">-1</span>] <span class="sc">-</span><span class="fl">0.7</span><span class="sc">*</span>y2[i<span class="dv">-2</span>] <span class="sc">+</span> e2[i]</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>sim2 <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y2[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)], <span class="at">index =</span> idx)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>sim2 <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"AR(2)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Simulação de modelos de média móvel MA(1) e MA(2).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">105</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">105</span>)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">105</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  y[i] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> e[i] <span class="sc">+</span> <span class="fl">0.6</span><span class="sc">*</span>e[i<span class="dv">-1</span>]</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)], <span class="at">index =</span> idx)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"MA(1)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  y[i] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>y[i<span class="dv">-1</span>] <span class="sc">+</span> e[i]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)], <span class="at">index =</span> idx)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"AR(1)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">110</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>e2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">110</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">110</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  y2[i] <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> e2[i] <span class="sc">-</span> <span class="fl">0.9</span><span class="sc">*</span>e2[i<span class="dv">-1</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>e2[i<span class="dv">-2</span>] </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  y2[i] <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> <span class="fl">1.3</span><span class="sc">*</span>y2[i<span class="dv">-1</span>] <span class="sc">-</span><span class="fl">0.7</span><span class="sc">*</span>y2[i<span class="dv">-2</span>] <span class="sc">+</span> e2[i]</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>sim2 <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y2[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)], <span class="at">index =</span> idx)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>sim2 <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"MA(2)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>sim2 <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"AR(2)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Simulação de modelos de média móvel MA(1) e MA(2).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">105</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">105</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">105</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  y[i] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> e[i] <span class="sc">+</span> <span class="fl">0.6</span><span class="sc">*</span>e[i<span class="dv">-1</span>]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)], <span class="at">index =</span> idx)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"MA(1)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">110</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>e2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">110</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">110</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  y2[i] <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">+</span> e2[i] <span class="sc">-</span> <span class="fl">0.9</span><span class="sc">*</span>e2[i<span class="dv">-1</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>e2[i<span class="dv">-2</span>] </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>sim2 <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> y2[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)], <span class="at">index =</span> idx)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>sim2 <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(y) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"tempo"</span>, <span class="at">title =</span> <span class="st">"MA(2)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de produção de coque.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>coque <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(data,coque)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="ot">&lt;-</span> coque <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="ot">&lt;-</span> coque_ts <span class="sc">|&gt;</span> </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2021-01-01"</span><span class="sc">~</span>.) <span class="sc">|&gt;</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>coque <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(data,coque)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="ot">&lt;-</span> coque <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="ot">&lt;-</span> coque_ts <span class="sc">|&gt;</span> </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2021-01-01"</span><span class="sc">~</span>.) <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>coque_ts <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Auto ARIMA para a série de produção de coque.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> coque_ts <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(coque))</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> coque_ts <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(coque))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão 10 meses à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque_ts) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque_ts) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série temporal do valor da ação VALE3 a partir de 2020.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vale <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"VALE3.csv"</span>, <span class="at">header =</span> T, <span class="at">dec=</span><span class="st">","</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(vale<span class="sc">$</span>Data,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Valor =</span> vale<span class="sc">$</span>Último,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">index =</span> Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vale <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"VALE3.csv"</span>, <span class="at">header =</span> T, <span class="at">dec=</span><span class="st">","</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(vale<span class="sc">$</span>Data,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Valor =</span> vale<span class="sc">$</span>Último,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">index =</span> Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Date) <span class="sc">&gt;</span> <span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">yearmonth</span>(Date))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span>  </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Valor) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">"R$"</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">title=</span><span class="st">"Valor da ação VALE3"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(Date) <span class="sc">&gt;</span> <span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">yearmonth</span>(Date))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span>  </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(Valor) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">"R$"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">title=</span><span class="st">"Valor da ação VALE3"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo ARIMA obtido automaticamente para a série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Valor))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Valor))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Avaliando os resíduos do modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão 10 meses à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(vale_ts) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"R$"</span>, <span class="at">title=</span><span class="st">"Valor da ação VALE3"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(vale_ts) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"R$"</span>, <span class="at">title=</span><span class="st">"Valor da ação VALE3"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Correlogramas de autocorrelação ACF e PACF da série VALE3.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(Valor) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(Valor) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">PACF</span>(Valor) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>vale_ts <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">PACF</span>(Valor) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo ARIMA(3,0,0).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Valor <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>)))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> vale_ts <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Valor <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>)))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de produção de grãos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>graos_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRA"</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>graos  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(graos_prod<span class="sc">$</span>value),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(graos_prod<span class="sc">$</span>date),</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">index=</span>data) <span class="sc">|&gt;</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data=</span><span class="fu">year</span>(data))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>graos_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"DEPAE_SAFRA"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>graos  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(graos_prod<span class="sc">$</span>value),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(graos_prod<span class="sc">$</span>date),</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">index=</span>data) <span class="sc">|&gt;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data=</span><span class="fu">year</span>(data))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span>  </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">"ton"</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">title=</span><span class="st">"Produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span>  </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(valor) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">"ton"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">title=</span><span class="st">"Produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Transformação de Box-Cox da série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(valor, <span class="at">features =</span> guerrero) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lambda_guerrero)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(valor, lambda)) <span class="sc">+</span> </span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Produção de grãos no Brasil: transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(valor, <span class="at">features =</span> guerrero) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lambda_guerrero)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(valor, lambda)) <span class="sc">+</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Produção de grãos no Brasil: transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Variação da série transformada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span>  </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">+</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação na produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span>  </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação na produção de grãos no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Correlogramas de ACF e PACF.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">|&gt;</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">PACF</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">PACF</span>(<span class="fu">difference</span>(<span class="fu">box_cox</span>(valor, lambda))) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo ARIMA(1,1,0).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(<span class="fu">box_cox</span>(valor, lambda) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)))</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit4)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(<span class="fu">box_cox</span>(valor, lambda) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit4)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo ARIMA(0,1,1).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fit5 <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(<span class="fu">box_cox</span>(valor, lambda) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)))</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit5)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fit5 <span class="ot">&lt;-</span> graos <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(<span class="fu">box_cox</span>(valor, lambda) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit5)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Avaliação dos resíduos do modelo ARIMA(1,1,0).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tteste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>QQ_ <span class="ot">&lt;-</span> fit4 <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag =</span> <span class="dv">10</span>, <span class="at">dof =</span> <span class="dv">1</span>)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>QQ_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>QQ_ <span class="ot">&lt;-</span> fit4 <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag =</span> <span class="dv">10</span>, <span class="at">dof =</span> <span class="dv">1</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>QQ_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão 10 anos à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(graos) <span class="sc">+</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"ton"</span>, <span class="at">title=</span><span class="st">"Produção de grãos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(graos) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"ton"</span>, <span class="at">title=</span><span class="st">"Produção de grãos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série de passageiros em vôos no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vroom)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>voosbr <span class="ot">&lt;-</span> <span class="fu">vroom</span>(<span class="st">"voos_BR_comp.csv"</span>, <span class="at">col_names =</span> T, <span class="at">skip =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vroom)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>voosbr <span class="ot">&lt;-</span> <span class="fu">vroom</span>(<span class="st">"voos_BR_comp.csv"</span>, <span class="at">col_names =</span> T, <span class="at">skip =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> voosbr <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Passageiros =</span> PASSAGEIROS_GRATIS<span class="sc">+</span>PASSAGEIROS_PAGOS) <span class="sc">|&gt;</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">ymd</span>(</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(ANO, MES, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)))) <span class="sc">|&gt;</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS)) <span class="sc">|&gt;</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Passageiros =</span> <span class="fu">sum</span>(Passageiros, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="ot">&lt;-</span> voosbr <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Passageiros =</span> PASSAGEIROS_GRATIS<span class="sc">+</span>PASSAGEIROS_PAGOS) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(<span class="fu">ymd</span>(</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(ANO, MES, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)))) <span class="sc">|&gt;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(MES,ANO,PASSAGEIROS_PAGOS,PASSAGEIROS_GRATIS)) <span class="sc">|&gt;</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(data) <span class="sc">|&gt;</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Passageiros =</span> <span class="fu">sum</span>(Passageiros, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index=</span>data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Variação sazonal da série de log(passageiros) em vôos do Brasil e correlogramas de ACF e PACF.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts  <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsdisplay</span>(<span class="fu">difference</span>(<span class="fu">log</span>(Passageiros), <span class="dv">12</span>),</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot_type=</span><span class="st">'partial'</span>, <span class="at">lag=</span><span class="dv">36</span>) <span class="sc">+</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"log(Passageiros) de vôos no Brasil: Variação sazonal"</span>, <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts  <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsdisplay</span>(<span class="fu">difference</span>(<span class="fu">log</span>(Passageiros), <span class="dv">12</span>),</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot_type=</span><span class="st">'partial'</span>, <span class="at">lag=</span><span class="dv">36</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"log(Passageiros) de vôos no Brasil: Variação sazonal"</span>, <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série transformada com diferenciação simples e sazonal, além dos correlogramas de ACF e PACF.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts  <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsdisplay</span>(<span class="fu">difference</span>(<span class="fu">log</span>(Passageiros), <span class="dv">12</span>) <span class="sc">|&gt;</span> <span class="fu">difference</span>(),</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot_type=</span><span class="st">'partial'</span>, <span class="at">lag=</span><span class="dv">36</span>) <span class="sc">+</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Variação dupla"</span>, <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts  <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsdisplay</span>(<span class="fu">difference</span>(<span class="fu">log</span>(Passageiros), <span class="dv">12</span>) <span class="sc">|&gt;</span> <span class="fu">difference</span>(),</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot_type=</span><span class="st">'partial'</span>, <span class="at">lag=</span><span class="dv">36</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Variação dupla"</span>, <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Testando modelos <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>, <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>, além do autoarima.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="ot">&lt;-</span> voosbr_ts  <span class="sc">|&gt;</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima011011 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)),</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima110210 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">auto =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros), <span class="at">stepwise =</span> <span class="cn">FALSE</span>, <span class="at">approx =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>fit6 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Modelo"</span>,</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_to =</span> <span class="st">"Ordem"</span>)</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="ot">&lt;-</span> voosbr_ts  <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima011011 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima110210 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">auto =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros), <span class="at">stepwise =</span> <span class="cn">FALSE</span>, <span class="at">approx =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>fit6 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Modelo"</span>,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_to =</span> <span class="st">"Ordem"</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Resultado dos três modelos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(fit6) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(AICc) <span class="sc">|&gt;</span> <span class="fu">select</span>(.model<span class="sc">:</span>BIC)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(fit6) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(AICc) <span class="sc">|&gt;</span> <span class="fu">select</span>(.model<span class="sc">:</span>BIC)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Coeficientes do modelo automático, <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gráficos de resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto) <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>(<span class="at">lag=</span><span class="dv">36</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto) <span class="sc">|&gt;</span> <span class="fu">gg_tsresiduals</span>(<span class="at">lag=</span><span class="dv">36</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit6) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model <span class="sc">==</span> <span class="st">"auto"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">dof=</span><span class="dv">3</span>)</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit6) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model <span class="sc">==</span> <span class="st">"auto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">dof=</span><span class="dv">3</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão para 3 anos à frente para a série de passageiros em vôos do Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forecast</span>(fit6, <span class="at">h=</span><span class="dv">36</span>) <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model<span class="sc">==</span><span class="st">'auto'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>)) <span class="sc">+</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Passageiros em vôos do Brasil"</span>,</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forecast</span>(fit6, <span class="at">h=</span><span class="dv">36</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model<span class="sc">==</span><span class="st">'auto'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>)) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Passageiros em vôos do Brasil"</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos." class="level2" data-number="6.8">
@@ -1900,16 +2154,16 @@ Tabela&nbsp;6.13: Métricas para comparar o desenho dos modelos testados para a 
 </ol>
 <p>A seguir o código para obter a série de produção de asfalto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(data,asfalto)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="ot">&lt;-</span> asfalto <span class="sc">|&gt;</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="ot">&lt;-</span> asfalto_ts <span class="sc">|&gt;</span> </span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(asfalto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(data,asfalto)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="ot">&lt;-</span> asfalto <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="ot">&lt;-</span> asfalto_ts <span class="sc">|&gt;</span> </span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>asfalto_ts <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(asfalto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nos exercícios 5 ao 7 filtre a série até 2020.</p>
 <ol start="5" type="1">
