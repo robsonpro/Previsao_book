@@ -1246,7 +1246,7 @@ Figura&nbsp;6.20: Correlogramas para a variação sazonal no log série de chega
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-chegarimafit" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado dos modelos ARIMA testados para o log série de chegada turistas no Brasil. Observa-se que o modelo automático apresentou os mesmos resultados que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>. A seguir expõe-se a saída do modelo ARIMA automático, indicando que ele é exatamente igual ao supracitado. Logo, foi possível identificar via PACF a ordem da média móvel da parte simples e da sazonal do modelo ARIMA.</p>
+<p>A <a href="#tbl-chegarimafit" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado dos modelos ARIMA testados para o log série de chegada turistas no Brasil. Observa-se que o modelo automático apresentou os mesmos resultados que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>. A seguir expõe-se a saída do modelo automático, indicando que ele é exatamente igual ao supracitado. Logo, foi possível identificar via PACF a ordem da média móvel da parte simples e da sazonal do modelo SARIMA.</p>
 <div class="cell">
 <div id="tbl-chegarimafit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1268,7 +1268,7 @@ Tabela&nbsp;6.9: Modelos ARIMA para o log série de chegada turistas no Brasil
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">arima001011</td>
+<td style="text-align: left;">sarima001011</td>
 <td style="text-align: right;">0,0164671</td>
 <td style="text-align: right;">29,06562</td>
 <td style="text-align: right;">-52,13123</td>
@@ -1284,7 +1284,7 @@ Tabela&nbsp;6.9: Modelos ARIMA para o log série de chegada turistas no Brasil
 <td style="text-align: right;">-46,51763</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">arima100110</td>
+<td style="text-align: left;">sarima100110</td>
 <td style="text-align: right;">0,0173195</td>
 <td style="text-align: right;">28,71595</td>
 <td style="text-align: right;">-51,43190</td>
@@ -1389,13 +1389,13 @@ Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log série de chegada turi
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">arima001011</td>
+<td style="text-align: left;">sarima001011</td>
 <td style="text-align: right;">55576,20</td>
 <td style="text-align: right;">47824,28</td>
 <td style="text-align: right;">10,29882</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">arima100110</td>
+<td style="text-align: left;">sarima100110</td>
 <td style="text-align: right;">74167,86</td>
 <td style="text-align: right;">64851,82</td>
 <td style="text-align: right;">14,18985</td>
@@ -1455,11 +1455,11 @@ Tabela&nbsp;6.12: Modelos ARIMA testados para a série log(passageiros)
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">arima011011</td>
+<td style="text-align: left;">sarima011011</td>
 <td style="text-align: left;">&lt;ARIMA(0,1,1)(0,1,1)[12]&gt;</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">arima110210</td>
+<td style="text-align: left;">sarima110210</td>
 <td style="text-align: left;">&lt;ARIMA(1,1,0)(2,1,0)[12]&gt;</td>
 </tr>
 <tr class="odd">
@@ -1503,7 +1503,7 @@ Tabela&nbsp;6.13: Resultados dos modelos ARIMA testados para a série log(passag
 <td style="text-align: right;">-888,5004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">arima011011</td>
+<td style="text-align: left;">sarima011011</td>
 <td style="text-align: right;">0,0010532</td>
 <td style="text-align: right;">453,7601</td>
 <td style="text-align: right;">-901,5202</td>
@@ -1511,7 +1511,7 @@ Tabela&nbsp;6.13: Resultados dos modelos ARIMA testados para a série log(passag
 <td style="text-align: right;">-891,2453</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">arima110210</td>
+<td style="text-align: left;">sarima110210</td>
 <td style="text-align: right;">0,0011762</td>
 <td style="text-align: right;">444,0289</td>
 <td style="text-align: right;">-880,0578</td>
@@ -1665,7 +1665,7 @@ Tabela&nbsp;6.15: Modelos ARIMA testados para a série de bens não duráveis
 </figure>
 </div>
 </div>
-<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.16</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">R. J. Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos ARIMA sem e com sazonalidade e também para modelos ETS.</p>
+<p>A <a href="#tbl-arima_ndur_" class="quarto-xref">Tabela&nbsp;<span>6.16</span></a> apresenta os resultados para os modelos testados na série de bens de consumo não duráveis. O modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span>, selecionado via pacote <code>fable</code> apresenta melhor ajuste. <span class="citation" data-cites="hyndman2008automatic">R. J. Hyndman e Khandakar (<a href="references.html#ref-hyndman2008automatic" role="doc-biblioref">2008</a>)</span> descrevem a abordagem usada no pacote para seleção automática de modelos SARIMA sem e com sazonalidade e também para modelos ETS.</p>
 <div class="cell">
 <div id="tbl-arima_ndur_" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2092,8 +2092,8 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="ot">&lt;-</span> voosbr_ts  <span class="sc">|&gt;</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima011011 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)),</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima110210 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sarima011011 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sarima110210 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">auto =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros), <span class="at">stepwise =</span> <span class="cn">FALSE</span>, <span class="at">approx =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
