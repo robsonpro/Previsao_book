@@ -1226,7 +1226,7 @@ Tabela&nbsp;2.8: Desempenho dos metodos para a previsão da temperatura instant�
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag =</span> <span class="dv">10</span>)</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Q_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Transformação de Box-Cox para a série de exportações. Deve-se usar <code>guerrero</code> junto ao comando <code>features</code>.</p>
+<p>Transformação de Box-Cox para a série de exportações. Deve-se usar a opção <code>guerrero</code> no argumento <code>features</code> do comando homônimo para aplicar o algoritmo de <span class="citation" data-cites="guerrero1993time">Guerrero (<a href="references.html#ref-guerrero1993time" role="doc-biblioref">1993</a>)</span> para selecionar o lambda ótimo da transformção. Usa-se depois o comando <code>box_cox</code> com o lambda ótimo para transformação.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Exp, <span class="at">features =</span> guerrero) <span class="sc">|&gt;</span></span>
@@ -1272,6 +1272,9 @@ Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>
 </div>
 <div id="ref-box1970distribution" class="csl-entry" role="listitem">
 Box, George EP, e David A Pierce. 1970. <span>«Distribution of residual autocorrelations in autoregressive-integrated moving average time series models»</span>. <em>Journal of the American statistical Association</em> 65 (332): 1509–26.
+</div>
+<div id="ref-guerrero1993time" class="csl-entry" role="listitem">
+Guerrero, Victor M. 1993. <span>«Time-series analysis supported by power transformations»</span>. <em>Journal of forecasting</em> 12 (1): 37–48.
 </div>
 <div id="ref-hyndman2018forecasting" class="csl-entry" role="listitem">
 Hyndman, RJ, e G Athanasopoulos. 2021. <em>Forecasting: principles and practice</em>. OTexts. <a href="https://OTexts.com/fpp3">OTexts.com/fpp3</a>.
