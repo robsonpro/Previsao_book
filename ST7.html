@@ -722,12 +722,13 @@ sigma^2 estimated as 4,86e+08:  log likelihood=-1758,82
 AIC=3535,63   AICc=3536,87   BIC=3563,08</code></pre>
 </div>
 </div>
-<p>O modelo obtido pode ser expresso na <span class="quarto-unresolved-ref">?eq-sarima012</span>, com <span class="math inline">\(\eta\)</span> seguindo um modelo autoregressivo de segunda ordem tanto para a tendência quanto para a sazonalidade, o que consiste em um modelo SARIMA<span class="math inline">\((2,0,0)(2,0,0)_{12}\)</span>. A série não foi diferenciada para modelagem. Pelo modelo, observa-se que não foi necessária, uma vez que <span class="math inline">\(d=D=0\)</span>, de forma que a ausência estacionariedade foi bem capturada pelo regressor. Entretanto, em outros casos onde o regressor não conseguir deixar o erro <span class="math inline">\(\eta\)</span> sem necessidade de defasagem, sugere-se realizar a modelagem com as séries diferenciadas.</p>
-<p>$$ <span class="math display">\[\begin{align}
+<p>O modelo obtido pode ser expresso na <a href="#eq-sarima012" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>, com <span class="math inline">\(\eta\)</span> seguindo um modelo autoregressivo de segunda ordem tanto para a tendência quanto para a sazonalidade, o que consiste em um modelo SARIMA<span class="math inline">\((2,0,0)(2,0,0)_{12}\)</span>. A série não foi diferenciada para modelagem. Pelo modelo, observa-se que não foi necessária, uma vez que <span class="math inline">\(d=D=0\)</span>, de forma que a ausência estacionariedade foi bem capturada pelo regressor. Entretanto, em outros casos onde o regressor não conseguir deixar o erro <span class="math inline">\(\eta\)</span> sem necessidade de defasagem, sugere-se realizar a modelagem com as séries diferenciadas.</p>
+<p><span id="eq-sarima012"><span class="math display">\[
+\begin{align}
 y_t =&amp; 323913{,}91 + 0{,}6637\, x_t + 0{,}5068\, x_{t-1} - 0{,}1080\, x_{t-2} + \eta_t \\
 \eta_t =&amp; 0{,}3849 \eta_{t-1} + 0{,}2165 \eta_{t-2} + 0{,}2995 \eta_{t-12} + 0{,}3529 \eta_{t-24} + \varepsilon_t
-
-\end{align}\]</span> $$</p>
+\end{align}
+\tag{7.4}\]</span></span></p>
 <p>A <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a> expõe os gráficos de resíduos do modelo sarimax012. Observa-se Padrão aleatório, normalidade e ausência de autocorrelação, porém um desvio considerável devido à parada na produção dado a pandemia de COVID-19.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -758,7 +759,7 @@ Figura&nbsp;7.16: Previsão para o primeiro semestre de 2025 para o modelo sarim
 </div>
 </div>
 </div>
-<p>Na regressão dinâmica também é possível adicionar regressores binários (<em>dummy</em>). Para o exemplo da previsão do consumo de energia em função da produção de veículos com defasagem, pode-se observar pelas <span class="quarto-unresolved-ref">?fig-autoserseries</span> e <a href="#fig-autosersaz" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> e, também, pelos resíduos do melhor modelo na <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a>, que, nos meses abril a junho de 2020, a produção e o consumo de energia foram baixíssimos, especialmente em abril, quando a produção parou devido à Pandemia de COVID19. A <a href="#tbl-resarimaxsdumm" class="quarto-xref">Tabela&nbsp;<span>7.5</span></a> apresenta o resultado do modelo sarimax012 com e sem a variável <em>dummy</em> definida conforme segue. Observa-se que o modelo com tal variável, sarimax012dummy, apresentou melhor ajuste.</p>
+<p>Na regressão dinâmica também é possível adicionar regressores binários (<em>dummy</em>). Para o exemplo da previsão do consumo de energia em função da produção de veículos com defasagem, pode-se observar pelas <a href="#fig-autoseries" class="quarto-xref">Figura&nbsp;<span>7.11</span></a> e <a href="#fig-autosersaz" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> e, também, pelos resíduos do melhor modelo na <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a>, que, nos meses abril a junho de 2020, a produção e o consumo de energia foram baixíssimos, especialmente em abril, quando a produção parou devido à Pandemia de COVID19. A <a href="#tbl-resarimaxsdumm" class="quarto-xref">Tabela&nbsp;<span>7.5</span></a> apresenta o resultado do modelo sarimax012 com e sem a variável <em>dummy</em> definida conforme segue. Observa-se que o modelo com tal variável, sarimax012dummy, apresentou melhor ajuste.</p>
 <p><span class="math display">\[
 x_{t,\text{dummy}} =
 \begin{cases}
@@ -893,7 +894,7 @@ Figura&nbsp;7.19: Série temporal com frequência horária de geração de energ
 </div>
 </div>
 </div>
-<p>A <a href="#fig-en_temp_saz1d" class="quarto-xref">Figura&nbsp;<span>7.20</span></a> expõe o gráfico de sazonalidade diária para as séries de consumo de energia elétrica hidráulica e de temperatura para o sudeste e centro oeste do Brasil. Observa-se ciclos muito similares para ambas as séries, com mínima pela manhã e máxima a tarde. Já a <a href="#fig-en_temp_saz1dm" class="quarto-xref">Figura&nbsp;<span>7.21</span></a> expõe outro gráfico sazonal com cada mês em um painel. É possível ver tanto a tendência da temperatura e do consumo de energia segundo as estações do ano.</p>
+<p>A <a href="#fig-en_temp_saz1d" class="quarto-xref">Figura&nbsp;<span>7.20</span></a> expõe o gráfico de sazonalidade diária para as séries de consumo de energia elétrica hidráulica e de temperatura para o sudeste e centro oeste do Brasil. Observa-se ciclos muito similares para ambas as séries, com mínima pela manhã e máxima a tarde. Já a <a href="#fig-en_temp_saz1dm" class="quarto-xref">Figura&nbsp;<span>7.21</span></a> expõe outro gráfico sazonal com cada mês em um painel. É possível notar a sazonalidade diária, além da tendência da temperatura e do consumo de energia segundo as estações do ano.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-en_temp_saz1d" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -913,7 +914,7 @@ Figura&nbsp;7.20: Gráfico de sazonalidade diária para temperatura e energia hi
 <div id="fig-en_temp_saz1dm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-en_temp_saz1dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST7_files/figure-html/fig-en_temp_saz1dm-1.png" class="img-fluid figure-img" width="672">
+<img src="ST7_files/figure-html/fig-en_temp_saz1dm-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-en_temp_saz1dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;7.21: Gráfico de sazonalidade diária/mensal para temperatura e energia hidráulica no sudeste e centro oeste
