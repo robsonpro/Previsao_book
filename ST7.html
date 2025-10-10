@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -200,8 +220,9 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-dinâmica" id="toc-regressão-dinâmica" class="nav-link active" data-scroll-target="#regressão-dinâmica"><span class="header-section-number">7.1</span> Regressão dinâmica</a></li>
-  <li><a href="#regressão-dinâmica-harmônica" id="toc-regressão-dinâmica-harmônica" class="nav-link" data-scroll-target="#regressão-dinâmica-harmônica"><span class="header-section-number">7.2</span> Regressão dinâmica harmônica</a></li>
+  <li><a href="#modelos-com-erro-aproximado-por-arima" id="toc-modelos-com-erro-aproximado-por-arima" class="nav-link active" data-scroll-target="#modelos-com-erro-aproximado-por-arima"><span class="header-section-number">7.1</span> Modelos com erro aproximado por ARIMA</a></li>
+  <li><a href="#modelos-com-defasagem-distribuída" id="toc-modelos-com-defasagem-distribuída" class="nav-link" data-scroll-target="#modelos-com-defasagem-distribuída"><span class="header-section-number">7.2</span> Modelos com defasagem distribuída</a></li>
+  <li><a href="#regressão-dinâmica-harmônica" id="toc-regressão-dinâmica-harmônica" class="nav-link" data-scroll-target="#regressão-dinâmica-harmônica"><span class="header-section-number">7.3</span> Regressão dinâmica harmônica</a></li>
   </ul>
 </nav>
     </div>
@@ -233,18 +254,17 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-dinâmica" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="regressão-dinâmica"><span class="header-section-number">7.1</span> Regressão dinâmica</h2>
-<p>Os modelos de regressão dinâmica possibilitam a inclusão de variáveis ou séries temporais regressoras, além de considerar o próprio padrão dinâmico da série via ARIMA, unindo as capacidades dos métodos expostos nos capítulos 4 e 6. Um modelo de regressão dinâmica pode ser expresso conforme segue, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco. Ou seja, o modelo permite que os resíduos do modelo de regressão, agora denominados <span class="math inline">\(\eta_t\)</span> sejam autocorrelacionados, de forma que a autocorrelação seja tratada por um modelo ARIMA.</p>
-<p>Um modelo de regressão dinâmica pode ser representado conforme segue. Pode-se observar que o modelo de regressão contempla de uma até <span class="math inline">\(k\)</span> séries temporais regressoras, <span class="math inline">\(x_{t1}, \ldots, x_{tk}\)</span>, com erro <span class="math inline">\(\eta_t\)</span>, o qual pode ser autocorrelacionado. A informação não tratada pelo modelo de regressão, <span class="math inline">\(\eta_t\)</span>, é tratada via ARIMA.</p>
-<p><span class="math display">\[
+<section id="modelos-com-erro-aproximado-por-arima" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="modelos-com-erro-aproximado-por-arima"><span class="header-section-number">7.1</span> Modelos com erro aproximado por ARIMA</h2>
+<p>Os modelos de regressão dinâmica possibilitam a inclusão de variáveis ou séries temporais regressoras ou independentes, além de modelar o resíduo da regressão via ARIMA, unindo as capacidades dos métodos expostos nos capítulos 4 e 6. Um modelo de regressão dinâmica pode ser expresso conforme <a href="#eq-regdin" class="quarto-xref">Equação&nbsp;<span>7.1</span></a>, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco. Ou seja, o modelo permite que os resíduos do modelo de regressão, agora denominados <span class="math inline">\(\eta_t\)</span>, sejam autocorrelacionados, sendo esta autocorrelação seja tratada por um modelo ARIMA. Pode-se observar que o modelo de regressão contempla de uma até <span class="math inline">\(k\)</span> séries temporais regressoras, <span class="math inline">\(x_{t1}, \ldots, x_{tk}\)</span>.</p>
+<p><span id="eq-regdin"><span class="math display">\[
 \begin{matrix}
 y_t = \beta_0 + \beta_1x_{t1} + \cdots + \beta_kx_{tk} + \eta_t, \\
 (1-\phi_1B- \ldots - \phi_pB^p)(1-B)^d\eta_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t
 \end{matrix}
-\]</span></p>
+\tag{7.1}\]</span></span></p>
 <p>Os coeficientes de regressão, <span class="math inline">\(\beta_0, \ldots, \beta_k\)</span>, e do modelo ARIMA, <span class="math inline">\(\phi_1B, \ldots, \phi_p, \theta_1, \ldots, \theta_q\)</span> são estimados em conjunto minimizando <span class="math inline">\(\varepsilon_t\)</span> . A estimativa isolada dos coeficientes de regressão minimizando <span class="math inline">\(\eta_t\)</span> acarretaria diversos problemas no modelo. É importante também que a série a ser predita e as regressoras sejam estacionárias, de forma que o grau de diferenciação <span class="math inline">\(d\)</span> necessário para se obter a estacionariedade seja aplicado.</p>
-<p>A <a href="#fig-en_temp" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> plota séries temporais com frequência diária de consumo médio de eletricidade advinda de geração hidráulica no subsistema do sudeste e centro oeste do Brasil e de temperatura média diária da cidade de Uberlândia em Minas Gerais. Tal cidade foi considerada por ser uma que representa melhor a temperatura média de ambas as regiões dentre as monitoras pelo INMET. Pode-se sugerir um modelo de regressão dinâmica para o consumo diário de energia em função da temperatura média diária, descrevendo os erros com um modelo ARIMA.</p>
+<p>A <a href="#fig-en_temp" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> plota séries temporais com frequência diária para o ano de 2023 do consumo médio de eletricidade advinda de geração hidráulica no subsistema do sudeste e centro oeste do Brasil e de temperatura média diária da cidade de Uberlândia em Minas Gerais. Tal cidade foi considerada por ser uma que representa bem a temperatura média de ambas as regiões dentre as monitoras pelo INMET. Pode-se sugerir um modelo de regressão dinâmica para o consumo diário de energia em função da temperatura média diária, descrevendo os erros com um modelo ARIMA.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-en_temp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -263,15 +283,15 @@ Figura&nbsp;7.1: Consumo de energia elétrica e temperatura no sudeste e centro 
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: hidraulica 
-Model: LM w/ ARIMA(3,0,1)(1,1,1)[7] errors 
+Model: LM w/ ARIMA(3,0,2)(0,1,1)[7] errors 
 
 Coefficients:
-         ar1      ar2     ar3      ma1     sar1     sma1  temperatura
-      1.7559  -0.9554  0.1928  -0.8358  -0.0487  -0.9290      62.7853
-s.e.  0.1008   0.1102  0.0590   0.0929   0.0704   0.0537      60.2675
+         ar1      ar2     ar3      ma1    ma2     sma1  temperatura
+      1,1881  -0,9818  0,5842  -0,2459  0,542  -0,8142     201,8885
+s.e.  0,1905   0,2335  0,1772   0,1885  0,285   0,0695     106,5817
 
-sigma^2 estimated as 2229014:  log likelihood=-3005.54
-AIC=6027.08   AICc=6027.51   BIC=6057.8</code></pre>
+sigma^2 estimated as 7374424:  log likelihood=-3208,93
+AIC=6433,85   AICc=6434,28   BIC=6464,58</code></pre>
 </div>
 </div>
 <p>O modelo obtido pode ser expresso conforme segue.</p>
@@ -323,16 +343,14 @@ Tabela&nbsp;7.1: Teste Ljung-Box para o modelo de regressão dinâmica para o co
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">.model</th>
-<th style="text-align: right;">lb_stat</th>
-<th style="text-align: right;">lb_pvalue</th>
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ARIMA(hidraulica ~ temperatura)</td>
-<td style="text-align: right;">9.402437</td>
-<td style="text-align: right;">0.3094918</td>
+<td style="text-align: right;">78,08</td>
+<td style="text-align: right;">0,15</td>
 </tr>
 </tbody>
 </table>
@@ -394,22 +412,22 @@ Model: LM w/ ARIMA(1,1,0) errors
 
 Coefficients:
           ar1  area_plantada  intercept
-      -0.5777         2.3417  3330.9042
-s.e.   0.1248         0.6146   967.0258
+      -0,5777         2,3417  3330,9042
+s.e.   0,1248         0,6146   967,0258
 
-sigma^2 estimated as 87293212:  log likelihood=-442.22
-AIC=892.45   AICc=893.53   BIC=899.4</code></pre>
+sigma^2 estimated as 87293212:  log likelihood=-442,22
+AIC=892,45   AICc=893,53   BIC=899,4</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
-y_t = 4780.28 + 0.65 x_t + \eta_t \\
-(1 + 0.4952B)(1 - B)\eta_t = \varepsilon_t
+y_t = 3330,90 + 2.34 x_t + \eta_t \\
+(1 + 0,58B)(1 - B)\eta_t = \varepsilon_t
 \]</span></p>
 <p>Ou sem usar o operador de defasagem:</p>
 <p><span class="math display">\[
 \begin{align}
-y'_t &amp;= 4780.28 + 0.65 x'_t + \eta'_t \\
-\eta'_t &amp;= -0.4952 \eta'_{t-1} + \varepsilon_t\end{align}
+y_t &amp;= 3330,90 + 2.34 x_t + \eta_t \\
+\eta'_t &amp;= -0,58\eta'_{t-1} + \varepsilon_t\end{align}
 \]</span></p>
 <p>A <a href="#fig-resigraos" class="quarto-xref">Figura&nbsp;<span>7.7</span></a> plota os resíduos obtidos para o modelo de regressão dinâmica para produção de grãos no Brasil. Os resíduos do modelo autoregressivo devem atender às pressuposições.</p>
 <div class="cell">
@@ -453,16 +471,14 @@ Tabela&nbsp;7.2: Teste Ljung-Box para o modelo de regressão dinâmica para prod
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">.model</th>
-<th style="text-align: right;">lb_stat</th>
-<th style="text-align: right;">lb_pvalue</th>
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ARIMA(producao ~ area_plantada)</td>
-<td style="text-align: right;">7.915622</td>
-<td style="text-align: right;">0.5426714</td>
+<td style="text-align: right;">7,92</td>
+<td style="text-align: right;">0,54</td>
 </tr>
 </tbody>
 </table>
@@ -502,11 +518,367 @@ Figura&nbsp;7.10: Valores ajustados do modelo de regressão dinâmica para produ
 </div>
 </div>
 </section>
-<section id="regressão-dinâmica-harmônica" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="regressão-dinâmica-harmônica"><span class="header-section-number">7.2</span> Regressão dinâmica harmônica</h2>
+<section id="modelos-com-defasagem-distribuída" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="modelos-com-defasagem-distribuída"><span class="header-section-number">7.2</span> Modelos com defasagem distribuída</h2>
+<p>É comum em regressão dinâmica que as séries regressoras tenham efeito na série de interesse com atraso, isto é, a mudança na série regressora, <span class="math inline">\(x_t\)</span>, só será observada na série de interesse, <span class="math inline">\(y_t\)</span>, após alguns períodos. Em diversas aplicações este efeito defasado é esperado e passível de explicação. Por exemplo, um investimento em publicidade no período presente possivelmente não terá reflexo imediato nas vendas, mas sim em um futuro próximo. O efeito de uma política governamental no controle da inflação não terá efeito imediato nos preços e no consumo. No caso da relação entre demanda de energia elétrica e temperatura, pode-se elencar algumas razões para a defasagem entre o consumo de energia e o aumento de temperatura. O efeito do aumento da temperatura no consumo de energia não é instantâneo, pois os edifícios demoram um pouco a esquentar, de forma que a demanda por ar condicionado, por exemplo, seja defasada. As pessoas geralmente estão fora de casa durante a tarde, o horário mais quente do dia e usam o ar condicionado durante a noite. O consumo continua alto mesmo depois de a temperatura começar a cair, uma vez que o calor persiste por horas após a temperatura máxima.</p>
+<p>Seja um modelo de regressão dinâmica para <span class="math inline">\(y_t\)</span> em função de apenas uma variável, <span class="math inline">\(x_t\)</span>, com defasagem distribuída escrito segundo a <a href="#eq-regdinlag" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>, onde <span class="math inline">\(\eta_t\)</span> é modelado por um processo ARIMA. <span class="math inline">\(\beta(B)\)</span> é denominada função de transferência ou de resposta de impulso e descreve como <span class="math inline">\(x_t\)</span> muda <span class="math inline">\(y_t\)</span> ao longo do tempo.</p>
+<p><span id="eq-regdinlag"><span class="math display">\[
+\begin{align}
+y_t =&amp; c + \beta_0x_t + \beta_1x_{t-1} + \dots + \beta_kx_{t-k} + \eta_t \\
+=&amp; c + (\beta_0 + \beta_1B + \beta_2B^2 + \dots + \beta_kB^k)x_t + \eta_t \\
+=&amp; c + \beta(B)x_t + \eta_t \\
+\end{align}
+\tag{7.2}\]</span></span></p>
+<p><span class="citation" data-cites="box2008time">Box et al. (<a href="references.html#ref-box2008time" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="pankratz2012forecasting">Pankratz (<a href="references.html#ref-pankratz2012forecasting" role="doc-biblioref">2012</a>)</span> discutem métodos de identificação de modelos de regressão dinâmica. Aqui sugere-se uma abordagem prática de identificação considerando a função de correlação cruzada (<em>crossed correlation function</em> - CCF) entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(x_t\)</span>. Sejam as séries de produção total mensal de veículos automotores, do número de emplacamentos mensal e do consumo de energia mensal da indústria automobilística. As duas primeiras séries estão disponíveis em <a href="https://anfavea.com.br/site/edicoes-em-excel/">Anfavea</a> e a terceira está disponível em <a href="https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica">Empresa de Pesquisa Energética</a>. Tais séries são plotadas na <a href="#fig-autoseries" class="quarto-xref">Figura&nbsp;<span>7.11</span></a>. Observa-se um padrão similar entre as séries. Observa-se também a queda em todas as séries devido a pandemia.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-autoseries" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-autoseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-autoseries-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autoseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.11: Séries temporais de Volume de produção de veículos automotores, emplacamentos e consumo de energia da indústria automobilística
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-autosersaz" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> expõe os gráficos sazonais das séries. Observa-se um padrão sazonal anual, com menor volume de produção e consumo de energia em janeiro e dezembro.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-autosersaz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-autosersaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-autosersaz-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autosersaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.12: Gráficos sazonais do volume de produção de veículos automotores, emplacamentos e consumo de energia da indústria automobilística
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-autoserkpss" class="quarto-xref">Tabela&nbsp;<span>7.3</span></a> expõe o resultado do teste de raízes unitárias de KPSS para tais séries. Comprova-se a rejeição da hipótese nula de estacionariedade.</p>
+<div class="cell">
+<div id="tbl-autoserkpss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-autoserkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.3: Teste de KPSS para as séries de volume de produção de veículos automotores, emplacamentos e consumo de energia da indústria automobilística
+</figcaption>
+<div aria-describedby="tbl-autoserkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Série</th>
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">emplacamento</td>
+<td style="text-align: right;">1,3372506</td>
+<td style="text-align: right;">0,0100000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">energia</td>
+<td style="text-align: right;">0,5820566</td>
+<td style="text-align: right;">0,0242676</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">producao</td>
+<td style="text-align: right;">1,1436241</td>
+<td style="text-align: right;">0,0100000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A correlação cruzada <span class="math inline">\(r_{xy,k}\)</span> mede a correlação entre duas séries <span class="math inline">\(y_t\)</span> e <span class="math inline">\(x_t\)</span> com defasagem <span class="math inline">\(k\)</span> entre as séries. Tal estimativa é importante, uma vez que visa mensurar em quais defasagens as séries de interesse se relacionam melhor. Em regressão dinâmica com defasagem distribuída é importante tal identificação, visando a sugestão de possíveis regressores defasados. A <a href="#eq-ccf" class="quarto-xref">Equação&nbsp;<span>7.3</span></a> expõe o cálculo da função de correlação cruzada amostral.</p>
+<p><span id="eq-ccf"><span class="math display">\[
+r_{xy,k} = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(x_{t-k}-\bar{x})}{\sqrt {\sum_{t=1}^T (y_t-\bar{y})^2} \sqrt {\sum_{t=1}^T (x_{t-k}-\bar{x})^2}}
+\tag{7.3}\]</span></span></p>
+<p>A <a href="#fig-ccdprodener" class="quarto-xref">Figura&nbsp;<span>7.13</span></a> apresenta o correlograma de correlação cruzada entre as séries da indústria automobilística de consumo de energia e produção com dupla diferenciação - simples e sazonal. A diferenciação é recomendada para avaliação da correlação cruzada, de forma a evitar correlações espúrias. Observa-se correlação mais alta entre as séries diferenciadas sem defasagem. Porém, com defasagem de uma observação também há uma correlação significativa entre as séries. Tal correlação pode estar atrelada à não utilização do <em>just-in-time</em> em todas as etapas de produção. Por exemplo, peças estampadas da carroceria podem ficar em estoque dias ou semanas, de forma que, apesar de diariamente muitos veículos serem produzidos, o início da produção de parte da carroceria foi realizada há dias ou semanas.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ccdprodener" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ccdprodener-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-ccdprodener-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ccdprodener-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.13: Correlograma de correlação cruzada entre a variação das séries de Consumo de Energia e Produção na indústria automobilística
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-scatterautom" class="quarto-xref">Figura&nbsp;<span>7.14</span></a> expõe os diagramas de dispersão com os coeficientes de correlação de Pearson entre a variação dupla da série de energia, <span class="math inline">\(y''_t\)</span>, e a variação dupla da série de produção de veículos sem defasagem, <span class="math inline">\(x''_t\)</span> e com defasagem de uma observação <span class="math inline">\(x''_{t-1}\)</span>. Confirma-se o observado no correlograma nas duas barras com maior correlação positiva.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-scatterautom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterautom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-scatterautom-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterautom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.14: Correlação cruzada entre a variação das séries de Consumo de Energia e Produção na indústria automobilística
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Considernado o correlograma da <a href="#fig-ccdprodener" class="quarto-xref">Figura&nbsp;<span>7.13</span></a>, podem-se sugerir alguns modelos SARIMAx tentativos. É importante recordar que o erro <span class="math inline">\(\eta_t\)</span> é modelado por um processo ARIMA. Sugere-se tentar modelos parcimoniosos, isto é, que apresentem um número menor de parâmetros. Para este caso, tentar-se há, inicialmente, um modelo SARIMAx com 2 defasagens, denominado aqui sarimax012:</p>
+<p><span class="math display">\[
+y_t = \beta_0 + \beta_1 x_t + \beta_2 x_{t-1} + \beta_3 x_{t-2} + \eta_t.
+\]</span></p>
+<p>Modelo SARIMAx com 1 defasagem, sarimax01:</p>
+<p><span class="math display">\[
+y_t = \beta_0 + \beta_1 x_t + \beta_2 x_{t-1} + \eta_t.
+\]</span></p>
+<p>Modelo SARIMAx sem defasagens sarimax0:</p>
+<p><span class="math display">\[
+y_t = \beta_0 + \beta_1 x_t + \eta_t.
+\]</span></p>
+<p>A <a href="#tbl-resarimaxs" class="quarto-xref">Tabela&nbsp;<span>7.4</span></a> expõe o resultado das métricas de ajuste para os modelos tentativos. Foram considerados dados de até 2024 para treinar os modelos. Observa-se que o modelo sarimax012 apresentou melhores resultados considerando o AICc, log da máxima verossimilhança e <span class="math inline">\(\sigma^2\)</span>. O modelo SARIMA sem regressor foi o pior, seguido do SARIMAx com o regressor sem defasagem. Em seguida expõe-se o resultado detalhado deste modelo.</p>
+<div class="cell">
+<div id="tbl-resarimaxs" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resarimaxs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.4: Resultados dos modelos SARIMAx e SARIMA para prever o consumo de energia em função do volume de produção
+</figcaption>
+<div aria-describedby="tbl-resarimaxs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: right;">sigma2</th>
+<th style="text-align: right;">log_lik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">BIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sarimax012</td>
+<td style="text-align: right;">497462622</td>
+<td style="text-align: right;">-1748,549</td>
+<td style="text-align: right;">3517,098</td>
+<td style="text-align: right;">3518,626</td>
+<td style="text-align: right;">3547,532</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sarimax01</td>
+<td style="text-align: right;">506259449</td>
+<td style="text-align: right;">-1750,511</td>
+<td style="text-align: right;">3519,021</td>
+<td style="text-align: right;">3520,263</td>
+<td style="text-align: right;">3546,412</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sarimax0</td>
+<td style="text-align: right;">786114284</td>
+<td style="text-align: right;">-1783,937</td>
+<td style="text-align: right;">3583,873</td>
+<td style="text-align: right;">3584,860</td>
+<td style="text-align: right;">3608,221</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sarima</td>
+<td style="text-align: right;">1330306504</td>
+<td style="text-align: right;">-1826,493</td>
+<td style="text-align: right;">3658,986</td>
+<td style="text-align: right;">3659,145</td>
+<td style="text-align: right;">3668,116</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: energia 
+Model: LM w/ ARIMA(2,0,0)(2,0,0)[12] errors 
+
+Coefficients:
+         ar1     ar2    sar1    sar2  producao  lag(producao)  lag(producao, 2)
+      0,3849  0,2165  0,2995  0,3529    0,6637         0,5068           -0,1080
+s.e.  0,0795  0,0804  0,0785  0,0838    0,0524         0,0542            0,0532
+      intercept
+      323913,91
+s.e.   19656,05
+
+sigma^2 estimated as 4,86e+08:  log likelihood=-1758,82
+AIC=3535,63   AICc=3536,87   BIC=3563,08</code></pre>
+</div>
+</div>
+<p>O modelo obtido pode ser expresso na <span class="quarto-unresolved-ref">?eq-sarima012</span>, com <span class="math inline">\(\eta\)</span> seguindo um modelo autoregressivo de segunda ordem tanto para a tendência quanto para a sazonalidade, o que consiste em um modelo SARIMA<span class="math inline">\((2,0,0)(2,0,0)_{12}\)</span>. A série não foi diferenciada para modelagem. Pelo modelo, observa-se que não foi necessária, uma vez que <span class="math inline">\(d=D=0\)</span>, de forma que a ausência estacionariedade foi bem capturada pelo regressor. Entretanto, em outros casos onde o regressor não conseguir deixar o erro <span class="math inline">\(\eta\)</span> sem necessidade de defasagem, sugere-se realizar a modelagem com as séries diferenciadas.</p>
+<p>$$ <span class="math display">\[\begin{align}
+y_t =&amp; 323913{,}91 + 0{,}6637\, x_t + 0{,}5068\, x_{t-1} - 0{,}1080\, x_{t-2} + \eta_t \\
+\eta_t =&amp; 0{,}3849 \eta_{t-1} + 0{,}2165 \eta_{t-2} + 0{,}2995 \eta_{t-12} + 0{,}3529 \eta_{t-24} + \varepsilon_t
+
+\end{align}\]</span> $$</p>
+<p>A <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a> expõe os gráficos de resíduos do modelo sarimax012. Observa-se Padrão aleatório, normalidade e ausência de autocorrelação, porém um desvio considerável devido à parada na produção dado a pandemia de COVID-19.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resisarimax012" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resisarimax012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resisarimax012-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resisarimax012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.15: Gráficos de resíduos do modelo sarimax012
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Por fim, a <a href="#fig-predarimax012" class="quarto-xref">Figura&nbsp;<span>7.16</span></a> expõe a previsão para o modelo SARIMAx para os 6 primeiros meses de 2025. Observa-se excelente adequação às observações deste período. Como a previsão para este tipo de modelo depende da série regressora, neste caso a série de produção de veículos, pode-se trabalhar a previsão com cenários, conforme visto no capítulo 4. Uma proposta interessante para o caso do consumo de energia, seria trabalhar os cenários de produção considerando dados de planejamento da produção ou então aproximar via ARIMA ou outro método a série de produção e usar as previsões como cenários para o modelo SARIMAx. O exemplo proposto possibilitaria à indústria estimar a demanda energética a partir do planejamento da produção. Obviamente, estes dados são de estatísticas nacionais, mas, possivelmente, as séries específicas das montadoras nacionais apresentam padrões similares, viabilizando o emprego de tal abordagem.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-predarimax012" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-predarimax012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-predarimax012-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predarimax012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.16: Previsão para o primeiro semestre de 2025 para o modelo sarimax012
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na regressão dinâmica também é possível adicionar regressores binários (<em>dummy</em>). Para o exemplo da previsão do consumo de energia em função da produção de veículos com defasagem, pode-se observar pelas <span class="quarto-unresolved-ref">?fig-autoserseries</span> e <a href="#fig-autosersaz" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> e, também, pelos resíduos do melhor modelo na <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a>, que, nos meses abril a junho de 2020, a produção e o consumo de energia foram baixíssimos, especialmente em abril, quando a produção parou devido à Pandemia de COVID19. A <a href="#tbl-resarimaxsdumm" class="quarto-xref">Tabela&nbsp;<span>7.5</span></a> apresenta o resultado do modelo sarimax012 com e sem a variável <em>dummy</em> definida conforme segue. Observa-se que o modelo com tal variável, sarimax012dummy, apresentou melhor ajuste.</p>
+<p><span class="math display">\[
+x_{t,\text{dummy}} =
+\begin{cases}
+1, &amp; \text{se } t \in \{\text{04 a 06/2020}\} \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<div class="cell">
+<div id="tbl-resarimaxsdumm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resarimaxsdumm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.5: Resultados do modelo SARIMAx com e sem variável binária para os meses de parada na produção devido a pandemia
+</figcaption>
+<div aria-describedby="tbl-resarimaxsdumm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: right;">sigma2</th>
+<th style="text-align: right;">log_lik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">AICc</th>
+<th style="text-align: right;">BIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sarimax012</td>
+<td style="text-align: right;">485975762</td>
+<td style="text-align: right;">-1758,817</td>
+<td style="text-align: right;">3535,634</td>
+<td style="text-align: right;">3536,867</td>
+<td style="text-align: right;">3563,083</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sarimax012dummy</td>
+<td style="text-align: right;">402499522</td>
+<td style="text-align: right;">-1744,087</td>
+<td style="text-align: right;">3510,173</td>
+<td style="text-align: right;">3512,007</td>
+<td style="text-align: right;">3543,722</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-resisarimax012dum" class="quarto-xref">Figura&nbsp;<span>7.17</span></a> apresenta os gráficos de resíduos para o modelo sarimax012dummy. O tratamento da parada da produção devido a pandemia de COVID-19 com uma variável binária apresentou eficácia na redução do valor discrepante observado nos resíduos do modelo sarimax. Finalmente, a <a href="#tbl-lbox_auto" class="quarto-xref">Tabela&nbsp;<span>7.6</span></a> apresenta o resultado do teste de Ljung-Box para ambos os modelos, indicando ausência de autocorrelação residual.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-resisarimax012dum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resisarimax012dum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-resisarimax012dum-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resisarimax012dum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.17: Gráficos de resíduos do modelo sarimax012 com variável dummy para parada de produção devido a COVID-19
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-lbox_auto" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lbox_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.6: Teste de Ljung-Box para os resíduos do modelo sarimax012dummy
+</figcaption>
+<div aria-describedby="tbl-lbox_auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: right;">Estatística</th>
+<th style="text-align: right;">pvalor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sarimax012</td>
+<td style="text-align: right;">20,90</td>
+<td style="text-align: right;">0,40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sarimax012dummy</td>
+<td style="text-align: right;">16,54</td>
+<td style="text-align: right;">0,68</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-predarimax012dum" class="quarto-xref">Figura&nbsp;<span>7.18</span></a> apresenta a previsão para primeiro semestre de 2025 para os modelos sarimax012 e sarimax012dummy. Para o modelo com a variável binária, é importante definir os valores desta, no caso <span class="math inline">\(x_{t,dummy} = 0\)</span>, uma vez que não houve pandemia no período.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-predarimax012dum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-predarimax012dum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-predarimax012dum-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predarimax012dum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.18: Previsão para o primeiro semestre de 2025 para os modelos sarimax012 e sarimax012dummy
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="regressão-dinâmica-harmônica" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="regressão-dinâmica-harmônica"><span class="header-section-number">7.3</span> Regressão dinâmica harmônica</h2>
 <p>Uma possibilidade para casos com frequência horária ou menor, a regressão dinâmica harmônica considera termos estimados via série de Fourier. Modelos ARIMA e ETS tradicionais foram concebidos para considerar um número limitado de estações ou períodos sazonais, por exemplo, <span class="math inline">\(m=12\)</span> para séries anuais e <span class="math inline">\(m=4\)</span> para trimestrais. A regressão dinâmica harmônica é viável para séries longas, podendo aproximar séries que incluam simultaneamente sazonalidade de frequências dinstintas.</p>
 <p>Os dados de demanda de eletricidade do sudeste e centro oeste do Brasil anteriormente considerados na regressão dinâmica em função da temperatura foram considerados em frequência diária, sendo tomada a média do consumo em função da temperatura média. É possível trabalhar a mesma série disponível em frequência horária usando regressão dinâmica com termos de Fourier.</p>
-<p>A <a href="#fig-energia_hora" class="quarto-xref">Figura&nbsp;<span>7.11</span></a> expõe a série temporal de geração de energia hidráulica para o sudeste e centro oeste do Brasil no ano de 2023 com frequência horária. Tal série apresenta 8760 observações.</p>
+<p>A <a href="#fig-energia_hora" class="quarto-xref">Figura&nbsp;<span>7.19</span></a> expõe a série temporal de geração de energia hidráulica para o sudeste e centro oeste do Brasil no ano de 2023 com frequência horária. Tal série apresenta 8760 observações.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-energia_hora" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -515,18 +887,47 @@ Figura&nbsp;7.10: Valores ajustados do modelo de regressão dinâmica para produ
 <img src="ST7_files/figure-html/fig-energia_hora-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energia_hora-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.11: Série temporal com frequência horária de geração de energia hidráulica para o sudeste e centro oeste no ano de 2023
+Figura&nbsp;7.19: Série temporal com frequência horária de geração de energia hidráulica para o sudeste e centro oeste no ano de 2023
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-din_elet_four" class="quarto-xref">Tabela&nbsp;<span>7.3</span></a> expõe os resultados de ajuste de seis modelos de regressão dinâmica harmônica para a série de demanda de eletricidade do sudeste e centro oeste do Brasil considerando de 1 a 6 termos de Fourier. Observa-se que a adição de mais termos melhora o ajuste do modelo.</p>
+<p>A <a href="#fig-en_temp_saz1d" class="quarto-xref">Figura&nbsp;<span>7.20</span></a> expõe o gráfico de sazonalidade diária para as séries de consumo de energia elétrica hidráulica e de temperatura para o sudeste e centro oeste do Brasil. Observa-se ciclos muito similares para ambas as séries, com mínima pela manhã e máxima a tarde. Já a <a href="#fig-en_temp_saz1dm" class="quarto-xref">Figura&nbsp;<span>7.21</span></a> expõe outro gráfico sazonal com cada mês em um painel. É possível ver tanto a tendência da temperatura e do consumo de energia segundo as estações do ano.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-en_temp_saz1d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-en_temp_saz1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-en_temp_saz1d-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-en_temp_saz1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.20: Gráfico de sazonalidade diária para temperatura e energia hidráulica no sudeste e centro oeste
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-en_temp_saz1dm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-en_temp_saz1dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST7_files/figure-html/fig-en_temp_saz1dm-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-en_temp_saz1dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.21: Gráfico de sazonalidade diária/mensal para temperatura e energia hidráulica no sudeste e centro oeste
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#tbl-din_elet_four" class="quarto-xref">Tabela&nbsp;<span>7.7</span></a> expõe os resultados de ajuste de seis modelos de regressão dinâmica harmônica para a série de demanda de eletricidade do sudeste e centro oeste do Brasil considerando de 1 a 6 termos de Fourier. Observa-se que a adição de mais termos melhora o ajuste do modelo.</p>
 <div class="cell">
 <div id="tbl-din_elet_four" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-din_elet_four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;7.3: Modelos de regressão dinâmica harmônica para a série de geração de eletricidade hidráulica no sudeste e centro oeste
+Tabela&nbsp;7.7: Modelos de regressão dinâmica harmônica para a série de geração de eletricidade hidráulica no sudeste e centro oeste
 </figcaption>
 <div aria-describedby="tbl-din_elet_four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -544,51 +945,51 @@ Tabela&nbsp;7.3: Modelos de regressão dinâmica harmônica para a série de ger
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">K = 1</td>
-<td style="text-align: right;">0.0008775</td>
-<td style="text-align: right;">14470.13</td>
-<td style="text-align: right;">-28922.26</td>
-<td style="text-align: right;">-28922.24</td>
-<td style="text-align: right;">-28860.73</td>
+<td style="text-align: right;">0,0009581</td>
+<td style="text-align: right;">14167,48</td>
+<td style="text-align: right;">-28316,96</td>
+<td style="text-align: right;">-28316,94</td>
+<td style="text-align: right;">-28255,42</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 2</td>
-<td style="text-align: right;">0.0007887</td>
-<td style="text-align: right;">14836.38</td>
-<td style="text-align: right;">-29660.77</td>
-<td style="text-align: right;">-29660.76</td>
-<td style="text-align: right;">-29619.74</td>
+<td style="text-align: right;">0,0007851</td>
+<td style="text-align: right;">14853,98</td>
+<td style="text-align: right;">-29687,96</td>
+<td style="text-align: right;">-29687,93</td>
+<td style="text-align: right;">-29619,59</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 3</td>
-<td style="text-align: right;">0.0007882</td>
-<td style="text-align: right;">14839.71</td>
-<td style="text-align: right;">-29663.41</td>
-<td style="text-align: right;">-29663.39</td>
-<td style="text-align: right;">-29608.71</td>
+<td style="text-align: right;">0,0007842</td>
+<td style="text-align: right;">14858,91</td>
+<td style="text-align: right;">-29693,83</td>
+<td style="text-align: right;">-29693,78</td>
+<td style="text-align: right;">-29611,78</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 4</td>
-<td style="text-align: right;">0.0007642</td>
-<td style="text-align: right;">14949.39</td>
-<td style="text-align: right;">-29870.79</td>
-<td style="text-align: right;">-29870.73</td>
-<td style="text-align: right;">-29775.06</td>
+<td style="text-align: right;">0,0007631</td>
+<td style="text-align: right;">14953,72</td>
+<td style="text-align: right;">-29879,44</td>
+<td style="text-align: right;">-29879,38</td>
+<td style="text-align: right;">-29783,72</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 5</td>
-<td style="text-align: right;">0.0007641</td>
-<td style="text-align: right;">14950.75</td>
-<td style="text-align: right;">-29869.50</td>
-<td style="text-align: right;">-29869.42</td>
-<td style="text-align: right;">-29760.10</td>
+<td style="text-align: right;">0,0007624</td>
+<td style="text-align: right;">14958,10</td>
+<td style="text-align: right;">-29884,21</td>
+<td style="text-align: right;">-29884,13</td>
+<td style="text-align: right;">-29774,81</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 6</td>
-<td style="text-align: right;">0.0006942</td>
-<td style="text-align: right;">15282.75</td>
-<td style="text-align: right;">-30527.50</td>
-<td style="text-align: right;">-30527.39</td>
-<td style="text-align: right;">-30397.59</td>
+<td style="text-align: right;">0,0006653</td>
+<td style="text-align: right;">15428,40</td>
+<td style="text-align: right;">-30818,80</td>
+<td style="text-align: right;">-30818,69</td>
+<td style="text-align: right;">-30688,89</td>
 </tr>
 </tbody>
 </table>
@@ -597,7 +998,7 @@ Tabela&nbsp;7.3: Modelos de regressão dinâmica harmônica para a série de ger
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-elet_four_fc" class="quarto-xref">Figura&nbsp;<span>7.12</span></a> plota a previsão uma semana a frente para os modelos obtidos. Os dados foram plotados de Setembro em diante para facilitar a visualização.</p>
+<p>A <a href="#fig-elet_four_fc" class="quarto-xref">Figura&nbsp;<span>7.22</span></a> plota a previsão uma semana a frente para os modelos obtidos. Os dados foram plotados de Setembro em diante para facilitar a visualização.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-elet_four_fc" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -606,18 +1007,18 @@ Tabela&nbsp;7.3: Modelos de regressão dinâmica harmônica para a série de ger
 <img src="ST7_files/figure-html/fig-elet_four_fc-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elet_four_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.12: Previsão uma semana a frente para os modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
+Figura&nbsp;7.22: Previsão uma semana a frente para os modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-din_elet_fc" class="quarto-xref">Tabela&nbsp;<span>7.4</span></a> plota o desempenho obtido para a previsão uma semana a frente considerando os modelos de regressão dinâmica harmônica. Observa-se que o modelo com “K = 3” termos apresentou melhor resultado.</p>
+<p>A <a href="#tbl-din_elet_fc" class="quarto-xref">Tabela&nbsp;<span>7.8</span></a> plota o desempenho obtido para a previsão uma semana a frente considerando os modelos de regressão dinâmica harmônica. Observa-se que o modelo com “K = 3” termos apresentou melhor resultado.</p>
 <div class="cell">
 <div id="tbl-din_elet_fc" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-din_elet_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;7.4: Desempenho dos modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
+Tabela&nbsp;7.8: Desempenho dos modelos de regressão dinâmica harmônica para a série de consumo de eletricidade no sudeste e centro oeste
 </figcaption>
 <div aria-describedby="tbl-din_elet_fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -633,39 +1034,39 @@ Tabela&nbsp;7.4: Desempenho dos modelos de regressão dinâmica harmônica para 
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">K = 1</td>
-<td style="text-align: right;">5942.818</td>
-<td style="text-align: right;">4771.082</td>
-<td style="text-align: right;">16.62897</td>
+<td style="text-align: right;">8424,605</td>
+<td style="text-align: right;">7295,301</td>
+<td style="text-align: right;">15,57196</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 2</td>
-<td style="text-align: right;">5271.837</td>
-<td style="text-align: right;">4197.735</td>
-<td style="text-align: right;">14.80960</td>
+<td style="text-align: right;">6511,291</td>
+<td style="text-align: right;">5433,725</td>
+<td style="text-align: right;">12,57678</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 3</td>
-<td style="text-align: right;">5254.738</td>
-<td style="text-align: right;">4185.858</td>
-<td style="text-align: right;">14.78036</td>
+<td style="text-align: right;">6520,130</td>
+<td style="text-align: right;">5441,139</td>
+<td style="text-align: right;">12,58419</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 4</td>
-<td style="text-align: right;">5394.069</td>
-<td style="text-align: right;">4321.885</td>
-<td style="text-align: right;">15.21199</td>
+<td style="text-align: right;">6534,698</td>
+<td style="text-align: right;">5499,981</td>
+<td style="text-align: right;">12,62594</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">K = 5</td>
-<td style="text-align: right;">5384.912</td>
-<td style="text-align: right;">4313.968</td>
-<td style="text-align: right;">15.18825</td>
+<td style="text-align: right;">6547,457</td>
+<td style="text-align: right;">5513,284</td>
+<td style="text-align: right;">12,63231</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">K = 6</td>
-<td style="text-align: right;">5345.797</td>
-<td style="text-align: right;">4310.099</td>
-<td style="text-align: right;">15.25338</td>
+<td style="text-align: right;">6512,690</td>
+<td style="text-align: right;">5468,527</td>
+<td style="text-align: right;">12,59147</td>
 </tr>
 </tbody>
 </table>
@@ -676,6 +1077,14 @@ Tabela&nbsp;7.4: Desempenho dos modelos de regressão dinâmica harmônica para 
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-box2008time" class="csl-entry" role="listitem">
+Box, George EP, Gwilym M Jenkins, Gregory C Reinsel, e Greta M Ljung. 2008. <em>Time series analysis: forecasting and control</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-pankratz2012forecasting" class="csl-entry" role="listitem">
+Pankratz, Alan. 2012. <em>Forecasting with dynamic regression models</em>. John Wiley &amp; Sons.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
