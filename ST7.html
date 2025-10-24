@@ -220,7 +220,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#modelos-com-erro-aproximado-por-arima" id="toc-modelos-com-erro-aproximado-por-arima" class="nav-link active" data-scroll-target="#modelos-com-erro-aproximado-por-arima"><span class="header-section-number">7.1</span> Modelos com erro aproximado por ARIMA</a></li>
+  <li><a href="#modelos-com-erro-aproximado-por-arima" id="toc-modelos-com-erro-aproximado-por-arima" class="nav-link active" data-scroll-target="#modelos-com-erro-aproximado-por-arima"><span class="header-section-number">7.1</span> Modelos com erro aproximado por ARIMA</a>
+  <ul class="collapse">
+  <li><a href="#estimativa-de-modelos-de-regressão-dinâmica" id="toc-estimativa-de-modelos-de-regressão-dinâmica" class="nav-link" data-scroll-target="#estimativa-de-modelos-de-regressão-dinâmica"><span class="header-section-number">7.1.1</span> Estimativa de modelos de regressão dinâmica</a></li>
+  </ul></li>
   <li><a href="#modelos-com-defasagem-distribuída" id="toc-modelos-com-defasagem-distribuída" class="nav-link" data-scroll-target="#modelos-com-defasagem-distribuída"><span class="header-section-number">7.2</span> Modelos com defasagem distribuída</a></li>
   <li><a href="#regressão-dinâmica-harmônica" id="toc-regressão-dinâmica-harmônica" class="nav-link" data-scroll-target="#regressão-dinâmica-harmônica"><span class="header-section-number">7.3</span> Regressão dinâmica harmônica</a></li>
   </ul>
@@ -517,18 +520,32 @@ Figura&nbsp;7.10: Valores ajustados do modelo de regressão dinâmica para produ
 </div>
 </div>
 </div>
+<section id="estimativa-de-modelos-de-regressão-dinâmica" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="estimativa-de-modelos-de-regressão-dinâmica"><span class="header-section-number">7.1.1</span> Estimativa de modelos de regressão dinâmica</h3>
+<p>A estimativa conjunta dos termos de regressão e dos termos do modelo ARIMA para tratar o erro da regressão pode ser realizada via máxima verossimilhança. Para fins de simplificação, seja um modelo de regressão para <span class="math inline">\(y_t\)</span> em função de uma série exógena ou independente, <span class="math inline">\(x_t\)</span>, com erro descrito por um modelo AR(1), conforme <a href="#eq-dinregar1" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>, com <span class="math inline">\(\varepsilon_t \sim N(0, \sigma^2)\)</span>.</p>
+<p><span id="eq-dinregar1"><span class="math display">\[
+\begin{matrix}
+y_t = \beta_0 + \beta_1x_{t1} + \eta_t, \\
+\eta_t = \phi\eta_{t-1} + \varepsilon_t
+\end{matrix}
+\tag{7.2}\]</span></span></p>
+<p>Logo, <span class="math inline">\(y_t\)</span> tem média <span class="math inline">\(\beta_0 + \beta_1x_{t1} + \phi\eta_{t-1}\)</span> e variância <span class="math inline">\(\sigma^2\)</span>. A função densidade de probabilidade conjunta de <span class="math inline">\(y_1, y_2, \dots, y_t\)</span> pode ser denotada segundo a <span class="quarto-unresolved-ref">?eq-densconj</span>, supondo indep</p>
+<p><span class="math display">\[
+f(y_1, y_2, \dots, y_t|\beta_0 + \beta_1x_{t1} + \phi\eta_{t-1},\sigma^2)
+\]</span></p>
+</section>
 </section>
 <section id="modelos-com-defasagem-distribuída" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="modelos-com-defasagem-distribuída"><span class="header-section-number">7.2</span> Modelos com defasagem distribuída</h2>
 <p>É comum em regressão dinâmica que as séries regressoras tenham efeito na série de interesse com atraso, isto é, a mudança na série regressora, <span class="math inline">\(x_t\)</span>, só será observada na série de interesse, <span class="math inline">\(y_t\)</span>, após alguns períodos. Em diversas aplicações este efeito defasado é esperado e passível de explicação. Por exemplo, um investimento em publicidade no período presente possivelmente não terá reflexo imediato nas vendas, mas sim em um futuro próximo. O efeito de uma política governamental no controle da inflação não terá efeito imediato nos preços e no consumo. No caso da relação entre demanda de energia elétrica e temperatura, pode-se elencar algumas razões para a defasagem entre o consumo de energia e o aumento de temperatura. O efeito do aumento da temperatura no consumo de energia não é instantâneo, pois os edifícios demoram um pouco a esquentar, de forma que a demanda por ar condicionado, por exemplo, seja defasada. As pessoas geralmente estão fora de casa durante a tarde, o horário mais quente do dia e usam o ar condicionado durante a noite. O consumo continua alto mesmo depois de a temperatura começar a cair, uma vez que o calor persiste por horas após a temperatura máxima.</p>
-<p>Seja um modelo de regressão dinâmica para <span class="math inline">\(y_t\)</span> em função de apenas uma variável, <span class="math inline">\(x_t\)</span>, com defasagem distribuída escrito segundo a <a href="#eq-regdinlag" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>, onde <span class="math inline">\(\eta_t\)</span> é modelado por um processo ARIMA. <span class="math inline">\(\beta(B)\)</span> é denominada função de transferência ou de resposta de impulso e descreve como <span class="math inline">\(x_t\)</span> muda <span class="math inline">\(y_t\)</span> ao longo do tempo.</p>
+<p>Seja um modelo de regressão dinâmica para <span class="math inline">\(y_t\)</span> em função de apenas uma variável, <span class="math inline">\(x_t\)</span>, com defasagem distribuída escrito segundo a <a href="#eq-regdinlag" class="quarto-xref">Equação&nbsp;<span>7.3</span></a>, onde <span class="math inline">\(\eta_t\)</span> é modelado por um processo ARIMA. <span class="math inline">\(\beta(B)\)</span> é denominada função de transferência ou de resposta de impulso e descreve como <span class="math inline">\(x_t\)</span> muda <span class="math inline">\(y_t\)</span> ao longo do tempo.</p>
 <p><span id="eq-regdinlag"><span class="math display">\[
 \begin{align}
 y_t =&amp; c + \beta_0x_t + \beta_1x_{t-1} + \dots + \beta_kx_{t-k} + \eta_t \\
 =&amp; c + (\beta_0 + \beta_1B + \beta_2B^2 + \dots + \beta_kB^k)x_t + \eta_t \\
 =&amp; c + \beta(B)x_t + \eta_t \\
 \end{align}
-\tag{7.2}\]</span></span></p>
+\tag{7.3}\]</span></span></p>
 <p><span class="citation" data-cites="box2008time">Box et al. (<a href="references.html#ref-box2008time" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="pankratz2012forecasting">Pankratz (<a href="references.html#ref-pankratz2012forecasting" role="doc-biblioref">2012</a>)</span> discutem métodos de identificação de modelos de regressão dinâmica. Aqui sugere-se uma abordagem prática de identificação considerando a função de correlação cruzada (<em>crossed correlation function</em> - CCF) entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(x_t\)</span>. Sejam as séries de produção total mensal de veículos automotores, do número de emplacamentos mensal e do consumo de energia mensal da indústria automobilística. As duas primeiras séries estão disponíveis em <a href="https://anfavea.com.br/site/edicoes-em-excel/">Anfavea</a> e a terceira está disponível em <a href="https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica">Empresa de Pesquisa Energética</a>. Tais séries são plotadas na <a href="#fig-autoseries" class="quarto-xref">Figura&nbsp;<span>7.11</span></a>. Observa-se um padrão similar entre as séries. Observa-se também a queda em todas as séries devido a pandemia.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -599,10 +616,10 @@ Tabela&nbsp;7.3: Teste de KPSS para as séries de volume de produção de veícu
 </figure>
 </div>
 </div>
-<p>A correlação cruzada <span class="math inline">\(r_{xy,k}\)</span> mede a correlação entre duas séries <span class="math inline">\(y_t\)</span> e <span class="math inline">\(x_t\)</span> com defasagem <span class="math inline">\(k\)</span> entre as séries. Tal estimativa é importante, uma vez que visa mensurar em quais defasagens as séries de interesse se relacionam melhor. Em regressão dinâmica com defasagem distribuída é importante tal identificação, visando a sugestão de possíveis regressores defasados. A <a href="#eq-ccf" class="quarto-xref">Equação&nbsp;<span>7.3</span></a> expõe o cálculo da função de correlação cruzada amostral.</p>
+<p>A correlação cruzada <span class="math inline">\(r_{xy,k}\)</span> mede a correlação entre duas séries <span class="math inline">\(y_t\)</span> e <span class="math inline">\(x_t\)</span> com defasagem <span class="math inline">\(k\)</span> entre as séries. Tal estimativa é importante, uma vez que visa mensurar em quais defasagens as séries de interesse se relacionam melhor. Em regressão dinâmica com defasagem distribuída é importante tal identificação, visando a sugestão de possíveis regressores defasados. A <a href="#eq-ccf" class="quarto-xref">Equação&nbsp;<span>7.4</span></a> expõe o cálculo da função de correlação cruzada amostral.</p>
 <p><span id="eq-ccf"><span class="math display">\[
 r_{xy,k} = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(x_{t-k}-\bar{x})}{\sqrt {\sum_{t=1}^T (y_t-\bar{y})^2} \sqrt {\sum_{t=1}^T (x_{t-k}-\bar{x})^2}}
-\tag{7.3}\]</span></span></p>
+\tag{7.4}\]</span></span></p>
 <p>A <a href="#fig-ccdprodener" class="quarto-xref">Figura&nbsp;<span>7.13</span></a> apresenta o correlograma de correlação cruzada entre as séries da indústria automobilística de consumo de energia e produção com dupla diferenciação - simples e sazonal. A diferenciação é recomendada para avaliação da correlação cruzada, de forma a evitar correlações espúrias. Observa-se correlação mais alta entre as séries diferenciadas sem defasagem. Porém, com defasagem de uma observação também há uma correlação significativa entre as séries. Tal correlação pode estar atrelada à não utilização do <em>just-in-time</em> em todas as etapas de produção. Por exemplo, peças estampadas da carroceria podem ficar em estoque dias ou semanas, de forma que, apesar de diariamente muitos veículos serem produzidos, o início da produção de parte da carroceria foi realizada há dias ou semanas.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -637,11 +654,11 @@ Figura&nbsp;7.14: Correlação cruzada entre a variação das séries de Consumo
 <p><span class="math display">\[
 y_t = \beta_0 + \beta_1 x_t + \beta_2 x_{t-1} + \beta_3 x_{t-2} + \eta_t.
 \]</span></p>
-<p>Modelo SARIMAx com 1 defasagem, sarimax01:</p>
+<p>Uma outra opção poderia ser um modelo SARIMAx com 1 defasagem, aqui denominado sarimax01:</p>
 <p><span class="math display">\[
 y_t = \beta_0 + \beta_1 x_t + \beta_2 x_{t-1} + \eta_t.
 \]</span></p>
-<p>Modelo SARIMAx sem defasagens sarimax0:</p>
+<p>Outro modelo a ser estimado seria o de regressão dinâmica sem defasagem da série independente, aqui denominado sarimax0:</p>
 <p><span class="math display">\[
 y_t = \beta_0 + \beta_1 x_t + \eta_t.
 \]</span></p>
@@ -722,13 +739,13 @@ sigma^2 estimated as 4,86e+08:  log likelihood=-1758,82
 AIC=3535,63   AICc=3536,87   BIC=3563,08</code></pre>
 </div>
 </div>
-<p>O modelo obtido pode ser expresso na <a href="#eq-sarima012" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>, com <span class="math inline">\(\eta\)</span> seguindo um modelo autoregressivo de segunda ordem tanto para a tendência quanto para a sazonalidade, o que consiste em um modelo SARIMA<span class="math inline">\((2,0,0)(2,0,0)_{12}\)</span>. A série não foi diferenciada para modelagem. Pelo modelo, observa-se que não foi necessária, uma vez que <span class="math inline">\(d=D=0\)</span>, de forma que a ausência estacionariedade foi bem capturada pelo regressor. Entretanto, em outros casos onde o regressor não conseguir deixar o erro <span class="math inline">\(\eta\)</span> sem necessidade de defasagem, sugere-se realizar a modelagem com as séries diferenciadas.</p>
+<p>O modelo obtido pode ser expresso na <a href="#eq-sarima012" class="quarto-xref">Equação&nbsp;<span>7.5</span></a>, com <span class="math inline">\(\eta\)</span> seguindo um modelo autoregressivo de segunda ordem tanto para a tendência quanto para a sazonalidade, o que consiste em um modelo SARIMA<span class="math inline">\((2,0,0)(2,0,0)_{12}\)</span>. A série não foi diferenciada para modelagem. Pelo modelo, observa-se que não foi necessária, uma vez que <span class="math inline">\(d=D=0\)</span>, de forma que a ausência estacionariedade foi bem capturada pelo regressor. Entretanto, em outros casos onde o regressor não conseguir deixar o erro <span class="math inline">\(\eta\)</span> sem necessidade de defasagem, sugere-se realizar a modelagem com as séries diferenciadas.</p>
 <p><span id="eq-sarima012"><span class="math display">\[
 \begin{align}
 y_t =&amp; 323913{,}91 + 0{,}6637\, x_t + 0{,}5068\, x_{t-1} - 0{,}1080\, x_{t-2} + \eta_t \\
 \eta_t =&amp; 0{,}3849 \eta_{t-1} + 0{,}2165 \eta_{t-2} + 0{,}2995 \eta_{t-12} + 0{,}3529 \eta_{t-24} + \varepsilon_t
 \end{align}
-\tag{7.4}\]</span></span></p>
+\tag{7.5}\]</span></span></p>
 <p>A <a href="#fig-resisarimax012" class="quarto-xref">Figura&nbsp;<span>7.15</span></a> expõe os gráficos de resíduos do modelo sarimax012. Observa-se Padrão aleatório, normalidade e ausência de autocorrelação, porém um desvio considerável devido à parada na produção dado a pandemia de COVID-19.</p>
 <div class="cell">
 <div class="cell-output-display">

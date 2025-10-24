@@ -561,7 +561,7 @@ Figura&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área 
 <p><span id="eq-linmodt"><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t
 \tag{4.10}\]</span></span></p>
-<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência quadrimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>, com o modelo descrito na <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a>. É importante observar que não é necessária a inclusão de todas variáveis dicotômicas no modelo, uma vez que se <span class="math inline">\(d_{2,t}=d_{3,t}=d_{4,t}=0\)</span>, então <span class="math inline">\(d_{1,t}=1\)</span>.</p>
+<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência trimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>, com o modelo descrito na <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a>. É importante observar que não é necessária a inclusão de todas variáveis dicotômicas no modelo, uma vez que se <span class="math inline">\(d_{2,t}=d_{3,t}=d_{4,t}=0\)</span>, então tem-se o primeiro trimestre.</p>
 <div id="tbl-dummy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -569,9 +569,18 @@ Tabela&nbsp;4.1: Criação de variáveis dummy
 </figcaption>
 <div aria-describedby="tbl-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 22%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Quadrimestre</th>
+<th>Ano</th>
+<th>Trimestre</th>
 <th><span class="math inline">\(d_{1,t}\)</span></th>
 <th><span class="math inline">\(d_{2,t}\)</span></th>
 <th><span class="math inline">\(d_{3,t}\)</span></th>
@@ -580,41 +589,47 @@ Tabela&nbsp;4.1: Criação de variáveis dummy
 </thead>
 <tbody>
 <tr class="odd">
-<td>Q1</td>
+<td>1</td>
+<td>T1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr class="even">
-<td>Q2</td>
+<td>1</td>
+<td>T2</td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr class="odd">
-<td>Q3</td>
+<td>1</td>
+<td>T3</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 </tr>
 <tr class="even">
-<td>Q4</td>
+<td>1</td>
+<td>T4</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>Q1</td>
+<td>2</td>
+<td>T1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr class="even">
+<td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>
 <td><span class="math inline">\(\vdots\)</span></td>

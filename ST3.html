@@ -511,7 +511,7 @@ Figura&nbsp;3.7: Série de produtos intermediários com ajuste da sazonalidade
 <p><span class="math display">\[
 \hat{T}_4=\frac{1}{2\times2+1}(10+12+20+23+27)=18,4
 \]</span></p>
-<p>Na <a href="ST6.html#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quando maior a ordem da série, mais suave o resultado.</p>
+<p>Na <a href="ST6.html#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quando maior a ordem da série, mais suave o resultado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1091,22 +1091,22 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li><p>Uma vez que a série exibe um padrão de sazonalidade anual e tem frequência mensal, qual a ordem de média móvel seria adequada para estimar a tendência via método clássico?</p></li>
-<li><p>Faça um gráfico da série de produção de asfalto transformada com curva da tendência usando média móvel com a ordem adequada, segundo sua resposta na questão anterior.</p></li>
+<li><p>Uma vez que a série exibe um padrão de sazonalidade anual e tem frequência mensal, qual ordem de média móvel seria adequada para estimar a tendência via método clássico?</p></li>
+<li><p>Faça o gráfico da série de produção de asfalto transformada com curva da tendência usando média móvel com a ordem adequada, segundo sua resposta na questão anterior. Sugestão: antes de realizar a média móvel use <code>mutate(volume = box_cox(volume, lambda))</code> para transformar a série.</p></li>
 </ol>
-<ol start="5" type="1">
+<ol start="4" type="1">
 <li>Faça a decomposição aditiva da série do índice de produção de bens de consumo duráveis usando o método clássico.</li>
 </ol>
+<ol start="5" type="1">
+<li>Seja uma série temporal com padrão multiplicativo ou variação cíclica não constante. Caso seja aplicada uma transformação à série, recomenda-se a decomposição aditiva ou multiplicativa?</li>
+</ol>
 <ol start="6" type="1">
-<li>Faça a decomposição clássica da série transformada de produção de asfalto usando o método clássico. Uma vez que a série foi transformada, você recomenda usar o método aditivo ou multiplicativo?</li>
+<li>Estime modelos via decomposição por STL da série de produção de asfalto considerando dados de até 2022. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Teste modelos com janela de 5 e 11 para a tendência e janela de 11 e infinita (“periodic” ou Inf) para a sazonalidade. Faça um gráfico da série com as previsões obtidas com o modelo STL para os 32 meses disponíveis a partir de 2023 <code>(h=32)</code>.</li>
 </ol>
 <ol start="7" type="1">
-<li>Estime modelos via decomposição por STL da série de produção de asfalto. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Teste modelos com janela de 5 e 11 para a tendência e janela de 11 e infinita (“periodic” ou Inf) para a sazonalidade. Faça um gráfico da série com as previsões obtidas com o modelo STL para os 32 meses disponíveis a partir de 2023 <code>(h=32)</code>.</li>
-</ol>
-<ol start="8" type="1">
 <li>Calcule as métricas de desempenho para o modelo avaliado nos meses separados para teste.</li>
 </ol>
-<ol start="9" type="1">
+<ol start="8" type="1">
 <li>Avalie os resíduos do melhor modelo.</li>
 </ol>
 
