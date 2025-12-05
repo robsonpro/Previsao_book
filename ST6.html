@@ -710,7 +710,7 @@ y_t &amp;= \phi_1y_{t-1} + \varepsilon_t\\
     &amp;= ...\\
 \end{align}
 \]</span></p>
-<p>À medida que <span class="math inline">\(k\)</span> aumenta, <span class="math inline">\(\phi_1^k\)</span> diminui, considerando <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>, de forma que o termo de potência maior pode ser desconsiderado. Fazendo <span class="math inline">\(\phi_1 = \theta_1\)</span>, <span class="math inline">\(\phi_1^2 = \theta_2\)</span> e assim sucessivamente, tem-se o modelo de média móvel inicialmente exposto. De forma análoga, impondo algumas restrições nos parâmetros do modelo <span class="math inline">\(MA(q)\)</span> é possível escrevê-lo como um processo <span class="math inline">\(AR(\infty)\)</span>.</p>
+<p>À medida que <span class="math inline">\(k\)</span> aumenta, <span class="math inline">\(\phi_1^k\)</span> diminui, considerando <span class="math inline">\(-1&lt;\phi_1&lt;1\)</span>, de forma que o termo de potência maior pode ser desconsiderado. Fazendo <span class="math inline">\(\phi_1 = \theta_1\)</span>, <span class="math inline">\(\phi_1^2 = \theta_2\)</span> e assim sucessivamente, tem-se o modelo de média móvel inicialmente exposto. De forma análoga, impondo algumas restrições nos parâmetros do modelo <span class="math inline">\(MA(q)\)</span>, é possível escrevê-lo como um processo <span class="math inline">\(AR(\infty)\)</span>.</p>
 <p>Qualquer processo <span class="math inline">\(MA(q)\)</span> é estacionário. Para um processo MA(1), as condições de estacionariedade são satisfeitas conforme segue <span class="citation" data-cites="harvey1990econometric">(<a href="references.html#ref-harvey1990econometric" role="doc-biblioref">Harvey 1990</a>)</span>:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -933,7 +933,7 @@ Figura&nbsp;6.12: Série temporal do valor da ação VALE3
 </div>
 <section id="previsão-com-modelos-arima-não-sazonais" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="previsão-com-modelos-arima-não-sazonais"><span class="header-section-number">6.4.1</span> Previsão com modelos ARIMA não sazonais</h3>
-<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos à frente de interesse, <span class="math inline">\(h\)</span>, à frente das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autoregressivos e os de média móvel, lembrando que este último apresentará todos termos de erro nulos sempre que <span class="math inline">\(h\geq q\)</span>, uma vez que são desconhecidos.</p>
+<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos de interesse para previsão, <span class="math inline">\(h\)</span>, para além das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autoregressivos e os de média móvel, lembrando que este último apresentará todos termos de erro nulos sempre que <span class="math inline">\(h\geq q\)</span>, uma vez que são desconhecidos.</p>
 <p><span id="eq-predarima1"><span class="math display">\[
 \begin{align}
 y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} + \varepsilon_{T+1} \\
@@ -943,14 +943,14 @@ y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \the
 \hat y_{T+1} &amp;= c + y_{T}(1 + \phi_1)+y_{T-1}(\phi_2-\phi_1) + \dots + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}  \\
 \end{align}
 \tag{6.22}\]</span></span></p>
-<p>Em um modelo ARIMA se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=0\)</span>, então a previsão de longo prazo tenderá para zero. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=1\)</span>, a previsão a longo prazo tenderá para uma constante. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=2\)</span>, a previsão a longo prazo será linear. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=0\)</span>, a previsão a longo prazo será a média das observações. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=1\)</span> a previsão a longo prazo será linear. Para previsões cíclicas é importante <span class="math inline">\(p\geq2\)</span> <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>.</p>
+<p>Em um modelo ARIMA se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=0\)</span>, então a previsão a longo prazo tenderá para zero. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=1\)</span>, a previsão a longo prazo tenderá para uma constante. Se <span class="math inline">\(c=0\)</span> e <span class="math inline">\(d=2\)</span>, a previsão a longo prazo será linear. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=0\)</span>, a previsão a longo prazo será a média das observações. Se <span class="math inline">\(c\neq0\)</span> e <span class="math inline">\(d=1\)</span> a previsão a longo prazo será linear. Para previsões cíclicas é importante <span class="math inline">\(p\geq2\)</span> <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">R. Hyndman e Athanasopoulos 2021</a>)</span>.</p>
 </section>
 </section>
 <section id="autocorrelação-parcial" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="autocorrelação-parcial"><span class="header-section-number">6.5</span> Autocorrelação parcial</h2>
 <p>A autocorrelação <span class="math inline">\(r_k\)</span> mede a relação linear entre a série original <span class="math inline">\(y_t\)</span> e a série defasada <span class="math inline">\(y_{t-k}\)</span>. Entretanto, se <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span> são correlacionadas, então <span class="math inline">\(y_{t-1}\)</span> e <span class="math inline">\(y_{t-2}\)</span> também serão. Logo, haverá correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span>. Porém, não porque necessariamente há uma explicação plausível para <span class="math inline">\(y_t\)</span> a partir de <span class="math inline">\(y_{t-2}\)</span>, mas simplesmente porque ambas estão relacionadas indiretamente por <span class="math inline">\(y_{t-1}\)</span>.</p>
 <p>A autocorrelação parcial visa corrigir este viés da autocorrelação, medindo mais diretamente a relação linear entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-k}\)</span> desconsiderando os efeitos das defasagens anteriores, <span class="math inline">\(1,2,\ldots, k-1\)</span>.</p>
-<p>A <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal em ambos correlogramas e a última autocorrelação parcial significativa com <span class="math inline">\(k=3\)</span>.</p>
+<p>A <a href="#fig-acfpacf" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> expõe os correlogramas de autocorrelação (ACF) e de autocorrelação parcial (PACF) da série do preço da ação VALE3. Observa-se um padrão sinusoidal no correlograma de ACF e a última autocorrelação parcial significativa para <span class="math inline">\(k=3\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-acfpacf" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1410,7 +1410,7 @@ Tabela&nbsp;6.10: Modelos ARIMA para o log série de chegada turistas no Brasil
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-chegfc" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> expõe o resultado da previsão dos modelos ARIMA considerados. Obviamente ambos os modelos não capturam a queda no volume de vôos nos anos da pandemia. Entretanto, as previsões apresentam boa proximidade com os resultados dos anos de 2023 e 2024. A <a href="#tbl-chegfcperf" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> expõe o desempenho dos modelos para os anos de 2023 e 2024. Confirma-se que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> apresentou melhor desempenho, com 10,3% de erro para estes anos.</p>
+<p>A <a href="#fig-chegfc" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> expõe o resultado da previsão dos modelos ARIMA considerados. Obviamente ambos os modelos não capturam a queda no volume de vôos nos anos da pandemia. No capítulo 7, sobre regressão dinâmica, será abordado como realizar intervenções usando variáveis binárias em modelos ARIMA para capturar o efeito de eventos externos. Entretanto, as previsões apresentam boa proximidade com os resultados dos anos de 2023 e 2024. A <a href="#tbl-chegfcperf" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> expõe o desempenho dos modelos para os anos de 2023 e 2024. Confirma-se que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> apresentou melhor desempenho, com 10,3% de erro para estes anos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegfc" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1462,7 +1462,7 @@ Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log da série de chegada t
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> expõe a variação sazonal da série de log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessário uma diferenciação de primeira ordem.</p>
+<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> expõe a variação sazonal da série de log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessária uma diferenciação de primeira ordem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1477,7 +1477,7 @@ Figura&nbsp;6.25: Variação sazonal no log(passageiros) de vôos no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12-1" class="quarto-xref">Figura&nbsp;<span>6.26</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 36 meses. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
+<p>A <a href="#fig-passbr-dif12-1" class="quarto-xref">Figura&nbsp;<span>6.26</span></a> apresenta a série mais uma vez diferenciada. Examinando-se o correlograma de ACF, pode-se sugerir um modelo MA(1) para a parte não sazonal, fazendo <span class="math inline">\(q=1\)</span>, dada a significância no lag 1, e um modelo MA(1) para a parte sazonal, fazendo <span class="math inline">\(Q=1\)</span>, dada a significância no lag 12. Logo, pode-se sugerir um modelo <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>. Ao se observar o correlograma de PACF, há indícios de que um modelo autorregressivo de ordem AR(1) seja adequado para a parte não sazonal, enquanto um modelo AR(3) pode ser interessante para a parte sazonal, devido aos picos de 12, 24 e 36 meses, logo sugerindo-se <span class="math inline">\(p=1\)</span> e <span class="math inline">\(P=3\)</span>. Entretanto, ao se tentar estimar um modelo <span class="math inline">\(ARIMA(1,1,0)(3,1,0)_{12}\)</span> não foram reportados resultados, sendo então aproximado um modelo <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12-1" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1639,7 +1639,7 @@ Tabela&nbsp;6.14: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a sé
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.28</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros. Após alguns anos de observação pós-pandemia, modelos ARIMA seguirão sendo úteis para modelar a variação observada no volume de passageiros em vôos do Brasil.</p>
+<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.28</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-for" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1669,7 +1669,7 @@ Figura&nbsp;6.29: Produção mensal de bens não duráveis no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.30</span></a> expõe a série de bens de consumo não duráveis duplamente diferenciada - simples e sazonal (<span class="math inline">\(m=12\)</span>), considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (2,1,0) para a parte não sazonal e um modelo de ordem (1,1,0) para a parte sazonal, dado o pico no atraso 12 meses. Já pelo correlograma de ACF, pode-se sugerir um modelo de ordem (0,1,1) para a parte não sazonal e um modelo de ordem (0,1,1) para a parte sazonal. Apesar de haverem outras autocorrelações siginificativas, estas não serão consideradas, uma vez que não são em sequência tanto para a tendência quanto para a sazonalidade.</p>
+<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.30</span></a> expõe a série de bens de consumo não duráveis duplamente diferenciada - simples e sazonal (<span class="math inline">\(m=12\)</span>), considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (2,1,0) para a parte não sazonal e um modelo de ordem (1,1,0) para a parte sazonal, dado o pico no atraso 12 meses. Já pelo correlograma de ACF, pode-se sugerir um modelo de ordem (0,1,1) para a parte não sazonal e um modelo de ordem (0,1,1) para a parte sazonal.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_diff12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1772,7 +1772,7 @@ Tabela&nbsp;6.16: Resultados dos ARIMA testados para a série de bens não durá
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.31</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.17</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.31</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante em março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.17</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_res" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1886,8 +1886,8 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbcb)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Simulando uma série temporal de ruído branco. A função básica <code>rnorm</code> serve para gerar números aleatórios na distribuição normal.</p>
