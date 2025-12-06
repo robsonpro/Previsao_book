@@ -2171,10 +2171,8 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 </div>
 <p>Teste de Ljung-Box para os resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto)) <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">dof=</span><span class="dv">3</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto)) <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">dof=</span><span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão para 3 anos à frente para a série de passageiros em vôos do Brasil.</p>
 <div class="cell">
