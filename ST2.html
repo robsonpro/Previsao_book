@@ -897,12 +897,12 @@ Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método i
 </section>
 <section id="previsão-e-intervalos-de-confiança" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="previsão-e-intervalos-de-confiança"><span class="header-section-number">2.5</span> Previsão e intervalos de confiança</h2>
-<p>As previsões via modelos de séries temporais visam projetar para um horizonte futuro de interesse estimativas da série, de forma a viabilizar ações de planejamento. O horizonte de previsão de interesse, também chamado de <em>lead time</em>, <span class="math inline">\(h\)</span>, consiste no número de períodos à frente que deseja-se prever <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. Obviamente, quanto maior o <em>lead time</em>, maior a incerteza nas previsões. Além da estimativa pontual, pode-se considerar um intervalo de confiança para a previsão com nível de probabilidade ou confiança de interesse. Para, por exemplo, um intervalo de previsão de 0,95 os valores obtidos consistem nos limites que garantem que o valor previsto está entre eles com 0,95 de confiança.</p>
+<p>As previsões de séries temporais visam projetar para um horizonte futuro de interesse estimativas da série, possibilitando ações de planejamento. O horizonte de previsão de interesse, também chamado de <em>lead time</em>, <span class="math inline">\(h\)</span>, consiste no número de períodos à frente que deseja-se prever <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. Obviamente, quanto maior o <em>lead time</em>, maior a incerteza nas previsões. Além da estimativa pontual, pode-se considerar um intervalo de confiança para a previsão com nível de confiança (probabilidade) de interesse. Para, por exemplo, um intervalo de previsão com 0,95 de confiança, os valores obtidos consistem nos limites que garantem que o valor previsto está entre eles com 0,95 de probabilidade.</p>
 <p>Um intervalo de previsão para <span class="math inline">\(h\)</span> períodos à frente com 0,95 de confiança pode ser calculado conforme <a href="#eq-confint" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>.</p>
 <p><span id="eq-confint"><span class="math display">\[
 \hat{y}_{T+h|T} \pm1,96 \hat\sigma_h,
 \tag{2.11}\]</span></span></p>
-<p>onde <span class="math inline">\(1,96\)</span> consiste no valor do quantil na distribuição normal-padrão <span class="math inline">\(z\)</span>, com 0,95 de probabilidade ou confiança. Obviamente, caso seja desejado um intervalo com nível de confiança diferente, deve-se selecionar o valor <span class="math inline">\(z\)</span> adequado.</p>
+<p>onde <span class="math inline">\(1,96\)</span> consiste no valor do quantil na distribuição normal-padrão <span class="math inline">\(z\)</span>, com 0,95 de probabilidade ou confiança, <span class="math inline">\(z_{0,95} = 1,96\)</span>. Obviamente, caso seja desejado um intervalo com nível de confiança diferente, deve-se definir o valor <span class="math inline">\(z\)</span> adequado.</p>
 <p>O desvio-padrão para previsões com <span class="math inline">\(h=1\)</span> (um período a frente) pode ser calculado como o desvio-padrão dos resíduos, conforme <a href="#eq-dp" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> onde <span class="math inline">\(K\)</span> é o número de parâmetros do modelo e <span class="math inline">\(M\)</span> o número de valores ausentes nos resíduos (para o método ingênuo e o da deriva, por exemplo, <span class="math inline">\(M=1\)</span>, uma vez que a primeira observação não pode ser estimada).</p>
 <p><span id="eq-dp"><span class="math display">\[
 \hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
@@ -943,7 +943,7 @@ Tabela&nbsp;2.6: Desvio-padrão para previsão para os métodos considerados
 </div>
 </figure>
 </div>
-<p>A <a href="#fig-ibovpred" class="quarto-xref">Figura&nbsp;<span>2.14</span></a> plota a previsão para 10 dias à frente com os intervalos de confiança de 0,80 e 0,95 para o método ingênuo para a série do índice Ibovespa. Observa-se que à medida que o horizonte de previsão aumenta, aumenta-se a incerteza quanto ao valor previsto.</p>
+<p>A <a href="#fig-ibovpred" class="quarto-xref">Figura&nbsp;<span>2.14</span></a> plota a previsão para 10 dias à frente com os intervalos de confiança de 0,80 e 0,95 para o método ingênuo para a série do índice Ibovespa. Observa-se que, à medida que o horizonte de previsão aumenta, aumenta-se a incerteza quanto ao valor previsto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ibovpred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -988,9 +988,8 @@ Figura&nbsp;2.15: Série temporal de Exportações com transformação de Box-Co
 </section>
 <section id="avaliação-de-modelos-de-séries-temporais" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.7</span> Avaliação de modelos de séries temporais</h2>
-<p>Uma avaliação ideal de um modelo de séries temporais deve ser baseada no desempenho do modelo em novos dados e não somente nos valores residuais. Para tal, deve-se considerar dados separados para teste do modelo ou dados futuros. Portanto, não se deve considerar os dados usados para estimar (treinar) o modelo para avaliar seu desempenho.</p>
-<p>Conforme visto no caso para dados de temperatura instantânea para São João del-Rei, uma primeira abordagem consiste em simplesmente usar parte inicial da série para treino do modelo e as últimas observações para teste. O percentual de observações usadas para treino/teste depende do número de observações disponíveis na série.</p>
-<p>Na <a href="#fig-valid" class="quarto-xref">Figura&nbsp;<span>2.16</span></a> ilustra-se arbitrariamente a separação das primeiras 75% observações para treino e os 25% restantes para teste.</p>
+<p>Uma avaliação ideal de um modelo de séries temporais deve ser baseada no desempenho do modelo em novos dados e não somente nos valores residuais. Este tipo de avaliação possibilita averiguar a capacidade de generalização do modelo. Deve-se considerar dados separados para teste do modelo ou dados futuros, de forma a avaliar o modelo estimado em dados que não foram usados para tal. Logo, recomenda-se que os dados usados para estimar (treinar) o modelo não sejam usados para avaliar o desempenho do modelo para realizar previsões.</p>
+<p>Conforme visto no caso para dados de temperatura instantânea de São João del-Rei, uma primeira abordagem consiste em simplesmente usar parte inicial da série para treino do modelo e as últimas observações para teste. Deve-se sempre usar observações de teste posteriores às de treino. Na <a href="#fig-valid" class="quarto-xref">Figura&nbsp;<span>2.16</span></a> ilustra-se a separação de cinco observações para teste e as remanescentes para treino.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-valid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1005,11 +1004,26 @@ Figura&nbsp;2.16: Observações de treino e teste para validar séries temporais
 </div>
 </div>
 </div>
-<p>O erro de previsão (não confundir com resíduo) é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.14</span></a>, para <span class="math inline">\(t=T+1, \dots, T+h\)</span>.</p>
+<p>O problema da abordagem de validação por simples divisão da série em dados de treino e teste é que, ao separar muitos perídos à frente para teste, o erro observado pode ser referente a padrões de regiões particulares do horizonte de teste. Ademais, tal abordagem resulta em uma estimativa do erro muito variável, por geralmente se basear em apenas uma realização do treinamento e teste. A validação cruzada em séries temporais pode ser realizada de forma mais consistente, mudando a origem dos dados de teste iterativamente. Tal abordagem é chamada de validação por origem móvel (<em>rolling origin</em>). Nesta abordagem, o número de observações de teste é fixo, porém a origem da previsão é móvel, sendo o fim dos dados de treino móvel, possibilitando a criação de múltiplos períodos de teste para avaliação. A <a href="#fig-valid2" class="quarto-xref">Figura&nbsp;<span>2.17</span></a> ilustra o processo de separação dos dados para validação por origem móvel para (a) <span class="math inline">\(h=1\)</span> observação e (b) <span class="math inline">\(h=2\)</span> observações de teste. Recomenda-se realizar a validação com um ou mais horizontes de previsão e teste, <span class="math inline">\(h\)</span>, de interesse e mover a origem de previsão, para possibilitar uma melhor estimativa do erro para cada <span class="math inline">\(h\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-valid2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-valid2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-valid2-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-valid2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.17: Validação cruzada de séries temporais usando origem móvel
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O erro de previsão, <span class="math inline">\(e_{T+h}\)</span> é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.14</span></a>.</p>
 <p><span id="eq-erroo"><span class="math display">\[
-e_{t} = y_{t} - \hat{y}_{t}
+e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
 \tag{2.14}\]</span></span></p>
-<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma escala da variável da série. O MAE é menos suscetível a <em>outliers</em> e ambos devem ser minimizados. O erro percentual médio absuluto (<em>mean absolute percentage error</em> - MAPE) tem a vantagem de ser livre de escala, permitindo a comparação de séries distintas.</p>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste usadas para avaliar modelos de séries temporais. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma unidade de medida da série. O MAE é menos suscetível a valores discrepantes e ambos devem ser minimizados. O erro percentual absuluto médio (<em>mean absolute percentage error</em> - MAPE) é livre de escala, assim como o erro absoluto médio escalonado (<em>Mean Absolute Scaled Error</em> - MASE). O segundo é mais adequado para comparar séries distintas, por escalonar o erro usando a série padronizada, <span class="math inline">\(q_j\)</span>. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.15</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal.</p>
 <div id="tbl-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1045,11 +1059,10 @@ Tabela&nbsp;2.7: Métricas de erro
 </div>
 </figure>
 </div>
-<p>As métricas com o erro padronizado, <span class="math inline">\(q_j\)</span>, são alternativais ao MAPE para comparar desempenho em séries distintas. Elas consideram a escala dos dados de treino para tal. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.15</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal. O erro médio absoluto e escalonado (<em>mean absolute scaled error</em> - MASE) na <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> considera tal padronização.</p>
 <p><span id="eq-qj"><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t=2}^T |y_t-y_{t-1}|}
 \tag{2.15}\]</span></span></p>
-<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
+<p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei para a abordagem de treino e teste, conforme divisão e previsões observadas na <a href="#fig-temp" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
 <div class="cell">
 <div id="tbl-erro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1081,7 +1094,7 @@ Tabela&nbsp;2.8: Desempenho dos métodos para a previsão da temperatura instant
 <td style="text-align: right;">8,14</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">média</td>
+<td style="text-align: left;">Média</td>
 <td style="text-align: right;">5,70</td>
 <td style="text-align: right;">5,17</td>
 <td style="text-align: right;">27,56</td>
@@ -1093,173 +1106,270 @@ Tabela&nbsp;2.8: Desempenho dos métodos para a previsão da temperatura instant
 </figure>
 </div>
 </div>
+<p>A <a href="#fig-erroROtsjdr" class="quarto-xref">Figura&nbsp;<span>2.18</span></a> plota o RMSE na validação cruzada por origem móvel para a série de temperatura de São João del-Rei considerando distintos horizontes de previsão e distintos métodos. Pode-se observar que o método Ingênuo sazonal apresenta os melhores resultados para horizontes de previsão (teste) de <span class="math inline">\(h=1\)</span> a <span class="math inline">\(h=24\)</span> horas.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-erroROtsjdr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-erroROtsjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST2_files/figure-html/fig-erroROtsjdr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-erroROtsjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.18: ´RMSE na validação cruzada por origem móvel para a série de temperatura de São João del-Rei considerando distintos horizontes de previsão e distintos métodos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Por fim, a <a href="#tbl-perfROtsjdr" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a> resume as métricas de erro para a previsão da temperatura instantânea em São João del-Rei na validação cruzada por origem móvel considerando distintos métodos e <span class="math inline">\(h=1\)</span>. Pode-se comparar o ajuste de treino com o desempenho na previsão (teste). Confirma-se que o ingênuo sazonal foi o melhor método por, conforme visto, ser o único capaz de capturar a sazonalidade da série, sendo um <em>benchmarking</em> plausível para curtos períodos de previsão.</p>
+<div id="tbl-perfROtsjdr" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-perfROtsjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instantânea em São João del-Rei na validação cruzada por origem móvel para h=1
+</figcaption>
+<div aria-describedby="tbl-perfROtsjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  .model          .type     RMSE   MAE  MAPE  MASE
+  &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Ingênuo         Test      1.91 1.40   6.77 1.31 
+2 Ingênuo         Training  1.81 1.31   6.17 1.17 
+3 Ingênuo sazonal Test      1.27 0.983  5.49 0.917
+4 Ingênuo sazonal Training  1.42 1.13   5.73 1    
+5 Média           Test      5.69 5.15  27.1  4.81 
+6 Média           Training  5.38 4.77  23.9  4.25 </code></pre>
+</div>
+</div>
+</figure>
+</div>
 </section>
 <section id="implementação-em-r" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">2.8</span> Implementação em R</h2>
 <p>A seguir apresenta-se parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo. Os dados utilizados estão disponíveis em <a href="https://github.com/robsonpro/Previsao">Previsão, por Robson Bruno Dutra Pereira</a>.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtime)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Seja a série de produção de energia no Brasil. O código para obter a série já foi apresentado no capítulo anterior. Para obter a média e desvio-padrão da série multivariada de produção de energia deve-se usar o comando <code>features</code> listando as estatísticas a serem calculadas.</p>
+<p>Seja a série de produção de energia no Brasil. O código para obter a série já foi apresentado no capítulo anterior. Para obter a média, desvio-padrão e outras estatísticas da série multivariada de produção de energia, deve-se usar o comando <code>features</code> listando as estatísticas a serem calculadas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(energia, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">list</span>(<span class="at">mean =</span> mean,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">sd =</span> sd))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(energia, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">list</span>(<span class="at">mean =</span> mean,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">sd =</span> sd))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Obtenção dos quartis para a mesma série.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(energia, quantile)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>energia_2023_ts <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(energia, quantile)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Leitura da série de exportações no Brasil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>export <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"exportacoes_BR.csv"</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header=</span>T)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="ot">&lt;-</span> export <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">yearmonth</span>(<span class="fu">paste</span>(ano, mes, <span class="at">sep =</span> <span class="st">"-"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(ano, mes)) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>export <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"exportacoes_BR.csv"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header=</span>T)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="ot">&lt;-</span> export <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">yearmonth</span>(<span class="fu">paste</span>(ano, mes, <span class="at">sep =</span> <span class="st">"-"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(ano, mes)) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A obtenção das autocorrelações é realizada com a função <code>ACF</code> e pode-se definir o número máximo de defasagens com o argumento <code>lag_max</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(Exp, <span class="at">lag_max =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(Exp, <span class="at">lag_max =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tomando a série de IPCA a partir de 2018, também apresentada no capítulo anterior, o modelo de média pode ser obtido conforme segue usando a função <code>model</code> que servirá de forma geral para modelagem de séries temporais, independente do modelo e, neste caso, a função <code>MEAN</code> para obtenção do modelo via média.</p>
+<p>Tomando a série do IPCA a partir de 2018, também apresentada no capítulo anterior. O modelo de média pode ser obtido conforme segue com a função <code>MEAN</code>. O comando <code>model</code> servirá de forma geral para modelagem de séries temporais, independente do modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ipca_fit1 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">mean =</span> <span class="fu">MEAN</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ipca_fit1 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">mean =</span> <span class="fu">MEAN</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A previsão pode ser realizada com o comando <code>forecast</code>. O argumento <code>h</code> serve para definir o número de períodos da previsão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ipca_pred1 <span class="ot">&lt;-</span> ipca_fit1 <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ipca_pred1 <span class="ot">&lt;-</span> ipca_fit1 <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pode-se observar a série com a previsão com o código a seguir.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ipca_pred1 <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"IPCA: previsão por média"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ipca_pred1 <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca_ts <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"IPCA: previsão por média"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para modelagem via método ingênuo usa-se o comando <code>NAIVE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>IPCA_fit2 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">naive =</span> <span class="fu">NAIVE</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>IPCA_fit2 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">naive =</span> <span class="fu">NAIVE</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Seja a série temporal de temperatura instantânea de São João del-Rei, também apresentada no capítulo anterior. Sejam os dados dos 14 primeiros dias de maio considerando, com os 7 primeiros separados a seguir para treinar os modelos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr_ts <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-01 00:00:00"</span> <span class="sc">~</span> <span class="st">"2024-05-14 23:00:00"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-01 00:00:00"</span> <span class="sc">~</span> <span class="st">"2024-05-07 23:00:00"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tempo_sjdr_14_dias <span class="ot">&lt;-</span> tempo_sjdr_ts <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-01 00:00:00"</span> <span class="sc">~</span> <span class="st">"2024-05-14 23:00:00"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-01 00:00:00"</span> <span class="sc">~</span> <span class="st">"2024-05-07 23:00:00"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>É possível realizar a modelagem considerando múltiplos modelos. Seja abaixo a modelagem considerando os métodos da média, ingênuo e ingênuo sazonal, sendo o último obtido via comando <code>SNAIVE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>temp_fit <span class="ot">&lt;-</span> train <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    média <span class="ot">=</span> <span class="fu">MEAN</span>(Temperatura),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    Ingênuo <span class="ot">=</span> <span class="fu">NAIVE</span>(Temperatura),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ingênuo sazonal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">SNAIVE</span>(Temperatura)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>temp_fit <span class="ot">&lt;-</span> train <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    Média <span class="ot">=</span> <span class="fu">MEAN</span>(Temperatura),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    Ingênuo <span class="ot">=</span> <span class="fu">NAIVE</span>(Temperatura),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ingênuo sazonal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">SNAIVE</span>(Temperatura)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A seguir o código para plotar as previsões com a série completa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="ot">&lt;-</span> temp_fit <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">7</span><span class="sc">*</span><span class="dv">24</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias, <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="ot">&lt;-</span> temp_fit <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">7</span><span class="sc">*</span><span class="dv">24</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Valores ajustados e resíduos do método ingênuo sazonal. A coluna <code>.innov</code> resultaria nos resíduos para séries transformadas. Em casos sem transformação, os resultados são idênticos aos da coluna <code>.resid</code>. O comando <code>tail</code> exibe apenas as últimas seis linhas dos resultados.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(temp_fit) <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model <span class="sc">==</span> <span class="st">"Ingênuo sazonal"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(.model, .innov)) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(temp_fit) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model <span class="sc">==</span> <span class="st">"Ingênuo sazonal"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>.innov) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A série de produção de carros foi apresentada no capítulo anterior. A modelagem e previsão via método da deriva é obtida conforme segue.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>carros_fit4 <span class="ot">&lt;-</span> carros_ts <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">drift =</span> <span class="fu">RW</span>(quantidade <span class="sc">~</span> <span class="fu">drift</span>()))</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="ot">&lt;-</span> carros_fit4 <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># carros_pred4</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="sc">|&gt;</span> </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(carros_ts, <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>carros_fit4 <span class="ot">&lt;-</span> carros_ts <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">drift =</span> <span class="fu">RW</span>(quantidade <span class="sc">~</span> <span class="fu">drift</span>()))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="ot">&lt;-</span> carros_fit4 <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># carros_pred4</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="sc">|&gt;</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(carros_ts, <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série do índice Ibovespa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Ibovespa_ InfoMoney_2024.csv"</span>,</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header =</span> T)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DATA =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ibov)) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(DATA, FECHAMENTO) <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> DATA)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(FECHAMENTO) <span class="sc">+</span> </span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Índice Ibovespa B3 [R$]"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Modelagem e gráficos dos resíduos para o método ingênuo para a série do índice. A função <code>gg_tsresiduals</code> viabiliza a obtenção de todos os gráficos de resíduos explorados no capítulo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_naive_ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">NAIVE</span>(FECHAMENTO))</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Ibovespa_ InfoMoney_2024.csv"</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header =</span> T)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fit_naive_ibov <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DATA =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ibov)) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(DATA, FECHAMENTO) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> DATA)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(FECHAMENTO) <span class="sc">+</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Índice Ibovespa B3 [R$]"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Testes de Box-pierce e Ljung-Box para os resíduos do método ingênuo para a série do índice ibovespa. Deve-se usar os comandos <code>box_pierce</code> e <code>ljung_box</code> juntamente com o comando <code>features</code>.</p>
+<p>Modelagem e gráficos dos resíduos para o método ingênuo para a série do índice. A função <code>gg_tsresiduals</code> viabiliza a obtenção conjunta de todos os gráficos de resíduos explorados no capítulo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>aug <span class="ot">&lt;-</span> fit_naive_ibov <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>()</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_naive_ibov <span class="ot">&lt;-</span> ibov <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">NAIVE</span>(FECHAMENTO))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> aug <span class="sc">|&gt;</span> </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, box_pierce, <span class="at">lag =</span> <span class="dv">10</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Q</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Q_ <span class="ot">&lt;-</span> aug <span class="sc">|&gt;</span> </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag =</span> <span class="dv">10</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Q_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fit_naive_ibov <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Transformação de Box-Cox para a série de exportações. Deve-se usar a opção <code>guerrero</code> no argumento <code>features</code> do comando homônimo para aplicar o algoritmo de <span class="citation" data-cites="guerrero1993time">Guerrero (<a href="references.html#ref-guerrero1993time" role="doc-biblioref">1993</a>)</span> para selecionar o lambda ótimo da transformção. Usa-se depois o comando <code>box_cox</code> com o lambda ótimo para transformação.</p>
+<p>Testes de Box-pierce e Ljung-Box para os resíduos do método ingênuo para a série do índice Ibovespa. Deve-se usar os comandos <code>box_pierce</code> e <code>ljung_box</code> no comando <code>features</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Exp, <span class="at">features =</span> guerrero) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lambda_guerrero)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(Exp, lambda)) <span class="sc">+</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">""</span>, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Exportações com transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aug <span class="ot">&lt;-</span> fit_naive_ibov <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> aug <span class="sc">|&gt;</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, box_pierce, <span class="at">lag =</span> <span class="dv">10</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Q</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>Q_ <span class="ot">&lt;-</span> aug <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">lag =</span> <span class="dv">10</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>Q_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Desempenho dos métodos considerados para a série de temperatura de São João del-Rei. O comando <code>accuracy</code> deve ser utilizado, sendo fornecidos as previsões e os dados observados para os dias correspondentes. Pode-se selecionar apenas as métricas de interesse.</p>
+<p>Transformação de Box-Cox para a série de exportações. Deve-se usar a opção <code>guerrero</code> no argumento <code>features</code> do comando homônimo para aplicar o algoritmo de <span class="citation" data-cites="guerrero1993time">Guerrero (<a href="references.html#ref-guerrero1993time" role="doc-biblioref">1993</a>)</span> e selecionar o lambda ótimo da transformção. Usa-se depois o comando <code>box_cox</code> com o lambda ótimo para transformação.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>last_days <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-08 00:00:00"</span> <span class="sc">~</span>.)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(temp_fc, last_days) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> exp_ts <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Exp, <span class="at">features =</span> guerrero) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(lambda_guerrero)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(Exp, lambda)) <span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">""</span>, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Exportações com transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho dos métodos considerados para a série de temperatura de São João del-Rei para a abordagem de treino e teste. O comando <code>accuracy</code> deve ser utilizado, sendo fornecidas as previsões e os dados observados para os dias correspondentes. Pode-se selecionar apenas as métricas de interesse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>last_days <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-08 00:00:00"</span> <span class="sc">~</span>.)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(temp_fc, last_days) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Particionamento dos dados para validação cruzada por origem móvel. Usa-se o comando <code>stretch_tsibble</code> para criar múltiplos conjuntos de teste de forma iterativa. Neste caso foi considerado <code>.init=168</code> observações para a primeira série de treino, sendo aumentada de uma em uma observação, <code>.step = 1</code>. O comando cria a coluna <code>.id</code> para identificar as partições de treino criadas. Sugere-se inspecionar o resultado em <code>t_sjdr_14d_tr1</code>, para constatar que, para <code>.id=1</code> tem-se as primeiras 168 observações de treino, para <code>.id=2</code> tem-se as primeiras 169 observações de treino e assim sucessivamente. Essa coluna é essencial para identificação das divisões de treino e para realizar um modelo para cada uma destas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t_sjdr_14d_tr1 <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">168</span>, <span class="at">.step =</span> <span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># t_sjdr_14d_tr1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realizando previsões e plotando o desempenho dos modelos para distintos horizontes de previsão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> t_sjdr_14d_tr1 <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    Média <span class="ot">=</span> <span class="fu">MEAN</span>(Temperatura),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    Ingênuo <span class="ot">=</span> <span class="fu">NAIVE</span>(Temperatura),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ingênuo sazonal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">SNAIVE</span>(Temperatura)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">24</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.id, .model) <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_fable</span>(<span class="at">response =</span> <span class="st">"Temperatura"</span>, </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">distribution =</span> Temperatura)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(tempo_sjdr_14_dias, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">".model"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> h, <span class="at">y =</span> RMSE, <span class="at">col =</span> .model)) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># facet_wrap(vars(.model)) +</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Erro na validação por origem móvel"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Comparando desempenho de treino e teste para <span class="math inline">\(h=1\)</span>. Ao se usar o comando <code>accuracy()</code> sem dados futuros, obter-se-á o desempenho de treino, segundo os valores ajustados para a série.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> t_sjdr_14d_tr1 <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    Média <span class="ot">=</span> <span class="fu">MEAN</span>(Temperatura),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    Ingênuo <span class="ot">=</span> <span class="fu">NAIVE</span>(Temperatura),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ingênuo sazonal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">SNAIVE</span>(Temperatura)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Acurácia no treino</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>acc_treino <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>()</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acurácia no teste (TSCV / forecast)</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>acc_teste <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(tempo_sjdr_14_dias)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Juntando os resultados</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>acc_treino <span class="sc">|&gt;</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(acc_teste) <span class="sc">|&gt;</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.model, .type) <span class="sc">|&gt;</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">mean</span>(RMSE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE  =</span> <span class="fu">mean</span>(MAE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">mean</span>(MAPE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">MASE =</span> <span class="fu">mean</span>(MASE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos" class="level2" data-number="2.9">
