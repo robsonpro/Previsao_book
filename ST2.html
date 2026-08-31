@@ -858,8 +858,8 @@ Q = T\sum_{k=1}^l r_k^2
 <p><span id="eq-lb"><span class="math display">\[
 Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
 \tag{2.10}\]</span></span></p>
-<p>O teste de Ljung-Box é similar ao de Box-Pierce com peso <span class="math inline">\((T + 2)/(T- k)\)</span> no quadrado da autocorrelação de <em>lag</em> <span class="math inline">\(k\)</span>. Para altos valores de <span class="math inline">\(T\)</span> ambos os testes reportam resultados muito próximos <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. A hipótese nula de ambos os testes reside na nulidade de todas as alto correlações. Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade. O teste de Ljung-Box apresenta poder do teste mais alto, por isso é o mais recomendado.</p>
-<p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. O p-valor consiste na probabilidade associada à estatística calculada, <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span>. Como <span class="math inline">\(Q\)</span>/<span class="math inline">\(Q^*\)</span> &lt; <span class="math inline">\(\chi^2_{(df=10, \alpha = 0,05)} = 18,31\)</span> ou como o p-valor &gt; 0,05 = <span class="math inline">\(\alpha\)</span>, para ambos os testes, não se rejeita a hipótese nula. Logo, pode-se concluir que as autocorrelações dos resíduos não diferem das de um ruído branco.</p>
+<p>O teste de Ljung-Box é similar ao de Box-Pierce com peso <span class="math inline">\((T + 2)/(T- k)\)</span> no quadrado da autocorrelação de <em>lag</em> <span class="math inline">\(k\)</span>. Para altos valores de <span class="math inline">\(T\)</span> ambos os testes reportam resultados muito próximos <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. Porém, o teste de Ljung-Box corrige um viés do teste de Box-Pierce para séries com poucas observações, <span class="math inline">\(T\)</span>, uma vez que que este subestima a autocorrelação quando <span class="math inline">\(T\)</span> é baixo, apresentando menor poder. A hipótese nula de ambos os testes reside na nulidade de todas as alto correlações. Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade. O teste de Ljung-Box, por apresentar poder mais alto, é o mais recomendado.</p>
+<p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. O p-valor consiste na probabilidade associada à estatística calculada, <span class="math inline">\(Q\)</span> ou <span class="math inline">\(Q^*\)</span>. Como <span class="math inline">\(Q\)</span> ou <span class="math inline">\(Q^*\)</span> &lt; <span class="math inline">\(\chi^2_{(df=10, \alpha = 0,05)} = 18,31\)</span> ou como o p-valor &gt; 0,05 = <span class="math inline">\(\alpha\)</span>, para ambos os testes, não se rejeita a hipótese nula. Logo, pode-se concluir que as autocorrelações dos resíduos não diferem das de um ruído branco.</p>
 <div class="cell">
 <div id="tbl-testes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1004,7 +1004,7 @@ Figura&nbsp;2.16: Observações de treino e teste para validar séries temporais
 </div>
 </div>
 </div>
-<p>O problema da abordagem de validação por simples divisão da série em dados de treino e teste é que, ao separar muitos perídos à frente para teste, o erro observado pode ser referente a padrões de regiões particulares do horizonte de teste. Ademais, tal abordagem resulta em uma estimativa do erro muito variável, por geralmente se basear em apenas uma realização do treinamento e teste. A validação cruzada em séries temporais pode ser realizada de forma mais consistente, mudando a origem dos dados de teste iterativamente. Tal abordagem é chamada de validação por origem móvel (<em>rolling origin</em>). Nesta abordagem, o número de observações de teste é fixo, porém a origem da previsão é móvel, sendo o fim dos dados de treino móvel, possibilitando a criação de múltiplos períodos de teste para avaliação. A <a href="#fig-valid2" class="quarto-xref">Figura&nbsp;<span>2.17</span></a> ilustra o processo de separação dos dados para validação por origem móvel para (a) <span class="math inline">\(h=1\)</span> observação e (b) <span class="math inline">\(h=2\)</span> observações de teste. Recomenda-se realizar a validação com um ou mais horizontes de previsão e teste, <span class="math inline">\(h\)</span>, de interesse e mover a origem de previsão, para possibilitar uma melhor estimativa do erro para cada <span class="math inline">\(h\)</span>.</p>
+<p>O problema da abordagem de validação por simples divisão da série em dados de treino e teste é que, ao separar muitos perídos à frente para teste, o erro observado pode ser referente a padrões de regiões particulares do horizonte de teste. Ademais, tal abordagem resulta em uma estimativa do erro muito variável por, geralmente, se basear em apenas uma realização do treinamento e teste. A validação cruzada em séries temporais pode ser realizada de forma mais consistente, mudando a origem dos dados de teste iterativamente. Tal abordagem é chamada de validação por origem móvel (<em>rolling origin</em>). Nesta abordagem, o número de observações de teste é fixo, porém a origem da previsão é móvel, sendo o fim dos dados de treino móvel, possibilitando a criação de múltiplos períodos de teste para avaliação. A <a href="#fig-valid2" class="quarto-xref">Figura&nbsp;<span>2.17</span></a> ilustra o processo de separação dos dados para validação por origem móvel para (a) <span class="math inline">\(h=1\)</span> observação e (b) <span class="math inline">\(h=2\)</span> observações de teste. Recomenda-se realizar a validação com um ou mais horizontes de previsão e teste, <span class="math inline">\(h\)</span>, de interesse e mover a origem de previsão, para possibilitar uma melhor estimativa do erro para cada <span class="math inline">\(h\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-valid2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1132,12 +1132,12 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <pre><code># A tibble: 6 × 6
   .model          .type     RMSE   MAE  MAPE  MASE
   &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Ingênuo         Test      1.91 1.40   6.77 1.31 
-2 Ingênuo         Training  1.81 1.31   6.17 1.17 
-3 Ingênuo sazonal Test      1.27 0.983  5.49 0.917
-4 Ingênuo sazonal Training  1.42 1.13   5.73 1    
-5 Média           Test      5.69 5.15  27.1  4.81 
-6 Média           Training  5.38 4.77  23.9  4.25 </code></pre>
+1 Ingênuo         Test      1.91  1.4   6.77  1.31
+2 Ingênuo         Training  1.81  1.31  6.17  1.17
+3 Ingênuo sazonal Test      1.27  0.98  5.49  0.92
+4 Ingênuo sazonal Training  1.42  1.13  5.73  1   
+5 Média           Test      5.69  5.15 27.1   4.81
+6 Média           Training  5.38  4.77 23.9   4.25</code></pre>
 </div>
 </div>
 </figure>
@@ -1191,7 +1191,7 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <p>Tomando a série do IPCA a partir de 2018, também apresentada no capítulo anterior. O modelo de média pode ser obtido conforme segue com a função <code>MEAN</code>. O comando <code>model</code> servirá de forma geral para modelagem de séries temporais, independente do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ipca_fit1 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018-01"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">mean =</span> <span class="fu">MEAN</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A previsão pode ser realizada com o comando <code>forecast</code>. O argumento <code>h</code> serve para definir o número de períodos da previsão.</p>
@@ -1203,16 +1203,15 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ipca_pred1 <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018-01"</span> <span class="sc">~</span> .), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"IPCA"</span>,</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"IPCA: previsão por média"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para modelagem via método ingênuo usa-se o comando <code>NAIVE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>IPCA_fit2 <span class="ot">&lt;-</span> ipca_ts <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">naive =</span> <span class="fu">NAIVE</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2018-01"</span> <span class="sc">~</span> .) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">naive =</span> <span class="fu">NAIVE</span>(ipca))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Seja a série temporal de temperatura instantânea de São João del-Rei, também apresentada no capítulo anterior. Sejam os dados dos 14 primeiros dias de maio considerando, com os 7 primeiros separados a seguir para treinar os modelos.</p>
 <div class="cell">
@@ -1231,13 +1230,14 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ingênuo sazonal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">SNAIVE</span>(Temperatura)</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A seguir o código para plotar as previsões com a série completa.</p>
+<p>A seguir o código para realizar e plotar as previsões com a série completa.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="ot">&lt;-</span> temp_fit <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">7</span><span class="sc">*</span><span class="dv">24</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>temp_fc <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(tempo_sjdr_14_dias, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Valores ajustados e resíduos do método ingênuo sazonal. A coluna <code>.innov</code> resultaria nos resíduos para séries transformadas. Em casos sem transformação, os resultados são idênticos aos da coluna <code>.resid</code>. O comando <code>tail</code> exibe apenas as últimas seis linhas dos resultados.</p>
 <div class="cell">
@@ -1301,11 +1301,10 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(Exp, lambda)) <span class="sc">+</span> </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">""</span>, </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Exportações com transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">""</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Exportações com transformação de Box-Cox"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Desempenho dos métodos considerados para a série de temperatura de São João del-Rei para a abordagem de treino e teste. O comando <code>accuracy</code> deve ser utilizado, sendo fornecidas as previsões e os dados observados para os dias correspondentes. Pode-se selecionar apenas as métricas de interesse.</p>
+<p>Desempenho dos métodos considerados para a série de temperatura de São João del-Rei tomando a divisão dos dados em treino e teste. O comando <code>accuracy</code> deve ser utilizado, sendo fornecidas as previsões e os dados observados para os dias correspondentes. Pode-se selecionar apenas as métricas de interesse.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>last_days <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2024-05-08 00:00:00"</span> <span class="sc">~</span>.)</span>
@@ -1313,7 +1312,7 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(temp_fc, last_days) <span class="sc">|&gt;</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Particionamento dos dados para validação cruzada por origem móvel. Usa-se o comando <code>stretch_tsibble</code> para criar múltiplos conjuntos de teste de forma iterativa. Neste caso foi considerado <code>.init=168</code> observações para a primeira série de treino, sendo aumentada de uma em uma observação, <code>.step = 1</code>. O comando cria a coluna <code>.id</code> para identificar as partições de treino criadas. Sugere-se inspecionar o resultado em <code>t_sjdr_14d_tr1</code>, para constatar que, para <code>.id=1</code> tem-se as primeiras 168 observações de treino, para <code>.id=2</code> tem-se as primeiras 169 observações de treino e assim sucessivamente. Essa coluna é essencial para identificação das divisões de treino e para realizar um modelo para cada uma destas.</p>
+<p>Particionamento dos dados para validação cruzada por origem móvel. Pode-se usar o comando <code>stretch_tsibble</code> para criar múltiplos conjuntos de teste de forma iterativa. Neste caso, foi considerado <code>.init=168</code> observações para a primeira série de treino, sendo esta aumentada iterativamente de uma em uma observação fazendo <code>.step = 1</code>. O comando cria a coluna <code>.id</code> para identificar as partições de treino criadas. Sugere-se inspecionar o resultado em <code>t_sjdr_14d_tr1</code>, para constatar que, para <code>.id=1</code> tem-se as primeiras 168 observações de treino, para <code>.id=2</code> tem-se as primeiras 169 observações de treino e assim sucessivamente. Essa coluna é essencial para identificação das divisões de treino e para realizar um modelo para cada.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t_sjdr_14d_tr1 <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">168</span>, <span class="at">.step =</span> <span class="dv">1</span>)</span>

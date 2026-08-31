@@ -261,7 +261,7 @@ window.Quarto = {
   <li><a href="#componentes-de-uma-série" id="toc-componentes-de-uma-série" class="nav-link" data-scroll-target="#componentes-de-uma-série"><span class="header-section-number">3.2</span> Componentes de uma série</a></li>
   <li><a href="#dados-com-sazonalidade-ajustada" id="toc-dados-com-sazonalidade-ajustada" class="nav-link" data-scroll-target="#dados-com-sazonalidade-ajustada"><span class="header-section-number">3.3</span> Dados com sazonalidade ajustada</a></li>
   <li><a href="#média-móvel" id="toc-média-móvel" class="nav-link" data-scroll-target="#média-móvel"><span class="header-section-number">3.4</span> Média móvel</a></li>
-  <li><a href="#estimando-a-tendência-com-dados-sazonais" id="toc-estimando-a-tendência-com-dados-sazonais" class="nav-link" data-scroll-target="#estimando-a-tendência-com-dados-sazonais"><span class="header-section-number">3.5</span> Estimando a tendência com dados sazonais</a></li>
+  <li><a href="#estimando-a-tendência-para-séries-com-sazonalidade" id="toc-estimando-a-tendência-para-séries-com-sazonalidade" class="nav-link" data-scroll-target="#estimando-a-tendência-para-séries-com-sazonalidade"><span class="header-section-number">3.5</span> Estimando a tendência para séries com sazonalidade</a></li>
   <li><a href="#decomposição-clássica" id="toc-decomposição-clássica" class="nav-link" data-scroll-target="#decomposição-clássica"><span class="header-section-number">3.6</span> Decomposição clássica</a></li>
   <li><a href="#decomposição-via-stl" id="toc-decomposição-via-stl" class="nav-link" data-scroll-target="#decomposição-via-stl"><span class="header-section-number">3.7</span> Decomposição via STL</a></li>
   <li><a href="#previsão-via-decomposição" id="toc-previsão-via-decomposição" class="nav-link" data-scroll-target="#previsão-via-decomposição"><span class="header-section-number">3.8</span> Previsão via decomposição</a></li>
@@ -300,11 +300,11 @@ window.Quarto = {
 
 <section id="decomposição" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="decomposição"><span class="header-section-number">3.1</span> Decomposição</h2>
-<p>As séries temporais exibem comportamentos variados. Quando uma série temporal apresenta um padrão subjacente, este padrão pode ser separado da aleatoriedade, viabilizando sua projeção para períodos futuros. Em muitos casos pode ser interessantes ainda decompor a série temporal em componentes. A decomposição pode facilitar a análise e previsão. Geralmente considera-se a tendência, sazonalidade e o resto ou resíduos na decomposição, havendo vários métodos para separar tais componentes. Antes, porém, são importantes algumas considerações sobre tratamentos iniciais às vezes necessários.</p>
+<p>As séries temporais exibem comportamentos variados. Quando uma série apresenta um padrão subjacente, este padrão pode ser separado da aleatoriedade, viabilizando sua projeção para períodos futuros. Em muitos casos é interessante ainda decompor a série temporal em componentes. A decomposição pode facilitar a análise e previsão. Geralmente, considera-se a tendência, sazonalidade e o resto ou resíduos na decomposição, havendo vários métodos para separar tais componentes. Antes, porém, são importantes algumas considerações sobre tratamentos iniciais às vezes necessários.</p>
 <section id="ajustes-e-transformações" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="ajustes-e-transformações"><span class="header-section-number">3.1.1</span> Ajustes e transformações</h3>
-<p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidades devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
-<p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas a disponibilidade de algum serviço para a população é mais fácil avaliar a disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo comparação em diferentes momentos. Para deflacionar uma série basta dividí-la pelo deflator, um índice que corrige a inflação.</p>
+<p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidade devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
+<p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas à disponibilidade de algum serviço para a população é mais fácil avaliar tal disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação da magnitude e evolução da série de forma padronizada entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo a comparação em diferentes momentos. Para deflacionar uma série basta dividí-la pelo deflator, um índice que corrige a inflação.</p>
 <p>Transformações como a de Box-Cox ou outra mais simples também podem ser úteis para facilitar o tratamento da série. Conforme visto anteriormente, uma série que exibe uma variação sazonal não constante, ou heterocedástica, ao ser transformada pode exibir um padrão de sazonalidade de mais fácil decomposição ou tratamento.</p>
 <p>A série plotada na <a href="#fig-gnv" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em <a href="https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos">Dados estatísticos - Agência nacional de petróleo</a>.</p>
 <div class="cell">
@@ -359,7 +359,7 @@ Figura&nbsp;3.3: Produção mensal de gás natural no Brasil com transformação
 <p><span class="math display">\[
 y_t = S_t+ T_t+R_t,
 \]</span></p>
-<p>onde <span class="math inline">\(S_t\)</span> é a componente sazonal, <span class="math inline">\(T_t\)</span> é a tendência e <span class="math inline">\(R_t\)</span> é o resto no período <span class="math inline">\(t\)</span>. No caso multiplicativo tem-se:</p>
+<p>onde <span class="math inline">\(S_t\)</span> é a componente sazonal, <span class="math inline">\(T_t\)</span> é a tendência e <span class="math inline">\(R_t\)</span> é o resto ou resíduo no período <span class="math inline">\(t\)</span>. No caso multiplicativo tem-se:</p>
 <p><span class="math display">\[
 y_t = S_t \times T_t \times R_t
 \]</span></p>
@@ -401,45 +401,45 @@ Tabela&nbsp;3.1: Decomposição aditiva da série do índice de produção mensa
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2002 jan</td>
-<td style="text-align: right;">87,97245</td>
-<td style="text-align: right;">95,10887</td>
-<td style="text-align: right;">-7,0894994</td>
-<td style="text-align: right;">-0,0469214</td>
+<td style="text-align: right;">87,97</td>
+<td style="text-align: right;">95,11</td>
+<td style="text-align: right;">-7,09</td>
+<td style="text-align: right;">-0,05</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2002 fev</td>
-<td style="text-align: right;">85,22869</td>
-<td style="text-align: right;">95,33164</td>
-<td style="text-align: right;">-11,1630761</td>
-<td style="text-align: right;">1,0601292</td>
+<td style="text-align: right;">85,23</td>
+<td style="text-align: right;">95,33</td>
+<td style="text-align: right;">-11,16</td>
+<td style="text-align: right;">1,06</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2002 mar</td>
-<td style="text-align: right;">94,94150</td>
-<td style="text-align: right;">95,55440</td>
-<td style="text-align: right;">0,8473573</td>
-<td style="text-align: right;">-1,4602601</td>
+<td style="text-align: right;">94,94</td>
+<td style="text-align: right;">95,55</td>
+<td style="text-align: right;">0,85</td>
+<td style="text-align: right;">-1,46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2002 abr</td>
-<td style="text-align: right;">96,00238</td>
-<td style="text-align: right;">95,77717</td>
-<td style="text-align: right;">-2,0387398</td>
-<td style="text-align: right;">2,2639509</td>
+<td style="text-align: right;">96,00</td>
+<td style="text-align: right;">95,78</td>
+<td style="text-align: right;">-2,04</td>
+<td style="text-align: right;">2,26</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2002 mai</td>
-<td style="text-align: right;">99,12757</td>
-<td style="text-align: right;">95,99987</td>
-<td style="text-align: right;">3,8247141</td>
-<td style="text-align: right;">-0,6970134</td>
+<td style="text-align: right;">99,13</td>
+<td style="text-align: right;">96,00</td>
+<td style="text-align: right;">3,82</td>
+<td style="text-align: right;">-0,70</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2002 jun</td>
-<td style="text-align: right;">97,15759</td>
-<td style="text-align: right;">96,22257</td>
-<td style="text-align: right;">1,7226365</td>
-<td style="text-align: right;">-0,7876163</td>
+<td style="text-align: right;">97,16</td>
+<td style="text-align: right;">96,22</td>
+<td style="text-align: right;">1,72</td>
+<td style="text-align: right;">-0,79</td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +481,7 @@ Figura&nbsp;3.6: Componentes da série de produtos intermediários
 </section>
 <section id="dados-com-sazonalidade-ajustada" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dados-com-sazonalidade-ajustada"><span class="header-section-number">3.3</span> Dados com sazonalidade ajustada</h2>
-<p>Pode ser útil remover a sazonalidade da série, resultando em uma série com sazonalidade ajustada. Para casos aditivos a série resultante seria dada por <span class="math inline">\(y_t-S_t\)</span>, enquanto que para casos multiplicativos seria <span class="math inline">\(y_t/S_t\)</span>.</p>
+<p>Pode ser útil remover a sazonalidade da série, resultando em uma série com sazonalidade ajustada. Para casos aditivos a série resultante seria dada por <span class="math inline">\(y_t-S_t\)</span>, enquanto para casos multiplicativos seria <span class="math inline">\(y_t/S_t\)</span>.</p>
 <p>Na <a href="#fig-prodint_sazaj" class="quarto-xref">Figura&nbsp;<span>3.7</span></a> plota-se a série de produtos intermediários ajustada sazonalmente.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -500,11 +500,11 @@ Figura&nbsp;3.7: Série de produtos intermediários com ajuste da sazonalidade
 </section>
 <section id="média-móvel" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="média-móvel"><span class="header-section-number">3.4</span> Média móvel</h2>
-<p>Um dos métodos clássicos para estimar a tendência é a média móvel. Uma média móvel de ordem <span class="math inline">\(m\)</span> pode ser escrita como segue.</p>
+<p>Um dos métodos clássicos para estimar a tendência é a média móvel. Uma média móvel de ordem <span class="math inline">\(m\)</span> pode ser escrita como segue, onde <span class="math inline">\(k = (m-1)/2\)</span> para médias móveis ímpares.</p>
 <p><span class="math display">\[
 \hat{T}_t=\frac{1}{m}\sum_{j=-k}^{k} y_{t+j}
 \]</span></p>
-<p>Denota-se uma média móvel como <span class="math inline">\(m\)</span>-MA, ou média móvel de ordem <span class="math inline">\(m\)</span>. A título de exemplo seja a série <span class="math inline">\(5,10,12,20,23,27\)</span>. Considerando <span class="math inline">\(k = 2\)</span>, tem-se uma média móvel de ordem <span class="math inline">\(m=5\)</span>, 5-MA. Para este caso, seguem os cálculos das médias móveis para a terceira e quarta observações, <span class="math inline">\(t=3,4\)</span>. Observa-se que o <span class="math inline">\(k\)</span> determina o número de observações não suavizadas no ínico e fim da série.</p>
+<p>Denota-se uma média móvel como <span class="math inline">\(m\)</span>-MA (MA - <em>moving average</em>), ou média móvel de ordem <span class="math inline">\(m\)</span>. A título de exemplo seja a série <span class="math inline">\(5,10,12,20,23,27\)</span>. Para <span class="math inline">\(k = 2\)</span>, tem-se uma média móvel de ordem <span class="math inline">\(m=5\)</span>, 5-MA. Para este caso, seguem os cálculos das médias móveis para a terceira e quarta observações, <span class="math inline">\(t=3,4\)</span>. Observa-se que o <span class="math inline">\(k\)</span> determina o número de observações não suavizadas no ínico e fim da série.</p>
 <p><span class="math display">\[
 \hat{T}_3=\frac{1}{2\times2+1}(5+10+12+20+23)=14
 \]</span></p>
@@ -527,7 +527,7 @@ Figura&nbsp;3.8: Média móvel para a série de carros produzidos com distintas 
 </div>
 </div>
 <p>É interessante em alguns casos realizar a média móvel de uma média móvel, com o objetivo final de centrar médias móveis pares. Uma média móvel <span class="math inline">\(2\times4\)</span>-MA consiste em uma média móvel <span class="math inline">\(4\)</span>-MA seguida de uma <span class="math inline">\(2\)</span>-MA.</p>
-<p>Por exemplo, para a série da <a href="#tbl-maexp" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim. É importante observar que a média móvel <span class="math inline">\(4\)</span>-MA considera uma observação anterior, e duas posteriores, além da observação no período <span class="math inline">\(t\)</span>. Já a média móvel <span class="math inline">\(2\)</span>-MA considera a observação anterior e a do o período <span class="math inline">\(t\)</span>.</p>
+<p>Por exemplo, para a série da <a href="#tbl-maexp" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> o problema da média móvel <span class="math inline">\(4\)</span>-MA é que ela não é simétrica em relação à série original, tendo uma observação não estimada no início e duas no final. Ao tomar desta série resultante uma média móvel de ordem <span class="math inline">\(2\)</span>-MA, resultando na <span class="math inline">\(2\times4\)</span>-MA, tem-se uma série média móvel simétrica com a original, com duas observações ausentes no início e fim. É importante observar que a média móvel <span class="math inline">\(4\)</span>-MA considera uma observação anterior, e duas posteriores, além da observação no período <span class="math inline">\(t\)</span>. Já a média móvel <span class="math inline">\(2\)</span>-MA considera a observação anterior e a do período <span class="math inline">\(t\)</span>.</p>
 <div id="tbl-maexp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-maexp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -584,8 +584,8 @@ Tabela&nbsp;3.2: <span class="math inline">\(2\times4\)</span>-MA
 </figure>
 </div>
 </section>
-<section id="estimando-a-tendência-com-dados-sazonais" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="estimando-a-tendência-com-dados-sazonais"><span class="header-section-number">3.5</span> Estimando a tendência com dados sazonais</h2>
+<section id="estimando-a-tendência-para-séries-com-sazonalidade" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="estimando-a-tendência-para-séries-com-sazonalidade"><span class="header-section-number">3.5</span> Estimando a tendência para séries com sazonalidade</h2>
 <p>Ao realizar uma média móvel <span class="math inline">\(2\times4\)</span>-MA, a estimativa feita ao final fica conforme a Equação abaixo, consistindo em uma média ponderada.</p>
 <p><span class="math display">\[
 \hat{T}_t=\frac{1}{8}y_{t-2}+\frac{1}{4}y_{t-1}+\frac{1}{4}y_{t}+\frac{1}{4}y_{t+1}+\frac{1}{8}y_{t+2}
@@ -631,7 +631,7 @@ Figura&nbsp;3.10: Tendência para a série de produtos intermediários estimada 
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a diferença da série em relação à tendência a sazonalidade, <span class="math inline">\(\hat{R}_t=y_t - \hat{T}_t - \hat{S}_t\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-decomp_pi" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que neste caso a sazonalidade é constante, diferente do resultado óbtido com método mais sofisticado.</p>
+<p>A <a href="#fig-decomp_pi" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que, neste caso, a sazonalidade é constante, diferente do resultado óbtido com métodos mais sofisticados como o STL.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -701,17 +701,17 @@ Figura&nbsp;3.14: Decomposição clássica multiplicativa da série de passageir
 </section>
 <section id="decomposição-via-stl" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.7</span> Decomposição via STL</h2>
-<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS <span class="citation" data-cites="cleveland1990stl">(<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">Cleveland et al. 1990</a>)</span>. LOESS significa <em>locally estimated scatterplot smoothing</em>, sendo um método de regressão não linear, que é comumente chamado de regressão local.</p>
+<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS <span class="citation" data-cites="cleveland1990stl">(<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">Cleveland et al. 1990</a>)</span>. LOESS significa <em>locally estimated scatterplot smoothing</em>, e consiste em um método de regressão não linear, que é comumente chamado de regressão local.</p>
 <p>O método STL apresenta diversas vantagens em relação à decomposição clássica e foi concebido considerando os seguintes critérios:</p>
 <ul>
 <li>Simples de aplicar;</li>
-<li>É flexpivel em relção à quantidade de variação nas componentes de tendência e ciclo;</li>
+<li>É flexpivel em relação à quantidade de variação nas componentes de tendência e ciclo;</li>
 <li>Pode-se especificar o número de observações por ciclo para qualquer inteiro maior que 1;</li>
 <li>É possíel fazer a decomposição mesmo com valores ausentes na série;</li>
-<li>Estimativa de tendência e sazonalidade robusta a comportamentos aberrantes, mesmo para séries longas.</li>
+<li>As estimativas de tendência e sazonalidade são robustas a comportamentos discrepantes, mesmo para séries longas.</li>
 </ul>
-<p>Tanto a tendência quanto a sazonalidade são estimadas via LOESS. Suponha que seja definida uma janela de 7 observações para estimar a tendência. Para cada observação, <span class="math inline">\(y_t\)</span>, são consideradas as observações <span class="math inline">\(y_{t-3}, y_{t-2}, y_{t-1}, y_t, y_{t+1}, y_{t+2}, y_{t+3}\)</span>, sendo a estimativa da tendência, <span class="math inline">\(\hat T_t\)</span>, realizada como a média ponderada de tais observações, com peso decrescendo com a distância da observação considerada para <span class="math inline">\(y_t\)</span>. Após a remoção da tendência a estimativa da componente sazonal considera uma suavização dos subciclos sazonais usando uma combinação de média-móvel e LOESS. É possível obter ciclos sazonais idênticos, conforme a decomposição clássica, bastando para tal definir a janela sazonal como infinita. O método tem um algoritmo detalhado que define bem como cada componente é estimada, conforme <span class="citation" data-cites="cleveland1990stl">Cleveland et al. (<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">1990</a>)</span>. O resto é calculado, de forma similar à decomposição clássica, <span class="math inline">\(R_t=y_t-T_t-S_t\)</span>.</p>
-<p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos de séries com variancia não estável, sugerindo um padrão de decomposição multiplicativa, recomenda-se transformar a série via logaritmo ou Box-Cox e depois fazer a decomposição aditiva.</p>
+<p>Tanto a tendência quanto a sazonalidade são estimadas via LOESS. Suponha que seja definida uma janela de 7 observações para estimar a tendência. Para cada observação, <span class="math inline">\(y_t\)</span>, são consideradas as observações <span class="math inline">\(y_{t-3}, y_{t-2}, y_{t-1}, y_t, y_{t+1}, y_{t+2}, y_{t+3}\)</span>, sendo a estimativa da tendência, <span class="math inline">\(\hat T_t\)</span>, realizada como a média ponderada de tais observações, com peso decrescendo com a distância da observação considerada para <span class="math inline">\(y_t\)</span>. Após a remoção da tendência, a estimativa da componente sazonal considera uma suavização dos subciclos sazonais usando uma combinação de média-móvel e LOESS. É possível obter ciclos sazonais idênticos, conforme a decomposição clássica, bastando para tal definir a janela sazonal como infinita. O método tem um algoritmo detalhado que define bem como cada componente é estimada, conforme <span class="citation" data-cites="cleveland1990stl">Cleveland et al. (<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">1990</a>)</span>. O resto é calculado, de forma similar à decomposição clássica, <span class="math inline">\(R_t=y_t-T_t-S_t\)</span>.</p>
+<p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos de séries com variancia não estável, sugerindo um padrão de decomposição multiplicativa, recomenda-se transformar a série via logaritmo ou Box-Cox e, em seguida, fazer a decomposição aditiva.</p>
 <p>A <a href="#fig-decomp_logpass" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil. A tendência foi estimada usando uma janela de 7 observações, enquanto a sazonalidade com <span class="math inline">\(m=12\)</span> meses, considerou uma janela de 11 observações nos subciclos sazonais.</p>
 <div class="cell">
 <div class="cell-output-display">
