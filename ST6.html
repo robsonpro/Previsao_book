@@ -268,7 +268,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#previsão-para-modelos-de-média-móvel" id="toc-previsão-para-modelos-de-média-móvel" class="nav-link" data-scroll-target="#previsão-para-modelos-de-média-móvel"><span class="header-section-number">6.3.1</span> Previsão para modelos de média móvel</a></li>
   </ul></li>
-  <li><a href="#modelos-arima-não-sazonais" id="toc-modelos-arima-não-sazonais" class="nav-link" data-scroll-target="#modelos-arima-não-sazonais"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</a>
+  <li><a href="#sec-arima" id="toc-sec-arima" class="nav-link" data-scroll-target="#sec-arima"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</a>
   <ul class="collapse">
   <li><a href="#previsão-com-modelos-arima-não-sazonais" id="toc-previsão-com-modelos-arima-não-sazonais" class="nav-link" data-scroll-target="#previsão-com-modelos-arima-não-sazonais"><span class="header-section-number">6.4.1</span> Previsão com modelos ARIMA não sazonais</a></li>
   </ul></li>
@@ -411,7 +411,7 @@ Tabela&nbsp;6.1: Primeiras observações do índice Ibovespa e sua variação
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t
 \]</span></p>
-<p>Um modelo onde a observação posterior é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
+<p>Um modelo onde a observação atual é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
@@ -765,8 +765,8 @@ Figura&nbsp;6.7: Correlogramas de processos de média móvel
 \tag{6.19}\]</span></span></p>
 </section>
 </section>
-<section id="modelos-arima-não-sazonais" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="modelos-arima-não-sazonais"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</h2>
+<section id="sec-arima" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-arima"><span class="header-section-number">6.4</span> Modelos ARIMA não sazonais</h2>
 <p>Um modelo autorregressivo integrado de média móvel (ARIMA) combina um modelo autorregressivo da série diferenciada e um de média móvel. Para diferenciação de primeira ordem o modelo é expresso segundo a <a href="#eq-arimaa" class="quarto-xref">Equação&nbsp;<span>6.20</span></a>.</p>
 <p><span id="eq-arimaa"><span class="math display">\[
 \begin{align}
@@ -1049,7 +1049,7 @@ Tabela&nbsp;6.5: Teste KPSS para a série de produção de grãos
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1,242214</td>
+<td style="text-align: right;">1,32088</td>
 <td style="text-align: right;">0,01</td>
 </tr>
 </tbody>
@@ -1091,8 +1091,8 @@ Tabela&nbsp;6.6: Teste KPSS para a variação da série transformada de produç�
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0,5364439</td>
-<td style="text-align: right;">0,0334586</td>
+<td style="text-align: right;">0,1158627</td>
+<td style="text-align: right;">0,1</td>
 </tr>
 </tbody>
 </table>
@@ -1125,11 +1125,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ar1  constant
-      -0,4639   41,2969
-s.e.   0,1369    8,4272
+      -0,3803    0,0028
+s.e.   0,1472    0,0007
 
-sigma^2 estimated as 3430:  log likelihood=-257,09
-AIC=520,17   AICc=520,73   BIC=525,72</code></pre>
+sigma^2 estimated as 2,398e-05:  log likelihood=188,43
+AIC=-370,86   AICc=-370,31   BIC=-365,24</code></pre>
 </div>
 </div>
 <p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>. Foi obtido <span class="math inline">\(ACCc\)</span> = 586,36, indicando que o modelo anterior apresentou melhor ajuste.</p>
@@ -1141,11 +1141,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ma1  constant
-      -0,4384   28,0583
-s.e.   0,1109    4,7877
+      -0,8122     2e-03
+s.e.   0,1017     2e-04
 
-sigma^2 estimated as 3446:  log likelihood=-257,18
-AIC=520,36   AICc=520,92   BIC=525,91</code></pre>
+sigma^2 estimated as 1,888e-05:  log likelihood=193,79
+AIC=-381,58   AICc=-381,04   BIC=-375,97</code></pre>
 </div>
 </div>
 <p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.17</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio significativo de normalidade.</p>
@@ -1181,8 +1181,8 @@ Tabela&nbsp;6.7: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) par
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">4,580951</td>
-<td style="text-align: right;">0,8692027</td>
+<td style="text-align: right;">13,97533</td>
+<td style="text-align: right;">0,1232054</td>
 </tr>
 </tbody>
 </table>

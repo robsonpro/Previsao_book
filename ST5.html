@@ -255,7 +255,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#suavização-exponencial-simples" id="toc-suavização-exponencial-simples" class="nav-link active" data-scroll-target="#suavização-exponencial-simples"><span class="header-section-number">5.1</span> Suavização exponencial simples</a></li>
-  <li><a href="#suavização-exponencial-com-tendência" id="toc-suavização-exponencial-com-tendência" class="nav-link" data-scroll-target="#suavização-exponencial-com-tendência"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</a>
+  <li><a href="#sec-holt" id="toc-sec-holt" class="nav-link" data-scroll-target="#sec-holt"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</a>
   <ul class="collapse">
   <li><a href="#suavização-exponencial-com-tendência-amortecida" id="toc-suavização-exponencial-com-tendência-amortecida" class="nav-link" data-scroll-target="#suavização-exponencial-com-tendência-amortecida"><span class="header-section-number">5.2.1</span> Suavização exponencial com tendência amortecida</a></li>
   </ul></li>
@@ -525,8 +525,8 @@ Tabela&nbsp;5.3: Pesos na suavização exponencial simples
 </div>
 </div>
 </section>
-<section id="suavização-exponencial-com-tendência" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="suavização-exponencial-com-tendência"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</h2>
+<section id="sec-holt" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-holt"><span class="header-section-number">5.2</span> Suavização exponencial com tendência</h2>
 <p>Em casos com tendência pode-se aplicar o método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span>, o qual considera uma equação para o nível, <span class="math inline">\(l_t\)</span>, uma para a tendência, <span class="math inline">\(b_t\)</span>, e a de previsão, <span class="math inline">\(\hat y_{t+h|t}\)</span>, conforme <a href="#eq-holt" class="quarto-xref">Equação&nbsp;<span>5.6</span></a>.</p>
 <p><span id="eq-holt"><span class="math display">\[
 \begin{align}

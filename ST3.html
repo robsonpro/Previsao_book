@@ -304,7 +304,7 @@ window.Quarto = {
 <section id="ajustes-e-transformações" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="ajustes-e-transformações"><span class="header-section-number">3.1.1</span> Ajustes e transformações</h3>
 <p>Alguns ajustes são comumente necessários antes de realizar a decomposição de uma série temporal. Por exemplo, em alguns casos é importante corrigir a sazonalidade devido à diferenças de calendário. Em séries que exibem alguma variável com frequência mensal, pode haver alguma sazonalidade nos meses com número menor de dias, sendo interessante talvez trabalhar com a média mensal, dividindo a variável pelo número de dias de cada mês.</p>
-<p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas à disponibilidade de algum serviço para a população é mais fácil avaliar tal disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação da magnitude e evolução da série de forma padronizada entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo a comparação em diferentes momentos. Para deflacionar uma série basta dividí-la pelo deflator, um índice que corrige a inflação.</p>
+<p>Dados relacionados à população também podem ser ajustados <em>per capita</em>, ou por pessoa. Este ajuste é muito comum no PIB e em outras variáveis econômicas, por exemplo. Em séries relacionadas à disponibilidade de algum serviço para a população é mais fácil avaliar tal disponibilidade ajustando os dados por mil pessoas, por exemplo, de forma a eliminar o efeito do crescimento populacional. O mesmo pode ser feito para séries de saúde pública, por exemplo de número de pessoas infectadas ou a mortalidade pode ser dividida por 1000 ou 100 mil, dependendo da ordem de grandeza de cada série, de forma a viabilizar comparação da magnitude e evolução da série de forma padronizada entre populações de localidades distintas. Em séries econômicas às vezes é importante considerar a inflação, de forma a dar uma dimensão real da série, permitindo a comparação em diferentes momentos. Para deflacionar uma série basta dividi-la pelo deflator, um índice que corrige a inflação.</p>
 <p>Transformações como a de Box-Cox ou outra mais simples também podem ser úteis para facilitar o tratamento da série. Conforme visto anteriormente, uma série que exibe uma variação sazonal não constante, ou heterocedástica, ao ser transformada pode exibir um padrão de sazonalidade de mais fácil decomposição ou tratamento.</p>
 <p>A série plotada na <a href="#fig-gnv" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> consiste na produção mensal de gás natural no Brasil a partir os anos 2000. A série está disponível em <a href="https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-estatisticos">Dados estatísticos - Agência nacional de petróleo</a>.</p>
 <div class="cell">
@@ -379,7 +379,7 @@ Figura&nbsp;3.4: Produção mensal de produtos intermediários no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-prodintdecomp" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> exibe as primeiras linhas das componentes da série, considerando a decomposição aditivavia método STL.</p>
+<p>A <a href="#tbl-prodintdecomp" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> exibe as primeiras linhas das componentes da série, considerando a decomposição aditiva via método STL.</p>
 <div class="cell">
 <div id="tbl-prodintdecomp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -504,14 +504,14 @@ Figura&nbsp;3.7: Série de produtos intermediários com ajuste da sazonalidade
 <p><span class="math display">\[
 \hat{T}_t=\frac{1}{m}\sum_{j=-k}^{k} y_{t+j}
 \]</span></p>
-<p>Denota-se uma média móvel como <span class="math inline">\(m\)</span>-MA (MA - <em>moving average</em>), ou média móvel de ordem <span class="math inline">\(m\)</span>. A título de exemplo seja a série <span class="math inline">\(5,10,12,20,23,27\)</span>. Para <span class="math inline">\(k = 2\)</span>, tem-se uma média móvel de ordem <span class="math inline">\(m=5\)</span>, 5-MA. Para este caso, seguem os cálculos das médias móveis para a terceira e quarta observações, <span class="math inline">\(t=3,4\)</span>. Observa-se que o <span class="math inline">\(k\)</span> determina o número de observações não suavizadas no ínico e fim da série.</p>
+<p>Denota-se uma média móvel como <span class="math inline">\(m\)</span>-MA (MA - <em>moving average</em>), ou média móvel de ordem <span class="math inline">\(m\)</span>. A título de exemplo seja a série <span class="math inline">\(5,10,12,20,23,27\)</span>. Para <span class="math inline">\(k = 2\)</span>, tem-se uma média móvel de ordem <span class="math inline">\(m=5\)</span>, 5-MA. Para este caso, seguem os cálculos das médias móveis para a terceira e quarta observações, <span class="math inline">\(t=3,4\)</span>. Observa-se que o <span class="math inline">\(k\)</span> determina o número de observações não suavizadas no início e fim da série.</p>
 <p><span class="math display">\[
 \hat{T}_3=\frac{1}{2\times2+1}(5+10+12+20+23)=14
 \]</span></p>
 <p><span class="math display">\[
 \hat{T}_4=\frac{1}{2\times2+1}(10+12+20+23+27)=18,4
 \]</span></p>
-<p>Na <a href="ST6.html#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quando maior a ordem da série, mais suave o resultado.</p>
+<p>Na <a href="ST6.html#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> observa-se graficamente a média móvel com diferentes ordens, para a série de volume de carros produzidos no Brasil. Quanto maior a ordem da média móvel, mais suave o resultado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -590,7 +590,7 @@ Tabela&nbsp;3.2: <span class="math inline">\(2\times4\)</span>-MA
 <p><span class="math display">\[
 \hat{T}_t=\frac{1}{8}y_{t-2}+\frac{1}{4}y_{t-1}+\frac{1}{4}y_{t}+\frac{1}{4}y_{t+1}+\frac{1}{8}y_{t+2}
 \]</span></p>
-<p>Este modelo pode ser usado para estimar tendência de séries com sazonalidade quadrimestral, por exemplo. Recomenda-se usar uma média móvel de ordem <span class="math inline">\(2\times m\)</span>-MA para estimar a tendência de uma série com sazonalidade de ordem <span class="math inline">\(m\)</span>.</p>
+<p>Este modelo pode ser usado para estimar tendência de séries com sazonalidade trimestral, por exemplo. Recomenda-se usar uma média móvel de ordem <span class="math inline">\(2\times m\)</span>-MA para estimar a tendência de uma série com sazonalidade de ordem <span class="math inline">\(m\)</span>.</p>
 <p>Na <a href="#fig-sazpi" class="quarto-xref">Figura&nbsp;<span>3.9</span></a> observa-se novamente a série de índice de produção de itens intermediários plotada sazonalmente. Como ficou clara a sazonalidade anual, pode-se pensar na suavização de ordem <span class="math inline">\(2\times 12\)</span>-MA.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -631,7 +631,7 @@ Figura&nbsp;3.10: Tendência para a série de produtos intermediários estimada 
 <li><p>Calcule a componente sazonal para cada estação como a média de todos os períodos desta. Por exemplo, para uma série com sazonalidade anual. O mês de janeiro terá como valor de <span class="math inline">\(\hat{S}_t\)</span> a média de todas as observações de janeiro. O procedimento é realizado para todos os meses.</p></li>
 <li><p>Calcule o resto tomando a diferença da série em relação à tendência a sazonalidade, <span class="math inline">\(\hat{R}_t=y_t - \hat{T}_t - \hat{S}_t\)</span>.</p></li>
 </ol>
-<p>A <a href="#fig-decomp_pi" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que, neste caso, a sazonalidade é constante, diferente do resultado óbtido com métodos mais sofisticados como o STL.</p>
+<p>A <a href="#fig-decomp_pi" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> expõe o resultado gráfico da decomposição clássica da série de produtos intermediários. Pode-se observar que, neste caso, a sazonalidade é constante, diferente do resultado obtido com métodos mais sofisticados como o STL.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -701,17 +701,17 @@ Figura&nbsp;3.14: Decomposição clássica multiplicativa da série de passageir
 </section>
 <section id="decomposição-via-stl" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="decomposição-via-stl"><span class="header-section-number">3.7</span> Decomposição via STL</h2>
-<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>”* que em português seria decomposição de tendência e sazonalidade usando LOESS <span class="citation" data-cites="cleveland1990stl">(<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">Cleveland et al. 1990</a>)</span>. LOESS significa <em>locally estimated scatterplot smoothing</em>, e consiste em um método de regressão não linear, que é comumente chamado de regressão local.</p>
+<p>A sigla STL significa <em>Seasonal and Trend decomposition using Loess</em>, que em português seria decomposição de tendência e sazonalidade usando LOESS <span class="citation" data-cites="cleveland1990stl">(<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">Cleveland et al. 1990</a>)</span>. LOESS significa <em>locally estimated scatterplot smoothing</em>, e consiste em um método de regressão não linear, que é comumente chamado de regressão local.</p>
 <p>O método STL apresenta diversas vantagens em relação à decomposição clássica e foi concebido considerando os seguintes critérios:</p>
 <ul>
 <li>Simples de aplicar;</li>
-<li>É flexpivel em relação à quantidade de variação nas componentes de tendência e ciclo;</li>
+<li>É flexível em relação à quantidade de variação nas componentes de tendência e ciclo;</li>
 <li>Pode-se especificar o número de observações por ciclo para qualquer inteiro maior que 1;</li>
-<li>É possíel fazer a decomposição mesmo com valores ausentes na série;</li>
+<li>É possível fazer a decomposição mesmo com valores ausentes na série;</li>
 <li>As estimativas de tendência e sazonalidade são robustas a comportamentos discrepantes, mesmo para séries longas.</li>
 </ul>
 <p>Tanto a tendência quanto a sazonalidade são estimadas via LOESS. Suponha que seja definida uma janela de 7 observações para estimar a tendência. Para cada observação, <span class="math inline">\(y_t\)</span>, são consideradas as observações <span class="math inline">\(y_{t-3}, y_{t-2}, y_{t-1}, y_t, y_{t+1}, y_{t+2}, y_{t+3}\)</span>, sendo a estimativa da tendência, <span class="math inline">\(\hat T_t\)</span>, realizada como a média ponderada de tais observações, com peso decrescendo com a distância da observação considerada para <span class="math inline">\(y_t\)</span>. Após a remoção da tendência, a estimativa da componente sazonal considera uma suavização dos subciclos sazonais usando uma combinação de média-móvel e LOESS. É possível obter ciclos sazonais idênticos, conforme a decomposição clássica, bastando para tal definir a janela sazonal como infinita. O método tem um algoritmo detalhado que define bem como cada componente é estimada, conforme <span class="citation" data-cites="cleveland1990stl">Cleveland et al. (<a href="references.html#ref-cleveland1990stl" role="doc-biblioref">1990</a>)</span>. O resto é calculado, de forma similar à decomposição clássica, <span class="math inline">\(R_t=y_t-T_t-S_t\)</span>.</p>
-<p>O método, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos de séries com variancia não estável, sugerindo um padrão de decomposição multiplicativa, recomenda-se transformar a série via logaritmo ou Box-Cox e, em seguida, fazer a decomposição aditiva.</p>
+<p>O STL, entretanto, tem algumas limitações. As possibilidades elencadas são disponíveis apenas para decomposições aditivas. Para casos de séries com variancia não estável, sugerindo um padrão de decomposição multiplicativa, recomenda-se transformar a série via logaritmo ou Box-Cox e, em seguida, fazer a decomposição aditiva.</p>
 <p>A <a href="#fig-decomp_logpass" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> expõe os gráficos da decomposição do logarítmo da série de passageiros em vôos do Brasil. A tendência foi estimada usando uma janela de 7 observações, enquanto a sazonalidade com <span class="math inline">\(m=12\)</span> meses, considerou uma janela de 11 observações nos subciclos sazonais.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -730,7 +730,23 @@ Figura&nbsp;3.15: Decomposição da série log(passageiros) em vôos no Brasil v
 </section>
 <section id="previsão-via-decomposição" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="previsão-via-decomposição"><span class="header-section-number">3.8</span> Previsão via decomposição</h2>
-<p>A Figura <a href="#fig-decomp_pred" class="quarto-xref">Figura&nbsp;<span>3.16</span></a> apresenta a previsão via decomposição para o caso anterior. Foi considerado até o ano de 2018 para treinamento e pode-se observar a previsão para 2019 e 2020 junto com as observações disponíveis. A componente sazonal pode ser prevista usando qualquel outro método de previsão, sendo no exemplo usado o método ingênuo sazonal. No exemplo foram considerados 4 modelos com^binando tendência com janela de 7 e 11 observações e sazonalidade com janela de 11 subciclos e janela infinita.</p>
+<p>A previsão via decomposição pode ser realizada considerando um método para a sazonalidade ajustada, isto é, <span class="math inline">\(T_t+R_t\)</span> e outro para a sazonalidade, <span class="math inline">\(S_T\)</span>. Considera-se a componente sazonal imutável usando-se o método ingênuo sazonal, enquanto a sazonalidade ajustada pode ser prevista com outro método não sazonal, como o ingênuo, da deriva ou outro mais sofisticado como ARIMA ou método de Holt, descritos na <a href="ST6.html#sec-arima" class="quarto-xref"><span>Seção 6.4</span></a> e <a href="ST5.html#sec-holt" class="quarto-xref"><span>Seção 5.2</span></a>, respectivamente.</p>
+<p>A <a href="#fig-perf_stl_pass" class="quarto-xref">Figura&nbsp;<span>3.16</span></a> plota o RMSE de modelos STL na validação cruzada para a série de passageiros em vôos considerando distintos horizontes de previsão. No exemplo foram considerados 4 modelos combinando tendência com janela de 7 e 11 observações e sazonalidade com janela de 11 subciclos e janela infinita. O modelo que apresentou menor erro médio para janelas de previsão, <span class="math inline">\(h\)</span>, de 1 a 11 meses, foi com janela de 11 meses para tendência e sazonalidade, denominado stl2.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-perf_stl_pass" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perf_stl_pass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST3_files/figure-html/fig-perf_stl_pass-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perf_stl_pass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.16: Erro em modelos STL na validação cruzada para a série de passageiros em vôos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A Figura <a href="#fig-decomp_pred" class="quarto-xref">Figura&nbsp;<span>3.17</span></a> apresenta a previsão via decomposição para o volume de passageiros em vôos para 2020. Sabe-se que, devido à pandemia e restrições de mobilidade da época, tais níveis não foram confirmados.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_pred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -739,13 +755,13 @@ Figura&nbsp;3.15: Decomposição da série log(passageiros) em vôos no Brasil v
 <img src="ST3_files/figure-html/fig-decomp_pred-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.16: Previsão via decomposição da série de log(passageiros) de vôos no Brasil
+Figura&nbsp;3.17: Previsão via decomposição da série de log(passageiros) de vôos no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-decomp_resi" class="quarto-xref">Figura&nbsp;<span>3.17</span></a> apresenta os resíduos obtidos da decomposição para o modelo stl2, com janela de 11 períodos tanto para a tendência quanto para a sazonalidade. Observa-se que apresentam boa aderência à normal, porém com autocorrelação nos lags 13 e 22. Entretanto, o teste de Ljung-Box confirma que não há indícios para rejeição da hipótese nula de ausência de autocorrelção, conforme <a href="#tbl-lb_stl" class="quarto-xref">Tabela&nbsp;<span>3.3</span></a>.</p>
+<p>A <a href="#fig-decomp_resi" class="quarto-xref">Figura&nbsp;<span>3.18</span></a> apresenta os resíduos obtidos da decomposição para o modelo stl2, com janela de 11 períodos tanto para a tendência quanto para a sazonalidade. Observa-se que apresentam boa aderência à normal, porém com autocorrelação nos lags 13 e 22. Entretanto, o teste de Ljung-Box confirma que não há indícios para rejeição da hipótese nula de ausência de autocorrelação, conforme <a href="#tbl-lb_stl" class="quarto-xref">Tabela&nbsp;<span>3.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decomp_resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -754,7 +770,7 @@ Figura&nbsp;3.16: Previsão via decomposição da série de log(passageiros) de 
 <img src="ST3_files/figure-html/fig-decomp_resi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp_resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.17: Resíduos do modelo obtido via decomposição por STL da série de log(passageiros)
+Figura&nbsp;3.18: Resíduos do modelo obtido via decomposição por STL da série de log(passageiros)
 </figcaption>
 </figure>
 </div>
@@ -777,58 +793,8 @@ Tabela&nbsp;3.3: Teste Ljung-Box para o modelo STL2
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">28,57104</td>
-<td style="text-align: right;">0,2366933</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Por fim, a <a href="#tbl-perfstl" class="quarto-xref">Tabela&nbsp;<span>3.4</span></a> resume o desempenho dos modelos via decomposição para previsão dos anos de 2018 e 2019. Observa-se que o modelo stl2 foi superior, com 2,10% de erro.</p>
-<div class="cell">
-<div id="tbl-perfstl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-perfstl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018 e 2019
-</figcaption>
-<div aria-describedby="tbl-perfstl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Modelo</th>
-<th style="text-align: right;">RMSE</th>
-<th style="text-align: right;">MAE</th>
-<th style="text-align: right;">MAPE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">stl1</td>
-<td style="text-align: right;">275651,8</td>
-<td style="text-align: right;">229004,8</td>
-<td style="text-align: right;">2,293052</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">stl2</td>
-<td style="text-align: right;">264428,2</td>
-<td style="text-align: right;">212926,2</td>
-<td style="text-align: right;">2,104214</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">stl3</td>
-<td style="text-align: right;">356204,4</td>
-<td style="text-align: right;">303213,8</td>
-<td style="text-align: right;">3,080763</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">stl4</td>
-<td style="text-align: right;">369687,3</td>
-<td style="text-align: right;">312281,2</td>
-<td style="text-align: right;">3,185243</td>
+<td style="text-align: right;">29,79436</td>
+<td style="text-align: right;">0,191661</td>
 </tr>
 </tbody>
 </table>
@@ -852,7 +818,8 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtime)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série mensal de produção de gás natural no Brasil.</p>
 <div class="cell">
@@ -987,7 +954,7 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fit <span class="sc">|&gt;</span> <span class="fu">select</span>(stl4) <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Teste de Ljung-Box, considera-se 0 graus de liberdade para o teste, uma vez que o modelo não é baseado em parâmetros, mas em suavização da componentes. Em relação à defasagem, considera-se no argumento <code>lag</code> <span class="math inline">\(2\times m\)</span>.</p>
+<p>Teste de Ljung-Box, considera-se 0 graus de liberdade para o teste, uma vez que o modelo não é baseado em parâmetros, mas em suavização das componentes. Em relação à defasagem, considera-se no argumento <code>lag</code> <span class="math inline">\(2\times m\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(pi_stl_fit) <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model <span class="sc">==</span> <span class="st">"stl4"</span>) <span class="sc">|&gt;</span></span>
@@ -1000,32 +967,60 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(prod_inter, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Previsão para o índice de produção de produtos intermediários"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Métricas de desempenho para a previsão.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pi_stl_fc <span class="ot">&lt;-</span> pi_stl_fit <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">31</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>pi_future <span class="ot">&lt;-</span> prod_inter <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="st">"2022-01"</span><span class="sc">~</span>.)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(pi_stl_fc, pi_future) <span class="sc">|&gt;</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Decomposição clássica multiplicativa da série de passageiros.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">classical_decomposition</span>(Passageiros, <span class="at">type =</span> <span class="st">"multiplicative"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decomposição clássica multiplicativa da série Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">classical_decomposition</span>(Passageiros, <span class="at">type =</span> <span class="st">"multiplicative"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decomposição clássica multiplicativa da série Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo via decomposição por STL. São testados quatro modelos variando a janela da tendência, conforme <a href="#fig-decomp_pred" class="quarto-xref">Figura&nbsp;<span>3.16</span></a>.</p>
+<p>Modelagem via decomposição por STL. São testados quatro modelos variando a janela da tendência e de sazonalidade. A validação é realizada por origem móvel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>voosbr_ts_tr <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">180</span>, <span class="at">.step =</span> <span class="dv">1</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># voosbr_ts_tr </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> voosbr_ts_tr <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl1 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="dv">11</span>), </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>), <span class="fu">NAIVE</span>(season_adjust)),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl2 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">11</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="dv">11</span>), </span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>), <span class="fu">NAIVE</span>(season_adjust)),</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl3 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="st">"periodic"</span>), </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>), <span class="fu">NAIVE</span>(season_adjust)),</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl4 =</span> <span class="fu">decomposition_model</span>(</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">11</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="st">"periodic"</span>), </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>), <span class="fu">NAIVE</span>(season_adjust))</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.id, .model) <span class="sc">|&gt;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_fable</span>(<span class="at">response =</span> <span class="st">"Passageiros"</span>, </span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">distribution =</span> Passageiros)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">|&gt;</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(voosbr_ts <span class="sc">|&gt;</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">".model"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> h, <span class="at">y =</span> RMSE, <span class="at">col =</span> .model)) <span class="sc">+</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># facet_wrap(vars(.model)) +</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">pch=</span>.model)) <span class="sc">+</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">lty=</span>.model)) <span class="sc">+</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cf">function</span>(x) <span class="fu">seq</span>(<span class="fu">ceiling</span>(x[<span class="dv">1</span>]), <span class="fu">floor</span>(x[<span class="dv">2</span>]), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Erro na validação por origem móvel para modelos STL"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando a previsão para 2019 e 2020 juntamente com os dados a partir de 2015.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="ot">&lt;-</span> voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2018</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl1 =</span> <span class="fu">decomposition_model</span>(</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="dv">11</span>), </span>
@@ -1039,31 +1034,22 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">stl4 =</span> <span class="fu">decomposition_model</span>(</span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">STL</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> <span class="dv">11</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="dv">12</span>, <span class="at">window =</span> <span class="st">"periodic"</span>), </span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">robust =</span> <span class="cn">TRUE</span>), <span class="fu">NAIVE</span>(season_adjust))</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Visualizando a previsão para 2019 e 2020 juntamente com os dados a partir de 2015.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fc_decomp <span class="ot">&lt;-</span> fit_dcmp <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">24</span>) </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>fc_decomp <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span> </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter_index</span>(<span class="st">"2015-01"</span><span class="sc">~</span><span class="st">"2019-12"</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Previsão via decomposição da série de log(passageiros)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>fc_decomp <span class="ot">&lt;-</span> fit_dcmp <span class="sc">|&gt;</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">24</span>) </span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>fc_decomp <span class="sc">|&gt;</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span> </span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter_index</span>(<span class="st">"2015-01"</span><span class="sc">~</span><span class="st">"2019-12"</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Previsão via decomposição da série de log(passageiros)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Resíduos do modelo stl2 via decomposição por STL.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(stl2) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Métricas de desempenho para os dois anos separados para teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fc_decomp, </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         voosbr_ts <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">filter_index</span>(<span class="st">"2018-01"</span><span class="sc">~</span><span class="st">"2019-12"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit_dcmp <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(stl2) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos" class="level2" data-number="3.10">
@@ -1072,23 +1058,23 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <li>A seguir exibe-se o código para obtenção da série temporal mensal do volume em <span class="math inline">\(m^3\)</span> de produção de asfalto no Brasil, um derivado do petróleo. A série aparenta apresentar um padrão de sazonalidade anual com variação não aditiva. Aplique a transformação de Box-Cox na série. Qual o valor ótimo do parâmetro <span class="math inline">\(\lambda\)</span>? Faça o gráfico da série transformada.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente, </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"derivado"</span>, <span class="at">values_to =</span> <span class="st">"volume"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> derivado, </span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"petroleo_e_derivados.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>petro <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gasolina_aviao,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                            outros_energeticos))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> petroleo<span class="sc">:</span>solvente, </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"derivado"</span>, <span class="at">values_to =</span> <span class="st">"volume"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">as.Date</span>(data, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>))</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>petro_ts <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span> </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">key =</span> derivado, </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">index =</span> data) <span class="sc">|&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">yearmonth</span>(data))</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li><p>Uma vez que a série exibe um padrão de sazonalidade anual e tem frequência mensal, qual ordem de média móvel seria adequada para estimar a tendência via método clássico?</p></li>
@@ -1101,10 +1087,10 @@ Tabela&nbsp;3.4: Desempenho dos modelos STL para o log de passageiros entre 2018
 <li>Seja uma série temporal com padrão multiplicativo ou variação cíclica não constante. Caso seja aplicada uma transformação à série, recomenda-se a decomposição aditiva ou multiplicativa?</li>
 </ol>
 <ol start="6" type="1">
-<li>Estime modelos via decomposição por STL da série de produção de asfalto considerando dados de até 2022. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Teste modelos com janela de 5 e 11 para a tendência e janela de 11 e infinita (“periodic” ou Inf) para a sazonalidade. Faça um gráfico da série com as previsões obtidas com o modelo STL para os 32 meses disponíveis a partir de 2023 <code>(h=32)</code>.</li>
+<li>Estime modelos via decomposição por STL da série de produção de asfalto. Porém, neste caso, considere a série sem transformação de Box-Cox, utilize apenas transformação logarítimica para o volume produzido. Teste modelos com janela de 5 e 11 para a tendência e janela de 11 e infinita (“periodic” ou Inf) para a sazonalidade. Detrmine o melhor modelo por validação com origem móvel considerando 180 meses de treino para primeira série de treino com passo de um mês (<code>.init = 180, .step = 1</code>). Faça previsões um ano à frente para todos conjuntos de treino e avalie graficamente como o erro dos 4 modelos muda segundo o horizonte de previsão, <span class="math inline">\(h\)</span> de 1 a 12 meses. Faça um gráfico da série com as previsões obtidas com o modelo STL para um ano à frente dos dados (<code>h=12</code>).</li>
 </ol>
 <ol start="7" type="1">
-<li>Calcule as métricas de desempenho para o modelo avaliado nos meses separados para teste.</li>
+<li>Calcule as métricas de desempenho para os modelos obtidos para os dados de treino e teste para <span class="math inline">\(h=1\)</span>, <span class="math inline">\(h=6\)</span> e <span class="math inline">\(h=12\)</span>.</li>
 </ol>
 <ol start="8" type="1">
 <li>Avalie os resíduos do melhor modelo.</li>

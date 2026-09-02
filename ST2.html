@@ -274,7 +274,7 @@ window.Quarto = {
   <li><a href="#previsão-e-intervalos-de-confiança" id="toc-previsão-e-intervalos-de-confiança" class="nav-link" data-scroll-target="#previsão-e-intervalos-de-confiança"><span class="header-section-number">2.5</span> Previsão e intervalos de confiança</a></li>
   <li><a href="#transformações" id="toc-transformações" class="nav-link" data-scroll-target="#transformações"><span class="header-section-number">2.6</span> Transformações</a></li>
   <li><a href="#avaliação-de-modelos-de-séries-temporais" id="toc-avaliação-de-modelos-de-séries-temporais" class="nav-link" data-scroll-target="#avaliação-de-modelos-de-séries-temporais"><span class="header-section-number">2.7</span> Avaliação de modelos de séries temporais</a></li>
-  <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">2.8</span> Implementação em R</a></li>
+  <li><a href="#sec-implrcap2" id="toc-sec-implrcap2" class="nav-link" data-scroll-target="#sec-implrcap2"><span class="header-section-number">2.8</span> Implementação em R</a></li>
   <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">2.9</span> Exercícios propostos</a></li>
   </ul>
 </nav>
@@ -312,20 +312,20 @@ window.Quarto = {
 <p>Anteriormente à realização da modelagem de séries temporais é importante observar agumas estatísticas simples da série de interesse, de forma a compreender a magnitude da série, tendência central, dispersão e distribuição das observações da série.</p>
 <section id="estatísticas-simples" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="estatísticas-simples"><span class="header-section-number">2.1.1</span> Estatísticas simples</h3>
-<p>Talvez uma primeira forma de avaliar uma série temporal, <span class="math inline">\(y_1, \dots, y_T\)</span>, seria observando os valores de seus momentos de primeira e segunda ordem, ou, em outras palavras, a média, a variância e a autocorrelação. A média consiste no valor esperado da série temporal, conforme a <a href="#eq-meanpop" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>, sendo estimada, considerando <span class="math inline">\(T\)</span> observações disponíveis da série, segundo a <span class="quarto-unresolved-ref">?eq-meansample</span>.</p>
+<p>Talvez uma primeira forma de avaliar uma série temporal, <span class="math inline">\(y_1, \dots, y_T\)</span>, seria observando os valores de seus momentos de primeira e segunda ordem, ou, em outras palavras, a média, a variância e a autocorrelação. A média consiste no valor esperado da série temporal, conforme a <a href="#eq-meanpop" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>, sendo estimada, considerando <span class="math inline">\(T\)</span> observações disponíveis da série, segundo a <a href="#eq-meansample" class="quarto-xref">Equação&nbsp;<span>2.2</span></a>.</p>
 <p><span id="eq-meanpop"><span class="math display">\[
 \mu = E(y_t).
 \tag{2.1}\]</span></span></p>
-<p><span class="math display">\[
+<p><span id="eq-meansample"><span class="math display">\[
 \bar y = \frac{\sum_{t=1}^T y_t}{T}
-\]</span> {eq-meansample}</p>
-<p>Já a variância consiste na esperança dos desvios quadráticos em relação à média, segundo a <a href="#eq-varpop" class="quarto-xref">Equação&nbsp;<span>2.2</span></a>, sendo estimada para o caso amostral através da <a href="#eq-varsamp" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>. Como a variância tem unidade de medida igual ao quadrado da unidade da série original, é comum o uso do desvio-padrão, que consiste na raiz-quadrada da variância, <span class="math inline">\(s = \sqrt{s^2}\)</span>.</p>
+\tag{2.2}\]</span></span></p>
+<p>Já a variância consiste na esperança dos desvios quadráticos em relação à média, segundo a <a href="#eq-varpop" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>, sendo estimada para o caso amostral através da <a href="#eq-varsamp" class="quarto-xref">Equação&nbsp;<span>2.4</span></a>. Como a variância tem unidade de medida igual ao quadrado da unidade da série original, é comum o uso do desvio-padrão, que consiste na raiz-quadrada da variância, <span class="math inline">\(s = \sqrt{s^2}\)</span>.</p>
 <p><span id="eq-varpop"><span class="math display">\[
 \sigma^2 = Var(y_t) = E[(y_t-\mu)^2]
-\tag{2.2}\]</span></span></p>
+\tag{2.3}\]</span></span></p>
 <p><span id="eq-varsamp"><span class="math display">\[
 s^2 = \frac{\sum_{t=1}^T(y_t-\bar y)^2}{T-1}
-\tag{2.3}\]</span></span></p>
+\tag{2.4}\]</span></span></p>
 <p>A <a href="#tbl-est" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> expõe a média e o desvio-padrão para a série multivariada de energia produzida em MWh no Brasil em 2023, segundo cada fonte. Observa-se a superioridade da série hidráulica em relação às demais, confirmando a dependência desta fonte na matriz energética brasileira. Avaliando o desvio-padrão observa-se que a série de energia térmica apresenta menor dispersão em relação às demais.</p>
 <div class="cell">
 <div id="tbl-est" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -435,10 +435,10 @@ Tabela&nbsp;2.2: Média e desvio-padrão da série multivariada de Energia
 <section id="autocorrelação" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="autocorrelação"><span class="header-section-number">2.1.2</span> Autocorrelação</h3>
 <p>A autocorrelação é uma estatística importante para avaliar padrões de séries temporais, uma vez que consiste na correlação entre distintos segmentos da série temporal <span class="citation" data-cites="yule1926we">(<a href="references.html#ref-yule1926we" role="doc-biblioref">Yule 1926</a>)</span>. Para estimar a autocorrelação de uma série, deve-se defasá-la, isto é, atrasá-la em uma ou mais observações, e testar a correlação da série original com a série defasada. Para uma defasagem (<em>lag</em>) de uma observação, <span class="math inline">\(k= 1\)</span>, calcula-se a correlação <span class="math inline">\(r_1\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. Para uma defasagem de duas observações, <span class="math inline">\(k = 2\)</span>, calcula-se a correlação <span class="math inline">\(r_2\)</span> entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-2}\)</span> e assim sucessivamente.</p>
-<p>Assim como a correlação consiste na covariância padronizada, a autocorrelção consiste na autocovariância padronizada, sendo de mais fácil interpretação, por ter domínio entre -1 e 1. Tomando uma série <span class="math inline">\(y_t\)</span> com média nula, <span class="math inline">\(\mu_y = 0\)</span>, para uma defasagem de ordem <span class="math inline">\(k\)</span>, a sua autocorrelação pode ser denotada <span class="math inline">\(\rho_k\)</span> e consiste na esperança do produto da série e da série defasada, <span class="math inline">\(\rho_k=E(y_ty_{t-k})\)</span>. A autocorrelação amostral para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.4</span></a>.</p>
+<p>Assim como a correlação consiste na covariância padronizada, a autocorrelção consiste na autocovariância padronizada, sendo de mais fácil interpretação, por ter domínio entre -1 e 1. Tomando uma série <span class="math inline">\(y_t\)</span> com média nula, <span class="math inline">\(\mu_y = 0\)</span>, para uma defasagem de ordem <span class="math inline">\(k\)</span>, a sua autocorrelação pode ser denotada <span class="math inline">\(\rho_k\)</span> e consiste na esperança do produto da série e da série defasada, <span class="math inline">\(\rho_k=E(y_ty_{t-k})\)</span>. A autocorrelação amostral para uma defasagem de ordem <span class="math inline">\(k\)</span> pode ser calculada conforme a <a href="#eq-autoc" class="quarto-xref">Equação&nbsp;<span>2.5</span></a>.</p>
 <p><span id="eq-autoc"><span class="math display">\[
 r_k = \frac{\sum_{t=k+1}^T (y_t-\bar{y})(y_{t-k}-\bar{y})}{\sum_{t=1}^T (y_t-\bar{y})^2}
-\tag{2.4}\]</span></span></p>
+\tag{2.5}\]</span></span></p>
 <p>A <a href="#tbl-lagserie" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> expõe as dez primeiras observações de uma série temporal arbitrária <span class="math inline">\(y_t\)</span>. A série defasada de uma observação, <span class="math inline">\(y_{t-1}\)</span>, é observada à direita. Nas colunas seguintes são observadas a série com defasagem de duas e três observações, respectivamente. A autocorrelação para defasagem de uma observação, <span class="math inline">\(r_1\)</span>, consiste na correlação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>. A autocorrelação é geralmente calculada para diversas defasagens e o correlograma é um gráfico que plota as autocorrelações, facilitando a interpretação da série.</p>
 <div class="cell">
 <div id="tbl-lagserie" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -604,10 +604,10 @@ Figura&nbsp;2.4: Séries e respectivos correlogramas
 <p>Alguns métodos simples de previsão para séries temporais serão expostos com afinalidade de expor a terminologia para previsão, entender o raciocínio necessário para realizar previsões e prover previsões que servem de comparação com resultados de métodos mais sofisticados, os quais serão explicitados nos próximos capítulos.</p>
 <section id="média" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="média"><span class="header-section-number">2.2.1</span> Média</h3>
-<p>Seja a série histórica <span class="math inline">\(y_1, ..., y_T\)</span>. Seja <span class="math inline">\(h\)</span> o número de períodos à frente que se deseja prever. A previsão de séries temporais a partir da média, pode ser útil para algumas séries estacionárias, sendo uma ou mais observações futuras previstas a partir da média das <span class="math inline">\(T\)</span> observações disponíveis da série. A <a href="#eq-predmean" class="quarto-xref">Equação&nbsp;<span>2.5</span></a> é usada para previsão via média.</p>
+<p>Seja a série histórica <span class="math inline">\(y_1, ..., y_T\)</span>. Seja <span class="math inline">\(h\)</span> o número de períodos à frente que se deseja prever. A previsão de séries temporais a partir da média, pode ser útil para algumas séries estacionárias, sendo uma ou mais observações futuras previstas a partir da média das <span class="math inline">\(T\)</span> observações disponíveis da série. A <a href="#eq-predmean" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> é usada para previsão via média.</p>
 <p><span id="eq-predmean"><span class="math display">\[
 \hat{y}_{T+h|T}=\frac{1}{T}\sum_{t=1}^Ty_t=\frac{y_1+y_2+...+y_T}{T}
-\tag{2.5}\]</span></span></p>
+\tag{2.6}\]</span></span></p>
 <p>Na <a href="#fig-car" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> expõe-se a previsão com a média para três anos à frente para a série temporal do IPCA no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -626,10 +626,10 @@ Figura&nbsp;2.5: Previsão por média para a série do IPCA
 </section>
 <section id="método-ingênuo" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="método-ingênuo"><span class="header-section-number">2.2.2</span> Método ingênuo</h3>
-<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">Box et al. (<a href="references.html#ref-box2008time" role="doc-biblioref">2008</a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> é útil para realizar previsões via método ingênuo.</p>
+<p>O método ingênuo propõe prever as observações futuras como a última observação disponível <span class="citation" data-cites="makridakis1982accuracy">Box et al. (<a href="references.html#ref-box2008time" role="doc-biblioref">2008</a>)</span>. A <a href="#eq-ingenuo" class="quarto-xref">Equação&nbsp;<span>2.7</span></a> é útil para realizar previsões via método ingênuo.</p>
 <p><span id="eq-ingenuo"><span class="math display">\[
 \hat{y}_{T+h|T}=y_T
-\tag{2.6}\]</span></span></p>
+\tag{2.7}\]</span></span></p>
 <p>Na <a href="#fig-car2" class="quarto-xref">Figura&nbsp;<span>2.6</span></a> expõe-se a previsão com o método ingênuo para três anos à frente para a série temporal do IPCA no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -648,10 +648,10 @@ Figura&nbsp;2.6: Previsão pelo método ingênuo na série do IPCA
 </section>
 <section id="ingênuo-sazonal" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="ingênuo-sazonal"><span class="header-section-number">2.2.3</span> Ingênuo sazonal</h3>
-<p>O método ingênuo sazonal é indicado para séries claramente sazonais e propõe prever as observações futuras iguais aos períodos das estações anteriores, por exemplo mesmo valor do mês do ano anterior <span class="citation" data-cites="makridakis1982accuracy">(<a href="references.html#ref-makridakis1982accuracy" role="doc-biblioref">Makridakis et al. 1982</a>)</span>. Na formulação dos valores previstos à seguir, <span class="math inline">\(m\)</span> consiste no período sazonal e <span class="math inline">\(k\)</span> é a parte inteira de <span class="math inline">\((h-1)/m\)</span>, ou seja, o número completo de anos do período de previsão antes de <span class="math inline">\(T+h\)</span>. A <a href="#eq-ingsaz" class="quarto-xref">Equação&nbsp;<span>2.7</span></a> é usada para realizar previsões com o método ingênuo sazonal.</p>
+<p>O método ingênuo sazonal é indicado para séries claramente sazonais e propõe prever as observações futuras iguais aos períodos das estações anteriores, por exemplo mesmo valor do mês do ano anterior <span class="citation" data-cites="makridakis1982accuracy">(<a href="references.html#ref-makridakis1982accuracy" role="doc-biblioref">Makridakis et al. 1982</a>)</span>. Na formulação dos valores previstos à seguir, <span class="math inline">\(m\)</span> consiste no período sazonal e <span class="math inline">\(k\)</span> é a parte inteira de <span class="math inline">\((h-1)/m\)</span>, ou seja, o número completo de anos do período de previsão antes de <span class="math inline">\(T+h\)</span>. A <a href="#eq-ingsaz" class="quarto-xref">Equação&nbsp;<span>2.8</span></a> é usada para realizar previsões com o método ingênuo sazonal.</p>
 <p><span id="eq-ingsaz"><span class="math display">\[
 \hat{y}_{T+h|T}=y_{T+h-m(k+1)}
-\tag{2.7}\]</span></span></p>
+\tag{2.8}\]</span></span></p>
 <p>A <a href="#fig-temp" class="quarto-xref">Figura&nbsp;<span>2.7</span></a> apresenta a série de temperatura instantânea coletada de hora em hora das duas primeiras semanas de maio de 2024 para a cidade de São joão del-Rei. Foram considerados os dados da primeira semana para treinar os modelos, sendo as previsões plotadas para a semana seguinte juntamente com as observações. pode-se observar que as previsões para o dia 08/05 à frente são exatamente iguais ao observado no dia 07 de maio. As previsões obtidas com o método ingênuo sazonal apresentam bom ajuste aos dados, uma vez que a temperatua desta semana apresentou padrão estável.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -670,10 +670,10 @@ Figura&nbsp;2.7: Previsão da temperatura em São João del-Rei em maio de 2024 
 </section>
 <section id="deriva" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="deriva"><span class="header-section-number">2.2.4</span> Deriva</h3>
-<p>O método da deriva é uma variação do ingênuo que permite a previsão de observações com tendência de crescimento ou decréscimo segundo a variação observada entre a primeira e última observação <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">Hyndman e Athanasopoulos 2021</a>)</span>. A <a href="#eq-deriva" class="quarto-xref">Equação&nbsp;<span>2.8</span></a> viabiliza a previsão via método da deriva.</p>
+<p>O método da deriva é uma variação do ingênuo que permite a previsão de observações com tendência de crescimento ou decréscimo segundo a variação observada entre a primeira e última observação <span class="citation" data-cites="hyndman2018forecasting">(<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">Hyndman e Athanasopoulos 2021</a>)</span>. A <a href="#eq-deriva" class="quarto-xref">Equação&nbsp;<span>2.9</span></a> viabiliza a previsão via método da deriva.</p>
 <p><span id="eq-deriva"><span class="math display">\[
 \hat{y}_{T+h|T} = y_T + \frac{h}{T-1}\sum_{t=2}^T(y_t-y_{t-1}) =y_T+h \bigg(\frac{y_T-y_1}{T-1}\bigg)
-\tag{2.8}\]</span></span></p>
+\tag{2.9}\]</span></span></p>
 <p>Na <a href="#fig-car4" class="quarto-xref">Figura&nbsp;<span>2.8</span></a> aplica-se a previsão com o método da deriva para três dias à frente para a série temporal de produção de carros no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -850,14 +850,14 @@ Figura&nbsp;2.13: Correlograma dos resíduos da série do índice Ibovespa
 </section>
 <section id="testes-para-diagnóstico-de-autocorrelação" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="testes-para-diagnóstico-de-autocorrelação"><span class="header-section-number">2.4</span> Testes para diagnóstico de autocorrelação</h2>
-<p>Um teste para diagnóstico de autocorrelação é um teste para averiguar se as <span class="math inline">\(l\)</span> primeiras autocorrelações são diferentes do que se esperaria para um ruído branco. Um destes testes seria o de <strong>Box-Pierce</strong> <span class="citation" data-cites="box1970distribution">(<a href="references.html#ref-box1970distribution" role="doc-biblioref">Box e Pierce 1970</a>)</span>, com estatística calculada conforme <a href="#eq-bp" class="quarto-xref">Equação&nbsp;<span>2.9</span></a>. Sugere-se <span class="math inline">\(l=10\)</span> autocorrelações para séries não sazonais e <span class="math inline">\(l=2m\)</span> para casos sazonais, onde <span class="math inline">\(m\)</span> é a dimensão do período sazonal. Porém, o teste não é adequado para <span class="math inline">\(l\)</span> alto, sugerindo-se no máximo <span class="math inline">\(l=T/5\)</span>.</p>
+<p>Um teste para diagnóstico de autocorrelação é um teste para averiguar se as <span class="math inline">\(l\)</span> primeiras autocorrelações são diferentes do que se esperaria para um ruído branco. Um destes testes seria o de <strong>Box-Pierce</strong> <span class="citation" data-cites="box1970distribution">(<a href="references.html#ref-box1970distribution" role="doc-biblioref">Box e Pierce 1970</a>)</span>, com estatística calculada conforme <a href="#eq-bp" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>. Sugere-se <span class="math inline">\(l=10\)</span> autocorrelações para séries não sazonais e <span class="math inline">\(l=2m\)</span> para casos sazonais, onde <span class="math inline">\(m\)</span> é a dimensão do período sazonal. Porém, o teste não é adequado para <span class="math inline">\(l\)</span> alto, sugerindo-se no máximo <span class="math inline">\(l=T/5\)</span>.</p>
 <p><span id="eq-bp"><span class="math display">\[
 Q = T\sum_{k=1}^l r_k^2
-\tag{2.9}\]</span></span></p>
-<p>Um teste mais adequado é o de <strong>Ljung-Box</strong> <span class="citation" data-cites="ljung1978measure">(<a href="references.html#ref-ljung1978measure" role="doc-biblioref">Ljung e Box 1978</a>)</span>, com estatística calculada conforme <a href="#eq-lb" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>.</p>
+\tag{2.10}\]</span></span></p>
+<p>Um teste mais adequado é o de <strong>Ljung-Box</strong> <span class="citation" data-cites="ljung1978measure">(<a href="references.html#ref-ljung1978measure" role="doc-biblioref">Ljung e Box 1978</a>)</span>, com estatística calculada conforme <a href="#eq-lb" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>.</p>
 <p><span id="eq-lb"><span class="math display">\[
 Q^* = T(T+2)\sum_{k=1}^l (T-k)^{-1}r_k^2
-\tag{2.10}\]</span></span></p>
+\tag{2.11}\]</span></span></p>
 <p>O teste de Ljung-Box é similar ao de Box-Pierce com peso <span class="math inline">\((T + 2)/(T- k)\)</span> no quadrado da autocorrelação de <em>lag</em> <span class="math inline">\(k\)</span>. Para altos valores de <span class="math inline">\(T\)</span> ambos os testes reportam resultados muito próximos <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. Porém, o teste de Ljung-Box corrige um viés do teste de Box-Pierce para séries com poucas observações, <span class="math inline">\(T\)</span>, uma vez que que este subestima a autocorrelação quando <span class="math inline">\(T\)</span> é baixo, apresentando menor poder. A hipótese nula de ambos os testes reside na nulidade de todas as alto correlações. Em ambos os casos um alto valor de <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) sugere que as autocorrelações não vem de um ruído branco. Para decisão, considera-se que <span class="math inline">\(Q^*\)</span> (ou <span class="math inline">\(Q\)</span>) segue a distribuição <span class="math inline">\(\chi^2\)</span> com <span class="math inline">\(l\)</span> graus de liberdade. O teste de Ljung-Box, por apresentar poder mais alto, é o mais recomendado.</p>
 <p>Na <a href="#tbl-testes" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe-se o valor <span class="math inline">\(Q\)</span> e <span class="math inline">\(Q^*\)</span> para os resíduos do modelo ingênuo para os dados do índice Ibovespa. O p-valor consiste na probabilidade associada à estatística calculada, <span class="math inline">\(Q\)</span> ou <span class="math inline">\(Q^*\)</span>. Como <span class="math inline">\(Q\)</span> ou <span class="math inline">\(Q^*\)</span> &lt; <span class="math inline">\(\chi^2_{(df=10, \alpha = 0,05)} = 18,31\)</span> ou como o p-valor &gt; 0,05 = <span class="math inline">\(\alpha\)</span>, para ambos os testes, não se rejeita a hipótese nula. Logo, pode-se concluir que as autocorrelações dos resíduos não diferem das de um ruído branco.</p>
 <div class="cell">
@@ -898,15 +898,15 @@ Tabela&nbsp;2.5: Valores das estatísticas Q e Q* para os resíduos do método i
 <section id="previsão-e-intervalos-de-confiança" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="previsão-e-intervalos-de-confiança"><span class="header-section-number">2.5</span> Previsão e intervalos de confiança</h2>
 <p>As previsões de séries temporais visam projetar para um horizonte futuro de interesse estimativas da série, possibilitando ações de planejamento. O horizonte de previsão de interesse, também chamado de <em>lead time</em>, <span class="math inline">\(h\)</span>, consiste no número de períodos à frente que deseja-se prever <span class="citation" data-cites="montgomery2015introduction">(<a href="references.html#ref-montgomery2015introduction" role="doc-biblioref">Montgomery, Jennings, e Kulahci 2015</a>)</span>. Obviamente, quanto maior o <em>lead time</em>, maior a incerteza nas previsões. Além da estimativa pontual, pode-se considerar um intervalo de confiança para a previsão com nível de confiança (probabilidade) de interesse. Para, por exemplo, um intervalo de previsão com 0,95 de confiança, os valores obtidos consistem nos limites que garantem que o valor previsto está entre eles com 0,95 de probabilidade.</p>
-<p>Um intervalo de previsão para <span class="math inline">\(h\)</span> períodos à frente com 0,95 de confiança pode ser calculado conforme <a href="#eq-confint" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>.</p>
+<p>Um intervalo de previsão para <span class="math inline">\(h\)</span> períodos à frente com 0,95 de confiança pode ser calculado conforme <a href="#eq-confint" class="quarto-xref">Equação&nbsp;<span>2.12</span></a>.</p>
 <p><span id="eq-confint"><span class="math display">\[
 \hat{y}_{T+h|T} \pm1,96 \hat\sigma_h,
-\tag{2.11}\]</span></span></p>
+\tag{2.12}\]</span></span></p>
 <p>onde <span class="math inline">\(1,96\)</span> consiste no valor do quantil na distribuição normal-padrão <span class="math inline">\(z\)</span>, com 0,95 de probabilidade ou confiança, <span class="math inline">\(z_{0,95} = 1,96\)</span>. Obviamente, caso seja desejado um intervalo com nível de confiança diferente, deve-se definir o valor <span class="math inline">\(z\)</span> adequado.</p>
-<p>O desvio-padrão para previsões com <span class="math inline">\(h=1\)</span> (um período a frente) pode ser calculado como o desvio-padrão dos resíduos, conforme <a href="#eq-dp" class="quarto-xref">Equação&nbsp;<span>2.12</span></a> onde <span class="math inline">\(K\)</span> é o número de parâmetros do modelo e <span class="math inline">\(M\)</span> o número de valores ausentes nos resíduos (para o método ingênuo e o da deriva, por exemplo, <span class="math inline">\(M=1\)</span>, uma vez que a primeira observação não pode ser estimada).</p>
+<p>O desvio-padrão para previsões com <span class="math inline">\(h=1\)</span> (um período a frente) pode ser calculado como o desvio-padrão dos resíduos, conforme <a href="#eq-dp" class="quarto-xref">Equação&nbsp;<span>2.13</span></a> onde <span class="math inline">\(K\)</span> é o número de parâmetros do modelo e <span class="math inline">\(M\)</span> o número de valores ausentes nos resíduos (para o método ingênuo e o da deriva, por exemplo, <span class="math inline">\(M=1\)</span>, uma vez que a primeira observação não pode ser estimada).</p>
 <p><span id="eq-dp"><span class="math display">\[
 \hat\sigma = \sqrt{\frac{1}{T-K-M}\sum_{t=1}^T e_t^2}
-\tag{2.12}\]</span></span></p>
+\tag{2.13}\]</span></span></p>
 <p>Para previsões com <span class="math inline">\(h&gt;1\)</span> a estimativa de <span class="math inline">\(\sigma_h\)</span> é mais complexa. A <a href="#tbl-desvio" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> expõe as Equações para estimar o desvio-padrão para os métodos até aqui expostos, onde <span class="math inline">\(m\)</span> é o período sazonal e <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span>.</p>
 <div id="tbl-desvio" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -962,13 +962,13 @@ Figura&nbsp;2.14: Intervalo de previsão para a série do índice Ibovespa
 <section id="transformações" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="transformações"><span class="header-section-number">2.6</span> Transformações</h2>
 <p>Há diversos casos de séries temporais que seguem um padrão de variação cíclica com amplitude variável com o tempo. Tal variabilidade dita heterocedástica pode dificultar a modelagem da série. Transformações podem ser usadas nas séries temporais, de forma a garantir, por exemplo, que as pressuposições sobre os resíduos sejam cumpridas, ou que alguma variação que aumenta ou cresce com o tempo seja corrigida. A transformação logarítmica é geralmente útil para estabilizar a variação de séries. Tomando a série original, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, a série transformada fica <span class="math inline">\(w_1, w_2, ..., w_T\)</span>, com <span class="math inline">\(w_t =log(y_t)\)</span>, <span class="math inline">\(t=1,...,T\)</span>. Uma mudança de uma unidade na escala log de base 10 corresponde a uma multiplicação por 10 na escala original.</p>
-<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transformações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme <a href="#eq-boxcox" class="quarto-xref">Equação&nbsp;<span>2.13</span></a>.</p>
+<p>Outras transformações podem ser mais interessantes em alguns casos, porém nem sempre de fácil interpretação, por exemplo as transformações de potência, <span class="math inline">\(w_t = y_t^p\)</span>. A transformação de <strong>Box-Cox</strong> envolve ambos logarítmo e potência, conforme <a href="#eq-boxcox" class="quarto-xref">Equação&nbsp;<span>2.14</span></a>.</p>
 <p><span id="eq-boxcox"><span class="math display">\[
 w_t = \Bigg\{ \begin{matrix}
                 \text{log}(y_t), \text{ }\lambda=0 \\
                 \text{sinal}(y_t)\frac{|y_t|^\lambda-1}{\lambda}, \text{ }\lambda \neq 0,
              \end{matrix}
-\tag{2.13}\]</span></span></p>
+\tag{2.14}\]</span></span></p>
 <p>onde <span class="math inline">\(\text{sinal}(y_t) = 1\)</span> se <span class="math inline">\(y\geq0\)</span> e <span class="math inline">\(\text{sinal}(y_t) =-1\)</span>, caso contrário.</p>
 <p>A <a href="#fig-exptrans" class="quarto-xref">Figura&nbsp;<span>2.15</span></a> apresenta a série de Exportações após transformação de Box-Cox com <span class="math inline">\(\lambda = -0,0656\)</span>. Pode-se observar que a transformação estabiliza a variância da série. Certamente trabalhar com a série transformada viabilizará obtenção de resíduos mais adequados e de previsões melhores. Ao final é possível isolar <span class="math inline">\(y_t\)</span> em <span class="math inline">\(w_t\)</span>, de forma a realizar previsões na unidade original da série.</p>
 <div class="cell">
@@ -1019,11 +1019,11 @@ Figura&nbsp;2.17: Validação cruzada de séries temporais usando origem móvel
 </div>
 </div>
 </div>
-<p>O erro de previsão, <span class="math inline">\(e_{T+h}\)</span> é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.14</span></a>.</p>
+<p>O erro de previsão, <span class="math inline">\(e_{T+h}\)</span> é calculado conforme <a href="#eq-erroo" class="quarto-xref">Equação&nbsp;<span>2.15</span></a>.</p>
 <p><span id="eq-erroo"><span class="math display">\[
 e_{T+h} = y_{T+h} - \hat{y}_{T+h|T}
-\tag{2.14}\]</span></span></p>
-<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste usadas para avaliar modelos de séries temporais. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma unidade de medida da série. O MAE é menos suscetível a valores discrepantes e ambos devem ser minimizados. O erro percentual absuluto médio (<em>mean absolute percentage error</em> - MAPE) é livre de escala, assim como o erro absoluto médio escalonado (<em>Mean Absolute Scaled Error</em> - MASE). O segundo é mais adequado para comparar séries distintas, por escalonar o erro usando a série padronizada, <span class="math inline">\(q_j\)</span>. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.15</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal.</p>
+\tag{2.15}\]</span></span></p>
+<p>O desempenho do modelo pode ser medido por diversas métricas. A <a href="#tbl-metric" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a> apresenta as principais métricas de ajuste usadas para avaliar modelos de séries temporais. O erro médio absuluto (<em>mean absolute error</em> - MAE) e a raiz da média dos quadrados dos erros (<em>root mean square error</em> - RMSE) são medidos na mesma unidade de medida da série. O MAE é menos suscetível a valores discrepantes e ambos devem ser minimizados. O erro percentual absuluto médio (<em>mean absolute percentage error</em> - MAPE) é livre de escala, assim como o erro absoluto médio escalonado (<em>Mean Absolute Scaled Error</em> - MASE). O segundo é mais adequado para comparar séries distintas, por escalonar o erro usando a série padronizada, <span class="math inline">\(q_j\)</span>. A <a href="#eq-qj" class="quarto-xref">Equação&nbsp;<span>2.16</span></a> é usada para padronizar os erros. Em séries sazonais substitui-se <span class="math inline">\(T-1\)</span> por <span class="math inline">\(T-m\)</span>, onde <span class="math inline">\(m\)</span> é o período sazonal.</p>
 <div id="tbl-metric" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1031,6 +1031,10 @@ Tabela&nbsp;2.7: Métricas de erro
 </figcaption>
 <div aria-describedby="tbl-metric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 92%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Métrica</th>
@@ -1040,19 +1044,19 @@ Tabela&nbsp;2.7: Métricas de erro
 <tbody>
 <tr class="odd">
 <td>MAE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{MAE = mean}(|e_t|)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MAE} = \dfrac{1}{h}\displaystyle\sum_{t=T+1}^{T+h} |y_t - \hat y_t|\)</span></td>
 </tr>
 <tr class="even">
 <td>RMSE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{RMSE = }\sqrt{\text{mean}(e_t^2)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{RMSE} = \sqrt{\dfrac{1}{h}\displaystyle\sum_{t=T+1}^{T+h} (y_t - \hat y_t)^2}\)</span></td>
 </tr>
 <tr class="odd">
 <td>MAPE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{MAPE = mean}(|p_t|)\)</span>, com <span class="math inline">\(p_t = 100e_t/y_t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MAPE} = \dfrac{1}{h}\displaystyle\sum_{t=T+1}^{T+h} |p_t|\)</span>, com <span class="math inline">\(p_t = 100(y_t - \hat y_t)/y_t\)</span></td>
 </tr>
 <tr class="even">
 <td>MASE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{MASE = mean}(|q_j|)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MASE} = \dfrac{1}{h}\displaystyle\sum_{j=T+1}^{T+h} |q_j|\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1061,7 +1065,7 @@ Tabela&nbsp;2.7: Métricas de erro
 </div>
 <p><span id="eq-qj"><span class="math display">\[
 q_j = \frac{e_j}{\frac{1}{T-1}\sum_{t=2}^T |y_t-y_{t-1}|}
-\tag{2.15}\]</span></span></p>
+\tag{2.16}\]</span></span></p>
 <p>A <a href="#tbl-erro" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> expõe o desempenho dos três métodos considerados nos dados de temperatura instantânea de São João-del-Rei para a abordagem de treino e teste, conforme divisão e previsões observadas na <a href="#fig-temp" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>. O método ingênuo sazonal para esta série foi o que apresentou melhor ajuste.</p>
 <div class="cell">
 <div id="tbl-erro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1143,8 +1147,8 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 </figure>
 </div>
 </section>
-<section id="implementação-em-r" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="implementação-em-r"><span class="header-section-number">2.8</span> Implementação em R</h2>
+<section id="sec-implrcap2" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-implrcap2"><span class="header-section-number">2.8</span> Implementação em R</h2>
 <p>A seguir apresenta-se parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo. Os dados utilizados estão disponíveis em <a href="https://github.com/robsonpro/Previsao">Previsão, por Robson Bruno Dutra Pereira</a>.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
@@ -1246,17 +1250,20 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>.innov) <span class="sc">|&gt;</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A série de produção de carros foi apresentada no capítulo anterior. A modelagem e previsão via método da deriva é obtida conforme segue.</p>
+<p>A série de produção de carros foi apresentada no capítulo anterior. A modelagem e previsão via método da deriva é obtida conforme segue. O modelo <code>RW</code> consiste em um modelo de caminhada aleatória (<em>random walk</em>). Tal modelo resulta em previsão análoga à do ingênuo, visto que em um modelo de caminhada aleatória cada observação consiste na anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1} + \varepsilon_t\)</span>, com previsão <span class="math inline">\(\hat y_{T+h} = y_T\)</span>, onde <span class="math inline">\(\varepsilon_t\)</span> é o termo de erro ou resíduo teórico ou populacional, portanto, não observável, sendo estimado por <span class="math inline">\(e_t\)</span>. A adição do termo <code>drift()</code>, portanto, resulta em um modelo com inclinação segundo o método da deriva.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>carros_fit4 <span class="ot">&lt;-</span> carros_ts <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">drift =</span> <span class="fu">RW</span>(quantidade <span class="sc">~</span> <span class="fu">drift</span>()))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="ot">&lt;-</span> carros_fit4 <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># carros_pred4</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="sc">|&gt;</span> </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(carros_ts, <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">drift =</span> <span class="fu">RW</span>(quantidade <span class="sc">~</span> <span class="fu">drift</span>()),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">rw =</span> <span class="fu">RW</span>(quantidade),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ingenuo =</span> <span class="fu">NAIVE</span>(quantidade)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="ot">&lt;-</span> carros_fit4 <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"3 years"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># carros_pred4</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>carros_pred4 <span class="sc">|&gt;</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(carros_ts, <span class="at">level =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série do índice Ibovespa.</p>
 <div class="cell">
@@ -1312,7 +1319,7 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(temp_fc, last_days) <span class="sc">|&gt;</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Particionamento dos dados para validação cruzada por origem móvel. Pode-se usar o comando <code>stretch_tsibble</code> para criar múltiplos conjuntos de teste de forma iterativa. Neste caso, foi considerado <code>.init=168</code> observações para a primeira série de treino, sendo esta aumentada iterativamente de uma em uma observação fazendo <code>.step = 1</code>. O comando cria a coluna <code>.id</code> para identificar as partições de treino criadas. Sugere-se inspecionar o resultado em <code>t_sjdr_14d_tr1</code>, para constatar que, para <code>.id=1</code> tem-se as primeiras 168 observações de treino, para <code>.id=2</code> tem-se as primeiras 169 observações de treino e assim sucessivamente. Essa coluna é essencial para identificação das divisões de treino e para realizar um modelo para cada.</p>
+<p>Particionamento dos dados para validação cruzada por origem móvel para a série de temperatura em São João del-Rei. Pode-se usar o comando <code>stretch_tsibble</code> para criar múltiplos conjuntos de teste de forma iterativa. Neste caso, foi considerado <code>.init=168</code> observações para a primeira série de treino, sendo esta aumentada iterativamente de uma observação fazendo <code>.step = 1</code>. O comando cria a coluna <code>.id</code> para identificar as partições de treino criadas. Sugere-se inspecionar o resultado em <code>t_sjdr_14d_tr1</code>, para constatar que, para <code>.id=1</code> tem-se as primeiras 168 observações de treino, para <code>.id=2</code> tem-se as primeiras 169 observações de treino e, assim, sucessivamente. Essa coluna é essencial para identificação das divisões de treino e para realizar um modelo para cada.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t_sjdr_14d_tr1 <span class="ot">&lt;-</span> tempo_sjdr_14_dias <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">168</span>, <span class="at">.step =</span> <span class="dv">1</span>)</span>
@@ -1337,8 +1344,9 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(tempo_sjdr_14_dias, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">".model"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> h, <span class="at">y =</span> RMSE, <span class="at">col =</span> .model)) <span class="sc">+</span></span>
 <span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># facet_wrap(vars(.model)) +</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Erro na validação por origem móvel"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">pch =</span> .model)) <span class="sc">+</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">lty=</span>.model))</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Erro na validação por origem móvel"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparando desempenho de treino e teste para <span class="math inline">\(h=1\)</span>. Ao se usar o comando <code>accuracy()</code> sem dados futuros, obter-se-á o desempenho de treino, segundo os valores ajustados para a série.</p>
 <div class="cell">
@@ -1353,7 +1361,7 @@ Tabela&nbsp;2.9: Desempenho dos métodos para a previsão da temperatura instant
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>acc_treino <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>()</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acurácia no teste (TSCV / forecast)</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Acurácia no teste</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>acc_teste <span class="ot">&lt;-</span> fit <span class="sc">|&gt;</span></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(tempo_sjdr_14_dias)</span>

@@ -328,7 +328,7 @@ Figura&nbsp;4.3: Modelo de regressão linear simples para produção de grãos e
 <p><span id="eq-linreg"><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}x_t
 \tag{4.1}\]</span></span></p>
-<p>As observações da série dependente ou resposta, <span class="math inline">\(y_t\)</span>, podem ser descritas conforme <a href="#eq-obs" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>.</p>
+<p>As observações da série dependente ou resposta, <span class="math inline">\(y_t\)</span>, podem ser descritas conforme <a href="#eq-obs" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>. Conforme já discutido na <a href="ST2.html#sec-implrcap2" class="quarto-xref"><span>Seção 2.8</span></a>, <span class="math inline">\(\varepsilon_t\)</span> é o termo de erro ou resíduo populacional, portanto, não observável, sendo estimado por <span class="math inline">\(e_t\)</span>, sendo suposto normalmente e independentemente distribuído, <span class="math inline">\(\varepsilon_t \sim NID(0,\sigma^2_{\varepsilon})\)</span>.</p>
 <p><span id="eq-obs"><span class="math display">\[
 \begin{aligned}
 y_t = \hat{y}_t + \varepsilon_t \\
@@ -357,19 +357,19 @@ Figura&nbsp;4.4: Erros de previsão para o modelo de regressão linear para prod
 Model: TSLM 
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--40729 -18733   1072  18188  35065 
+     Min       1Q   Median       3Q      Max 
+-40737,3 -18688,2   -898,2  17923,8  35016,4 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   -1,726e+05  1,248e+04  -13,84   &lt;2e-16 ***
-area_plantada  6,285e+00  2,561e-01   24,54   &lt;2e-16 ***
+(Intercept)   -1,723e+05  1,151e+04  -14,96   &lt;2e-16 ***
+area_plantada  6,276e+00  2,316e-01   27,10   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
-Residual standard error: 21080 on 46 degrees of freedom
-Multiple R-squared: 0,929,  Adjusted R-squared: 0,9275
-F-statistic: 602,2 on 1 and 46 DF, p-value: &lt; 2,22e-16</code></pre>
+Residual standard error: 20860 on 47 degrees of freedom
+Multiple R-squared: 0,9398, Adjusted R-squared: 0,9386
+F-statistic: 734,3 on 1 and 47 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
 <p>O modelo para prever a produção de grãos, <span class="math inline">\(y_t\)</span>, em função da área plantada, <span class="math inline">\(x_t\)</span>, fica:</p>
@@ -569,14 +569,6 @@ Tabela&nbsp;4.1: Criação de variáveis dummy
 </figcaption>
 <div aria-describedby="tbl-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 22%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Ano</th>
