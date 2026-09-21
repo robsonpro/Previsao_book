@@ -277,7 +277,7 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">4.1</span> Regressão linear simples</h2>
-<p>A regressão de séries temporais visa modelar uma série de interesse, dita dependente, em função de outra ou mais séries, referidas como independentes, às quais são supostamente relacionadas. Os métodos mais tradicionais consideram a dependência temporal da própria série para modelagem e previsão. Entretanto, em situações onde há séries relacionadas disponíveis a regressão pode ser útil. Ademais, há possibilidade de combinar a regressão com modelos autoregressivos integrados de m[edias móveis, conforme será abordado no capítulo 7.</p>
+<p>A regressão de séries temporais visa modelar uma série de interesse, dita dependente, em função de outra ou mais séries, referidas como independentes, às quais são supostamente relacionadas. Os métodos mais tradicionais consideram a dependência temporal da própria série para modelagem e previsão. Entretanto, em situações onde há séries relacionadas disponíveis a regressão pode ser útil. Ademais, há possibilidade de combinar a regressão com modelos autoregressivos integrados de médias móveis, conforme será abordado no capítulo 7.</p>
 <p>Seja um problema onde deseja-se prever uma série temporal contínua, <span class="math inline">\(y_1, y_2, ..., y_T\)</span>, em função de outra, <span class="math inline">\(x_1, x_2, ..., x_T\)</span>.</p>
 <p>Na <a href="ST7.html#fig-graos" class="quarto-xref">Figura&nbsp;<span>7.6</span></a> são plotadas as séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas no Brasil de 1977 a 2022, <a href="http://www.ipeadata.gov.br">Ipeadata</a>. As séries apresentam tendência de crescimento não linear com algumas flutuações.</p>
 <div class="cell">
@@ -324,11 +324,11 @@ Figura&nbsp;4.3: Modelo de regressão linear simples para produção de grãos e
 </div>
 </div>
 </div>
-<p>O modelo linear plotado em azul pode ser descrito conforme a <a href="#eq-linreg" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>, onde <span class="math inline">\(\beta_0\)</span> é uma constante e <span class="math inline">\(\beta_1\)</span> é um coeficiente linear.</p>
+<p>O modelo linear plotado em azul pode ser descrito conforme a <a href="#eq-linreg" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>, onde <span class="math inline">\(\beta_0\)</span> é uma constante e <span class="math inline">\(\beta_1\)</span> é o coeficiente angular relacionado à série exógena ou independente, área plantada.</p>
 <p><span id="eq-linreg"><span class="math display">\[
-\hat{y}_t = \beta_0+\beta_{1}x_t
+\hat{y}_t = \hat\beta_0+\hat\beta_{1}x_t
 \tag{4.1}\]</span></span></p>
-<p>As observações da série dependente ou resposta, <span class="math inline">\(y_t\)</span>, podem ser descritas conforme <a href="#eq-obs" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>. Conforme já discutido na <a href="ST2.html#sec-implrcap2" class="quarto-xref"><span>Seção 2.8</span></a>, <span class="math inline">\(\varepsilon_t\)</span> é o termo de erro ou resíduo populacional, portanto, não observável, sendo estimado por <span class="math inline">\(e_t\)</span>, sendo suposto normalmente e independentemente distribuído, <span class="math inline">\(\varepsilon_t \sim NID(0,\sigma^2_{\varepsilon})\)</span>.</p>
+<p>As observações da série dependente ou resposta, <span class="math inline">\(y_t\)</span>, podem ser descritas conforme <a href="#eq-obs" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>, como sendo o valor estimado, <span class="math inline">\(\hat y_t\)</span>, adicionado de um termo de erro ou resíduo, <span class="math inline">\(\varepsilon_t\)</span>. Conforme já discutido na <a href="ST2.html#sec-implrcap2" class="quarto-xref"><span>Seção 2.8</span></a>, <span class="math inline">\(\varepsilon_t\)</span> é o termo de erro ou resíduo populacional, portanto, não observável, sendo estimado por <span class="math inline">\(e_t\)</span>, e suposto normalmente e independentemente distribuído, <span class="math inline">\(\varepsilon_t \sim NID(0,\sigma^2_{\varepsilon})\)</span>.</p>
 <p><span id="eq-obs"><span class="math display">\[
 \begin{aligned}
 y_t = \hat{y}_t + \varepsilon_t \\
@@ -350,26 +350,26 @@ Figura&nbsp;4.4: Erros de previsão para o modelo de regressão linear para prod
 </div>
 </div>
 </div>
-<p>A análise à seguir expõe os coeficientes do modelo estimado com teste t para significância destes. Neste curso não será dada ênfase na inferência, mas na previsão. De forma simples um valor t com alta magnitude ou um p-valor (Pr(&gt;|t|)) baixo indica risco baixo de rejeitar a hipótese nula de ausência de efeito da variável ou série independente (<span class="math inline">\(x_t\)</span>).</p>
+<p>A análise a seguir expõe os coeficientes do modelo estimado com teste t para significância destes. Neste curso não será dada ênfase na inferência, mas na previsão. De forma simples um valor t com alta magnitude ou um p-valor (Pr(&gt;|t|)) baixo indica risco baixo de errar ao rejeitar a hipótese nula de ausência de efeito da variável ou série independente (<span class="math inline">\(x_t\)</span>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: producao 
 Model: TSLM 
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--40737,3 -18688,2   -898,2  17923,8  35016,4 
+   Min     1Q Median     3Q    Max 
+-40729 -18733   1072  18188  35065 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   -1,723e+05  1,151e+04  -14,96   &lt;2e-16 ***
-area_plantada  6,276e+00  2,316e-01   27,10   &lt;2e-16 ***
+(Intercept)   -1,726e+05  1,248e+04  -13,84   &lt;2e-16 ***
+area_plantada  6,285e+00  2,561e-01   24,54   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0,001 '**' 0,01 '*' 0,05 '.' 0,1 ' ' 1
 
-Residual standard error: 20860 on 47 degrees of freedom
-Multiple R-squared: 0,9398, Adjusted R-squared: 0,9386
-F-statistic: 734,3 on 1 and 47 DF, p-value: &lt; 2,22e-16</code></pre>
+Residual standard error: 21080 on 46 degrees of freedom
+Multiple R-squared: 0,929,  Adjusted R-squared: 0,9275
+F-statistic: 602,2 on 1 and 46 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
 <p>O modelo para prever a produção de grãos, <span class="math inline">\(y_t\)</span>, em função da área plantada, <span class="math inline">\(x_t\)</span>, fica:</p>
@@ -381,12 +381,12 @@ F-statistic: 734,3 on 1 and 47 DF, p-value: &lt; 2,22e-16</code></pre>
 <h2 data-number="4.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">4.2</span> Regressão linear múltipla</h2>
 <p>No caso de onde há múltiplas séries exógenas ou regressoras de interesse, <span class="math inline">\(x_{t1}, x_{t2}, ..., x_{tk}\)</span>, onde <span class="math inline">\(k\)</span> é o número de séries consideradas para estimar <span class="math inline">\(y_t\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-lnm" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
 <p><span id="eq-lnm"><span class="math display">\[
-\hat{y}_t = \beta_0 + \beta_1x_{t1} + \beta_2x_{t2} + \cdots + \beta_kx_{tk} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{tj},  
+\hat{y}_t = \hat\beta_0 + \hat\beta_1x_{t1} + \hat\beta_2x_{t2} + \cdots + \hat\beta_kx_{tk} = \hat\beta_0 + \sum_{j=1}^{k}\hat\beta_jx_{tj},  
 \tag{4.3}\]</span></span></p>
 <p>ou de forma matricial segundo <a href="#eq-lnmm" class="quarto-xref">Equação&nbsp;<span>4.4</span></a>, com <span class="math inline">\(\mathbf{X}_{[T\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
 <p><span id="eq-lnmm"><span class="math display">\[
 \begin{aligned}
-\hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
+\hat{\mathbf{y}} = \mathbf{X}\hat{\mathbf{\beta}}
 \end{aligned},
 \tag{4.4}\]</span></span></p>
 <p>onde a matrix <span class="math inline">\(\mathbf{X}\)</span> contém uma coluna unitária para a constante e uma coluna para cada série independente:</p>
@@ -397,7 +397,7 @@ F-statistic: 734,3 on 1 and 47 DF, p-value: &lt; 2,22e-16</code></pre>
 1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k} \\
 \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 1 &amp; x_{T1} &amp; x_{T2} &amp; \cdots &amp; x_{Tk} \\
-\end{bmatrix}, e\\
+\end{bmatrix} \text{, e}
 \]</span></p>
 <p>e <span class="math inline">\(\beta\)</span> consiste no vetor de coeficientes:</p>
 <p><span class="math display">\[
@@ -415,8 +415,8 @@ F-statistic: 734,3 on 1 and 47 DF, p-value: &lt; 2,22e-16</code></pre>
 <p>Tomando tal notação, a soma dos quadrados dos erros pode ser descrita como <span class="math inline">\(\sum_{t=1}^{T}\varepsilon_t^2 = \mathbf{\varepsilon}'\mathbf{\varepsilon}\)</span>. Desenvolvendo tal expressão tem-se:</p>
 <p><span class="math display">\[
 \begin{aligned}
-L(\mathbf{\beta}) = \mathbf{\varepsilon}'\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})'(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
-\mathbf{y}'\mathbf{y} - 2\mathbf{\beta}'\mathbf{X}'\mathbf{y} + \mathbf{\beta}'\mathbf{X}'\mathbf{X}\mathbf{\beta}
+L(\mathbf{\beta}) =&amp; \mathbf{\varepsilon}'\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})'(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
+=&amp; \mathbf{y}'\mathbf{y} - 2\mathbf{\beta}'\mathbf{X}'\mathbf{y} + \mathbf{\beta}'\mathbf{X}'\mathbf{X}\mathbf{\beta}
 \end{aligned}
 \]</span></p>
 <p>Para minimizar <span class="math inline">\(L\)</span> em relação à estimativa de <span class="math inline">\(\mathbf{\beta}\)</span>, pode-se diferenciar tal quantidade em relação à <span class="math inline">\(\mathbf{\beta}\)</span> e igualar a zero:</p>
@@ -429,7 +429,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}'\mathbf{\varepsilon} = (\mathbf{y} - \m
 <p><span id="eq-ols"><span class="math display">\[
 \hat{\mathbf{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}(\mathbf{X}'\mathbf{y})
 \tag{4.6}\]</span></span></p>
-<p>Seja a série multivariada de exportação, importação, produção e vendas de fertilizantes no Brasil em toleladas, plotada na <a href="#fig-fert" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>, disponível em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. A série tem frequência mensal e possui dados a partir de 1998, exceto para a de exportação, disponível a partir de 2013. Observa-se um volume muito maior de importações que produção e exportações, além de sazonalidade. As séries de importação e vendas apresentam padrão de crescimento.</p>
+<p>Seja a série multivariada de exportação, importação, produção e vendas de fertilizantes no Brasil em toneladas, plotada na <a href="#fig-fert" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>, disponível em <a href="http://www.ipeadata.gov.br">Ipeadata</a>. A série tem frequência mensal e possui dados a partir de 1998, exceto para a de exportação, disponível a partir de 2013. Observa-se um volume muito maior de importações que produção e exportações, além de sazonalidade. As séries de importação e vendas apresentam padrão de crescimento.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fert" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -483,7 +483,7 @@ Multiple R-squared: 0,6446, Adjusted R-squared: 0,6363
 F-statistic: 77,39 on 3 and 128 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
-<p>O modelo obtido pode ser escrito conforme <a href="#eq-regfert" class="quarto-xref">Equação&nbsp;<span>4.7</span></a>, onde <span class="math inline">\(\hat y_t\)</span> consiste na estimativa de vendas n período <span class="math inline">\(t\)</span>, <span class="math inline">\(x_{t1}\)</span> consiste no volume produzido, <span class="math inline">\(x_{t2}\)</span> no volume importado e <span class="math inline">\(x_{t3}\)</span> no volume exportado no período <span class="math inline">\(t\)</span>.</p>
+<p>O modelo obtido pode ser escrito conforme <a href="#eq-regfert" class="quarto-xref">Equação&nbsp;<span>4.7</span></a>, onde <span class="math inline">\(\hat y_t\)</span> consiste na estimativa de vendas no período <span class="math inline">\(t\)</span>, <span class="math inline">\(x_{t1}\)</span> consiste no volume produzido, <span class="math inline">\(x_{t2}\)</span> no volume importado e <span class="math inline">\(x_{t3}\)</span> no volume exportado no período <span class="math inline">\(t\)</span>.</p>
 <p><span id="eq-regfert"><span class="math display">\[
 \hat y_t = -8,08\times10^5 + 1,87x_{t1} + 1,10x_{t2} -5,32x_{t3}
 \tag{4.7}\]</span></span></p>
@@ -494,7 +494,7 @@ F-statistic: 77,39 on 3 and 128 DF, p-value: &lt; 2,22e-16</code></pre>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
 R^2 &amp;= 1- SS_{E}/SS_T \\
-R^2 &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2} = 1- \frac{\sum_{t=1}^{T}\varepsilon_t^2}{\sum_{i=t}^{T}(y_y-\overline{y})^2},
+R^2 &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2}{\sum_{t=1}^{T}(y_y-\overline{y})^2} = 1- \frac{\sum_{t=1}^{T}\varepsilon_t^2}{\sum_{t=1}^{T}(y_y-\overline{y})^2},
 \end{align}
 \tag{4.8}\]</span></span></p>
 <p>onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros e <span class="math inline">\(SS_T\)</span> consiste na soma dos quadrados total, ou no numerador da variância da série a ser predita.</p>
@@ -502,7 +502,7 @@ R^2 &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2}{\sum_{i=t}^{T}(y_y-\overlin
 <p><span id="eq-r2aj"><span class="math display">\[
 \begin{align}
 R^2_{aj} &amp;= 1- MS_{E}/MS_T \\
-R^2_{aj} &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2/(T-K-1)}{\sum_{t=1}^{T}(y_t-\overline{y})^2/(T-1)},
+R^2_{aj} &amp;= 1- \frac{\sum_{t=1}^{T}(y_t-\hat{y}_t)^2/(T-k-1)}{\sum_{t=1}^{T}(y_t-\overline{y})^2/(T-1)},
 \end{align}
 \tag{4.9}\]</span></span></p>
 <p>onde <span class="math inline">\(K\)</span> é o número de termos no modelo, <span class="math inline">\(MS_E\)</span> consiste média dos quadrados dos erros, que consiste na estimativa de variância dos resíduos, enquanto <span class="math inline">\(MS_T\)</span> consiste na média dos quadrados total, ou na variância da série a ser predita.</p>
@@ -548,7 +548,7 @@ Figura&nbsp;4.8: Valores ajustados para a série de vendas de fertilizantes
 <img src="ST4_files/figure-html/fig-graos_resi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graos_resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área plantada
+Figura&nbsp;4.9: Resíduos do modelo de produção de grãos em função da área plantada
 </figcaption>
 </figure>
 </div>
@@ -561,7 +561,7 @@ Figura&nbsp;4.9: Resíduos do modelo de produão de grãos em função da área 
 <p><span id="eq-linmodt"><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t
 \tag{4.10}\]</span></span></p>
-<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência trimestral, pode-se considerar como variávis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>, com o modelo descrito na <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a>. É importante observar que não é necessária a inclusão de todas variáveis dicotômicas no modelo, uma vez que se <span class="math inline">\(d_{2,t}=d_{3,t}=d_{4,t}=0\)</span>, então tem-se o primeiro trimestre.</p>
+<p>Pode-se também considerar variáveis dicotômicas ou binárias (<em>dummy</em>) para considerar a sazonalidade, feriados, ou algum evento especial. Por exemplo, para sazonalidade anual com uma série de frequência trimestral, pode-se considerar como variáveis <em>dummy</em> as expostas na Tabela <a href="#tbl-dummy" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>, com o modelo descrito na <a href="#eq-linmoddumm" class="quarto-xref">Equação&nbsp;<span>4.11</span></a>. É importante observar que não é necessária a inclusão de todas variáveis dicotômicas no modelo, uma vez que se <span class="math inline">\(d_{2,t}=d_{3,t}=d_{4,t}=0\)</span>, então tem-se o primeiro trimestre.</p>
 <div id="tbl-dummy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -646,7 +646,7 @@ Tabela&nbsp;4.1: Criação de variáveis dummy
 <img src="ST4_files/figure-html/fig-temp_sjdr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp_sjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.10: Temperatura em São João del-Rei nas duas últimas semanas de junho
+Figura&nbsp;4.10: Temperatura em São João del-Rei de 15 a 28/06/2024
 </figcaption>
 </figure>
 </div>
@@ -667,7 +667,7 @@ Figura&nbsp;4.11: Gráfico sazonal da temperatura em São João del-Rei
 </div>
 </div>
 </div>
-<p>Um modelo de regressão considerando a tendência e sazonalidade para este caso deve considerar como variáveis <em>dummy</em> o dia, de forma a capturar a variação hora a hora. Logo, neste caso, 24 variáveis dummy são criadas. Observa-se que além da tendência a maior parte de tais variáveis apresenta significância e o modelo contempla mais de 95% de variabilidade da série.</p>
+<p>Um modelo de regressão considerando a tendência e sazonalidade para este caso deve considerar como variáveis <em>dummy</em> a hora, de forma a capturar a variação hora a hora. Logo, neste caso, 23 variáveis dummy são criadas, com a primeira hora já contemplada na constante, sendo referência. Observa-se que além da tendência a maior parte de tais variáveis apresenta significância e o modelo contempla mais de 95% de variabilidade da série.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: Temperatura 
@@ -712,7 +712,7 @@ Multiple R-squared: 0,961,  Adjusted R-squared: 0,958
 F-statistic: 319,5 on 24 and 311 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
-<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 1 da manhã é igual a -4.05°C. A Figura <a href="#fig-temp_pred" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
+<p>Há uma tendência de aumento da temperatura nos dias considerados de 0,00888 °C por hora, ou 0,213°C por dia. Cada coeficiente das variáveis <em>dummy</em> expõe a diferença da respectiva hora em relação à primeira hora do dia. Por exemplo, às 6 da manhã a diferença de temperatura em relação a 0 da manhã é igual a -4,05°C. A Figura <a href="#fig-temp_pred" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> apresenta a série observada e a prevista pelo modelo de regressão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -760,7 +760,7 @@ Figura&nbsp;4.14: Petróleo refinado e produção de derivados
 </div>
 </div>
 </div>
-<p>A <a href="#fig-corr_petro" class="quarto-xref">Figura&nbsp;<span>4.15</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, oléo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
+<p>A <a href="#fig-corr_petro" class="quarto-xref">Figura&nbsp;<span>4.15</span></a> expõe um gráfico de correlação entre tais séries. As séries foram agrupadas segundo a magnitude e sinal das correlações. A série de petróleo refinado tem correlação positiva com asfalto, óleo diesel, outros não energéticos, querosene de avião, coque e gasolina e correlação negativa ou desprezível com as demais séries.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr_petro" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -840,10 +840,14 @@ Multiple R-squared: 0,9573, Adjusted R-squared: 0,9558
 F-statistic: 639,7 on 10 and 285 DF, p-value: &lt; 2,22e-16</code></pre>
 </div>
 </div>
-<p>Geralmente, em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
-<p><span class="math display">\[
+<p>Geralmente, em regressão múltipla é interessante selecionar um modelo com os melhores preditores, de forma a melhorar a capacidade preditiva do modelo. Além do <span class="math inline">\(R^2_{aj}\)</span>, outras métricas podem ser usadas, por exemplo o critério de informação de Akaike, AIC, calculado conforme <a href="#eq-aic" class="quarto-xref">Equação&nbsp;<span>4.12</span></a>. O AIC considera o número de parâmetros e o erro do modelo, sendo esta uma métrica mais interessante para seleção de modelos.</p>
+<p><span id="eq-aic"><span class="math display">\[
 AIC = T\text{ log}\bigg(\frac{SS_E}{T}\bigg)+2(k+2)
-\]</span></p>
+\tag{4.12}\]</span></span></p>
+<p>O AIC com vício corrigo é uma métrica mais indicada, sendo calculado segundo a <a href="#eq-aicc" class="quarto-xref">Equação&nbsp;<span>4.13</span></a>.</p>
+<p><span id="eq-aicc"><span class="math display">\[
+AIC_c = \text{AIC} + \frac{2(k+2)(k+3)}{T-k-3}
+\tag{4.13}\]</span></span></p>
 <p>A <a href="#tbl-fit_petro" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a> apresenta os resultados de AIC, AIC corrigido e <span class="math inline">\(R^2_{aj}\)</span> para o modelo completo e o modelo reduzido. O modelo reduzido apresentou melhor resultado, uma vez que minimiza AIC e AICc.</p>
 <div class="cell">
 <div id="tbl-fit_petro" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -882,16 +886,17 @@ Tabela&nbsp;4.2: <span class="math inline">\(R^2_{aj}\)</span>, AIC e AIC corrig
 </figure>
 </div>
 </div>
-<p>A forma correta de realizar a remoção de coeficientes, não é considerando a significância. Ademais, não sugere-se a remoção manual de coeficientes. Recomenda-se o uso de um algoritmo para tal fim. O algoritmo <em>stepwise</em> com eliminação para trás segue os seguintes passos:</p>
+<p>Apesar do exemplo proposto com a série de petróleo refinado e derivados, não recomenda-se a remoção manual de coeficientes. Uma possibilidade seria o uso de um algoritmo <em>stepwise</em> com eliminação para trás, o qual segue os seguintes passos:</p>
 <ol type="1">
 <li>Comece com o modelo completo.</li>
 <li>Remova um preditor por vez. Mantenha o modelo com melhor desempenho, considerando por exemplo o AIC.</li>
 <li>Repita o procedimento até encontrar o melhor modelo.</li>
 </ol>
+<p>Outra possibilidade seria a realização de validação cruzada com origem móvel para seleção de modelos.</p>
 </section>
 <section id="previsão" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="previsão"><span class="header-section-number">4.7</span> Previsão</h2>
-<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditoras, uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A <a href="#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São joão del-Rei utilizando o modelo anteriormente obtido.</p>
+<p>A previsão à frente não é geralmente possível quando se considera outras séries como preditoras, uma vez que não se conhece os valores futuros das séries. Por exemplo, no último caso do petróleo e derivados, os derivados vêm depois, sendo mais útil para previsão do volume refinado um modelo que considere ou a decomposição ou outros métodos mais sofisticados ainda não abordados, os quais levam em conta a autocorrelação da série. Entretanto, nos casos de regressão onde se utiliza como preditores a tendência e a sazonalidade a partir de variáveis <em>dummy</em>, é possível realizar a previsão à frente. A <a href="#fig-temp_pred_" class="quarto-xref">Figura&nbsp;<span>4.16</span></a> expõe a previsão de dois dias à frente para a temperatura de São João del-Rei utilizando o modelo anteriormente obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-temp_pred_" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -906,15 +911,15 @@ Figura&nbsp;4.16: Previsão da temperatura em São João del-Rei
 </div>
 </div>
 </div>
-<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditoras, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever a venda de fertilizantes. A <span class="quarto-unresolved-ref">?fig-prev_cenar</span> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nos índices de produção de bens de capital e intermediários. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
+<p>Apesar de não ser possível realizar previsões à frente para casos de regressão considerando outras séries temporais como preditoras, é possível realizar nestes casos previsões baseadas em cenários. Seja o caso exposto anteriormente onde deseja-se prever a venda de fertilizantes. A <a href="#fig-prev_cenar" class="quarto-xref">Figura&nbsp;<span>4.17</span></a> expõe a previsão para dois cenários, um de aumento e outro de decréscimo nas exportações, importações e produção de fertilizantes. Este tipo de análise pode ser útil para adiantar possíveis cenários e viabilizar ações de planejamento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-fert_cenar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-prev_cenar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fert_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST4_files/figure-html/fig-fert_cenar-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-prev_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST4_files/figure-html/fig-prev_cenar-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fert_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prev_cenar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;4.17: Previsão de cenários para venda de fertilizantes
 </figcaption>
 </figure>
@@ -924,8 +929,8 @@ Figura&nbsp;4.17: Previsão de cenários para venda de fertilizantes
 </section>
 <section id="regressão-não-linear" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="regressão-não-linear"><span class="header-section-number">4.8</span> Regressão não linear</h2>
-<p>Transformações podem ser interessantes para tratar a não lineariedade na série a ser predita e nas preditoras. Há muitos casos que a tendência observada em uma série não é linear. Nestes casos podem ser considerada transformação polinomial na tendência.</p>
-<p>Uma opção interessante em alguns casos é utilizar transformação logarítimica em ambas séries independentes e dependente ou em apenas uma destas. Para o caso simples, com transformação em ambas as séries, tem-se o seguinte modelo.</p>
+<p>Transformações podem ser interessantes para tratar a não linearidade na série a ser predita e nas preditoras. Há muitos casos em que a tendência observada em uma série não é linear. Nestes casos podem ser considerada transformação polinomial na tendência.</p>
+<p>Uma opção interessante em alguns casos é utilizar transformação logarítmica em ambas séries independentes e dependente ou em apenas uma destas. Para o caso simples, com transformação em ambas as séries, tem-se o seguinte modelo.</p>
 <p><span class="math display">\[
 \text{log} (y_t) = \beta_0+\beta_1\text{log} (x_t)
 \]</span></p>
@@ -933,17 +938,19 @@ Figura&nbsp;4.17: Previsão de cenários para venda de fertilizantes
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t+\beta_{2}t^2
 \]</span></p>
-<p>Uma abordagem mais interessante é pensar em modelos lineares por partes, de forma a considerar modelos lineares distintos em cada parte do horizonte temporal da série, consistindo em um modelo não linear formado por peças lineares (<em>piecewise regression</em>). Por exemplo, um modelo com uma divisão no tempo, <span class="math inline">\(\tau\)</span>, ´pode ser descrito conforme segue:</p>
+<p>Uma abordagem mais interessante é pensar em modelos lineares por partes, de forma a considerar modelos lineares distintos em cada parte do horizonte temporal da série, consistindo em um modelo não linear formado por peças lineares (<em>piecewise regression</em>). Por exemplo, um modelo com uma divisão no tempo, <span class="math inline">\(\tau\)</span>, pode ser descrito conforme segue:</p>
 <p><span class="math display">\[
 \hat{y}_t = \beta_0+\beta_{1}t+\beta_{2}(t-\tau)_+,
-\]</span> onde:</p>
-<p><span class="math display">\[
-(t-\tau)_+ = \bigg\{
-\begin{align} 0 \text{, se } t&lt; \tau \\
-              t-\tau \text{, se } t\geq \tau
-\end{align}
 \]</span></p>
-<p>Na <a href="#fig-emissagro" class="quarto-xref">Figura&nbsp;<span>4.18</span></a> é exibida a série temporal de emissões de gases de efeito estufa devido a produção de energia no Brasil. Os dados tem frequência anual e são disponibilizados desde 1990 até 2020 em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. As emissões são disponibilizadas em giga gramas (Gg) de dióxido de carbono equivalente. Observa-se tendência de aumento até 2014 e queda a partir de então.</p>
+<p>onde:</p>
+<p><span class="math display">\[
+(t-\tau)_+ =
+\begin{cases}
+0, &amp; \text{se } t &lt; \tau \\
+t-\tau, &amp; \text{se } t \geq \tau
+\end{cases}
+\]</span></p>
+<p>Na <a href="#fig-emissagro" class="quarto-xref">Figura&nbsp;<span>4.18</span></a> é exibida a série temporal de emissões de gases de efeito estufa devido a produção de energia no Brasil. Os dados apresentam frequência anual e são disponibilizados desde 1990 até 2020 em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. As emissões são disponibilizadas em gigagramas (Gg) de dióxido de carbono equivalente. Observa-se tendência de aumento até 2014 e queda a partir de então.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissagro" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -958,7 +965,7 @@ Figura&nbsp;4.18: Emissões de gases de efeito estufa por atividades de produç�
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissagro_mod" class="quarto-xref">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítimica na resposta, resultando em um modelo exponencial, um modelo linear e outro linear por partes (<em>piecewise</em>). Para os três modelos foram utilizados dados de até 2017 para treinamento. Para o modelo por partes foram consideradas duas partições, em 2005 e 2014. Foi realizada a previsão para 5 anos a partir de 2018. Pode-se observar que o terceiro caso parece mais interessante pois ajusta-se melhor à queda observada nos últimos anos.</p>
+<p>A <a href="#fig-emissagro_mod" class="quarto-xref">Figura&nbsp;<span>4.19</span></a> expõe a mesma série com três modelos, um com transformação logarítmica na resposta, resultando em um modelo exponencial, um modelo linear e outro linear por partes (<em>piecewise</em>). Para os três modelos foram utilizados dados de até 2017 para treinamento. Para o modelo por partes foram consideradas duas partições, em 2005 e 2014. Foi realizada a previsão para 5 anos a partir de 2018. Pode-se observar que o terceiro caso parece mais interessante pois ajusta-se melhor à queda observada nos últimos anos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissagro_mod" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -979,18 +986,20 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 <p>A seguir são apresentadas boa parte das implementações na linguagem R para obter os dados, gráficos e análises expostos no presente capítulo.</p>
 <p>Carregando pacotes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar) </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtime)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Séries temporais anuais de área plantada em hectare e grãos produzidos em toneladas. O pacote <code>ipeadatar</code> disponibiliza diversas séries econométricas via função <code>ipeadata</code>.</p>
 <div class="cell">
@@ -1034,7 +1043,7 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_graos, <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo de regressão linear simples para produção em função da área plantada. Deve-se usar o comando <code>TSLM</code>. O modelo deve conter a série dependente e as indepndentes após <code>~</code>. Neste caso há uma única série independente ou exógena, <code>area_plantada</code>. Porém, em casos onde há múltiplas séries exógenas, é importante usar <code>+</code> para separá-las.</p>
+<p>Modelo de regressão linear simples para produção em função da área plantada. Deve-se usar o comando <code>TSLM</code>. O modelo deve conter a série dependente e as independentes após <code>~</code>. Neste caso há uma única série independente ou exógena, <code>area_plantada</code>. Porém, em casos onde há múltiplas séries exógenas, é importante usar <code>+</code> para separá-las.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_graos <span class="ot">&lt;-</span> df_graos <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">TSLM</span>(producao <span class="sc">~</span> area_plantada))</span>
@@ -1171,7 +1180,7 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 </section>
 <section id="exercícios-propostos" class="level2" data-number="4.10">
 <h2 data-number="4.10" class="anchored" data-anchor-id="exercícios-propostos"><span class="header-section-number">4.10</span> Exercícios propostos</h2>
-<p>O código à seguir é utilizado para obter as séries de fertilizantes apresentadas neste capítulo.</p>
+<p>O código seguir é utilizado para obter as séries de fertilizantes apresentadas neste capítulo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fert_venda <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_VFERTILIZ12"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>fert_prod <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="st">"ANDA12_PFERTILIZ12"</span>)</span>
@@ -1217,7 +1226,7 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adj_r_squared, AIC, AICc)</span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(fit1,fit2,fit3) <span class="sc">|&gt;</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"completo"</span>, <span class="st">"reduzido"</span>, <span class="st">"tredn+season"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"completo"</span>, <span class="st">"reduzido"</span>, <span class="st">"trend+season"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(model)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
@@ -1253,7 +1262,7 @@ Figura&nbsp;4.19: Emissões de gases de efeito estufa por atividades de produç�
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Previsão de cenários para produção de grãos"</span>, <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="9" type="1">
-<li>Faça uma previsão de cenários usando o modelo de regressão para a série de produção de bens de consumo duráveis. Considere três meses à frente e um cenários de queda e outro de aumento nos índices de produção de bens de capital e da série de bens intermediários. A seguir expõe-se como seria implementado um cenário para este caso de regressão múltipla.</li>
+<li>Faça uma previsão de cenários usando o modelo de regressão para a série de produção de bens de consumo duráveis. Considere três meses à frente e um cenário de queda e outro de aumento nos índices de produção de bens de capital e da série de bens intermediários. A seguir expõe-se como seria implementado um cenário para este caso de regressão múltipla.</li>
 </ol>
 
 
