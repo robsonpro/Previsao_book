@@ -229,7 +229,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ST6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos autorregressivos integrados de médias móveis (ARIMA)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -266,9 +266,9 @@ window.Quarto = {
   <li><a href="#modelos-de-ets-e-definição-de-espaço-de-estados" id="toc-modelos-de-ets-e-definição-de-espaço-de-estados" class="nav-link" data-scroll-target="#modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</a>
   <ul class="collapse">
   <li><a href="#modelo-de-holt-winters-aditivo-etsaaa" id="toc-modelo-de-holt-winters-aditivo-etsaaa" class="nav-link" data-scroll-target="#modelo-de-holt-winters-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winters aditivo, ETS(A,A,A)</a></li>
-  <li><a href="#modelo-de-holt-winters-multiplicativo-etsmaa" id="toc-modelo-de-holt-winters-multiplicativo-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winters-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters multiplicativo, ETS(M,A,A)</a></li>
+  <li><a href="#modelo-de-holt-winters-aditivo-com-erro-multiplicativo-etsmaa" id="toc-modelo-de-holt-winters-aditivo-com-erro-multiplicativo-etsmaa" class="nav-link" data-scroll-target="#modelo-de-holt-winters-aditivo-com-erro-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters aditivo com erro multiplicativo, ETS(M,A,A)</a></li>
   </ul></li>
-  <li><a href="#previsão-e-intervalo-de-confiança-com-ets" id="toc-previsão-e-intervalo-de-confiança-com-ets" class="nav-link" data-scroll-target="#previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</a></li>
+  <li><a href="#previsão-e-intervalo-de-previsão-com-ets" id="toc-previsão-e-intervalo-de-previsão-com-ets" class="nav-link" data-scroll-target="#previsão-e-intervalo-de-previsão-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de previsão com ETS</a></li>
   <li><a href="#implementação-em-r" id="toc-implementação-em-r" class="nav-link" data-scroll-target="#implementação-em-r"><span class="header-section-number">5.6</span> Implementação em R</a></li>
   <li><a href="#exercícios-propostos" id="toc-exercícios-propostos" class="nav-link" data-scroll-target="#exercícios-propostos"><span class="header-section-number">5.7</span> Exercícios propostos</a></li>
   </ul>
@@ -309,7 +309,7 @@ window.Quarto = {
 <p><span id="eq-suavexpsimp"><span class="math display">\[
 \hat y_{T+1|T} = \alpha y_T + \alpha(1-\alpha)y_{T-1} + \alpha(1-\alpha)^2y_{T-2}+...
 \tag{5.1}\]</span></span></p>
-<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para as cinco últimas observações para distintos valores de <span class="math inline">\(\alpha\)</span>. Observa-se que a soma dos pesos é próxima de 1.</p>
+<p>onde <span class="math inline">\(0&lt; \alpha &lt;1\)</span> consiste no parâmetro de suavização. A previsão um passo à frente consiste em uma média ponderada das observações anteriores, <span class="math inline">\(y_1,...,y_T\)</span>, com taxa de decrescimento dos pesos controlada pelo parâmetro <span class="math inline">\(\alpha\)</span>. A <a href="#tbl-pesos" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> expõe os pesos para as seis últimas observações para distintos valores de <span class="math inline">\(\alpha\)</span>.</p>
 <div id="tbl-pesos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pesos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -328,39 +328,39 @@ Tabela&nbsp;5.1: Pesos na suavização exponencial simples
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(y_T\)</span></td>
-<td>0.200000</td>
-<td>0.500000</td>
-<td>0.800000</td>
+<td>0,200000</td>
+<td>0,500000</td>
+<td>0,800000</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(y_{T-1}\)</span></td>
-<td>0.160000</td>
-<td>0.250000</td>
-<td>0.160000</td>
+<td>0,160000</td>
+<td>0,250000</td>
+<td>0,160000</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(y_{T-2}\)</span></td>
-<td>0.128000</td>
-<td>0.125000</td>
-<td>0.032000</td>
+<td>0,128000</td>
+<td>0,125000</td>
+<td>0,032000</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(y_{T-3}\)</span></td>
-<td>0.102400</td>
-<td>0.062500</td>
-<td>0.006400</td>
+<td>0,102400</td>
+<td>0,062500</td>
+<td>0,006400</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(y_{T-4}\)</span></td>
-<td>0.081920</td>
-<td>0.031250</td>
-<td>0.001280</td>
+<td>0,081920</td>
+<td>0,031250</td>
+<td>0,001280</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(y_{T-5}\)</span></td>
-<td>0.065536</td>
-<td>0.015625</td>
-<td>0.000256</td>
+<td>0,065536</td>
+<td>0,015625</td>
+<td>0,000256</td>
 </tr>
 </tbody>
 </table>
@@ -422,7 +422,7 @@ Figura&nbsp;5.1: Pesos na suavização exponencial simples
 \end{align}
 \tag{5.5}\]</span></span></p>
 <p>onde <span class="math inline">\(l_t\)</span> consiste no nível no período <span class="math inline">\(t\)</span> e <span class="math inline">\(\hat y_{t+h} = l_t\)</span> a previsão no período <span class="math inline">\(t+h\)</span>.</p>
-<p>Se <span class="math inline">\(h=0\)</span>, tem-se o valor ajustado para <span class="math inline">\(y_t\)</span>, enquanto se <span class="math inline">\(t=T\)</span> e <span class="math inline">\(h \geq1\)</span>, tem-se a previsão para além dos dados observados ou disponíveis para treino ou estimativa da série. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e suavização, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
+<p>Se <span class="math inline">\(h=0\)</span>, tem-se o valor ajustado para <span class="math inline">\(y_t\)</span>, enquanto se <span class="math inline">\(t=T\)</span> e <span class="math inline">\(h \geq1\)</span>, tem-se a previsão para além dos dados observados ou disponíveis para treino ou estimativa da série. Fazendo <span class="math inline">\(l_t = \hat y_{t+1|t}\)</span> e <span class="math inline">\(l_{t-1} = \hat y_{t|t-1}\)</span>, tem-se o modelo ponderado já exposto. Tal representação não é tão útil para o caso simples, porém, quando considerados termos de tendência e sazonalidade, será. O modelo simples, até aqui explicitado é recomendado para casos sem tendência e sazonalidade.</p>
 <p>A <a href="#fig-ipca_expsimp" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o resultado da suavização exponencial simples para a série do IPCA no Brasil a partir de 2019. Os parâmetros estimados, <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(l_0\)</span>, expostos na <a href="#tbl-ipca_fit" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> foram estimados minimizando a soma dos quadrados dos erros para as estimativas um passo à frente.</p>
 <div class="cell">
 <div id="tbl-ipca_fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -474,7 +474,7 @@ Figura&nbsp;5.2: Previsão e valores ajustados para o IPCA via suavização expo
 <div id="tbl-ipca_for" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ipca_for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.3: Pesos na suavização exponencial simples
+Tabela&nbsp;5.3: Valores ajustados para as últimas observações do IPCA
 </figcaption>
 <div aria-describedby="tbl-ipca_for-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -551,7 +551,7 @@ Figura&nbsp;5.3: População do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-pop_fit" class="quarto-xref">Tabela&nbsp;<span>5.4</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da populaçao projetada do Brasil.</p>
+<p>A <a href="#tbl-pop_fit" class="quarto-xref">Tabela&nbsp;<span>5.4</span></a> expõe os parâmetros estimados de suavização exponencial com tendência para a série da população projetada do Brasil.</p>
 <div class="cell">
 <div id="tbl-pop_fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -593,7 +593,7 @@ Tabela&nbsp;5.4: Parâmetros de suavização exponencial com tendência para a s
 </div>
 <section id="suavização-exponencial-com-tendência-amortecida" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="suavização-exponencial-com-tendência-amortecida"><span class="header-section-number">5.2.1</span> Suavização exponencial com tendência amortecida</h3>
-<p>Um problema do método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> para suavização exponencial com tendência é que ele costuma apresentar uma estimativa linear que em longos horizontes de previsão que não se confirma. Uma opção é a abordagem de <span class="citation" data-cites="gardnermckenzie1985">Gardner e Mckenzie (<a href="references.html#ref-gardnermckenzie1985" role="doc-biblioref">1985</a>)</span> que propõe amortecer as previsões. O método inclui o parâmetro de amortecimento <span class="math inline">\(0&lt;\phi&lt;1\)</span>.</p>
+<p>Um problema do método de <span class="citation" data-cites="Holt2004">Holt (<a href="references.html#ref-Holt2004" role="doc-biblioref">2004</a>)</span> para suavização exponencial com tendência é que ele costuma apresentar uma estimativa linear em longos horizontes de previsão que não se confirma. Uma opção é a abordagem de <span class="citation" data-cites="gardnermckenzie1985">Gardner e Mckenzie (<a href="references.html#ref-gardnermckenzie1985" role="doc-biblioref">1985</a>)</span> que propõe amortecer as previsões. O método inclui o parâmetro de amortecimento <span class="math inline">\(0&lt;\phi&lt;1\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + (\phi+\phi^2+...+\phi^h)b_t\\
@@ -616,7 +616,7 @@ Figura&nbsp;5.4: População do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os resultados das previsões obtidas pelos mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, em Gg de CO2 equivalente, disponível em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. Foi considerado um <span class="math inline">\(\phi = 0,90\)</span> para o caso com amortecimento. O amortecimento é importante, uma vez que o método Holt apresenta geralmente tendência acentuada, com inclinação com mais peso em relação ao observado nos últimos anos, que pode não se confirmar a médio prazo.</p>
+<p>A <a href="#fig-emissoes_ind" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> expõe os resultados das previsões obtidas pelos mesmos métodos aplicados à série anual de emissão de gases de efeito estufa pela indústria, em Gg de <span class="math inline">\(CO_2\)</span> equivalente, disponível em <a href="https://dados.gov.br/dados/conjuntos-dados/sirene">SIRENE - Sistema de Registro Nacional de Emissões</a>. Foi considerado um <span class="math inline">\(\phi = 0,90\)</span> para o caso com amortecimento. O amortecimento é importante, uma vez que o método Holt apresenta geralmente tendência acentuada, com inclinação com mais peso em relação ao observado nos últimos anos, que pode não se confirmar a médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-emissoes_ind" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -642,17 +642,17 @@ Figura&nbsp;5.5: Emissões de gases de efeito estufa pela indústria
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= l_t + hb_t + s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha (y_t-s_{t-m}) + (1-\alpha)(l_{t-1}+b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}\\
-\text{Equação de sazonalidade:    } s_t &amp;= \gamma(y_t-l_{t-1}-b_{t-1})+(1-\gamma)s_{t-1},
+\text{Equação de sazonalidade:    } s_t &amp;= \gamma(y_t-l_{t-1}-b_{t-1})+(1-\gamma)s_{t-m},
 \end{align}
 \tag{5.7}\]</span></span></p>
-<p>onde <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span> que garante que a estimativa dos índices sazonais usados para previsão vêm do último período sazonal da série. A equação de nível consiste em uma média ponderada entre a observação ajustada sazonalmente, <span class="math inline">\(y_t-s_{t-m}\)</span>, e a previsão não sazonal, <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>, para o tempo <span class="math inline">\(t\)</span>. A equação de tendência não muda e a sazonal considera uma média móvel do índice sazonal atual, <span class="math inline">\(y_t-l_{t-1}-b_{t-1}\)</span>, e do mesmo período da estação anterior, <span class="math inline">\(s_{t-1}\)</span>.</p>
+<p>onde <span class="math inline">\(k\)</span> consiste na parte inteira de <span class="math inline">\((h−1)/m\)</span> que garante que a estimativa dos índices sazonais usados para previsão vêm do último período sazonal da série. A equação de nível consiste em uma média ponderada entre a observação ajustada sazonalmente, <span class="math inline">\(y_t-s_{t-m}\)</span>, e a previsão não sazonal, <span class="math inline">\(l_{t-1}+b_{t-1}\)</span>, para o tempo <span class="math inline">\(t\)</span>. A equação de tendência não muda e a sazonal considera uma média ponderada do índice sazonal atual, <span class="math inline">\(y_t-l_{t-1}-b_{t-1}\)</span>, e do mesmo período da estação anterior, <span class="math inline">\(s_{t-m}\)</span>.</p>
 <p>O caso multiplicativo é exposto na <a href="#eq-HoltWintersm" class="quarto-xref">Equação&nbsp;<span>5.8</span></a>.</p>
 <p><span id="eq-HoltWintersm"><span class="math display">\[
 \begin{align}
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= (l_t + hb_t)  s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)b_{t-1}\\
-\text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-b_{t-1})}+(1-\gamma)s_{t-1},
+\text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}+b_{t-1})}+(1-\gamma)s_{t-m},
 \end{align}
 \tag{5.8}\]</span></span></p>
 <p>A <a href="#fig-export" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> plota a série temporal de exportações do Brasil em US$ FOB, disponível em <a href="https://balanca.economia.gov.br/balanca/publicacoes_dados_consolidados/pg.html">Resultados do Comércio Exterior Brasileiro - Dados Consolidados</a>. Observa-se em geral tendência de crescimento, estagnação de 2011 a 2021, dada a crise político-econômica e a pandemia, seguida de nova tendência de crescimento nos anos pós-pandemia.</p>
@@ -670,7 +670,7 @@ Figura&nbsp;5.6: Exportações do Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-export_season" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão cíclico não é tão claro, mas, especialmente nos últimos anos, nota-se maior volume de exportações de março a agosto.</p>
+<p>A <a href="#fig-export_season" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> expõe o gráfico sazonal da mesma série. O padrão sazonal não é tão claro, mas, especialmente nos últimos anos, nota-se maior volume de exportações de março a agosto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-export_season" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -708,7 +708,7 @@ Figura&nbsp;5.8: Modelos de suavização exponencial com tendência e sazonalida
 \text{Equação de previsão:    } \hat y_{t+h} &amp;= [l_t + (\phi+\phi^2+...+\phi^h)b_t]  s_{t+h-m(k+1)}\\
 \text{Equação do nível:    } l_t &amp;= \alpha \frac{y_t}{s_{t-m}} + (1-\alpha)(l_{t-1}+\phi b_{t-1})\\
 \text{Equação de tendência:    } b_t &amp;= \beta^*(l_t-l_{t-1})+(1-\beta^*)\phi b_{t-1}\\
-\text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}-\phi b_{t-1})}+(1-\gamma)s_{t-1},
+\text{Equação de sazonalidade:    } s_t &amp;= \gamma \frac {y_t}{(l_{t-1}+\phi b_{t-1})}+(1-\gamma)s_{t-m},
 \end{align}
 \tag{5.9}\]</span></span></p>
 <p>A <a href="#fig-exportfit" class="quarto-xref">Figura&nbsp;<span>5.9</span></a> expõe modelos de suavização exponencial com tendência amortecida e sazonalidade para a série de exportações do Brasil. O caso multiplicativo parece uma opção interessante com boa adequação aos períodos disponíveis, fazendo uma projeção à frente mais conservadora em comparação ao sem amortecimento.</p>
@@ -726,7 +726,7 @@ Figura&nbsp;5.9: Modelos de suavização exponencial com tendência amortecida e
 </div>
 </div>
 </div>
-<p>Para melhor avaliação dos resultados plotados para os modelos com sazonalidade com e sem amortecimento, a <a href="#tbl-exportteste" class="quarto-xref">Tabela&nbsp;<span>5.5</span></a> resume os resultados das métricas de erro dos modelos para previsão de 2020 à frente, conformando que o modelo multiplicativo com amortecimento apresentou melhores resultados.</p>
+<p>Para melhor avaliação dos resultados plotados para os modelos com sazonalidade com e sem amortecimento, a <a href="#tbl-exportteste" class="quarto-xref">Tabela&nbsp;<span>5.5</span></a> resume os resultados das métricas de erro dos modelos para previsão de 2023 à frente, confirmando que o modelo multiplicativo com amortecimento apresentou melhores resultados.</p>
 <div class="cell">
 <div id="tbl-exportteste" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -781,7 +781,7 @@ Tabela&nbsp;5.5: Resultados das métricas de teste para os modelos de suavizaç�
 <section id="modelos-de-ets-e-definição-de-espaço-de-estados" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="modelos-de-ets-e-definição-de-espaço-de-estados"><span class="header-section-number">5.4</span> Modelos de ETS e definição de espaço de estados</h2>
 <p>Os modelos de suavização exponencial podem ser concebidos como modelos de espaço de estados, com uma equação de medição, que descreve os dados observados, e outras de estados, por exemplo as de nível, tendência e sazonalidade, que descrevem como os componentes ou estados mudam no horizonte de tempo. Outro aspecto importante ainda não abordado é que, além de considerar o erro aditivo, há a possibilidade de considerar o erro multiplicativo nos modelos de suavização exponencial.</p>
-<p>Os modelos de suavização exponencial são geralmente denotados por ETS(E,T,S) para descrever as três componentes (erro, tendência, suavização). O erro pode ser aditivo ou multiplicativo, E={A,M}. A tendência pode ser não considerada (N), aditiva (A) ou aditiva amortecida (<em>damped</em>) (Ad), T ={N,A,Ad}. Por fim, a sazonalidade pode ser desconsiderada, ou pode ser aditiva ou multiplicativa, S={N,A,M}. Logo, há 18 modelos possíveis.</p>
+<p>Os modelos de suavização exponencial são geralmente denotados por ETS(E,T,S) para descrever as três componentes (erro, tendência, sazonalidade). O erro pode ser aditivo ou multiplicativo, E={A,M}. A tendência pode ser não considerada (N), aditiva (A) ou aditiva amortecida (<em>damped</em>) (Ad), T ={N,A,Ad}. Por fim, a sazonalidade pode ser desconsiderada, ou pode ser aditiva ou multiplicativa, S={N,A,M}. Logo, há 18 modelos possíveis.</p>
 <p>Retomando a suavização exponencial simples representada em componentes:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -796,12 +796,12 @@ l_t &amp;= l_{t-1} + \alpha(y_t-l_{t-1}) \\
     &amp;= l_{t-1} + \alpha e_t,
 \end{align}
 \tag{5.10}\]</span></span></p>
-<p>onde <span class="math inline">\(e_t=y_t-l_{t-1}=y_t - \hat{y}_{t|t-1}\)</span> é o resíduo no tempo <span class="math inline">\(t\)</span>. Pode-se, portanto, considerar que a observação de treino é igual ao nível anterior adicionado do erro, <span class="math inline">\(y_t=l_{t-1}+e_t\)</span>. Logo, deve-se assumir os resíduos como ruído branco, <span class="math inline">\(e_t = \varepsilon_t \sim NID(0,\sigma_\varepsilon^2)\)</span> ou normalmente e identicamente distribuídos.</p>
+<p>onde <span class="math inline">\(e_t=y_t-l_{t-1}=y_t - \hat{y}_{t|t-1}\)</span> é o resíduo no tempo <span class="math inline">\(t\)</span>. Pode-se, portanto, considerar que a observação de treino é igual ao nível anterior adicionado do erro, <span class="math inline">\(y_t=l_{t-1}+e_t\)</span>. Logo, deve-se assumir os resíduos como ruído branco, <span class="math inline">\(e_t = \varepsilon_t \sim NID(0,\sigma_\varepsilon^2)\)</span> ou normal e independentemente distribuídos.</p>
 <p>Quando o erro é multiplicativo no caso simples tem-se <span class="math inline">\(e_t=(y_t - \hat{y}_{t|t-1})/\hat{y}_{t|t-1}\)</span>.</p>
 <p>A título de exemplo serão apresentados os modelos Holt-Winters aditivos com erro aditivo ETS(A,A,A) e multiplicativo ETS(M,A,A).</p>
 <section id="modelo-de-holt-winters-aditivo-etsaaa" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="modelo-de-holt-winters-aditivo-etsaaa"><span class="header-section-number">5.4.1</span> Modelo de Holt-Winters aditivo, ETS(A,A,A)</h3>
-<p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t =y_t - l_{t-1} + b_{t-1} + s_{t-m}\)</span>, tem-se o modelo exposto na <a href="#eq-hwaaa" class="quarto-xref">Equação&nbsp;<span>5.11</span></a>.</p>
+<p>Para este caso, considerando o erro igual a <span class="math inline">\(\varepsilon_t = y_t - (l_{t-1} + b_{t-1} + s_{t-m})\)</span>, tem-se o modelo exposto na <a href="#eq-hwaaa" class="quarto-xref">Equação&nbsp;<span>5.11</span></a>.</p>
 <p><span id="eq-hwaaa"><span class="math display">\[
 \begin{align}
 y_t &amp;= l_{t-1} + b_{t-1} + s_{t-m} + \varepsilon_t\\
@@ -812,9 +812,9 @@ s_t &amp;= s_{t-m} + \gamma\varepsilon_t, \\
 \tag{5.11}\]</span></span></p>
 <p>onde <span class="math inline">\(\beta=\beta^*\alpha\)</span>.</p>
 </section>
-<section id="modelo-de-holt-winters-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winters-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters multiplicativo, ETS(M,A,A)</h3>
-<p>Para o caso com erro multiplicativo o erro com tendência e sazonalidade aditiva, o erro é calculado conforme a <a href="#eq-erromult" class="quarto-xref">Equação&nbsp;<span>5.12</span></a>.</p>
+<section id="modelo-de-holt-winters-aditivo-com-erro-multiplicativo-etsmaa" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="modelo-de-holt-winters-aditivo-com-erro-multiplicativo-etsmaa"><span class="header-section-number">5.4.2</span> Modelo de Holt-Winters aditivo com erro multiplicativo, ETS(M,A,A)</h3>
+<p>Para o caso com erro multiplicativo, tendência e sazonalidade aditivas, o erro é calculado conforme a <a href="#eq-erromult" class="quarto-xref">Equação&nbsp;<span>5.12</span></a>.</p>
 <p><span id="eq-erromult"><span class="math display">\[
 e_t=
 \frac{y_t - (l_{t-1} + b_{t-1} + s_{t-m})}{(l_{t-1} + b_{t-1} + s_{t-m} )}
@@ -823,17 +823,17 @@ e_t=
 <p><span id="eq-hwmaa"><span class="math display">\[
 \begin{align}
 y_t &amp;= (l_{t-1} + b_{t-1} + s_{t-m} ) (1+\varepsilon_t)\\
-l_t &amp;= l_{t-1}+b_{t-1}+ \alpha (l_{t-1}-b_{t-1}-s_{t-m})\varepsilon_t\\
+l_t &amp;= l_{t-1}+b_{t-1}+ \alpha (l_{t-1}+b_{t-1}+s_{t-m})\varepsilon_t\\
 b_t &amp;=b_{t-1} + \beta(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t \\
 s_t &amp;= s_{t-m} + \gamma(l_{t-1} + b_{t-1} + s_{t-m} ) \varepsilon_t\\
 \end{align}
 \tag{5.13}\]</span></span></p>
-<p>Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de estado de espaços.</p>
+<p>Aqui foram apresentados apenas alguns modelos, sendo dois deles explicitados em notação de espaço de estados. <span class="citation" data-cites="hyndman2018forecasting">RJ Hyndman e Athanasopoulos (<a href="references.html#ref-hyndman2018forecasting" role="doc-biblioref">2021</a>)</span> explicitam todos os 18 modelos possíveis de suavização exponencial com a notação de espaço de estados.</p>
 </section>
 </section>
-<section id="previsão-e-intervalo-de-confiança-com-ets" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-confiança-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de confiança com ETS</h2>
-<p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_{T+1} = l_{T} + b_{T} + s_{T}\)</span>.</p>
+<section id="previsão-e-intervalo-de-previsão-com-ets" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="previsão-e-intervalo-de-previsão-com-ets"><span class="header-section-number">5.5</span> Previsão e intervalo de previsão com ETS</h2>
+<p>A previsão com modelos de ETS pode ser realizada iterando as equações à frente, <span class="math inline">\(t=T+1, ..., T+h\)</span>. Por exemplo, para o modelo ETS(M,A,A) a previsão para o primeiro período não disponível seria <span class="math inline">\(\hat y_{T+1} = l_{T} + b_{T} + s_{T+1-m}\)</span>.</p>
 <p>O intervalo de confiança pode ser calculado conforme já exposto anteriormente, <span class="math inline">\(\hat{y}_{T+h|T} \pm1,96 \hat\sigma_h\)</span>, com 1,96 sendo o valor do quantil da distribuição <span class="math inline">\(z\)</span> para 0,95 de confiança. O desvio-padrão depende do método ETS usado e a estimativa é bastante complexa. <span class="citation" data-cites="hyndman2008forecasting">Rob Hyndman et al. (<a href="references.html#ref-hyndman2008forecasting" role="doc-biblioref">2008</a>)</span> fornece os cálculos detalhados.</p>
 <p>A <a href="#fig-ferteip" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta novamente as séries temporais de exportação, importação e produção de fertilizantes no Brasil em um mesmo painel gráfico, viabilizando a comparação entre estas. Observa-se de forma mais clara a preponderância das importações, especialmente nos últimos anos.</p>
 <div class="cell">
@@ -850,7 +850,7 @@ Figura&nbsp;5.10: Exportação, importação e Produção de fertilizantes no Br
 </div>
 </div>
 </div>
-<p>A série do volume de fertilizantes disponível no Brasil pode ser obtida somando os volumes de importação e exportação e subtraindo o volume de exportações. Tal série é plotada na <a href="#fig-fertdisp" class="quarto-xref">Figura&nbsp;<span>5.11</span></a>. Observa-se tendência de crescimento com variação sazonal homogênea no tempo. O ano de 2022 apresentou disponibilidade mais baixa, possivelmente em reflexo à pandemia.</p>
+<p>A série do volume de fertilizantes disponível no Brasil pode ser obtida somando os volumes de importação e produção e subtraindo o volume de exportações. Tal série é plotada na <a href="#fig-fertdisp" class="quarto-xref">Figura&nbsp;<span>5.11</span></a>. Observa-se tendência de crescimento com variação sazonal homogênea no tempo. O ano de 2022 apresentou disponibilidade mais baixa, possivelmente em reflexo à guerra entre Rússia e Ucrânia.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fertdisp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -865,7 +865,7 @@ Figura&nbsp;5.11: Disponibilidade de fertilizantes no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-fertdispsaz" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> expõe o gráfico da série de disponibilidade de fertilizantes para o Brasil. Observa-se aumento da disponibilidade ao longo dos anos e maior disponibilidade no segundo semestre dos anos de observação.</p>
+<p>A <a href="#fig-fertdispsaz" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> expõe o gráfico sazonal da série de disponibilidade de fertilizantes para o Brasil. Observa-se aumento da disponibilidade ao longo dos anos e maior disponibilidade no segundo semestre dos anos de observação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fertdispsaz" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -880,7 +880,23 @@ Figura&nbsp;5.12: Gráfico sazonal para Disponibilidade de fertilizantes
 </div>
 </div>
 </div>
-<p>A <a href="#fig-fertpred" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> exibe novamente a série com resultados de previsões a partir de 2022 para 4 distintos modelos ETS, aditivos e multiplicativos, com e sem amortecimento na tendência.</p>
+<p>Para escolher um modelo ETS adequado para a série em questão, realizou-se uma validação cruzada por origem móvel, considerendo 100 observações de treino iniciais, sendo estas aumentadas de um em um mês até as 156 disponíveis, gerando 57 séries de treino.</p>
+<p>A <a href="#fig-fertperf" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> resume o desempenho dos modelos na validação por orgiem móvel. Observa-se que o modelo aditivo com amortecimento, ETS(A,Ad,A), apresentou melhor resultado considerando a métrica RMSE.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fertperf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ST5_files/figure-html/fig-fertperf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.13: Desempenho dos modelos ETS para prever a disponibilidade de fertilizantes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-fertpred" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> exibe novamente a série com previsões para os 4 distintos modelos ETS, aditivos e multiplicativos, com e sem amortecimento na tendência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fertpred" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -889,63 +905,13 @@ Figura&nbsp;5.12: Gráfico sazonal para Disponibilidade de fertilizantes
 <img src="ST5_files/figure-html/fig-fertpred-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fertpred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.13: Previsão para Disponibilidade de fertilizantes usando distintos modelos ETS
+Figura&nbsp;5.14: Previsão para Disponibilidade de fertilizantes usando distintos modelos ETS
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-fertperf" class="quarto-xref">Tabela&nbsp;<span>5.6</span></a> resume o desempenho dos modelos considerando os dados de 2022 à frente. Observa-se que o modelo aditivo com amortecimento, ETS(A,Ad,A), apresentou melhor resultado para todas as métricas de erro.</p>
-<div class="cell">
-<div id="tbl-fertperf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.6: Desempenho dos modelos ETS para prever a disponibilidade de fertilizantes
-</figcaption>
-<div aria-describedby="tbl-fertperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">modelo</th>
-<th style="text-align: right;">RMSE</th>
-<th style="text-align: right;">MAE</th>
-<th style="text-align: right;">MAPE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ETS(A,A,A)</td>
-<td style="text-align: right;">835934,1</td>
-<td style="text-align: right;">703718,4</td>
-<td style="text-align: right;">20,76</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ETS(A,Ad,A)</td>
-<td style="text-align: right;">679257,2</td>
-<td style="text-align: right;">538313,3</td>
-<td style="text-align: right;">15,96</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ETS(M,A,M)</td>
-<td style="text-align: right;">838989,4</td>
-<td style="text-align: right;">706033,3</td>
-<td style="text-align: right;">20,06</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ETS(M,Ad,M)</td>
-<td style="text-align: right;">765089,4</td>
-<td style="text-align: right;">573111,9</td>
-<td style="text-align: right;">16,59</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>A <a href="#fig-resietsaada" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> expõe os gráficos de resíduos para o modelo ETS(A,Ad,A). Observa-se padrão aleatório na série residual, bom ajuste à normal e autocorrelação residual com significância para duas defasagens apenas. Para esclarecer se esta autocorrelação pode representar um problema, a <a href="#tbl-ljboxfert" class="quarto-xref">Tabela&nbsp;<span>5.7</span></a> exibe o resultado do teste. Não se pode garantir a ausência de autocorrelação residual.</p>
+<p>A <a href="#fig-resietsaada" class="quarto-xref">Figura&nbsp;<span>5.15</span></a> expõe os gráficos de resíduos para o modelo ETS(A,Ad,A). Observa-se autocorrelação residual com significância para duas defasagens, porém boa distribuição dos resíduos, com aparente adequação à distribuição normal. Para esclarecer se esta autocorrelação pode representar um problema, a <a href="#tbl-ljboxfert" class="quarto-xref">Tabela&nbsp;<span>5.6</span></a> exibe o resultado do teste. Como o p-valor foi baixo, rejeita-se a hipótese nula de ausência de autocorrelação residual.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resietsaada" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -954,7 +920,7 @@ Tabela&nbsp;5.6: Desempenho dos modelos ETS para prever a disponibilidade de fer
 <img src="ST5_files/figure-html/fig-resietsaada-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resietsaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.14: Gráficos de resíduos para o modelo ETS(A,Ad,A)
+Figura&nbsp;5.15: Gráficos de resíduos para o modelo ETS(A,Ad,A)
 </figcaption>
 </figure>
 </div>
@@ -964,7 +930,7 @@ Figura&nbsp;5.14: Gráficos de resíduos para o modelo ETS(A,Ad,A)
 <div id="tbl-ljboxfert" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ljboxfert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de fertilizantes
+Tabela&nbsp;5.6: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de fertilizantes
 </figcaption>
 <div aria-describedby="tbl-ljboxfert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -977,8 +943,8 @@ Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de f
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">32,92371</td>
-<td style="text-align: right;">0,0343968</td>
+<td style="text-align: right;">35,56815</td>
+<td style="text-align: right;">0,0172789</td>
 </tr>
 </tbody>
 </table>
@@ -987,7 +953,7 @@ Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de f
 </figure>
 </div>
 </div>
-<p>Finalmente, a <a href="#fig-predetaaada" class="quarto-xref">Figura&nbsp;<span>5.15</span></a> expõe a previsão usando o modelo ETS(A,Ad,A) para quatro anos à frente. Observa-se boa aproximação às observações recentes, especialmente nos últimos dois anos.</p>
+<p>Finalmente, a <a href="#fig-predetaaada" class="quarto-xref">Figura&nbsp;<span>5.16</span></a> expõe a previsão usando o modelo ETS(A,Ad,A) com intervalo de previsão para 0,8 e 0,95 de confiança.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-predetaaada" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -996,7 +962,7 @@ Tabela&nbsp;5.7: Teste de Ljung-Box para o modelo ETS(A,Ad,A) para a série de f
 <img src="ST5_files/figure-html/fig-predetaaada-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predetaaada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para disponibilidade de fertilizantes
+Figura&nbsp;5.16: Previsão com intervalo de confiança via ETS(A,Ad,A) para disponibilidade de fertilizantes
 </figcaption>
 </figure>
 </div>
@@ -1012,14 +978,13 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabletools)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Série do IPCA a partir de 2019. Esta série já foi apresentada no primeiro capítulo.</p>
 <div class="cell">
@@ -1075,7 +1040,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Holt amortecido</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(pop <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">trend</span>(<span class="st">"Ad"</span>, <span class="at">phi =</span> <span class="fl">0.97</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1099,7 +1064,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ano =</span> <span class="fu">year</span>(<span class="fu">as.Date</span>(<span class="fu">paste</span>(Ano,<span class="st">"01 01"</span>), <span class="at">format =</span> <span class="st">"%Y %m %d"</span>))) <span class="sc">|&gt;</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Ano)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelo de Holt e Holt amortecido para Emissões de Co2 pela indústria.</p>
+<p>Modelo de Holt e Holt amortecido para Emissões de <span class="math inline">\(CO_2\)</span> pela indústria.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>emissoes_ts <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
@@ -1117,7 +1082,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <p>Seja a série de exportações do Brasil. A série já foi lida no capítulo 2. Gráfico sazonal da série.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>exp_ts <span class="sc">|&gt;</span> <span class="fu">gg_season</span>(Exp) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Exportações [US$ FOB]: Gráfico sazonal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">title=</span><span class="st">"Exportações [US$ FOB]: Gráfico sazonal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelos de suavização exponencial com sazonalidade aditiva e multiplicativa para exportações e com tendência amortecida ou não.</p>
 <div class="cell">
@@ -1138,7 +1103,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(exp_ts <span class="sc">|&gt;</span> </span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">&gt;=</span><span class="dv">2020</span>), <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Suavização com tendência e sazonalidade para a série de exportações"</span>,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"US$ FOB"</span>) <span class="sc">+</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Previsão"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A série de disponibilidade de fertilizantes é obtida considerando as séries de exportação, importação e produção de fertilizantes, já apresentadas no capítulo 4.</p>
@@ -1152,59 +1117,84 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">disponibilidade =</span> producao<span class="sc">+</span>importacao<span class="sc">-</span>exportacao)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotando a série.</p>
-<p>Gráfico sazonal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fert_disp <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(disponibilidade, <span class="at">labels =</span> <span class="st">"right"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels_repel =</span> T)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(disponibilidade)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Estimando 4 modelos ETS para a disponibilidade até 2021.</p>
+<p>Gráfico sazonal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="ot">&lt;-</span> fert_disp <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2021-12"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,A,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,A,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,Ad,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>))</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fert_disp <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_season</span>(disponibilidade, <span class="at">labels =</span> <span class="st">"right"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels_repel =</span> T)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Previsão de 2022 até o fim de 2025.</p>
+<p>Treinamento com validação cruzada de 4 modelos ETS para a disponibilidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="ot">&lt;-</span> fit_disp <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"4 years"</span>)</span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fert_disp_tr <span class="ot">&lt;-</span> fert_disp <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stretch_tsibble</span>(<span class="at">.init =</span> <span class="dv">100</span>, <span class="at">.step =</span> <span class="dv">1</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS para disponibilidade de fertilizantes"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Modelo"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="ot">&lt;-</span> fert_disp_tr <span class="sc">|&gt;</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,A,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,A,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,Ad,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Avaliando a acuracidade dos modelos usando dados de 2022 até junho de 2025.</p>
+<p>Acuracidade na validação cruzada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fc_disp, fert_disp <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">filter_index</span>(<span class="st">"2022-01"</span><span class="sc">~</span>.)) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MAE, MAPE)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fc_disp_tr <span class="ot">&lt;-</span> fit_disp <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.id, .model) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_fable</span>(<span class="at">response =</span> <span class="st">"disponibilidade"</span>, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">distribution =</span> disponibilidade)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>fc_disp_tr <span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(fert_disp, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">".model"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> h, <span class="at">y =</span> RMSE, <span class="at">col =</span> .model)) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># facet_wrap(vars(.model)) +</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">pch=</span>.model)) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">lty=</span>.model)) <span class="sc">+</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cf">function</span>(x) <span class="fu">seq</span>(<span class="fu">ceiling</span>(x[<span class="dv">1</span>]), <span class="fu">floor</span>(x[<span class="dv">2</span>]), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Erro na validação por origem móvel para modelos ETS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão para os quatro melhores modelos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="ot">&lt;-</span> fert_disp <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,A,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,A,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ETS(M,Ad,M)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ETS</span>(disponibilidade <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>))</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="ot">&lt;-</span> fit_disp <span class="sc">|&gt;</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">"4 years"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp, <span class="at">level =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS para disponibilidade de fertilizantes"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Quantidade"</span>) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Modelo"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gráficos de resíduos do melhor modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit_disp <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Teste de Ljung-Box para os resíduos do melhor modelo. Consideram-se 4 termos no modelo no caso amortecido.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_disp <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">dof =</span> <span class="dv">4</span>, <span class="at">lag =</span> <span class="dv">24</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit_disp <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">select</span>(<span class="st">`</span><span class="at">ETS(A,Ad,A)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(.innov, ljung_box, <span class="at">dof =</span> <span class="dv">4</span>, <span class="at">lag =</span> <span class="dv">24</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão com intervalo de confiança para o melhor modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model<span class="sc">==</span><span class="st">"ETS(A,Ad,A)"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS(A,Ad,A) para disponibilidade de fertilizantes"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fc_disp <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.model<span class="sc">==</span><span class="st">"ETS(A,Ad,A)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(fert_disp) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Previsão via ETS(A,Ad,A) para disponibilidade de fertilizantes"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Quantidade"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercícios-propostos" class="level2" data-number="5.7">
@@ -1223,11 +1213,11 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 </ol>
 <p>Seja a série de produção de asfalto obtida conforme segue a partir da série de derivados do petróleo do capítulo 4.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>asfalto <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(volume)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>asfalto <span class="ot">&lt;-</span> petro_ts <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(derivado <span class="sc">==</span> <span class="st">"asfalto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>derivado)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>asfalto <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(volume)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Filtre a série até o fim do ano de 2023 e estime 8 modelos ETS usando sazonalidade aditiva ou multiplicativa, tendência com ou sem amortecimento e erro aditivo ou multiplicativo e plote os resultados.</li>
@@ -1244,7 +1234,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <ol start="9" type="1">
 <li>Faça o teste de Ljung-Box para o melhor modelo.</li>
 </ol>
-<p>Seja a série de passageiros em vôos do Brasil já apresentada no capítulo 3.</p>
+<p>Seja a série de passageiros em voos do Brasil já apresentada no capítulo 3.</p>
 <ol start="10" type="1">
 <li>Filtre a série até o fim do ano de 2017 e estime 8 modelos ETS usando sazonalidade aditiva ou multiplicativa, tendência com ou sem amortecimento e erro aditivo ou multiplicativo e plote os resultados.</li>
 </ol>
@@ -1252,7 +1242,7 @@ Figura&nbsp;5.15: Previsão com intervalo de confiança via ETS(A,Ad,A) para dis
 <li>Faça a previsão 2 anos à frente para a série.</li>
 </ol>
 <ol start="12" type="1">
-<li>Avalie o desempenho dos modelos considerando observações disponíveis de 2024.</li>
+<li>Avalie o desempenho dos modelos considerando observações disponíveis de 2018 a 2020.</li>
 </ol>
 <ol start="13" type="1">
 <li>Avalie os resíduos do modelo que apresentou menor erro.</li>
@@ -1706,8 +1696,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ST6.html" class="pagination-link" aria-label="Modelos auto-regressivos integrados de médias móveis (ARIMA)">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ST6.html" class="pagination-link" aria-label="Modelos autorregressivos integrados de médias móveis (ARIMA)">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos autorregressivos integrados de médias móveis (ARIMA)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>6&nbsp; Modelos auto-regressivos integrados de médias móveis (ARIMA) – Séries Temporais e Previsão</title>
+<title>6&nbsp; Modelos autorregressivos integrados de médias móveis (ARIMA) – Séries Temporais e Previsão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,7 +165,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ST6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos autorregressivos integrados de médias móveis (ARIMA)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -229,7 +229,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ST6.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos autorregressivos integrados de médias móveis (ARIMA)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -262,7 +262,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#modelos-autorregressivos" id="toc-modelos-autorregressivos" class="nav-link" data-scroll-target="#modelos-autorregressivos"><span class="header-section-number">6.2</span> Modelos autorregressivos</a>
   <ul class="collapse">
-  <li><a href="#previsão-para-modelos-autoregressivos" id="toc-previsão-para-modelos-autoregressivos" class="nav-link" data-scroll-target="#previsão-para-modelos-autoregressivos"><span class="header-section-number">6.2.1</span> Previsão para modelos autoregressivos</a></li>
+  <li><a href="#previsão-para-modelos-autorregressivos" id="toc-previsão-para-modelos-autorregressivos" class="nav-link" data-scroll-target="#previsão-para-modelos-autorregressivos"><span class="header-section-number">6.2.1</span> Previsão para modelos autorregressivos</a></li>
   </ul></li>
   <li><a href="#modelos-de-média-móvel" id="toc-modelos-de-média-móvel" class="nav-link" data-scroll-target="#modelos-de-média-móvel"><span class="header-section-number">6.3</span> Modelos de média móvel</a>
   <ul class="collapse">
@@ -287,7 +287,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos auto-regressivos integrados de médias móveis (ARIMA)</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modelos autorregressivos integrados de médias móveis (ARIMA)</span></h1>
 </div>
 
 
@@ -320,7 +320,7 @@ E(\varepsilon_t^2)&amp;= Var(\varepsilon_t) = \sigma^2, \text{ } t=1,\dots,T \\
 E(\varepsilon_t\varepsilon_s)&amp; = 0, \text{ } t \neq s, \text{ } t=1,\dots,T. \\
 \end{align}
 \]</span></p>
-<p>Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido a variabilidade na dimensão do ciclo.</p>
+<p>Algumas séries cíclicas podem ser estacionárias, caso os picos e vales não sejam previsíveis devido à variabilidade na dimensão do ciclo.</p>
 <p>A <a href="#fig-series" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> expõe exemplos de séries temporais estacionárias. À esquerda observa-se um ruído branco e à direita a série de variação na ação PETR3 para pouco mais de 10 meses de 2024.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -411,7 +411,7 @@ Tabela&nbsp;6.1: Primeiras observações do índice Ibovespa e sua variação
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t
 \]</span></p>
-<p>Um modelo onde a observação atual é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, como a maior parte das séries, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
+<p>Um modelo onde a observação atual é igual à anterior adicionada de um ruído branco, <span class="math inline">\(y_t = y_{t-1}+\varepsilon_t\)</span>, é chamado de caminhada aleatória (<em>random walk</em>). O modelo de caminhada aleatória estima a próxima observação igual à anterior, <span class="math inline">\(\hat y_t = y_{t-1}\)</span>, conforme o método ingênuo. No caso de média não nula, pode-se adicionar uma constante, conforme segue, onde <span class="math inline">\(c\)</span> é estimada pela média das diferenças.</p>
 <p><span class="math display">\[
 y_t-y_{t-1} = \varepsilon_t + c
 \]</span></p>
@@ -458,18 +458,19 @@ Figura&nbsp;6.3: Passageiros em vôos do Brasil: série original, log da série,
 </div>
 </div>
 </div>
-<p>Tomando a diferenciação de primeira ordem como sendo sazonal, <span class="math inline">\(y' = y_t-y_{t-m}\)</span>, então a diferenciação de segunda ordem pode ser expressa conforme a <a href="#eq-difsaz" class="quarto-xref">Equação&nbsp;<span>6.4</span></a>.</p>
+<p>Tomando a diferenciação de primeira ordem como sendo sazonal, <span class="math inline">\(y'_t = y_t-y_{t-m}\)</span>, então a diferenciação de segunda ordem pode ser expressa conforme a <a href="#eq-difsaz" class="quarto-xref">Equação&nbsp;<span>6.4</span></a>.</p>
 <p><span id="eq-difsaz"><span class="math display">\[
 \begin{align}
-y'' &amp;= y'-y'_{t-1} \\
-    &amp;= (y_t-y_{t-m})-(y_{t-1}-y_{t-m-1}) \\
-    &amp;= y_t - y_{t-m} -y_{t-1}+y_{t-m-1} \\
+y'_t  &amp;= y_t - y_{t-m} \\
+y''_t &amp;= y'_t - y'_{t-1} \\
+      &amp;= (y_t-y_{t-m})-(y_{t-1}-y_{t-m-1}) \\
+      &amp;= y_t - y_{t-1} - y_{t-m} + y_{t-m-1}
 \end{align}
 \tag{6.4}\]</span></span></p>
 </section>
 <section id="testes-de-raízes-unitárias" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="testes-de-raízes-unitárias"><span class="header-section-number">6.1.2</span> Testes de raízes unitárias</h3>
-<p>Um modelo autoregressivo de primeira ordem, <span class="math inline">\(y_t = \phi y_{t-1}+\varepsilon_t\)</span>, consiste em um modelo estacionário se <span class="math inline">\(|\phi|&lt;1\)</span>. Se <span class="math inline">\(\phi=1\)</span>, tem-se um modelo de caminhada aleatória, a série tem raiz unitária e é, consequentemente, não estacionária <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, os testes de raízes unitárias tem o objetivo de avaliar se a série apresenta ou não estacionariedade.</p>
+<p>Um modelo autorregressivo de primeira ordem, <span class="math inline">\(y_t = \phi y_{t-1}+\varepsilon_t\)</span>, consiste em um modelo estacionário se <span class="math inline">\(|\phi|&lt;1\)</span>. Se <span class="math inline">\(\phi=1\)</span>, tem-se um modelo de caminhada aleatória, a série tem raiz unitária e é, consequentemente, não estacionária <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. Logo, os testes de raízes unitárias têm o objetivo de avaliar se a série apresenta ou não estacionariedade.</p>
 <p>O teste de Kwiatkowski-Phillips-Schmidt-Shin (KPSS) <span class="citation" data-cites="kwiatkowski1992testing">(<a href="references.html#ref-kwiatkowski1992testing" role="doc-biblioref">Kwiatkowski et al. 1992</a>)</span> é uma opção, com a hipótese nula indicando a estacionariedade da série. A <a href="#tbl-kpss1" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> apresenta o resultado do teste para a série do índice Ibovespa, indicando a rejeição da hipótese nula de estacionariedade, sendo necessária a diferenciação da série. A <a href="#tbl-kpss1dif" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> apresenta o resultado do teste para a série do índice diferenciada. Observa-se neste caso que o resultado sugere que a hipótese nula de estacionariedade da série não deve ser rejeitada.</p>
 <div class="cell">
 <div id="tbl-kpss1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -536,7 +537,7 @@ By_t = y_{t-1}
 <p><span class="math display">\[
 B(By_t) = B^2y_t = By_{t-1} = y_{t-2}
 \]</span></p>
-<p>Logo, de forma geral, <span class="math inline">\(B^ky_t = y_{t-k}\)</span>. Para casos sazonais pode-se usar a diferenciação sazonal. Por exemplo, em séries de frquência horária e sazonalidade diária, pode ser útil usar <span class="math inline">\(B^{24}y_t = y_{t-24}\)</span>, de forma a retornar na mesma hora no dia anterior.</p>
+<p>Logo, de forma geral, <span class="math inline">\(B^ky_t = y_{t-k}\)</span>. Para casos sazonais pode-se usar a diferenciação sazonal. Por exemplo, em séries de frequência horária e sazonalidade diária, pode ser útil usar <span class="math inline">\(B^{24}y_t = y_{t-24}\)</span>, de forma a retornar na mesma hora no dia anterior.</p>
 <p>A diferenciação de primeira ordem com a notação de defasagem pode ser escrita segundo a <a href="#eq-Bdif" class="quarto-xref">Equação&nbsp;<span>6.6</span></a>.</p>
 <p><span id="eq-Bdif"><span class="math display">\[
 \begin{align}
@@ -564,7 +565,7 @@ y_t &amp;= c+\phi_1y_{t-1} + \phi_2y_{t-2} + \ldots + \phi_py_{t-p} + \varepsilo
     &amp;= c+\phi_1By_t + \phi_2B^2y_t + \ldots + \phi_pB^py_t + \varepsilon_t \\
 \end{align}
 \tag{6.8}\]</span></span></p>
-<p>Um modelo autoregressivo de primeira ordem é denotado <span class="math inline">\(y_t = c+ \phi_1 y_{t-1} + \varepsilon_t\)</span>. Em uma série estacionária tem-se <span class="math inline">\(E(y_t) = E(y_{t-1}) = \mu_y\)</span>. Subtraindo-se a média tanto na série quanto no termo defasado, pode-se eliminar a constante:</p>
+<p>Um modelo autorregressivo de primeira ordem é denotado <span class="math inline">\(y_t = c+ \phi_1 y_{t-1} + \varepsilon_t\)</span>. Em uma série estacionária tem-se <span class="math inline">\(E(y_t) = E(y_{t-1}) = \mu_y\)</span>. Subtraindo-se a média tanto na série quanto no termo defasado, pode-se eliminar a constante:</p>
 <p><span class="math display">\[
 \begin{align}
 y_t - \mu_y=&amp; \phi_1(y_{t-1}-\mu_y) + \varepsilon_t \\
@@ -572,7 +573,7 @@ y_t =&amp; \phi_1y_{t-1}+ \mu_y -\phi_1\mu_y + \varepsilon_t \\
 y_t =&amp; \phi_1y_{t-1}+ \mu_y(1 -\phi_1) + \varepsilon_t \\
 \end{align}
 \]</span></p>
-<p>Logo, <span class="math inline">\(c=\mu_y(1 -\phi_1)\)</span> para um modelo <span class="math inline">\(AR(1)\)</span> e, generalizando, <span class="math inline">\(c = \mu_y(1-\phi_1-\phi_2-...-\phi_p) = \mu_y(1-\sum_i^p \phi_i)\)</span> para um modelo <span class="math inline">\(AR(p)\)</span> <span class="citation" data-cites="makridakis2008forecasting hamilton2020time">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>; <a href="references.html#ref-hamilton2020time" role="doc-biblioref">Hamilton 1994</a>)</span>. Para <span class="math inline">\(\mu_y=0\)</span>, pode-se usar a representação com notação de defasagem da <a href="#eq-armodel2" class="quarto-xref">Equação&nbsp;<span>6.9</span></a>. Pode-se observar que tal modelo é um modelo de regressão que ao invés de considerar outras variáveis independentes, considera valores anteriores da prória série, sendo, portanto, um modelo autoregressivo. Tal modelo não deve, entretanto, ser tratado como um modelo de regressão obtido por mínimos quadrados. Primeiro, porque a independência dos erros pode ser violada, dado o usual relacionamento entre os termos do lado direito. Segundo, pois a determinação da maior defasagem, <span class="math inline">\(p\)</span>, no modelo não é simples <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>.</p>
+<p>Logo, <span class="math inline">\(c=\mu_y(1 -\phi_1)\)</span> para um modelo <span class="math inline">\(AR(1)\)</span> e, generalizando, <span class="math inline">\(c = \mu_y(1-\phi_1-\phi_2-...-\phi_p) = \mu_y(1-\sum_i^p \phi_i)\)</span> para um modelo <span class="math inline">\(AR(p)\)</span> <span class="citation" data-cites="makridakis2008forecasting hamilton2020time">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>; <a href="references.html#ref-hamilton2020time" role="doc-biblioref">Hamilton 1994</a>)</span>. Para <span class="math inline">\(\mu_y=0\)</span>, pode-se usar a representação com notação de defasagem da <a href="#eq-armodel2" class="quarto-xref">Equação&nbsp;<span>6.9</span></a>. Pode-se observar que tal modelo é um modelo de regressão que ao invés de considerar outras variáveis independentes, considera valores anteriores da própria série, sendo, portanto, um modelo autorregressivo. Tal modelo não deve, entretanto, ser tratado como um modelo de regressão obtido por mínimos quadrados. Primeiro, porque a independência dos erros pode ser violada, dado o usual relacionamento entre os termos do lado direito. Segundo, pois a determinação da maior defasagem, <span class="math inline">\(p\)</span>, no modelo não é simples <span class="citation" data-cites="makridakis2008forecasting">(<a href="references.html#ref-makridakis2008forecasting" role="doc-biblioref">Makridakis, Wheelwright, e Hyndman 2008</a>)</span>.</p>
 <p><span id="eq-armodel2"><span class="math display">\[
 (1-\phi_1B- \phi_2B^2 - \ldots - \phi_pB^p)y_t = \varepsilon_t \\
 \tag{6.9}\]</span></span></p>
@@ -604,7 +605,7 @@ Figura&nbsp;6.4: Processos autorregressivos
 <li>Para um modelo <span class="math inline">\(AR(1)\)</span>: <span class="math inline">\(|\phi_1|&lt;1\)</span>.</li>
 <li>Para um modelo <span class="math inline">\(AR(2)\)</span>: <span class="math inline">\(|\phi_2|&lt;1\)</span>, <span class="math inline">\(\phi_1+\phi_2&lt;1\)</span>, <span class="math inline">\(\phi_2-\phi_1&lt;1\)</span>.</li>
 </ul>
-<p>Para um processo autoregressivo AR(1) a autocorrelação decai exponencialmente com o aumento da defasagem <span class="citation" data-cites="harvey1990econometric">(<a href="references.html#ref-harvey1990econometric" role="doc-biblioref">Harvey 1990</a>)</span>. Seja um modelo AR(1) com média nula. Recordando que a autocorrelação para defasagem de <span class="math inline">\(k\)</span> observações neste caso consiste em <span class="math inline">\(\rho_k=E(y_ty_{t-k})\)</span>, tem-se:</p>
+<p>Para um processo autorregressivo AR(1) a autocorrelação decai exponencialmente com o aumento da defasagem <span class="citation" data-cites="harvey1990econometric">(<a href="references.html#ref-harvey1990econometric" role="doc-biblioref">Harvey 1990</a>)</span>. Seja um modelo AR(1) com média nula. A covariância para defasagem de <span class="math inline">\(k\)</span> observações neste caso consiste em <span class="math inline">\(\rho_k=E(y_ty_{t-k})\)</span>. Logo:</p>
 <p><span class="math display">\[
 \begin{align}
 E(y_ty_{t-k}) &amp; = \phi E(y_{t-1}y_{t-k})  + E(\varepsilon_t y_{t-k}) \\
@@ -620,14 +621,14 @@ E(y_ty_{t-k}) &amp; = \phi E(y_{t-1}y_{t-k})  + E(\varepsilon_t y_{t-k}) \\
 <img src="ST6_files/figure-html/fig-aracfs-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aracfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.5: Correlogrmas de processos autorregressivos de primeira ordem
+Figura&nbsp;6.5: Correlogramas de processos autorregressivos de primeira ordem
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="previsão-para-modelos-autoregressivos" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="previsão-para-modelos-autoregressivos"><span class="header-section-number">6.2.1</span> Previsão para modelos autoregressivos</h3>
+<section id="previsão-para-modelos-autorregressivos" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="previsão-para-modelos-autorregressivos"><span class="header-section-number">6.2.1</span> Previsão para modelos autorregressivos</h3>
 <p>A previsão para um modelo <span class="math inline">\(AR(1)\)</span> pode ser realizada de forma simples. Seja o modelo <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span>. A previsão para um período à frente das observações disponíveis, <span class="math inline">\(\hat y_{T+1}\)</span>, pode ser obtida segundo <a href="#eq-predar1" class="quarto-xref">Equação&nbsp;<span>6.10</span></a>.</p>
 <p><span id="eq-predar1"><span class="math display">\[
 \hat y_{T+1} = c + \phi y_{T}
@@ -635,13 +636,13 @@ Figura&nbsp;6.5: Correlogrmas de processos autorregressivos de primeira ordem
 <p>De forma análoga, para dois períodos à frente, a previsão fica:</p>
 <p><span class="math display">\[
 \begin{align}
-\hat y_{T+2} =&amp; c + \phi y_{T+1} \\
+\hat y_{T+2} =&amp; c + \phi \hat y_{T+1} \\
 \hat y_{T+2} =&amp; c + \phi (c + \phi y_{T}) \\
 \hat y_{T+2} =&amp; c + \phi c + \phi^2 y_{T} \\
 \hat y_{T+2} =&amp; c(1 + \phi) + \phi^2 y_{T} \\
 \end{align}
 \]</span></p>
-<p>Seguindo este raciocício recursivo, pode-se obter a previsão para <span class="math inline">\(h\)</span> períodos à frente para um modelo <span class="math inline">\(AR(1)\)</span> conforme <a href="#eq-predar1h" class="quarto-xref">Equação&nbsp;<span>6.11</span></a>.</p>
+<p>Seguindo este raciocínio recursivo, pode-se obter a previsão para <span class="math inline">\(h\)</span> períodos à frente para um modelo <span class="math inline">\(AR(1)\)</span> conforme <a href="#eq-predar1h" class="quarto-xref">Equação&nbsp;<span>6.11</span></a>.</p>
 <p><span id="eq-predar1h"><span class="math display">\[
 \hat y_{T+h} = c(1 + \phi + \phi^2 + \dots+\phi^{h-1}) + \phi^h y_{T}
 \tag{6.11}\]</span></span></p>
@@ -664,11 +665,11 @@ S_h =&amp; \frac{1-\phi^h}{1-\phi}, \text{} |\phi|&lt;1.
 \hat y_{T+h} =&amp; \mu_y + \phi^h (y_{T}-\mu_y)
 \end{align}
 \tag{6.12}\]</span></span></p>
-<p>Já para modelos de média móvel de ordem genérica, <span class="math inline">\(AR(p)\)</span>, não há uma fórmula tão simples, usa-se simplesmente o processo recursivo de previsão. Portanto, para <span class="math inline">\(h=1\)</span>, a previsão fica segundo a <a href="#eq-predarp1" class="quarto-xref">Equação&nbsp;<span>6.13</span></a>.</p>
+<p>Já para modelos autorregressivos de ordem genérica, <span class="math inline">\(AR(p)\)</span>, não há uma fórmula tão simples, usa-se simplesmente o processo recursivo de previsão. Portanto, para <span class="math inline">\(h=1\)</span>, a previsão fica segundo a <a href="#eq-predarp1" class="quarto-xref">Equação&nbsp;<span>6.13</span></a>.</p>
 <p><span id="eq-predarp1"><span class="math display">\[
 \hat y_{T+1} = c+\phi_1y_{T} + \phi_2y_{T-1} + \ldots + \phi_py_{T+1-p}
 \tag{6.13}\]</span></span></p>
-<p>Para <span class="math inline">\(h\)</span> períodos à frente, a previsão para um modelo <span class="math inline">\(AR(p)\)</span> é obtida a partir da <a href="#eq-predarph" class="quarto-xref">Equação&nbsp;<span>6.14</span></a>.</p>
+<p>Para <span class="math inline">\(h\)</span> períodos à frente, a previsão para um modelo <span class="math inline">\(AR(p)\)</span> é obtida a partir da <a href="#eq-predarph" class="quarto-xref">Equação&nbsp;<span>6.14</span></a>, com <span class="math inline">\(y_{T+j}\)</span>, <span class="math inline">\(j \ge 1\)</span>, substituídos pelas previsões, <span class="math inline">\(\hat y_{T+j}\)</span>.</p>
 <p><span id="eq-predarph"><span class="math display">\[
 \hat y_{T+h} = c+\phi_1y_{T+h-1} + \phi_2y_{T+h-2} + \ldots + \phi_py_{T+h-p}
 \tag{6.14}\]</span></span></p>
@@ -684,8 +685,8 @@ y_t&amp;=c+\varepsilon_t+\theta_1\varepsilon_{t-1} + \theta_2\varepsilon_{t-2} +
 &amp;=c+ (1+\theta_1B+\theta_2B^2+\ldots+\theta_qB^q)\varepsilon_t
 \end{align}
 \tag{6.15}\]</span></span></p>
-<p>É importante também distinguir os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para estimativa da tendência na decomposição clássica. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, aqueles visam suavizar a séries temporal, eliminando sua sazonalidade.</p>
-<p>A <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0.6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0.9\varepsilon_{t-1} + 0.5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
+<p>É importante também distinguir os modelos <span class="math inline">\(MA(q)\)</span> dos modelos de média móvel para estimativa da tendência na decomposição clássica. Enquanto os modelos aqui apresentados tem o objetivo de realizar previsões, aqueles visam suavizar a série temporal, eliminando sua sazonalidade.</p>
+<p>A <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> ilustra processos de média móvel. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a>(a) um processo de média móvel de primeira ordem, <span class="math inline">\(MA(1)\)</span>, é observado com <span class="math inline">\(y_t = 15 + \varepsilon_t + 0,6\varepsilon_{t-1}\)</span>. Na <a href="#fig-ma" class="quarto-xref">Figura&nbsp;<span>6.6</span></a>(b) tem-se um processo de média móvel de segunda ordem, <span class="math inline">\(MA(2)\)</span>, com <span class="math inline">\(y_t = 8 + \varepsilon_t - 0,9\varepsilon_{t-1} + 0,5\varepsilon_{t-2}\)</span>. Mudando os parâmetros <span class="math inline">\(\theta_1, ..., \theta_q\)</span> a série varia significativamente. Assim como nos modelos autorregressivos, nos de média móvel a variância do erro <span class="math inline">\(\sigma_\varepsilon\)</span> só muda a amplitude da série, não o padrão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -748,8 +749,8 @@ Figura&nbsp;6.7: Correlogramas de processos de média móvel
 <p>Já para <span class="math inline">\(h \ge 2\)</span> a previsão consiste apenas na constante, conforme <a href="#eq-predma12" class="quarto-xref">Equação&nbsp;<span>6.17</span></a>.</p>
 <p><span id="eq-predma12"><span class="math display">\[
 \begin{align}
-\hat y_{T+1} &amp;= c + \varepsilon_{T+2} + \theta_1\varepsilon_{T+1} \\
-\hat y_{T+1} &amp;= c
+\hat y_{T+2} &amp;= c + \varepsilon_{T+2} + \theta_1\varepsilon_{T+1} \\
+\hat y_{T+2} &amp;= c
 \end{align}
 \tag{6.17}\]</span></span></p>
 <p>Para um modelo de média-móvel de ordem <span class="math inline">\(q\)</span>, <span class="math inline">\(MA(q)\)</span> a previsão para um período à frente pode ser obtida segundo a <a href="#eq-predmaq1" class="quarto-xref">Equação&nbsp;<span>6.18</span></a>.</p>
@@ -759,7 +760,7 @@ Figura&nbsp;6.7: Correlogramas de processos de média móvel
 \hat y_{T+1}&amp;=c+\theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q}
 \end{align}
 \tag{6.18}\]</span></span></p>
-<p>A previsão sempre conterá termos de erros observados, portanto, se <span class="math inline">\(h&gt;q\)</span>, ou seja, se o período de previsão for maior que a ordem do modelo, todos os termos de erro serão desconhecidos e a previsão será igual à constante, conforme <a href="#eq-predmaqh" class="quarto-xref">Equação&nbsp;<span>6.19</span></a>.</p>
+<p>A previsão só conterá termos de erro observados enquanto <span class="math inline">\(h \leq q\)</span>, ou seja, se <span class="math inline">\(h&gt;q\)</span>, todos os termos de erro serão desconhecidos e a previsão será igual à constante, conforme <a href="#eq-predmaqh" class="quarto-xref">Equação&nbsp;<span>6.19</span></a>.</p>
 <p><span id="eq-predmaqh"><span class="math display">\[
 \hat y_{T+h}=c
 \tag{6.19}\]</span></span></p>
@@ -778,7 +779,7 @@ y_t'&amp;=c+\phi_1y'_{t-1} + \phi_2y'_{t-2} + \ldots + \phi_py'_{t-p} + \theta_1
 <p><span id="eq-arimaa2"><span class="math display">\[
 (1-\phi_1B- \ldots - \phi_pB^p)(1-B)^dy_t = c+( 1+\theta_1B+\ldots+\theta_qB^q)\varepsilon_t.
 \tag{6.21}\]</span></span></p>
-<p>Quando não é necessária a diferenciação da série, isto é, <span class="math inline">\(d=0\)</span>, tem-se um modelo <span class="math inline">\(ARMA(p,d)\)</span> <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais já conhecidos.</p>
+<p>Quando não é necessária a diferenciação da série, isto é, <span class="math inline">\(d=0\)</span>, tem-se um modelo <span class="math inline">\(ARMA(p,q)\)</span> <span class="citation" data-cites="box2008time">(<a href="references.html#ref-box2008time" role="doc-biblioref">Box et al. 2008</a>)</span>. A <a href="#tbl-casosarima" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> expõe a sintaxe do modelo ARIMA correspondente para alguns casos especiais já conhecidos.</p>
 <div id="tbl-casosarima" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-casosarima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -848,26 +849,26 @@ sigma^2 estimated as 969282769:  log likelihood=-516,68
 AIC=1039,35   AICc=1039,95   BIC=1044,7</code></pre>
 </div>
 </div>
-<p>Foi obtido um modelo ARIMA(1,0,0) exposto a seguir, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco com <span class="math inline">\(\sigma_\varepsilon = 31133,31\)</span>.</p>
+<p>Foi obtido um modelo ARIMA(1,0,0) exposto a seguir, onde <span class="math inline">\(\varepsilon_t\)</span> é ruído branco com <span class="math inline">\(\sigma_^2\varepsilon = 969282769\)</span>.</p>
 <p><span class="math display">\[
 y_t = 271035,56 + 0,28y_{t-1} + \varepsilon_t
 \]</span></p>
 <p>A <a href="#fig-for_fitcoque" class="quarto-xref">Figura&nbsp;<span>6.9</span></a> expõe a previsão de 10 meses à frente usando tal modelo.</p>
-<div class="cell" data-tbl-cap="Previsão para 10 meses via ARIMA para a série de volume de produção de coque no Brasil">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-for_fitcoque" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-for_fitcoque" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-for_fitcoque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ST6_files/figure-html/fig-for_fitcoque-1.png" id="fig-for_fitcoque" class="img-fluid figure-img" width="672">
+<img src="ST6_files/figure-html/fig-for_fitcoque-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-for_fitcoque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.9
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-for_fitcoque-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.9: Previsão para 10 meses via ARIMA para a série de volume de produção de coque no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-vale20" class="quarto-xref">Figura&nbsp;<span>6.10</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2020.</p>
+<p>A <a href="#fig-vale20" class="quarto-xref">Figura&nbsp;<span>6.10</span></a> expõe a série temporal do valor da ação VALE3 a partir de 2021.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-vale20" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -925,7 +926,7 @@ Figura&nbsp;6.11: Resíduos do modelo ARIMA(2,0,2) para a série do valor da aç
 <img src="ST6_files/figure-html/fig-for_vale10-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-for_vale10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.12: Série temporal do valor da ação VALE3
+Figura&nbsp;6.12: Previsão 10 anos à frente para a série temporal do valor da ação VALE3
 </figcaption>
 </figure>
 </div>
@@ -933,7 +934,7 @@ Figura&nbsp;6.12: Série temporal do valor da ação VALE3
 </div>
 <section id="previsão-com-modelos-arima-não-sazonais" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="previsão-com-modelos-arima-não-sazonais"><span class="header-section-number">6.4.1</span> Previsão com modelos ARIMA não sazonais</h3>
-<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos de interesse para previsão, <span class="math inline">\(h\)</span>, para além das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autoregressivos e os de média móvel, lembrando que este último apresentará todos termos de erro nulos sempre que <span class="math inline">\(h\geq q\)</span>, uma vez que são desconhecidos.</p>
+<p>A previsão em modelos ARIMA é realizada usando o modelo ARIMA obtido, considerando o número de períodos de interesse para previsão, <span class="math inline">\(h\)</span>, para além das observações disponíveis, <span class="math inline">\(T+h\)</span>. Para um modelo ARIMA com <span class="math inline">\(d=1\)</span>, considerando um período à frente, <span class="math inline">\(h=1\)</span>, a previsão é realizada segundo a <a href="#eq-predarima1" class="quarto-xref">Equação&nbsp;<span>6.22</span></a>, onde o termo de erro para <span class="math inline">\(t=T+1\)</span> é desconhecido e tem esperança nula, <span class="math inline">\(E[\varepsilon_{T+1}]=0\)</span>. Para períodos de previsão maiores, <span class="math inline">\(h\ge2\)</span>, faz-se recursivamente a previsão, de forma similar ao demonstrado para os modelos autorregressivos e os de média móvel, lembrando que este último apresentará todos termos de erro nulos sempre que <span class="math inline">\(h &gt; q\)</span>, uma vez que são desconhecidos.</p>
 <p><span id="eq-predarima1"><span class="math display">\[
 \begin{align}
 y_{T+1}'&amp;=c+\phi_1y'_{T} + \phi_2y'_{T-1} + \ldots + \phi_py'_{T+1-p} + \theta_1\varepsilon_{T} + \theta_2\varepsilon_{T-1} + \ldots + \theta_q\varepsilon_{T+1-q} + \varepsilon_{T+1} \\
@@ -1049,7 +1050,7 @@ Tabela&nbsp;6.5: Teste KPSS para a série de produção de grãos
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1,32088</td>
+<td style="text-align: right;">1,185263</td>
 <td style="text-align: right;">0,01</td>
 </tr>
 </tbody>
@@ -1091,8 +1092,8 @@ Tabela&nbsp;6.6: Teste KPSS para a variação da série transformada de produç�
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0,1158627</td>
-<td style="text-align: right;">0,1</td>
+<td style="text-align: right;">0,5989319</td>
+<td style="text-align: right;">0,0227335</td>
 </tr>
 </tbody>
 </table>
@@ -1116,7 +1117,7 @@ Figura&nbsp;6.16: Autocorrelação e autocorrelação parcial da série de produ
 </div>
 </div>
 </div>
-<p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>. Foi obtido <span class="math inline">\(ACCc\)</span> = 585,42.</p>
+<p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(1,1,0)\)</span>. Foi obtido <span class="math inline">\(AICc\)</span> = 585,42.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: valor 
@@ -1125,14 +1126,14 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ar1  constant
-      -0,3803    0,0028
-s.e.   0,1472    0,0007
+      -0,4650   91,9457
+s.e.   0,1347   18,8424
 
-sigma^2 estimated as 2,398e-05:  log likelihood=188,43
-AIC=-370,86   AICc=-370,31   BIC=-365,24</code></pre>
+sigma^2 estimated as 16480:  log likelihood=-281,42
+AIC=568,85   AICc=569,43   BIC=574,27</code></pre>
 </div>
 </div>
-<p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>. Foi obtido <span class="math inline">\(ACCc\)</span> = 586,36, indicando que o modelo anterior apresentou melhor ajuste.</p>
+<p>A seguir expõe-se o resultado do modelo <span class="math inline">\(ARIMA(0,1,1)\)</span>. Foi obtido <span class="math inline">\(AICc\)</span> = 586,36, indicando que o modelo anterior apresentou melhor ajuste.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: valor 
@@ -1141,11 +1142,11 @@ Transformation: box_cox(valor, lambda)
 
 Coefficients:
           ma1  constant
-      -0,8122     2e-03
-s.e.   0,1017     2e-04
+      -0,4120   63,0580
+s.e.   0,1135   11,3455
 
-sigma^2 estimated as 1,888e-05:  log likelihood=193,79
-AIC=-381,58   AICc=-381,04   BIC=-375,97</code></pre>
+sigma^2 estimated as 16973:  log likelihood=-282,06
+AIC=570,12   AICc=570,7   BIC=575,54</code></pre>
 </div>
 </div>
 <p>A <a href="#fig-resi-graos" class="quarto-xref">Figura&nbsp;<span>6.17</span></a> expõe os gráficos de resíduos para o modelo <span class="math inline">\(ARIMA(1,1,0)\)</span> aplicado à série transformada de produção de grãos. Os resíduos são não correlacionados e não aparentam apresentar desvio significativo de normalidade.</p>
@@ -1181,8 +1182,8 @@ Tabela&nbsp;6.7: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) par
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">13,97533</td>
-<td style="text-align: right;">0,1232054</td>
+<td style="text-align: right;">6,180284</td>
+<td style="text-align: right;">0,7217479</td>
 </tr>
 </tbody>
 </table>
@@ -1191,7 +1192,7 @@ Tabela&nbsp;6.7: Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0) par
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-for_graos" class="quarto-xref">Figura&nbsp;<span>6.18</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2033 é de 397000 toneladas de grãos.</p>
+<p>A <a href="#fig-for_graos" class="quarto-xref">Figura&nbsp;<span>6.18</span></a> expõe a previsão realizada para <span class="math inline">\(h=10\)</span> anos à frente com o modelo ajustado. A previsão pontual para 2032 é de 339530000 toneladas de grãos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-for_graos" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1223,13 +1224,13 @@ Figura&nbsp;6.18: Previsão com o modelo ARIMA(1,1,0) para a série de produçã
 <img src="ST6_files/figure-html/fig-cheg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cheg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.19: Série de chegada turistas do exterior no Brasil
+Figura&nbsp;6.19: Série de chegada de turistas do exterior no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-chegsaz" class="quarto-xref">Figura&nbsp;<span>6.20</span></a> ilustra o gráfico sazonal da série de chegada de turistas no Brasil. Confirma-se a sazonalidade anual, com maior volume nas chegadas em dezembro e janeiro, além de volume maior em julho, em relação aos meses do outono e do inverno. Fica clara, também, a tendência de crescimento na duas últimas décadas, em relação aos anos 90 e início dos anos 2000. Destaca-se, também, o pico de chegadas em junho de 2014, devido à copa do mundo de futebol, além do aumento do volume de chegadas em agosto de 2016, devido às olimpíadas do Rio de Janeiro.</p>
+<p>A <a href="#fig-chegsaz" class="quarto-xref">Figura&nbsp;<span>6.20</span></a> ilustra o gráfico sazonal da série de chegada de turistas no Brasil. Confirma-se a sazonalidade anual, com maior volume nas chegadas em dezembro e janeiro, além de volume maior em julho, em relação aos outros meses do outono e do inverno. Fica clara, também, a tendência de crescimento nas duas últimas décadas, em relação aos anos 90 e início dos anos 2000. Destaca-se, também, o pico de chegadas em junho de 2014, devido à copa do mundo de futebol, além do aumento do volume de chegadas em agosto de 2016, devido às olimpíadas do Rio de Janeiro.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegsaz" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1238,13 +1239,13 @@ Figura&nbsp;6.19: Série de chegada turistas do exterior no Brasil
 <img src="ST6_files/figure-html/fig-chegsaz-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegsaz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.20: Chegada turistas no Brasil: gráfico sazonal
+Figura&nbsp;6.20: Chegada de turistas no Brasil: gráfico sazonal
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-chegdifflog" class="quarto-xref">Figura&nbsp;<span>6.21</span></a> expõe novamente a série de chegada de turistas do exterior no Brasil, considerando o período de 2015 a 2019. A Figura também apresenta a série transformada via logarítmo, com diferenciação sazonal e diferenciação dupla. Observa-se que, por neste período a série não apresentar tendência clara, a diferenciação sazonal já praticamente viabiliza a estacionariedade. A <a href="#tbl-chegkpss" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> expõe o resultado do teste de KPSS, o qual indica a não rejeição da hipótese nula de estacionariedade da variação no log série de chegada turistas no Brasil.</p>
+<p>A <a href="#fig-chegdifflog" class="quarto-xref">Figura&nbsp;<span>6.21</span></a> expõe novamente a série de chegada de turistas do exterior no Brasil, considerando o período de 2015 a 2019. A Figura também apresenta a série transformada via logaritmo, com diferenciação sazonal e diferenciação dupla. Observa-se que, como a série não apresenta tendência clara neste período, a diferenciação sazonal já praticamente viabiliza a estacionariedade. A <a href="#tbl-chegkpss" class="quarto-xref">Tabela&nbsp;<span>6.8</span></a> expõe o resultado do teste de KPSS, o qual indica a não rejeição da hipótese nula de estacionariedade da variação no log série de chegada de turistas no Brasil.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegdifflog" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1253,7 +1254,7 @@ Figura&nbsp;6.20: Chegada turistas no Brasil: gráfico sazonal
 <img src="ST6_files/figure-html/fig-chegdifflog-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegdifflog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.21: Chegada turistas do exterior no Brasil
+Figura&nbsp;6.21: Chegada de turistas do exterior no Brasil
 </figcaption>
 </figure>
 </div>
@@ -1263,7 +1264,7 @@ Figura&nbsp;6.21: Chegada turistas do exterior no Brasil
 <div id="tbl-chegkpss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegada turistas no Brasil
+Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegada de turistas no Brasil
 </figcaption>
 <div aria-describedby="tbl-chegkpss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1276,7 +1277,7 @@ Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegad
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0,0591714</td>
+<td style="text-align: right;">0,1282612</td>
 <td style="text-align: right;">0,1</td>
 </tr>
 </tbody>
@@ -1286,7 +1287,7 @@ Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegad
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-chegcorr" class="quarto-xref">Figura&nbsp;<span>6.22</span></a> expõe os correlogramas de ACF e PACF para a variação sazonal no log série de chegada turistas no Brasil. Observa-se no correlograma de ACF pico nas autocorrelações com defasagem de uma e de doze observações, sugerindo <span class="math inline">\(q=1\)</span> e <span class="math inline">\(Q=1\)</span>. O correlograma de PACF apresenta padrão similar, sugerindo <span class="math inline">\(p=1\)</span> e <span class="math inline">\(P=1\)</span>. Logo, serão testados os modelos <span class="math inline">\(ARIMA(1,0,0)(1,1,0)_{12}\)</span> e <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>, além do modelo ARIMA automático.</p>
+<p>A <a href="#fig-chegcorr" class="quarto-xref">Figura&nbsp;<span>6.22</span></a> expõe os correlogramas de ACF e PACF para a variação sazonal no log série de chegada de turistas no Brasil. Observa-se no correlograma de ACF pico nas autocorrelações com defasagem de uma e de doze observações, sugerindo <span class="math inline">\(q=1\)</span> e <span class="math inline">\(Q=1\)</span>. O correlograma de PACF apresenta padrão similar, sugerindo <span class="math inline">\(p=1\)</span> e <span class="math inline">\(P=1\)</span>. Logo, serão testados os modelos <span class="math inline">\(ARIMA(1,0,0)(1,1,0)_{12}\)</span> e <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>, além do modelo ARIMA automático.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegcorr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1295,18 +1296,18 @@ Tabela&nbsp;6.8: Teste de KPSS para a variação sazonal no log série de chegad
 <img src="ST6_files/figure-html/fig-chegcorr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.22: Correlogramas para a variação sazonal no log série de chegada turistas no Brasil
+Figura&nbsp;6.22: Correlogramas para a variação sazonal no log série de chegada de turistas no Brasil
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-chegarimafit" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado dos modelos ARIMA testados para o log série de chegada turistas no Brasil. Observa-se que o modelo automático apresentou os mesmos resultados que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>. A seguir expõe-se a saída do modelo automático, indicando que ele é exatamente igual ao supracitado. Logo, foi possível identificar via PACF a ordem da média móvel da parte simples e da sazonal do modelo SARIMA.</p>
+<p>A <a href="#tbl-chegarimafit" class="quarto-xref">Tabela&nbsp;<span>6.9</span></a> apresenta o resultado dos modelos ARIMA testados para o log série de chegada de turistas no Brasil. Observa-se que o modelo automático apresentou os mesmos resultados que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span>. A seguir expõe-se a saída do modelo automático, indicando que ele é exatamente igual ao supracitado. Logo, foi possível identificar via ACF a ordem da média móvel da parte simples e da sazonal do modelo SARIMA.</p>
 <div class="cell">
 <div id="tbl-chegarimafit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegarimafit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.9: Modelos ARIMA para o log série de chegada turistas no Brasil
+Tabela&nbsp;6.9: Modelos ARIMA para o log série de chegada de turistas no Brasil
 </figcaption>
 <div aria-describedby="tbl-chegarimafit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1368,7 +1369,7 @@ sigma^2 estimated as 0,01647:  log likelihood=29,07
 AIC=-52,13   AICc=-51,59   BIC=-46,52</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-chegresi" class="quarto-xref">Figura&nbsp;<span>6.23</span></a> expõe os gráficos de resíduos, indicando autocorrelção isolada para o lag 3, além de histograma com um pouco de assimetria à esquerda, porém, não representando desvio grave de normalidade. A <a href="#tbl-chegresilb" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a> expõe o resultado do teste de Ljung-Box, que sugere a não rejeição da hipótese nula de ausência de autocorrelação nos resíduos.</p>
+<p>A <a href="#fig-chegresi" class="quarto-xref">Figura&nbsp;<span>6.23</span></a> expõe os gráficos de resíduos, indicando autocorrelação isolada para o lag 3, além de histograma com um pouco de assimetria à esquerda, porém, não representando desvio grave de normalidade. A <a href="#tbl-chegresilb" class="quarto-xref">Tabela&nbsp;<span>6.10</span></a> expõe o resultado do teste de Ljung-Box, que sugere a não rejeição da hipótese nula de ausência de autocorrelação nos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegresi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1377,7 +1378,7 @@ AIC=-52,13   AICc=-51,59   BIC=-46,52</code></pre>
 <img src="ST6_files/figure-html/fig-chegresi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.23: Gráficos para os resíduos do modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> para a variação sazonal no log série de chegada turistas no Brasil
+Figura&nbsp;6.23: Gráficos para os resíduos do modelo <span class="math inline">\(SARIMA(0,0,1)(0,1,1)_{12}\)</span> para a variação sazonal no log série de chegada de turistas no Brasil
 </figcaption>
 </figure>
 </div>
@@ -1387,7 +1388,7 @@ Figura&nbsp;6.23: Gráficos para os resíduos do modelo <span class="math inline
 <div id="tbl-chegresilb" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegresilb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.10: Modelos ARIMA para o log série de chegada turistas no Brasil
+Tabela&nbsp;6.10: Teste de Ljung-Box para o modelo <span class="math inline">\(SARIMA(0,0,1)(0,1,1)_{12}\)</span> para o log série de chegada de turistas no Brasil
 </figcaption>
 <div aria-describedby="tbl-chegresilb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1410,7 +1411,7 @@ Tabela&nbsp;6.10: Modelos ARIMA para o log série de chegada turistas no Brasil
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-chegfc" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> expõe o resultado da previsão dos modelos ARIMA considerados. Obviamente ambos os modelos não capturam a queda no volume de vôos nos anos da pandemia. No capítulo 7, sobre regressão dinâmica, será abordado como realizar intervenções usando variáveis binárias em modelos ARIMA para capturar o efeito de eventos externos. Entretanto, as previsões apresentam boa proximidade com os resultados dos anos de 2023 e 2024. A <a href="#tbl-chegfcperf" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> expõe o desempenho dos modelos para os anos de 2023 e 2024. Confirma-se que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> apresentou melhor desempenho, com 10,3% de erro para estes anos.</p>
+<p>A <a href="#fig-chegfc" class="quarto-xref">Figura&nbsp;<span>6.24</span></a> expõe o resultado da previsão dos modelos ARIMA considerados. Obviamente ambos os modelos não capturam na chegada de turistas nos anos da pandemia. No capítulo 7, sobre regressão dinâmica, será abordado como realizar intervenções usando variáveis binárias em modelos ARIMA para capturar o efeito de eventos externos. Entretanto, as previsões apresentam boa proximidade com os resultados dos anos de 2023 e 2024. A <a href="#tbl-chegfcperf" class="quarto-xref">Tabela&nbsp;<span>6.11</span></a> expõe o desempenho dos modelos para os anos de 2023 e 2024. Confirma-se que o modelo <span class="math inline">\(ARIMA(0,0,1)(0,1,1)_{12}\)</span> apresentou melhor desempenho, com 10,3% de erro para estes anos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-chegfc" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1419,7 +1420,7 @@ Tabela&nbsp;6.10: Modelos ARIMA para o log série de chegada turistas no Brasil
 <img src="ST6_files/figure-html/fig-chegfc-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chegfc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.24: Previsão dos modelos ARIMA para a chegada turistas no Brasil
+Figura&nbsp;6.24: Previsão dos modelos ARIMA para a chegada de turistas no Brasil
 </figcaption>
 </figure>
 </div>
@@ -1429,7 +1430,7 @@ Figura&nbsp;6.24: Previsão dos modelos ARIMA para a chegada turistas no Brasil
 <div id="tbl-chegfcperf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chegfcperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log da série de chegada turistas no Brasil para os anos de 2023 e 2024
+Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para a série de chegada de turistas no Brasil para os anos de 2023 e 2024
 </figcaption>
 <div aria-describedby="tbl-chegfcperf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1445,15 +1446,15 @@ Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log da série de chegada t
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">sarima001011</td>
-<td style="text-align: right;">55576,20</td>
-<td style="text-align: right;">47824,28</td>
-<td style="text-align: right;">10,29882</td>
+<td style="text-align: right;">61272,67</td>
+<td style="text-align: right;">52416,61</td>
+<td style="text-align: right;">11,28292</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">sarima100110</td>
-<td style="text-align: right;">74167,86</td>
-<td style="text-align: right;">64851,82</td>
-<td style="text-align: right;">14,18985</td>
+<td style="text-align: right;">65692,90</td>
+<td style="text-align: right;">56729,71</td>
+<td style="text-align: right;">12,35014</td>
 </tr>
 </tbody>
 </table>
@@ -1462,7 +1463,7 @@ Tabela&nbsp;6.11: Desempenho dos modelos ARIMA para o log da série de chegada t
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> expõe a variação sazonal da série de log(passageiros) em vôos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessária uma diferenciação de primeira ordem.</p>
+<p>A <a href="#fig-passbr-dif12" class="quarto-xref">Figura&nbsp;<span>6.25</span></a> expõe a variação sazonal da série de log(passageiros) em voos do Brasil, além dos correlogramas de ACF e PACF. Pode-se observar que a série sazonalmente diferenciada ainda apresenta alta tendência. É ainda necessária uma diferenciação de primeira ordem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-dif12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1605,7 +1606,7 @@ AIC=-902,2   AICc=-902,02   BIC=-888,5</code></pre>
 <img src="ST6_files/figure-html/fig-passbr-res-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-passbr-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.27: Série de passageiros de vôos no Brasil
+Figura&nbsp;6.27: Resíduos do modelo <span class="math inline">\(ARIMA(1,1,1)(0,1,1)_{12}\)</span> para a série de passageiros de vôos no Brasil
 </figcaption>
 </figure>
 </div>
@@ -1639,7 +1640,7 @@ Tabela&nbsp;6.14: Teste Ljung-Box para o modelo ARIMA(1,1,1)(0,1,1)12 para a sé
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.28</span></a> apresenta a previsão para 3 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros.</p>
+<p>A <a href="#fig-passbr-for" class="quarto-xref">Figura&nbsp;<span>6.28</span></a> apresenta a previsão para 3,6 anos à frente para a série de passageiros em vôos do Brasil. Sabe-se que a pandemia reduziu o volume de vôos para níveis menores que os dos anos 2000. Entretanto, o modelo capturou bem o padrão dos últimos anos e o padrão de sazonalidade no número de passageiros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-passbr-for" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1654,7 +1655,7 @@ Figura&nbsp;6.28: Previsão para 3 anos à frente para a série de passageiros d
 </div>
 </div>
 </div>
-<p>A <a href="#fig-prodndur" class="quarto-xref">Figura&nbsp;<span>6.29</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido a pandemia. Após, 2021 observa-se tendência de recuperação.</p>
+<p>A <a href="#fig-prodndur" class="quarto-xref">Figura&nbsp;<span>6.29</span></a> expõe a série de produtos não duráveis no Brasil. Observa-se padrão sazonal anual com tendência de crescimento até 2015 e depois de queda, com pior resultado em 2020, devido à pandemia. Após 2021, observa-se tendência de recuperação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-prodndur" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1669,7 +1670,7 @@ Figura&nbsp;6.29: Produção mensal de bens não duráveis no Brasil
 </div>
 </div>
 </div>
-<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.30</span></a> expõe a série de bens de consumo não duráveis duplamente diferenciada - simples e sazonal (<span class="math inline">\(m=12\)</span>), considerando os dados de até dezembro de 2021. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (2,1,0) para a parte não sazonal e um modelo de ordem (1,1,0) para a parte sazonal, dado o pico no atraso 12 meses. Já pelo correlograma de ACF, pode-se sugerir um modelo de ordem (0,1,1) para a parte não sazonal e um modelo de ordem (0,1,1) para a parte sazonal.</p>
+<p>A <a href="#fig-ndur_diff12" class="quarto-xref">Figura&nbsp;<span>6.30</span></a> expõe a série de bens de consumo não duráveis duplamente diferenciada - simples e sazonal (<span class="math inline">\(m=12\)</span>), considerando os dados de até dezembro de 2020. Pode-se sugerir pelo correlograma de PACF um modelo de ordem (2,1,0) para a parte não sazonal e um modelo de ordem (1,1,0) para a parte sazonal, dado o pico no atraso 12 meses. Já pelo correlograma de ACF, pode-se sugerir um modelo de ordem (0,1,1) para a parte não sazonal e um modelo de ordem (0,1,1) para a parte sazonal.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_diff12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1772,7 +1773,7 @@ Tabela&nbsp;6.16: Resultados dos ARIMA testados para a série de bens não durá
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.31</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante em março de 2021 é atribuído à pandemia. Observa-se picos de autocorrelação parcial para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.17</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
+<p>A <a href="#fig-ndur_res" class="quarto-xref">Figura&nbsp;<span>6.31</span></a> apresenta os gráficos residuais para o modelo <span class="math inline">\(ARIMA(4,1,1)(0,1,1)_{12}\)</span> para a série de bens de consumo não duráveis. O valor discrepante em março de 2020 é atribuído à pandemia. Observa-se picos de autocorrelação para defasagens próximas de 2 anos. No entanto, pelo teste de Ljung-Box, apresentado na <a href="#tbl-lbox_ndur" class="quarto-xref">Tabela&nbsp;<span>6.17</span></a>, não há indícios suficientes que indicam a rejeição da hipótese de independência dos resíduos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur_res" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1814,7 +1815,7 @@ Tabela&nbsp;6.17: Teste de Ljung-Box para os resíduos da série de produção d
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-ndur-for" class="quarto-xref">Figura&nbsp;<span>6.32</span></a> apresenta graficamente os resultados de previsão para além de 2021, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2021 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
+<p>A <a href="#fig-ndur-for" class="quarto-xref">Figura&nbsp;<span>6.32</span></a> apresenta graficamente os resultados de previsão para além de 2020, juntamente com os dados disponíveis e separados para teste. Observa-se boa proximidade com os dados não considerados para treinamento do modelo. Apesar da queda em 2020 devido à pandemia, o modelo treinado conseguiu apresentar uma boa projeção à curto e médio prazo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ndur-for" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1834,7 +1835,7 @@ Figura&nbsp;6.32: Previsão para 3 anos à frente para a série de bens de consu
 <div id="tbl-metrics_ndur" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a série de bens de consumo não duráveis
+Tabela&nbsp;6.18: Métricas para comparar o desempenho dos modelos testados para a série de bens de consumo não duráveis
 </figcaption>
 <div aria-describedby="tbl-metrics_ndur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1888,9 +1889,11 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtime)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Simulando uma série temporal de ruído branco. A função básica <code>rnorm</code> serve para gerar números aleatórios na distribuição normal.</p>
+<p>Simulando uma série temporal de ruído branco em torno de uma constante. A função básica <code>rnorm</code> serve para gerar números aleatórios na distribuição normal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>white <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="st">"2024-01-01"</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">199</span>,</span>
@@ -1902,7 +1905,7 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">""</span>,</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Ruído branco"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Diferenciação da série do índice Ibovespa. Usa-se o comando <code>difference</code>.</p>
+<p>Diferenciação da série do índice Ibovespa. Usa-se o comando <code>difference</code>. Caso deseje-se apenas realizar a diferenciação, pode-se fazer <code>ibov |&gt; mutate(dif = difference(FECHAMENTO))</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Ibovespa_ InfoMoney_2024.csv"</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header=</span>T)</span>
@@ -1915,10 +1918,10 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">difference</span>(FECHAMENTO)) <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"R$"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"pontos"</span>, <span class="at">x =</span> <span class="st">""</span>,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Variação Índice Ibovespa"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A autocorrelação é obtida via função <code>ACF</code>, com o argumento <code>lag_max</code> para definir a diferenciação máxima. Usando a função <code>autoplot</code> em sequência, ao invés de se exibir as autocorrelações, plota-se o correlograma.</p>
+<p>A autocorrelação é obtida via função <code>ACF</code>, com o argumento <code>lag_max</code> para definir a defasagem máxima. Usando a função <code>autoplot</code> em sequência, ao invés de se exibir as autocorrelações, plota-se o correlograma.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(FECHAMENTO, <span class="at">lag_max =</span> <span class="dv">30</span>) <span class="sc">|&gt;</span></span>
@@ -1968,7 +1971,7 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(coque) <span class="sc">|&gt;</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>ARIMA automática para a série de produção de coque. Usa-se <code>ARIMA</code> em model e apenas a série de interesse.</p>
+<p>ARIMA automático para a série de produção de coque. Usa-se <code>ARIMA</code> em model e apenas a série de interesse.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> coque_ts <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(coque))</span>
@@ -1977,12 +1980,14 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 </div>
 <p>Previsão 10 meses à frente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque_ts) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fc1 <span class="ot">&lt;-</span> fit1 <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">10</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>fc1 <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(coque_ts) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"m^3"</span>, <span class="at">title=</span><span class="st">"Produção de coque no Brasil"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Série temporal do valor da ação VALE3 a partir de 2020.</p>
+<p>Série temporal do valor da ação VALE3 a partir de 2021.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>vale <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"VALE3.csv"</span>, <span class="at">header =</span> T, <span class="at">dec=</span><span class="st">","</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2045,7 +2050,8 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>graos  <span class="ot">&lt;-</span> <span class="fu">tsibble</span>(<span class="at">valor =</span> <span class="fu">c</span>(graos_prod<span class="sc">$</span>value),</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">yearmonth</span>(graos_prod<span class="sc">$</span>date),</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">index=</span>data) <span class="sc">|&gt;</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data=</span><span class="fu">year</span>(data))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data=</span><span class="fu">year</span>(data)) <span class="sc">|&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="dv">2022</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>graos <span class="sc">|&gt;</span>  </span>
@@ -2102,7 +2108,7 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_tsresiduals</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tteste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0). Considera-se um grau de liberdade, pois o modelo tem apenas um termo autorregressivo, <span class="math inline">\(p=1\)</span>. A diferenciação não conta.</p>
+<p>Teste de Ljung-Box para os resíduos do modelo ARIMA(1,1,0). Considera-se um grau de liberdade, pois o modelo tem apenas um termo autorregressivo, <span class="math inline">\(p=1\)</span>. A diferenciação não conta.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>QQ_ <span class="ot">&lt;-</span> fit4 <span class="sc">|&gt;</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span> </span>
@@ -2142,10 +2148,10 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot_type=</span><span class="st">'partial'</span>, <span class="at">lag=</span><span class="dv">36</span>) <span class="sc">+</span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Variação dupla"</span>, <span class="at">y=</span><span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Testando modelos <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>, <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>, além do autoarima. Para a parte sazonal soma-se no modelo <code>PDP(P,D,Q)</code> para definir a ordem.</p>
+<p>Testando modelos <span class="math inline">\(ARIMA(0,1,1)(0,1,1)_{12}\)</span>, <span class="math inline">\(ARIMA(1,1,0)(2,1,0)_{12}\)</span>, além do autoarima. Para a parte sazonal soma-se no modelo <code>PDQ(P,D,Q)</code> para definir a ordem.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fit6 <span class="ot">&lt;-</span> voosbr_ts  <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(data)<span class="sc">&lt;</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2019-01"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sarima011011 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)),</span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sarima110210 =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(Passageiros) <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">PDQ</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
@@ -2178,7 +2184,7 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forecast</span>(fit6 <span class="sc">|&gt;</span> <span class="fu">select</span>(auto), <span class="at">h=</span><span class="dv">36</span>) <span class="sc">|&gt;</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(voosbr_ts <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2020-01"</span>)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_index</span>(<span class="sc">~</span><span class="st">"2019-01"</span>)) <span class="sc">+</span></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Passageiros em vôos do Brasil"</span>,</span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Passageiros"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2218,7 +2224,7 @@ Tabela&nbsp;6.18: Métricas para comparar o desenho dos modelos testados para a 
 <ol start="6" type="1">
 <li><p>Obtenha com a função <code>gg_tsdisplay</code> a diferenciação sazonal (m=12) do log da série e os correlogramas de ACF e PACF.</p></li>
 <li><p>Faça o teste de KPSS para avaliar se a variação sazonal do log da série é estacionária.</p></li>
-<li><p>Obtenha modelos SARIMA segundo propõem os padrões dos correlogramas de ACF e PACF. Considere o período de 2015 a 2019. Selecione o melhor modelo segundo a métrica <span class="math inline">\(AICc\)</span> e obtenha os coficientes deste via <code>report</code>.</p></li>
+<li><p>Obtenha modelos SARIMA segundo propõem os padrões dos correlogramas de ACF e PACF. Considere o período de 2015 a 2019. Selecione o melhor modelo segundo a métrica <span class="math inline">\(AICc\)</span> e obtenha os coeficientes deste via <code>report</code>.</p></li>
 <li><p>Obtenha os resíduos do melhor modelo e faça o teste de Ljung-Box para avaliar a autocorrelação destes.</p></li>
 <li><p>Faça a previsão cinco anos à frente (h=60), plote os resultados e compare o desempenho dos modelos considerando os anos de 2023 e 2024.</p></li>
 <li><p>Considerando a série de produção de bens de consumo duráveis, apresentada no primeiro capítulo, realize o mesmo fluxo proposto nas questões 6 a 10, com as devidas adaptações (por exemplo, decidindo entre diferenciação simples, sazonal ou dupla, segundo o padrão da série). Obtenha modelos ARIMA adequados à série usando dados de até 2020 e compare-os para os últimos anos da série.</p></li>
